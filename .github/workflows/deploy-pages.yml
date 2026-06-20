@@ -1,0 +1,132 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'pages/**'
+      - '.github/config/deploy-*.fs'
+      - '.github/config/shared/deploy-common.fs'
+      - 'GenerateConfig.fsx'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "deploy-pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - uses: astral-sh/setup-uv@v6
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: false
+
+      - name: Render F# source tree to output
+        timeout-minutes: 10
+        run: |
+          rm -rf "pages/output" ".deploy/pages"
+          dotnet fsi GenerateConfig.fsx render-site "pages" "pages/output" --clean
+
+      - name: Detect and build site
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages/output"
+
+          if [ -f "zensical.toml" ]; then
+            echo "Detected Zensical site"
+            uv venv --python 3.12.10 --seed --managed-python
+            source .venv/bin/activate
+            uv pip install zensical
+            zensical build
+            deactivate
+            rm -rf .venv
+            rm -rf .cache
+            publish="$PWD/site"
+          elif [ -f "Gemfile" ]; then
+            echo "Detected Jekyll site"
+            bundle install
+            bundle exec jekyll build --disable-disk-cache
+            rm -rf Gemfile.lock
+            publish="$PWD/_site"
+          elif [ -f "package.json" ]; then
+            echo "Detected JavaScript package site"
+            bun install
+            bun run build
+            rm -rf node_modules
+            rm -rf bun.lock
+            publish="$PWD/dist"
+          else
+            echo "Detected static push site"
+            publish="$PWD"
+          fi
+
+          test -d "$publish"
+          echo "PUBLISH_DIR=$publish" >> "$GITHUB_ENV"
+          echo "SOURCE_OUTPUT=$PWD" >> "$GITHUB_ENV"
+
+      - name: Scrub generated source-only files
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$PUBLISH_DIR" \( -name '*.fs' -o -name '*.fsx' -o -name '.gitignore' -o -name '.gitattributes' -o -name '.nojekyll' -o -name 'CNAME' \) -delete
+
+      - name: Deploy to target repo
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="vibe-pages"
+          BRANCH="main"
+          TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          cd "$PUBLISH_DIR"
+          preserve_dir="$(mktemp -d)"
+          if git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${preserve_dir}/target" 2>/dev/null; then
+            if [ -f "${preserve_dir}/target/CNAME" ]; then
+              cp "${preserve_dir}/target/CNAME" CNAME
+              echo "Preserved existing target CNAME"
+            fi
+          else
+            echo "No existing target branch to preserve"
+          fi
+          rm -rf "$preserve_dir"
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add target "${REMOTE_URL}" 2>/dev/null || \
+            git remote set-url target "${REMOTE_URL}"
+          git add .
+          git commit -m "Deploy pages [skip ci]" || echo "No changes"
+          git push target HEAD:"${BRANCH}" --force
+
+      - name: Cleanup rendered output
+        if: always()
+        shell: bash
+        run: |
+          rm -rf "pages/output" ".deploy/pages"
