@@ -195,14 +195,14 @@ jobs:
       # =====================================================================
       # STEP 6 (State 1): Commit generated files + bool
       # =====================================================================
-      - name: Commit Generated Files
-        if: steps.state.outputs.exists == 'false' || steps.state.outputs.mode == 'regenerate' || steps.state.outputs.mode == 'sync'
-        uses: actions/checkout@v6
+      - name: Restore Git
+          uses: actions/checkout@v6
         with:
           token: ${{ secrets.GH_PAGES_TOKEN }}
           fetch-depth: 0
-        env:
-          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+      
+      - name: Commit Generated Files
+        if: steps.state.outputs.exists == 'false' || steps.state.outputs.mode == 'regenerate' || steps.state.outputs.mode == 'sync'
         run: |
           cd "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
@@ -246,12 +246,14 @@ jobs:
       # =====================================================================
       # STEP 9 (State 2): Delete non-essential YMLs
       # =====================================================================
-      - name: Delete Non-Essential YMLs
-        if: steps.state.outputs.exists == 'true' && steps.state.outputs.mode != 'clean'
-        uses: actions/checkout@v6
+      - name: Restore Git 2
+          uses: actions/checkout@v6
         with:
           token: ${{ secrets.GH_PAGES_TOKEN }}
           fetch-depth: 0
+      
+      - name: Delete Non-Essential YMLs
+        if: steps.state.outputs.exists == 'true' && steps.state.outputs.mode != 'clean'
         run: |
           echo "=== Cleaning up generated workflows ==="
           deleted=0
