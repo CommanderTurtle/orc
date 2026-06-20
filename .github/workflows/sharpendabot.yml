@@ -197,6 +197,10 @@ jobs:
       # =====================================================================
       - name: Commit Generated Files
         if: steps.state.outputs.exists == 'false' || steps.state.outputs.mode == 'regenerate' || steps.state.outputs.mode == 'sync'
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
         env:
           GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
         run: |
@@ -244,6 +248,10 @@ jobs:
       # =====================================================================
       - name: Delete Non-Essential YMLs
         if: steps.state.outputs.exists == 'true' && steps.state.outputs.mode != 'clean'
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
         run: |
           echo "=== Cleaning up generated workflows ==="
           deleted=0
