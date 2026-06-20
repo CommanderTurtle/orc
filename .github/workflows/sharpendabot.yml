@@ -203,7 +203,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git remote remove origin || true
+          git remote remove origin 2>/dev/null || true
           git remote set-url origin "https://x-access-token:${GH_PAGES_TOKEN}@github.com/${{ github.repository }}.git"
           
           git add -A
@@ -212,7 +212,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "🔧 Generate files from F# sources [skip ci]"
-            git push
+            git push origin HEAD:main
             echo "Committed generated files + bool"
             echo ""
             echo "⚠️  Push again (or modify bool file) to trigger State 2"
@@ -285,6 +285,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
+          git remote remove origin 2>/dev/null || true
           git remote set-url origin "https://x-access-token:${GH_PAGES_TOKEN}@github.com/${{ github.repository }}.git"
           
           git add -A
@@ -293,6 +294,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "🧹 Cleanup generated workflows [skip ci]"
-            git push
+            git push origin HEAD:main
             echo "Committed cleanup"
           fi
