@@ -100,6 +100,8 @@ Get-ChildItem -Recurse -File -Filter "index.fs" | `
 Get-ChildItem "C:\folder" -Recurse -File | `
     Select-String "!--" | `
     Format-Table Path, LineNumber, Line
+
+# Solution is just move <!-- Comments --> to /* Comments */ (No errors in DSL)
 ```
 
 </details>
