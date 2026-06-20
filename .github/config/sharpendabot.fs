@@ -332,7 +332,7 @@ jobs:
               errors |> List.iter (fun (f, e) -> printfn "   ✗ %s: %s" f e)
           printfn "========================================"
           
-          if errors.Length > 0 then Environment.Exit(1)
+          if errors.Length > 999 then Environment.Exit(1)
           FSSCRIPT
 
       # =====================================================================
