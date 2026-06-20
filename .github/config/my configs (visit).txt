@@ -4,7 +4,7 @@ let render() =
     Config.Workflows.DeployCommon.render {
         WorkflowName = "Deploy Vibe" 💃🎵
         SourceFolder = "main"
-        TargetRepo = "new-reactproj"
+        TargetRepo = "vibe-pages"
         TargetBranch = "main"
         TokenName = "GH_PAGES_TOKEN"
     }
@@ -14,5 +14,5 @@ let render() =
 	app 		app-pages 					deploy-app	 			app.shel.sh				standalone html 	(no build)
 	lab 		providers 					deploy-lab 				providers.shel.sh		vite+react+tailwind (no build)
 	vite 		reactproj 					deploy-vite				turtleprotect.org		vite+react+tailwind
-	pages 		vibe-pages 					deploy-pages 			vibe.shel.sh			github jekyll 		(no build)
+	pages 		blog-pages 					deploy-pages 			vibe.shel.sh			github jekyll 		(no build)
 	blog 		CommanderTurtle.github.io   deploy-blog				shel.sh					jekyll bundle
