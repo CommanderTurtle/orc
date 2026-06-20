@@ -288,8 +288,10 @@ jobs:
       # =====================================================================
       - name: Commit Cleanup
         if: steps.state.outputs.exists == 'true'
-        env:
-          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
