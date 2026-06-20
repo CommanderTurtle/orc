@@ -99,7 +99,7 @@ jobs:
         run: |
           set -euo pipefail
           OWNER="${{ github.repository_owner }}"
-          REPO="vibe-pages"
+          REPO="blog-pages"
           BRANCH="main"
           TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
           REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
