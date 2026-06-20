@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Generator</name></assembly>
+<members>
+<member name="T:Generator.DelimiterExtractor.ExtractionConfig">
+ <summary>
+ Configuration for extraction.
+ </summary>
+</member>
+<member name="T:Generator.DelimiterExtractor.ExtractedSection">
+ <summary>
+ Represents an extracted section.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.removeEmptyLines(System.String)">
+ <summary>
+ Removes empty lines from content.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.filterLines(System.String,Microsoft.FSharp.Core.FSharpFunc{System.String,System.Boolean})">
+ <summary>
+ Filters lines by a predicate.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.toIndexedArray(System.String)">
+ <summary>
+ Creates a line-indexed view of content.
+ Similar to the XML project's array-based approach.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.wrapLines(System.String,System.String,System.String)">
+ <summary>
+ Wraps each line with custom prefix/suffix.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.replaceBetween(System.String,System.String,System.String,System.String)">
+ <summary>
+ Replaces content between delimiters.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.findAll(System.String,System.String)">
+ <summary>
+ Finds all occurrences of a pattern and returns positions.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.sliceToEnd(System.String,System.Int32)">
+ <summary>
+ CMD-style substring: %var:~start% (to end)
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.slice(System.String,System.Int32,System.Int32)">
+ <summary>
+ Gets a substring using CMD-style slicing.
+ %var:~start,length% equivalent.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.tokenize(System.String,System.String)">
+ <summary>
+ Tokenizes content by a delimiter.
+ Similar to CMD's tokenization but in F#.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.extractHead(System.String)">
+ <summary>
+ Extracts HTML head content.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.extractBody(System.String)">
+ <summary>
+ Extracts HTML body content.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.extractCSS(System.String)">
+ <summary>
+ Extracts CSS sections from HTML.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.extractJavaScript(System.String)">
+ <summary>
+ Extracts JavaScript sections from HTML.
+ </summary>
+</member>
+<member name="M:Generator.DelimiterExtractor.extractSections(System.String,Generator.DelimiterExtractor.ExtractionConfig)">
+ <summary>
+ Extracts all sections matching the delimiter pattern.
+ </summary>
+</member>
+<member name="P:Generator.DelimiterExtractor.defaultConfig">
+ <summary>
+ Default extraction config.
+ </summary>
+</member>
+<member name="T:Generator.DelimiterExtractor">
+ <summary>
+ Delimiter-based content extraction similar to the XML project approach.
+ Extracts sections from HTML/JS/CSS using custom delimiters.
+ </summary>
+</member>
+<member name="T:Generator.XmlStyleLiteral.TokenizedLine">
+ <summary>
+ Represents a tokenized line from the XML project approach.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.exampleUsage">
+ <summary>
+ Example usage demonstrating XML-style literal approach.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.toLiteralModule(System.String,System.String)">
+ <summary>
+ Creates a complete XML-style literal module.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.extractAttribute(System.String,System.String)">
+ <summary>
+ Extracts attribute value from XML/HTML tag.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.extractTag(System.String,System.String)">
+ <summary>
+ Extracts content between XML-style tags.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.processConditional(System.String,System.String,Microsoft.FSharp.Core.FSharpFunc{System.String,System.String},Microsoft.FSharp.Core.FSharpFunc{System.String,System.String})">
+ <summary>
+ Processes content with conditional logic.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.evalCondition(System.String,System.String)">
+ <summary>
+ Boolean condition evaluation similar to CMD IF statements.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.echoLines(Microsoft.FSharp.Collections.FSharpList{System.String},System.String,System.String)">
+ <summary>
+ Echo-style output: writes each line with optional prefix/suffix.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.toVariableArray(Microsoft.FSharp.Collections.FSharpList{System.String},System.String)">
+ <summary>
+ Creates an XML-style variable array from lines.
+ Similar to: set line[0]=... set line[1]=...
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.toCData(System.String)">
+ <summary>
+ Wraps content in XML-style CDATA-like safe container.
+ Uses F# triple-quoted strings as the equivalent.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.cmdReplace(System.String,System.String,System.String)">
+ <summary>
+ CMD-style string replacement: %var:old=new%
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.cmdSubstring(System.String,System.Int32,Microsoft.FSharp.Core.FSharpOption{System.Int32})">
+ <summary>
+ CMD-style %var:~start,length% substring.
+ </summary>
+</member>
+<member name="M:Generator.XmlStyleLiteral.tokenizeLine(System.String,Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ CMD-style FOR /F tokenization in F#.
+ Splits a line into tokens by delimiters.
+ </summary>
+</member>
+<member name="T:Generator.XmlStyleLiteral">
+ <summary>
+ XML-style literal handling inspired by the TurtleProtect XML project.
+ Implements CMD-style tokenization and substring operations in F#.
+ </summary>
+</member>
+<member name="T:Generator.EnhancedConverter.PageComponent">
+ <summary>
+ Represents a page component.
+ </summary>
+</member>
+<member name="P:Generator.EnhancedConverter.ConversionOptions.UseInterpolation">
+<summary>
+ Use interpolation for dynamic content
+</summary>
+</member>
+<member name="P:Generator.EnhancedConverter.ConversionOptions.SeparateScripts">
+<summary>
+ Extract and separate JS/CSS
+</summary>
+</member>
+<member name="P:Generator.EnhancedConverter.ConversionOptions.ModuleName">
+<summary>
+ Module name for generated code
+</summary>
+</member>
+<member name="P:Generator.EnhancedConverter.ConversionOptions.VariablePrefix">
+<summary>
+ Variable prefix for line variables
+</summary>
+</member>
+<member name="P:Generator.EnhancedConverter.ConversionOptions.UseLineVariables">
+<summary>
+ Use line-by-line variable approach
+</summary>
+</member>
+<member name="T:Generator.EnhancedConverter.ConversionOptions">
+ <summary>
+ Conversion options.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.exampleConversion">
+ <summary>
+ Example: Convert a simple HTML page.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.validate(System.String)">
+ <summary>
+ Validates that the generated F# code is safe.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.convertWithLines(System.String,System.String)">
+ <summary>
+ Converts HTML with line-by-line variable approach.
+ Best for very large files.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.convertQuick(System.String)">
+ <summary>
+ Quick convert with default options.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.convert(System.String,Generator.EnhancedConverter.ConversionOptions)">
+ <summary>
+ Converts HTML to F# using the enhanced safe string approach.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.buildModule(Microsoft.FSharp.Collections.FSharpList{Generator.EnhancedConverter.PageComponent},Generator.EnhancedConverter.ConversionOptions)">
+ <summary>
+ Builds the complete F# module from components.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.convertComponent(Generator.EnhancedConverter.PageComponent,Generator.EnhancedConverter.ConversionOptions)">
+ <summary>
+ Converts a single component to F# code.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.toLineModule(System.String,System.String,System.String)">
+ <summary>
+ Converts content to a line-based module with numbered variables.
+ </summary>
+</member>
+<member name="M:Generator.EnhancedConverter.parseComponents(System.String,Generator.EnhancedConverter.ConversionOptions)">
+ <summary>
+ Parses HTML into components.
+ </summary>
+</member>
+<member name="P:Generator.EnhancedConverter.defaultOptions">
+ <summary>
+ Default conversion options.
+ </summary>
+</member>
+<member name="T:Generator.EnhancedConverter">
+ <summary>
+ Enhanced HTML to F# converter using safe string techniques.
+ Leverages F#'s triple-quoted strings for literal HTML embedding.
+ Allows walking lines in html for literal extraction.
+ This project creates a running linecount and classifies them.
+ </summary>
+</member>
+<member name="T:Generator.Verification.VerificationReport">
+ <summary>
+ Complete verification report.
+ </summary>
+</member>
+<member name="T:Generator.Verification.ComparisonResult">
+ <summary>
+ Result of comparing two HTML documents.
+ </summary>
+</member>
+<member name="T:Generator.Verification.VerificationResult">
+ <summary>
+ Result of a verification check.
+ </summary>
+</member>
+<member name="T:Generator.Verification.VerificationConfig">
+ <summary>
+ Configuration for HTML verification.
+ </summary>
+</member>
+<member name="M:Generator.Verification.printReport(Generator.Verification.VerificationReport)">
+ <summary>
+ Prints a verification report to the console.
+ </summary>
+</member>
+<member name="M:Generator.Verification.formatReport(Generator.Verification.VerificationReport)">
+ <summary>
+ Formats a verification report for display.
+ </summary>
+</member>
+<member name="M:Generator.Verification.runAllChecks">
+ <summary>
+ Runs all verification checks.
+ </summary>
+</member>
+<member name="M:Generator.Verification.checkContentPreservation(System.String,System.String)">
+ <summary>
+ Checks content preservation between HTML and F# files.
+ </summary>
+</member>
+<member name="M:Generator.Verification.runRoundTripTest(System.String,System.String)">
+ <summary>
+ Runs roundtrip test on files.
+ </summary>
+</member>
+<member name="M:Generator.Verification.verifyRoundTrip(System.String,System.String)">
+ <summary>
+ Verifies roundtrip fidelity of HTML conversion.
+ </summary>
+</member>
+<member name="M:Generator.Verification.compareHtml(Generator.Verification.VerificationConfig,System.String,System.String)">
+ <summary>
+ Compares two HTML strings for equivalence.
+ </summary>
+</member>
+<member name="M:Generator.Verification.findOrphanHtmlFiles(System.String)">
+ <summary>
+ Finds all orphan HTML files (HTML files without corresponding F# files).
+ </summary>
+</member>
+<member name="M:Generator.Verification.hasBeenConverted(System.String)">
+ <summary>
+ Checks if an HTML file has been converted to F#.
+ </summary>
+</member>
+<member name="M:Generator.Verification.extractTagContent(System.String,System.String)">
+ <summary>
+ Extracts content from a specific HTML tag.
+ </summary>
+</member>
+<member name="M:Generator.Verification.normalizeHtml(Generator.Verification.VerificationConfig,System.String)">
+ <summary>
+ Normalizes HTML for comparison.
+ </summary>
+</member>
+<member name="P:Generator.Verification.defaultConfig">
+ <summary>
+ Default verification configuration.
+ </summary>
+</member>
+<member name="T:Generator.Verification">
+ <summary>
+ Verification module for HTML to F# conversion.
+ </summary>
+</member>
+<member name="M:Generator.Program.convertToLines(System.String,System.String)">
+ <summary>
+ Converts HTML to F# using line-by-line variable mode.
+ </summary>
+</member>
+<member name="M:Generator.Program.convertToLiteral(System.String,System.String)">
+ <summary>
+ Converts HTML to F# using triple-quoted literal mode.
+ </summary>
+</member>
+<member name="M:Generator.Program.convertToGiraffeDsl(System.String,System.String)">
+ <summary>
+ Converts HTML to F# using the new proper Giraffe DSL converter.
+ </summary>
+</member>
+</members>
+</doc>

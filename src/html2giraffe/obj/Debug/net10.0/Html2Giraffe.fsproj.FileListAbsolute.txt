@@ -1,0 +1,13 @@
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\bin\Debug\net10.0\Html2Giraffe.deps.json
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\bin\Debug\net10.0\Html2Giraffe.dll
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\bin\Debug\net10.0\Html2Giraffe.pdb
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\bin\Debug\net10.0\Html2Giraffe.xml
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.fsproj.AssemblyReference.cache
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.AssemblyInfoInputs.cache
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.AssemblyInfo.fs
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.fsproj.CoreCompileInputs.cache
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.dll
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\refint\Html2Giraffe.dll
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.xml
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\Html2Giraffe.pdb
+C:\Users\alienuser\Documents\Dev\Website Stuff\shel orch\don't commit\2 archive\01-blank-orchestrator\src\html2giraffe\obj\Debug\net10.0\ref\Html2Giraffe.dll
