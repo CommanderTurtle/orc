@@ -385,7 +385,7 @@ let rec generateDsl (element: HtmlElement) (level: int) (config: ConversionConfi
         let dq = string '"'
         let esc = "\\" + string '"'
         let safe = text.Replace(dq, esc).Replace("--", "- -")
-        sprintf "%srawText (\"<!-- %s -->\")" ind safe
+        sprintf "%srawText (\"\"\"<!-- %s -->\"\"\")" ind safe
     
     | Doctype(value) ->
         ""
