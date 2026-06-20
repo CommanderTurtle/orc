@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "eQqK0Oub6As=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alienuser\\Documents\\Dev\\Website Stuff\\shel orch\\don't commit\\2 archive\\01-blank-orchestrator\\src\\generator\\Generator.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alienuser\\.nuget\\packages\\anglesharp\\1.1.0\\anglesharp.1.1.0.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\fsharp.core\\10.1.301\\fsharp.core.10.1.301.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\giraffe.viewengine\\1.4.0\\giraffe.viewengine.1.4.0.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\htmlagilitypack\\1.11.57\\htmlagilitypack.1.11.57.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\spectre.console\\0.48.0\\spectre.console.0.48.0.nupkg.sha512"
+  ],
+  "logs": []
+}

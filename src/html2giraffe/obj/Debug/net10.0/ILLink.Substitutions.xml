@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="Html2Giraffe">
+    <resource name="FSharpSignatureData.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpOptimizationData.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.Html2Giraffe" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.Html2Giraffe" action="remove"></resource>
+  </assembly>
+</linker>
