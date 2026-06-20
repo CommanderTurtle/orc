@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Wasm.Unity.N2.IndexHtml
+﻿module ConvertedFiles.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -10,8 +10,8 @@ let page =
             title [] [
                 str "Unity WebGL Launcher"
             ]
-            rawText ("<!-- 
-    ================================================================
+            style [] [
+                    rawText ("""/*==============================================================
     UNITY WEBGL PLACEHOLDER LAUNCHER
     ================================================================
     A standalone HTML page that loads a Unity WebGL game from local
@@ -50,10 +50,8 @@ let page =
       unityInstance.SetFullscreen(0)     — Exit fullscreen
       unityInstance.SendMessage(obj, method, value) — Call C# method
       unityInstance.Quit().then(...)     — Quit and cleanup
-    ================================================================
-   -->")
-            style [] [
-                    rawText ("""/* ================================================================
+
+       ================================================================
        CSS CUSTOM PROPERTIES — Unity Dark Theme
        ================================================================ */
     :root {
@@ -816,14 +814,14 @@ let page =
       .progress-area { width: 85vw; }
     }""")
             ]
-            rawText ("<!--  Try to load TemplateData style if it exists  -->")
+            rawText ("""<!--  Try to load TemplateData style if it exists  -->""")
             link [ attr "rel" "stylesheet"; _href "./TemplateData/style.css"; attr "onerror" "this.remove()" ]
             link [ attr "rel" "shortcut icon"; _href "./TemplateData/favicon.ico"; attr "onerror" "this.remove()" ]
         ]
         body [] [
-            rawText ("<!--  Background Particles  -->")
+            rawText ("""<!--  Background Particles  -->""")
             canvas [ _id "bg-canvas" ] []
-            rawText ("<!--  ==================== SHORTCUTS OVERLAY ====================  -->")
+            rawText ("""<!--  ==================== SHORTCUTS OVERLAY ====================  -->""")
             div [ _class "overlay"; _id "shortcutsOverlay"; attr "onclick" "if(event.target===this)toggleShortcuts()" ] [
                 div [ _class "overlay-panel" ] [
                     div [ _class "overlay-header" ] [
@@ -884,9 +882,9 @@ let page =
                     ]
                 ]
             ]
-            rawText ("<!--  ==================== MAIN APP ====================  -->")
+            rawText ("""<!--  ==================== MAIN APP ====================  -->""")
             div [ _class "app" ] [
-                rawText ("<!--  - -- -- -- -- - SETUP SCREEN - -- -- -- -- -  -->")
+                rawText ("""<!--  - -- -- -- -- - SETUP SCREEN - -- -- -- -- -  -->""")
                 div [ _class "screen setup-screen active"; _id "setupScreen" ] [
                     div [ _class "setup-header" ] [
                         h1 [] [
@@ -909,11 +907,11 @@ let page =
                         ]
                     ]
                     div [ _class "glass-panel" ] [
-                        rawText ("<!--  Detection Status  -->")
+                        rawText ("""<!--  Detection Status  -->""")
                         div [ _class "detect-status info"; _id "detectStatus" ] [
                             str "Scanning for Unity WebGL build files..."
                         ]
-                        rawText ("<!--  Build Name Configuration  -->")
+                        rawText ("""<!--  Build Name Configuration  -->""")
                         div [ _class "config-section" ] [
                             label [ _class "config-label" ] [
                                 str "Build Prefix"
@@ -923,16 +921,16 @@ let page =
                             ]
                             input [ _type "text"; _class "config-input"; _id "buildPrefixInput"; attr "placeholder" "e.g. 'MyGame' (files: MyGame.data.gz, MyGame.loader.js, ...)"; attr "oninput" "onPrefixChange()" ]
                         ]
-                        rawText ("<!--  Detected Files Grid  -->")
+                        rawText ("""<!--  Detected Files Grid  -->""")
                         div [ _class "config-section" ] [
                             label [ _class "config-label" ] [
                                 str "Detected Build Files"
                             ]
                             div [ _class "file-grid"; _id "fileGrid" ] [
-                                rawText ("<!--  Populated by JS  -->")
+                                rawText ("""<!--  Populated by JS  -->""")
                             ]
                         ]
-                        rawText ("<!--  Build Info  -->")
+                        rawText ("""<!--  Build Info  -->""")
                         div [ _class "config-section" ] [
                             label [ _class "config-label" ] [
                                 str "Build Info"
@@ -942,7 +940,7 @@ let page =
                                 input [ _type "text"; _class "config-input"; _id "productNameInput"; attr "placeholder" "Product Name"; attr "value" "Unity Game" ]
                             ]
                         ]
-                        rawText ("<!--  Actions  -->")
+                        rawText ("""<!--  Actions  -->""")
                         div [ _class "action-bar" ] [
                             button [ _class "btn btn-primary"; _id "launchBtn"; attr "onclick" "launchGame()"; attr "disabled" "" ] [
                                 span [ _class "btn-icon" ] [
@@ -968,7 +966,7 @@ let page =
                         ]
                     ]
                 ]
-                rawText ("<!--  - -- -- -- -- - LOADING SCREEN - -- -- -- -- -  -->")
+                rawText ("""<!--  - -- -- -- -- - LOADING SCREEN - -- -- -- -- -  -->""")
                 div [ _class "screen loading-screen"; _id "loadingScreen" ] [
                     div [ _class "spinner" ] [
                         div [ _class "spinner-square" ] []
@@ -996,7 +994,7 @@ let page =
                         ]
                     ]
                 ]
-                rawText ("<!--  - -- -- -- -- - GAME SCREEN - -- -- -- -- -  -->")
+                rawText ("""<!--  - -- -- -- -- - GAME SCREEN - -- -- -- -- -  -->""")
                 div [ _class "screen game-screen"; _id "gameScreen" ] [
                     div [ _class "unity-wrapper"; _id "unityContainer" ] [
                         canvas [ _id "unity-canvas"; attr "tabindex" "-1" ] []
@@ -1060,7 +1058,7 @@ let page =
                         div [ _class "log-content"; _id "logContent" ] []
                     ]
                 ]
-                rawText ("<!--  - -- -- -- -- - ERROR SCREEN - -- -- -- -- -  -->")
+                rawText ("""<!--  - -- -- -- -- - ERROR SCREEN - -- -- -- -- -  -->""")
                 div [ _class "screen error-screen"; _id "errorScreen" ] [
                     div [ _class "error-icon" ] [
                         str "!"
@@ -1087,8 +1085,8 @@ let page =
                     ]
                 ]
             ]
-            rawText ("<!--  /app  -->")
-            rawText ("<!--  ==================== JAVASCRIPT ====================  -->")
+            rawText ("""<!--  /app  -->""")
+            rawText ("""<!--  ==================== JAVASCRIPT ====================  -->""")
             script [] [
                     rawText ("""// ================================================================
 // UNITY WEBGL PLACEHOLDER LAUNCHER
