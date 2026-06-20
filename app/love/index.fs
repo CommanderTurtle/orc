@@ -795,7 +795,7 @@ let page =
                             ]
                         ]
                     ]
-                    rawText ("<!-- 
+                    rawText ("""<!-- 
     <div class=\"start-item\" onclick=\"closeStartMenu(); openGameCube();\">
 	  <div class=\"start-item-icon\"><img src=\"https://th.bing.com/th?q=Skyrim+Dark+Brotherhood+Door&w=120&h=120\" alt=\"Prove you're human\" width=\"26\" height=\"26\" style=\"width:26px;height:26px;object-fit:contain;display:block;\" /></div>
       <div class=\"start-item-meta\">
@@ -803,8 +803,8 @@ let page =
         <span class=\"start-item-sub\">Open the game of captcha (utility)</span>
       </div>
     </div>
- -->")
-                    rawText ("<!-- Insert New Item Here
+ -->""")
+                    rawText ("""<!-- Insert New Item Here
     <div class=\"start-item\" onclick=\"popupAppear(); closeStartMenu();\">
 	  <div class=\"start-item-icon\"><img src=\"\" alt=\"Bitten rice cracker logo\" width=\"26\" height=\"26\" style=\"width:26px;height:26px;object-fit:contain;display:block;\" /></div>
       <div class=\"start-item-meta\">
@@ -812,17 +812,17 @@ let page =
         <span class=\"start-item-sub\">Open romantic guidance utility</span>
       </div>
     </div>
- -->")
+ -->""")
                 ]
             ]
-            rawText ("<!-- APPEND TO SCRIPTS:
+            rawText ("""<!-- APPEND TO SCRIPTS:
 function openGame() {
   // Your custom game logic
   console.log(\"Launching game...\");
   // Example: open a window, show a div, etc.
   // document.getElementById(\"game-window\").classList.add(\"open\");
 }
- -->")
+ -->""")
             rawText ("<!--  ======== TASKBAR ========  -->")
             div [ _class "taskbar" ] [
                 button [ _class "start-btn"; _id "start-btn" ] [
