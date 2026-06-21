@@ -9,7 +9,55 @@ type SiteDeploy = {
 }
 
 let render (site: SiteDeploy) =
-    sprintf """name: %s
+    sprintf """# ================= Improved State Mechanics ================= #
+# State guideline -->  site.WorkflowName        // 1
+# State guideline -->  site.SourceFolder        // 2
+# State guideline -->  site.SourceFolder        // 3
+# State guideline -->  site.SourceFolder        // 4  (bool2 check)
+# State guideline -->  site.SourceFolder        // 5  (bool3 check)
+# State guideline -->  site.SourceFolder        // 6  (bool4 check)
+# State guideline -->  site.SourceFolder        // 7  (bool5 check)
+# State guideline -->  site.SourceFolder        // 8  (rm output)
+# State guideline -->  site.SourceFolder        // 9  (.deploy)
+# State guideline -->  site.SourceFolder        // 10 (render-site src)
+# State guideline -->  site.SourceFolder        // 11 (output dir)
+# State guideline -->  site.SourceFolder        // 12 (cd output)
+# State guideline -->  site.TargetRepo          // 13
+# State guideline -->  site.TargetBranch        // 14
+# State guideline -->  site.TokenName           // 15
+# State guideline -->  site.SourceFolder        // 16 (deploy msg)
+# State guideline -->  site.SourceFolder        // 17 (cleanup output)
+# State guideline -->  site.SourceFolder        // 18 (.deploy cleanup)
+# State guideline -->  site.SourceFolder        // 19 (create bool2 path)
+# State guideline -->  site.SourceFolder        // 20 (git add bool2)
+# State guideline -->  site.SourceFolder        // 21 (disable-actions hashFiles)
+# State guideline -->  site.TokenName           // 22 (disable-actions checkout token)
+# State guideline -->  site.TokenName           // 23 (disable-actions API token)
+# State guideline -->  site.SourceFolder        // 24 (rm bool2)
+# State guideline -->  site.SourceFolder        // 25 (git rm bool2)
+# State guideline -->  site.SourceFolder        // 26 (create bool3)
+# State guideline -->  site.SourceFolder        // 27 (git add bool3)
+# State guideline -->  site.SourceFolder        // 28 (cleanup-branch hashFiles)
+# State guideline -->  site.TokenName           // 29 (cleanup-branch checkout token)
+# State guideline -->  site.TargetRepo          // 30
+# State guideline -->  site.TargetBranch        // 31
+# State guideline -->  site.SourceFolder        // 32 (rm bool3)
+# State guideline -->  site.SourceFolder        // 33 (git rm bool3)
+# State guideline -->  site.SourceFolder        // 34 (create bool4)
+# State guideline -->  site.SourceFolder        // 35 (git add bool4)
+# State guideline -->  site.SourceFolder        // 36 (enable-actions hashFiles)
+# State guideline -->  site.TokenName           // 37 (enable-actions checkout token)
+# State guideline -->  site.TokenName           // 38 (enable-actions API token)
+# State guideline -->  site.SourceFolder        // 39 (rm bool4)
+# State guideline -->  site.SourceFolder        // 40 (git rm bool4)
+# State guideline -->  site.SourceFolder        // 41 (create bool5)
+# State guideline -->  site.SourceFolder        // 42 (git add bool5)
+# State guideline -->  site.SourceFolder        // 43 (finalize hashFiles)
+# State guideline -->  site.TokenName           // 44 (finalize checkout token)
+# State guideline -->  site.SourceFolder        // 45 (rm bool5)
+# State guideline -->  site.SourceFolder        // 46 (git rm bool5)
+
+name: %s
 
 on:
   push:
@@ -309,49 +357,49 @@ jobs:
           git commit -m "Finalize: reset state machine [skip ci]" || true
           git push || true
 """
-        site.WorkflowName        // 1
-        site.SourceFolder        // 2
-        site.SourceFolder        // 3
-        site.SourceFolder        // 4  (bool2 check)
-        site.SourceFolder        // 5  (bool3 check)
-        site.SourceFolder        // 6  (bool4 check)
-        site.SourceFolder        // 7  (bool5 check)
-        site.SourceFolder        // 8  (rm output)
-        site.SourceFolder        // 9  (.deploy)
-        site.SourceFolder        // 10 (render-site src)
-        site.SourceFolder        // 11 (output dir)
-        site.SourceFolder        // 12 (cd output)
-        site.TargetRepo          // 13
-        site.TargetBranch        // 14
-        site.TokenName           // 15
-        site.SourceFolder        // 16 (deploy msg)
-        site.SourceFolder        // 17 (cleanup output)
-        site.SourceFolder        // 18 (.deploy cleanup)
-        site.SourceFolder        // 19 (create bool2 path)
-        site.SourceFolder        // 20 (git add bool2)
-        site.SourceFolder        // 21 (disable-actions hashFiles)
-        site.TokenName           // 22 (disable-actions checkout token)
-        site.TokenName           // 23 (disable-actions API token)
-        site.SourceFolder        // 24 (rm bool2)
-        site.SourceFolder        // 25 (git rm bool2)
-        site.SourceFolder        // 26 (create bool3)
-        site.SourceFolder        // 27 (git add bool3)
-        site.SourceFolder        // 28 (cleanup-branch hashFiles)
-        site.TokenName           // 29 (cleanup-branch checkout token)
-        site.TargetRepo          // 30
-        site.TargetBranch        // 31
-        site.SourceFolder        // 32 (rm bool3)
-        site.SourceFolder        // 33 (git rm bool3)
-        site.SourceFolder        // 34 (create bool4)
-        site.SourceFolder        // 35 (git add bool4)
-        site.SourceFolder        // 36 (enable-actions hashFiles)
-        site.TokenName           // 37 (enable-actions checkout token)
-        site.TokenName           // 38 (enable-actions API token)
-        site.SourceFolder        // 39 (rm bool4)
-        site.SourceFolder        // 40 (git rm bool4)
-        site.SourceFolder        // 41 (create bool5)
-        site.SourceFolder        // 42 (git add bool5)
-        site.SourceFolder        // 43 (finalize hashFiles)
-        site.TokenName           // 44 (finalize checkout token)
-        site.SourceFolder        // 45 (rm bool5)
-        site.SourceFolder        // 46 (git rm bool5)
+        site.WorkflowName
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.TargetRepo
+        site.TargetBranch
+        site.TokenName
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.TokenName
+        site.TokenName
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.TokenName
+        site.TargetRepo
+        site.TargetBranch
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.TokenName
+        site.TokenName
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.TokenName
+        site.SourceFolder
+        site.SourceFolder
