@@ -363,7 +363,7 @@ jobs:
           git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${workdir}"
           cd "${workdir}"
 
-          find . -maxdepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
+          find . -maxdepth 1 -mindepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
           git add -A
           git commit -m "Phase 3 cleanup: keep only CNAME and LICENSE" || true
           git push origin HEAD:"${BRANCH}" --force
