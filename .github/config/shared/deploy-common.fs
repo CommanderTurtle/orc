@@ -10,52 +10,39 @@ type SiteDeploy = {
 
 let render (site: SiteDeploy) =
     sprintf """# ================= Improved State Mechanics ================= #
-# State guideline -->  site.WorkflowName        // 1
-# State guideline -->  site.SourceFolder        // 2
-# State guideline -->  site.SourceFolder        // 3
-# State guideline -->  site.SourceFolder        // 4  (bool2 check)
-# State guideline -->  site.SourceFolder        // 5  (bool3 check)
-# State guideline -->  site.SourceFolder        // 6  (bool4 check)
-# State guideline -->  site.SourceFolder        // 7  (bool5 check)
-# State guideline -->  site.SourceFolder        // 8  (rm output)
-# State guideline -->  site.SourceFolder        // 9  (.deploy)
-# State guideline -->  site.SourceFolder        // 10 (render-site src)
-# State guideline -->  site.SourceFolder        // 11 (output dir)
-# State guideline -->  site.SourceFolder        // 12 (cd output)
-# State guideline -->  site.TargetRepo          // 13
-# State guideline -->  site.TargetBranch        // 14
-# State guideline -->  site.TokenName           // 15
-# State guideline -->  site.SourceFolder        // 16 (deploy msg)
-# State guideline -->  site.SourceFolder        // 17 (cleanup output)
-# State guideline -->  site.SourceFolder        // 18 (.deploy cleanup)
-# State guideline -->  site.SourceFolder        // 19 (create bool2 path)
-# State guideline -->  site.SourceFolder        // 20 (git add bool2)
-# State guideline -->  site.SourceFolder        // 21 (disable-actions hashFiles)
-# State guideline -->  site.TokenName           // 22 (disable-actions checkout token)
-# State guideline -->  site.TokenName           // 23 (disable-actions API token)
-# State guideline -->  site.SourceFolder        // 24 (rm bool2)
-# State guideline -->  site.SourceFolder        // 25 (git rm bool2)
-# State guideline -->  site.SourceFolder        // 26 (create bool3)
-# State guideline -->  site.SourceFolder        // 27 (git add bool3)
-# State guideline -->  site.SourceFolder        // 28 (cleanup-branch hashFiles)
-# State guideline -->  site.TokenName           // 29 (cleanup-branch checkout token)
-# State guideline -->  site.TargetRepo          // 30
-# State guideline -->  site.TargetBranch        // 31
-# State guideline -->  site.SourceFolder        // 32 (rm bool3)
-# State guideline -->  site.SourceFolder        // 33 (git rm bool3)
-# State guideline -->  site.SourceFolder        // 34 (create bool4)
-# State guideline -->  site.SourceFolder        // 35 (git add bool4)
-# State guideline -->  site.SourceFolder        // 36 (enable-actions hashFiles)
-# State guideline -->  site.TokenName           // 37 (enable-actions checkout token)
-# State guideline -->  site.TokenName           // 38 (enable-actions API token)
-# State guideline -->  site.SourceFolder        // 39 (rm bool4)
-# State guideline -->  site.SourceFolder        // 40 (git rm bool4)
-# State guideline -->  site.SourceFolder        // 41 (create bool5)
-# State guideline -->  site.SourceFolder        // 42 (git add bool5)
-# State guideline -->  site.SourceFolder        // 43 (finalize hashFiles)
-# State guideline -->  site.TokenName           // 44 (finalize checkout token)
-# State guideline -->  site.SourceFolder        // 45 (rm bool5)
-# State guideline -->  site.SourceFolder        // 46 (git rm bool5)
+# ================= State Argument Map (32 YAML placeholders) ================= #
+#  1  site.WorkflowName     // name:
+#  2  site.SourceFolder     // paths '%%s/**'
+#  3  site.SourceFolder     // concurrency "deploy-%%s"
+#  4  site.SourceFolder     // build: cd "%%s" (state check)
+#  5  site.SourceFolder     // build: rm -rf "%%s/output"
+#  6  site.SourceFolder     // build: ".deploy/%%s"
+#  7  site.SourceFolder     // build: render-site "%%s"
+#  8  site.SourceFolder     // build: "%%s/output"
+#  9  site.SourceFolder     // build: cd "%%s/output"
+# 10  site.TargetRepo        // deploy: REPO="%%s"
+# 11  site.TargetBranch      // deploy: BRANCH="%%s"
+# 12  site.TokenName         // deploy: TOKEN="${%%s:-...}"
+# 13  site.SourceFolder     // deploy msg: "Deploy %%s [skip ci]"
+# 14  site.SourceFolder     // cleanup: rm -rf "%%s/output"
+# 15  site.SourceFolder     // cleanup: ".deploy/%%s"
+# 16  site.SourceFolder     // create bool2: cd "%%s"
+# 17  site.TokenName         // disable-actions: checkout token
+# 18  site.SourceFolder     // disable-actions: cd "%%s" (state)
+# 19  site.TokenName         // disable-actions: API token
+# 20  site.SourceFolder     // disable-actions: cd "%%s" (advance)
+# 21  site.TokenName         // cleanup-branch: checkout token
+# 22  site.SourceFolder     // cleanup-branch: cd "%%s" (state)
+# 23  site.TargetRepo        // cleanup: REPO="%%s"
+# 24  site.TargetBranch      // cleanup: BRANCH="%%s"
+# 25  site.SourceFolder     // cleanup-branch: cd "%%s" (advance)
+# 26  site.TokenName         // enable-actions: checkout token
+# 27  site.SourceFolder     // enable-actions: cd "%%s" (state)
+# 28  site.TokenName         // enable-actions: API token
+# 29  site.SourceFolder     // enable-actions: cd "%%s" (advance)
+# 30  site.TokenName         // finalize: checkout token
+# 31  site.SourceFolder     // finalize: cd "%%s" (state)
+# 32  site.SourceFolder     // finalize: cd "%%s" (remove)
 
 name: %s
 
@@ -68,6 +55,28 @@ on:
       - '.github/config/shared/deploy-common.fs'
       - 'GenerateConfig.fsx'
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Execution mode'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - deploy-only
+          - deploy
+          - reset
+      jump_to:
+        description: 'Jump to phase (manual override)'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''
+          - disable-actions
+          - cleanup-branch
+          - enable-actions
+          - finalize
 
 permissions:
   contents: write
@@ -85,7 +94,20 @@ jobs:
         id: state
         shell: bash
         run: |
-          if [ -f "%s/bool2" ] || [ -f "%s/bool3" ] || [ -f "%s/bool4" ] || [ -f "%s/bool5" ]; then
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$MANUAL_MODE" = "deploy-only" ]; then
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: deploy-only (skip bool2, one-shot)"
+          elif [ "$MANUAL_MODE" = "deploy" ]; then
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: deploy (full cycle from deploy)"
+          elif [ -n "$JUMP" ]; then
+            echo "advance=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: skipping deploy, jumping to $JUMP"
+          elif [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
             echo "advance=true" >> "$GITHUB_OUTPUT"
           else
             echo "advance=false" >> "$GITHUB_OUTPUT"
@@ -212,29 +234,36 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ -f "%s/bool2" ] || [ -f "%s/bool3" ] || [ -f "%s/bool4" ] || [ -f "%s/bool5" ]; then
+		  cd "%s" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          if [ "$MANUAL_MODE" = "deploy-only" ]; then
+            echo "deploy-only: skipping bool2 creation"
+            exit 0
+          fi
+          if [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
             echo "State already advanced, skipping bool2 creation"
             exit 0
           fi
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "%s/bool2" <<EOF
+          cat > "bool2" <<EOF
           # DeployCommon State File
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 2 (disable actions)
-          EOF
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "%s/bool2"
+          git add "bool2"
           git commit -m "Create bool2 state file" || true
           git push || true
 
   disable-actions:
     runs-on: ubuntu-latest
+    needs: [build-and-deploy]
     steps:
       - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
@@ -243,7 +272,13 @@ jobs:
         id: state
         shell: bash
         run: |
-          if [ -f "%s/bool2" ]; then
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "disable-actions" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (disable-actions)"
+          elif [ -f "bool2" ]; then
             echo "active=true" >> "$GITHUB_OUTPUT"
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
@@ -264,31 +299,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -f "%s/bool2" ]; then
+          cd "%s" 2>/dev/null || exit 0
+		  ls -la
+          if [ ! -f "bool2" ]; then
             echo "bool2 not present, skipping"
             exit 0
           fi
-          rm -f "%s/bool2" || true
-          git rm "%s/bool2" 2>/dev/null || true
+          rm -f "bool2" || true
+          git rm "bool2" 2>/dev/null || true
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "%s/bool3" <<EOF
+          cat > "bool3" <<EOF
           # DeployCommon State File
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 3 (cleanup branch)
-          EOF
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "%s/bool3"
+          git add "bool3"
           git commit -m "Advance state to bool3" || true
           git push || true
 
   cleanup-branch:
     runs-on: ubuntu-latest
+    needs: [disable-actions]
     steps:
       - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
@@ -297,7 +334,13 @@ jobs:
         id: state
         shell: bash
         run: |
-          if [ -f "%s/bool3" ]; then
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "cleanup-branch" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (cleanup-branch)"
+          elif [ -f "bool3" ]; then
             echo "active=true" >> "$GITHUB_OUTPUT"
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
@@ -329,31 +372,32 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -f "%s/bool3" ]; then
-            echo "bool3 not present, skipping"
-            exit 0
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          if [ "$MANUAL_MODE" = "reset" ]; then
+            # Force reset: remove ALL bool files
+            for f in bool2 bool3 bool4 bool5; do
+              rm -f "$f" || true
+              git rm "$f" 2>/dev/null || true
+            done
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Reset: remove all state files [skip ci]" || true
+            git push || true
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: reset - all bool files removed"
+          elif [ -f "bool5" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
           fi
-          rm -f "%s/bool3" || true
-          git rm "%s/bool3" 2>/dev/null || true
-          TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
-          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "%s/bool4" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 4 (enable actions)
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "%s/bool4"
-          git commit -m "Advance state to bool4" || true
-          git push || true
 
   enable-actions:
     runs-on: ubuntu-latest
+    needs: [cleanup-branch]
     steps:
       - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
@@ -362,7 +406,13 @@ jobs:
         id: state
         shell: bash
         run: |
-          if [ -f "%s/bool4" ]; then
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "enable-actions" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (enable-actions)"
+          elif [ -f "bool4" ]; then
             echo "active=true" >> "$GITHUB_OUTPUT"
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
@@ -383,31 +433,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -f "%s/bool4" ]; then
+          cd "%s" 2>/dev/null || exit 0
+		  ls -la
+          if [ ! -f "bool4" ]; then
             echo "bool4 not present, skipping"
             exit 0
           fi
-          rm -f "%s/bool4" || true
-          git rm "%s/bool4" 2>/dev/null || true
+          rm -f "bool4" || true
+          git rm "bool4" 2>/dev/null || true
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "%s/bool5" <<EOF
+          cat > "bool5" <<EOF
           # DeployCommon State File
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 5 (complete)
-          EOF
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "%s/bool5"
+          git add "bool5"
           git commit -m "Advance state to bool5 (complete)" || true
           git push || true
 
   finalize:
     runs-on: ubuntu-latest
+    needs: [enable-actions]
     steps:
       - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
@@ -416,7 +468,13 @@ jobs:
         id: state
         shell: bash
         run: |
-          if [ -f "%s/bool5" ]; then
+          cd "%s" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "finalize" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (finalize)"
+          elif [ -f "bool5" ]; then
             echo "active=true" >> "$GITHUB_OUTPUT"
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
@@ -427,8 +485,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f "%s/bool5" || true
-          git rm "%s/bool5" 2>/dev/null || true
+          cd "%s" 2>/dev/null || exit 0
+		  ls -la
+          rm -f "bool5" || true
+          git rm "bool5" 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git commit -m "Finalize: reset state machine [skip ci]" || true
@@ -443,9 +503,6 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
         site.TargetRepo
         site.TargetBranch
         site.TokenName
@@ -453,37 +510,19 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
         site.TokenName
         site.SourceFolder
         site.TokenName
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
         site.SourceFolder
         site.TokenName
         site.SourceFolder
         site.TargetRepo
         site.TargetBranch
         site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
         site.TokenName
         site.SourceFolder
         site.TokenName
         site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
         site.TokenName
-        site.SourceFolder
         site.SourceFolder
         site.SourceFolder
