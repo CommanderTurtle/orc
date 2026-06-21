@@ -22,7 +22,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: "deploy-%s"
@@ -31,6 +31,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: hashFiles('%s/bool2') == '' && hashFiles('%s/bool3') == '' && hashFiles('%s/bool4') == '' && hashFiles('%s/bool5') == ''
     steps:
       - uses: actions/checkout@v6
 
@@ -141,18 +142,216 @@ jobs:
         shell: bash
         run: |
           rm -rf "%s/output" ".deploy/%s"
+
+      - name: Create bool2 (advance to phase 2)
+        shell: bash
+        run: |
+          set -euo pipefail
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "%s/bool2" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 2 (disable actions)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "%s/bool2"
+          git commit -m "Create bool2 state file" || true
+          git push || true
+
+  disable-actions:
+    runs-on: ubuntu-latest
+    if: hashFiles('%s/bool2') != ''
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
+      - name: Disable GitHub Actions
+        env:
+          TOKEN: ${{ secrets.%s }}
+        run: |
+          curl -X PUT \
+            -H "Authorization: token $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
+            -d '{"enabled": false}'
+
+      - name: Advance state bool2 -> bool3
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "%s/bool2" || true
+          git rm "%s/bool2" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "%s/bool3" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 3 (cleanup branch)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "%s/bool3"
+          git commit -m "Advance state to bool3" || true
+          git push || true
+
+  cleanup-branch:
+    runs-on: ubuntu-latest
+    if: hashFiles('%s/bool3') != ''
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
+      - name: Delete everything except CNAME and LICENSE in target
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="%s"
+          BRANCH="%s"
+          TOKEN="${GH_PAGES_TOKEN}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          workdir="$(mktemp -d)"
+          git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${workdir}"
+          cd "${workdir}"
+
+          find . -maxdepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
+          git add -A
+          git commit -m "Phase 3 cleanup: keep only CNAME and LICENSE" || true
+          git push origin HEAD:"${BRANCH}" --force
+
+      - name: Advance state bool3 -> bool4
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "%s/bool3" || true
+          git rm "%s/bool3" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "%s/bool4" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 4 (enable actions)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "%s/bool4"
+          git commit -m "Advance state to bool4" || true
+          git push || true
+
+  enable-actions:
+    runs-on: ubuntu-latest
+    if: hashFiles('%s/bool4') != ''
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
+      - name: Re-enable GitHub Actions
+        env:
+          TOKEN: ${{ secrets.%s }}
+        run: |
+          curl -X PUT \
+            -H "Authorization: token $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
+            -d '{"enabled": true}'
+
+      - name: Advance state bool4 -> bool5
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "%s/bool4" || true
+          git rm "%s/bool4" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "%s/bool5" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 5 (complete)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "%s/bool5"
+          git commit -m "Advance state to bool5 (complete)" || true
+          git push || true
+
+  finalize:
+    runs-on: ubuntu-latest
+    if: hashFiles('%s/bool5') != ''
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
+      - name: Finalize - remove bool5 (reset state machine)
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "%s/bool5" || true
+          git rm "%s/bool5" 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Finalize: reset state machine [skip ci]" || true
+          git push || true
 """
-        site.WorkflowName
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.TargetRepo
-        site.TargetBranch
-        site.TokenName
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
+        site.WorkflowName        // 1
+        site.SourceFolder        // 2
+        site.SourceFolder        // 3
+        site.SourceFolder        // 4  (bool2 check)
+        site.SourceFolder        // 5  (bool3 check)
+        site.SourceFolder        // 6  (bool4 check)
+        site.SourceFolder        // 7  (bool5 check)
+        site.SourceFolder        // 8  (rm output)
+        site.SourceFolder        // 9  (.deploy)
+        site.SourceFolder        // 10 (render-site src)
+        site.SourceFolder        // 11 (output dir)
+        site.SourceFolder        // 12 (cd output)
+        site.TargetRepo          // 13
+        site.TargetBranch        // 14
+        site.TokenName           // 15
+        site.SourceFolder        // 16 (deploy msg)
+        site.SourceFolder        // 17 (cleanup output)
+        site.SourceFolder        // 18 (.deploy cleanup)
+        site.SourceFolder        // 19 (create bool2 path)
+        site.SourceFolder        // 20 (git add bool2)
+        site.SourceFolder        // 21 (disable-actions hashFiles)
+        site.TokenName           // 22 (disable-actions checkout token)
+        site.TokenName           // 23 (disable-actions API token)
+        site.SourceFolder        // 24 (rm bool2)
+        site.SourceFolder        // 25 (git rm bool2)
+        site.SourceFolder        // 26 (create bool3)
+        site.SourceFolder        // 27 (git add bool3)
+        site.SourceFolder        // 28 (cleanup-branch hashFiles)
+        site.TokenName           // 29 (cleanup-branch checkout token)
+        site.TargetRepo          // 30
+        site.TargetBranch        // 31
+        site.SourceFolder        // 32 (rm bool3)
+        site.SourceFolder        // 33 (git rm bool3)
+        site.SourceFolder        // 34 (create bool4)
+        site.SourceFolder        // 35 (git add bool4)
+        site.SourceFolder        // 36 (enable-actions hashFiles)
+        site.TokenName           // 37 (enable-actions checkout token)
+        site.TokenName           // 38 (enable-actions API token)
+        site.SourceFolder        // 39 (rm bool4)
+        site.SourceFolder        // 40 (git rm bool4)
+        site.SourceFolder        // 41 (create bool5)
+        site.SourceFolder        // 42 (git add bool5)
+        site.SourceFolder        // 43 (finalize hashFiles)
+        site.TokenName           // 44 (finalize checkout token)
+        site.SourceFolder        // 45 (rm bool5)
+        site.SourceFolder        // 46 (git rm bool5)
