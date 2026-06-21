@@ -79,35 +79,52 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('%s/bool2') == '' && hashFiles('%s/bool3') == '' && hashFiles('%s/bool4') == '' && hashFiles('%s/bool5') == '' }}
     steps:
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          if [ -f "%s/bool2" ] || [ -f "%s/bool3" ] || [ -f "%s/bool4" ] || [ -f "%s/bool5" ]; then
+            echo "advance=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.state.outputs.advance == 'false'
 
       - uses: actions/setup-dotnet@v5
+        if: steps.state.outputs.advance == 'false'
         with:
           dotnet-version: '10.0.x'
 
       - uses: actions/setup-python@v6
+        if: steps.state.outputs.advance == 'false'
         with:
           python-version: '3.x'
 
       - uses: astral-sh/setup-uv@v6
+        if: steps.state.outputs.advance == 'false'
 
       - uses: oven-sh/setup-bun@v2
+        if: steps.state.outputs.advance == 'false'
 
       - uses: ruby/setup-ruby@v1
+        if: steps.state.outputs.advance == 'false'
         with:
           ruby-version: '3.4'
           bundler-cache: false
 
       - name: Render F# source tree to output
         timeout-minutes: 10
+        if: steps.state.outputs.advance == 'false'
         run: |
           rm -rf "%s/output" ".deploy/%s"
           dotnet fsi GenerateConfig.fsx render-site "%s" "%s/output" --clean
 
       - name: Detect and build site
         timeout-minutes: 15
+        if: steps.state.outputs.advance == 'false'
         shell: bash
         run: |
           set -euo pipefail
@@ -146,12 +163,14 @@ jobs:
           echo "SOURCE_OUTPUT=$PWD" >> "$GITHUB_ENV"
 
       - name: Scrub generated source-only files
+        if: steps.state.outputs.advance == 'false'
         shell: bash
         run: |
           set -euo pipefail
           find "$PUBLISH_DIR" \( -name '*.fs' -o -name '*.fsx' -o -name '.gitignore' -o -name '.gitattributes' -o -name '.nojekyll' -o -name 'CNAME' \) -delete
 
       - name: Deploy to target repo
+        if: steps.state.outputs.advance == 'false'
         env:
           GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -186,7 +205,7 @@ jobs:
           git push target HEAD:"${BRANCH}" --force
 
       - name: Cleanup rendered output
-        if: always()
+        if: always() && steps.state.outputs.advance == 'false'
         shell: bash
         run: |
           rm -rf "%s/output" ".deploy/%s"
@@ -195,6 +214,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ -f "%s/bool2" ] || [ -f "%s/bool3" ] || [ -f "%s/bool4" ] || [ -f "%s/bool5" ]; then
+            echo "State already advanced, skipping bool2 creation"
+            exit 0
+          fi
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool2" <<EOF
@@ -211,14 +234,25 @@ jobs:
 
   disable-actions:
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('%s/bool2') != '' }}
     steps:
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          if [ -f "%s/bool2" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
 
       - name: Disable GitHub Actions
+        if: steps.state.outputs.active == 'true'
         env:
           TOKEN: ${{ secrets.%s }}
         run: |
@@ -232,6 +266,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ ! -f "%s/bool2" ]; then
+            echo "bool2 not present, skipping"
+            exit 0
+          fi
           rm -f "%s/bool2" || true
           git rm "%s/bool2" 2>/dev/null || true
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
@@ -250,14 +288,25 @@ jobs:
 
   cleanup-branch:
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('%s/bool3') != '' }}
     steps:
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          if [ -f "%s/bool3" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
 
       - name: Delete everything except CNAME and LICENSE in target
+        if: steps.state.outputs.active == 'true'
         env:
           GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
         shell: bash
@@ -282,6 +331,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ ! -f "%s/bool3" ]; then
+            echo "bool3 not present, skipping"
+            exit 0
+          fi
           rm -f "%s/bool3" || true
           git rm "%s/bool3" 2>/dev/null || true
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
@@ -300,14 +353,25 @@ jobs:
 
   enable-actions:
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('%s/bool4') != '' }}
     steps:
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          if [ -f "%s/bool4" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
 
       - name: Re-enable GitHub Actions
+        if: steps.state.outputs.active == 'true'
         env:
           TOKEN: ${{ secrets.%s }}
         run: |
@@ -321,6 +385,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [ ! -f "%s/bool4" ]; then
+            echo "bool4 not present, skipping"
+            exit 0
+          fi
           rm -f "%s/bool4" || true
           git rm "%s/bool4" 2>/dev/null || true
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
@@ -339,14 +407,25 @@ jobs:
 
   finalize:
     runs-on: ubuntu-latest
-    if: ${{ hashFiles('%s/bool5') != '' }}
     steps:
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          if [ -f "%s/bool5" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
         with:
           token: ${{ secrets.%s }}
           fetch-depth: 0
 
       - name: Finalize - remove bool5 (reset state machine)
+        if: steps.state.outputs.active == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -378,8 +457,13 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
+        site.SourceFolder
         site.TokenName
         site.TokenName
+        site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
@@ -393,8 +477,10 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
+        site.SourceFolder
         site.TokenName
         site.TokenName
+        site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
