@@ -198,11 +198,11 @@ jobs:
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool2" <<EOF
-# DeployCommon State File
-# Created: $TIMESTAMP
-# Commit: $COMMIT
-# Phase: 2 (disable actions)
-EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 2 (disable actions)
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool2"
@@ -237,11 +237,11 @@ EOF
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool3" <<EOF
-# DeployCommon State File
-# Created: $TIMESTAMP
-# Commit: $COMMIT
-# Phase: 3 (cleanup branch)
-EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 3 (cleanup branch)
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool3"
@@ -287,11 +287,11 @@ EOF
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool4" <<EOF
-# DeployCommon State File
-# Created: $TIMESTAMP
-# Commit: $COMMIT
-# Phase: 4 (enable actions)
-EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 4 (enable actions)
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool4"
@@ -326,11 +326,11 @@ EOF
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool5" <<EOF
-# DeployCommon State File
-# Created: $TIMESTAMP
-# Commit: $COMMIT
-# Phase: 5 (complete)
-EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 5 (complete)
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool5"
