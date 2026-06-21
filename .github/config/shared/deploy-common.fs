@@ -362,7 +362,8 @@ jobs:
           workdir="$(mktemp -d)"
           git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${workdir}"
           cd "${workdir}"
-
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           find . -maxdepth 1 -mindepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
           git add -A
           git commit -m "Phase 3 cleanup: keep only CNAME and LICENSE" || true
@@ -374,24 +375,25 @@ jobs:
           set -euo pipefail
           cd "%s" 2>/dev/null || exit 0
           ls -la
-          MANUAL_MODE="${{ github.event.inputs.mode }}"
-          if [ "$MANUAL_MODE" = "reset" ]; then
-            # Force reset: remove ALL bool files
-            for f in bool2 bool3 bool4 bool5; do
-              rm -f "$f" || true
-              git rm "$f" 2>/dev/null || true
-            done
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "Reset: remove all state files [skip ci]" || true
-            git push || true
-            echo "active=false" >> "$GITHUB_OUTPUT"
-            echo "MODE: reset - all bool files removed"
-          elif [ -f "bool5" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "active=false" >> "$GITHUB_OUTPUT"
+          if [ ! -f "bool3" ]; then
+            echo "bool3 not present, skipping"
+            exit 0
           fi
+          rm -f "bool3" || true
+          git rm "bool3" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "bool4" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 4 (enable actions)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "bool4"
+          git commit -m "Advance state to bool4" || true
+          git push || true
 
   enable-actions:
     runs-on: ubuntu-latest
