@@ -252,7 +252,7 @@ jobs:
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 2 (disable actions)
-EOF
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "bool2"
@@ -314,7 +314,7 @@ EOF
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 3 (cleanup branch)
-EOF
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "bool3"
@@ -448,7 +448,7 @@ EOF
           # Created: $TIMESTAMP
           # Commit: $COMMIT
           # Phase: 5 (complete)
-EOF
+          EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "bool5"
