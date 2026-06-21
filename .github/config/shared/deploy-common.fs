@@ -79,7 +79,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: hashFiles('%s/bool2') == '' && hashFiles('%s/bool3') == '' && hashFiles('%s/bool4') == '' && hashFiles('%s/bool5') == ''
+    if: ${{ hashFiles('%s/bool2') == '' && hashFiles('%s/bool3') == '' && hashFiles('%s/bool4') == '' && hashFiles('%s/bool5') == '' }}
     steps:
       - uses: actions/checkout@v6
 
@@ -198,11 +198,11 @@ jobs:
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool2" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 2 (disable actions)
-          EOF
+# DeployCommon State File
+# Created: $TIMESTAMP
+# Commit: $COMMIT
+# Phase: 2 (disable actions)
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool2"
@@ -211,7 +211,7 @@ jobs:
 
   disable-actions:
     runs-on: ubuntu-latest
-    if: hashFiles('%s/bool2') != ''
+    if: ${{ hashFiles('%s/bool2') != '' }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -237,11 +237,11 @@ jobs:
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool3" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 3 (cleanup branch)
-          EOF
+# DeployCommon State File
+# Created: $TIMESTAMP
+# Commit: $COMMIT
+# Phase: 3 (cleanup branch)
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool3"
@@ -250,7 +250,7 @@ jobs:
 
   cleanup-branch:
     runs-on: ubuntu-latest
-    if: hashFiles('%s/bool3') != ''
+    if: ${{ hashFiles('%s/bool3') != '' }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -287,11 +287,11 @@ jobs:
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool4" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 4 (enable actions)
-          EOF
+# DeployCommon State File
+# Created: $TIMESTAMP
+# Commit: $COMMIT
+# Phase: 4 (enable actions)
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool4"
@@ -300,7 +300,7 @@ jobs:
 
   enable-actions:
     runs-on: ubuntu-latest
-    if: hashFiles('%s/bool4') != ''
+    if: ${{ hashFiles('%s/bool4') != '' }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -326,11 +326,11 @@ jobs:
           TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
           COMMIT=$(git rev-parse --short HEAD || echo "unknown")
           cat > "%s/bool5" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 5 (complete)
-          EOF
+# DeployCommon State File
+# Created: $TIMESTAMP
+# Commit: $COMMIT
+# Phase: 5 (complete)
+EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "%s/bool5"
@@ -339,7 +339,7 @@ jobs:
 
   finalize:
     runs-on: ubuntu-latest
-    if: hashFiles('%s/bool5') != ''
+    if: ${{ hashFiles('%s/bool5') != '' }}
     steps:
       - uses: actions/checkout@v6
         with:
