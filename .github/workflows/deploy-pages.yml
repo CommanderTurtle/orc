@@ -1,0 +1,484 @@
+# ================= Improved State Mechanics ================= #
+# ================= State Argument Map (32 YAML placeholders) ================= #
+#  1  site.WorkflowName     // name:
+#  2  site.SourceFolder     // paths '%s/**'
+#  3  site.SourceFolder     // concurrency "deploy-%s"
+#  4  site.SourceFolder     // build: cd "%s" (state check)
+#  5  site.SourceFolder     // build: rm -rf "%s/output"
+#  6  site.SourceFolder     // build: ".deploy/%s"
+#  7  site.SourceFolder     // build: render-site "%s"
+#  8  site.SourceFolder     // build: "%s/output"
+#  9  site.SourceFolder     // build: cd "%s/output"
+# 10  site.TargetRepo        // deploy: REPO="%s"
+# 11  site.TargetBranch      // deploy: BRANCH="%s"
+# 12  site.TokenName         // deploy: TOKEN="${%s:-...}"
+# 13  site.SourceFolder     // deploy msg: "Deploy %s [skip ci]"
+# 14  site.SourceFolder     // cleanup: rm -rf "%s/output"
+# 15  site.SourceFolder     // cleanup: ".deploy/%s"
+# 16  site.SourceFolder     // create bool2: cd "%s"
+# 17  site.TokenName         // disable-actions: checkout token
+# 18  site.SourceFolder     // disable-actions: cd "%s" (state)
+# 19  site.TokenName         // disable-actions: API token
+# 20  site.SourceFolder     // disable-actions: cd "%s" (advance)
+# 21  site.TokenName         // cleanup-branch: checkout token
+# 22  site.SourceFolder     // cleanup-branch: cd "%s" (state)
+# 23  site.TargetRepo        // cleanup: REPO="%s"
+# 24  site.TargetBranch      // cleanup: BRANCH="%s"
+# 25  site.SourceFolder     // cleanup-branch: cd "%s" (advance)
+# 26  site.TokenName         // enable-actions: checkout token
+# 27  site.SourceFolder     // enable-actions: cd "%s" (state)
+# 28  site.TokenName         // enable-actions: API token
+# 29  site.SourceFolder     // enable-actions: cd "%s" (advance)
+# 30  site.TokenName         // finalize: checkout token
+# 31  site.SourceFolder     // finalize: cd "%s" (state)
+# 32  site.SourceFolder     // finalize: cd "%s" (remove)
+
+name: Deploy Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'pages/**'
+      - '.github/config/deploy-*.fs'
+      - '.github/config/shared/deploy-common.fs'
+      - 'GenerateConfig.fsx'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Execution mode'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - deploy-only
+          - deploy
+          - reset
+      jump_to:
+        description: 'Jump to phase (manual override)'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''
+          - disable-actions
+          - cleanup-branch
+          - enable-actions
+          - finalize
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "deploy-pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$MANUAL_MODE" = "deploy-only" ]; then
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: deploy-only (skip bool2, one-shot)"
+          elif [ "$MANUAL_MODE" = "deploy" ]; then
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: deploy (full cycle from deploy)"
+          elif [ -n "$JUMP" ]; then
+            echo "advance=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: skipping deploy, jumping to $JUMP"
+          elif [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
+            echo "advance=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "advance=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-dotnet@v5
+        if: steps.state.outputs.advance == 'false'
+        with:
+          dotnet-version: '10.0.x'
+
+      - uses: actions/setup-python@v6
+        if: steps.state.outputs.advance == 'false'
+        with:
+          python-version: '3.x'
+
+      - uses: astral-sh/setup-uv@v6
+        if: steps.state.outputs.advance == 'false'
+
+      - uses: oven-sh/setup-bun@v2
+        if: steps.state.outputs.advance == 'false'
+
+      - uses: ruby/setup-ruby@v1
+        if: steps.state.outputs.advance == 'false'
+        with:
+          ruby-version: '3.4'
+          bundler-cache: false
+
+      - name: Render F# source tree to output
+        timeout-minutes: 10
+        if: steps.state.outputs.advance == 'false'
+        run: |
+          rm -rf "pages/output" ".deploy/pages"
+          dotnet fsi GenerateConfig.fsx render-site "pages" "pages/output" --clean
+
+      - name: Detect and build site
+        timeout-minutes: 15
+        if: steps.state.outputs.advance == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages/output"
+
+          if [ -f "zensical.toml" ]; then
+            echo "Detected Zensical site"
+            uv venv --python 3.12.10 --seed --managed-python
+            source .venv/bin/activate
+            uv pip install zensical
+            zensical build
+            deactivate
+            rm -rf .venv
+            rm -rf .cache
+            publish="$PWD/site"
+          elif [ -f "Gemfile" ]; then
+            echo "Detected Jekyll site"
+            bundle install
+            bundle exec jekyll build --disable-disk-cache
+            rm -rf Gemfile.lock
+            publish="$PWD/_site"
+          elif [ -f "package.json" ]; then
+            echo "Detected JavaScript package site"
+            bun install
+            bun run build
+            rm -rf node_modules
+            rm -rf bun.lock
+            publish="$PWD/dist"
+          else
+            echo "Detected static push site"
+            publish="$PWD"
+          fi
+
+          test -d "$publish"
+          echo "PUBLISH_DIR=$publish" >> "$GITHUB_ENV"
+          echo "SOURCE_OUTPUT=$PWD" >> "$GITHUB_ENV"
+
+      - name: Scrub generated source-only files
+        if: steps.state.outputs.advance == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$PUBLISH_DIR" \( -name '*.fs' -o -name '*.fsx' -o -name '.gitignore' -o -name '.gitattributes' -o -name '.nojekyll' -o -name 'CNAME' \) -delete
+
+      - name: Deploy to target repo
+        if: steps.state.outputs.advance == 'false'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="blog-pages"
+          BRANCH="main"
+          TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          cd "$PUBLISH_DIR"
+          preserve_dir="$(mktemp -d)"
+          if git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${preserve_dir}/target" 2>/dev/null; then
+            if [ -f "${preserve_dir}/target/CNAME" ]; then
+              cp "${preserve_dir}/target/CNAME" CNAME
+              echo "Preserved existing target CNAME"
+            fi
+          else
+            echo "No existing target branch to preserve"
+          fi
+          rm -rf "$preserve_dir"
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add target "${REMOTE_URL}" 2>/dev/null || \
+            git remote set-url target "${REMOTE_URL}"
+          git add .
+          git commit -m "Deploy pages [skip ci]" || echo "No changes"
+          git push target HEAD:"${BRANCH}" --force
+
+      - name: Cleanup rendered output
+        if: always() && steps.state.outputs.advance == 'false'
+        shell: bash
+        run: |
+          rm -rf "pages/output" ".deploy/pages"
+
+      - name: Create bool2 (advance to phase 2)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          if [ "$MANUAL_MODE" = "deploy-only" ]; then
+            echo "deploy-only: skipping bool2 creation"
+            exit 0
+          fi
+          if [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
+            echo "State already advanced, skipping bool2 creation"
+            exit 0
+          fi
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "bool2" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 2 (disable actions)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "bool2"
+          git commit -m "Create bool2 state file" || true
+          git push || true
+
+  disable-actions:
+    runs-on: ubuntu-latest
+    needs: [build-and-deploy]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
+
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "disable-actions" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (disable-actions)"
+          elif [ -f "bool2" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Disable GitHub Actions
+        if: steps.state.outputs.active == 'true'
+        env:
+          TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        run: |
+          curl -X PUT \
+            -H "Authorization: token $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
+            -d '{"enabled": false}'
+
+      - name: Advance state bool2 -> bool3
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          if [ ! -f "bool2" ]; then
+            echo "bool2 not present, skipping"
+            exit 0
+          fi
+          rm -f "bool2" || true
+          git rm "bool2" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "bool3" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 3 (cleanup branch)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "bool3"
+          git commit -m "Advance state to bool3" || true
+          git push || true
+
+  cleanup-branch:
+    runs-on: ubuntu-latest
+    needs: [disable-actions]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
+
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "cleanup-branch" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (cleanup-branch)"
+          elif [ -f "bool3" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Delete everything except CNAME and LICENSE in target
+        if: steps.state.outputs.active == 'true'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="blog-pages"
+          BRANCH="main"
+          TOKEN="${GH_PAGES_TOKEN}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          workdir="$(mktemp -d)"
+          git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${workdir}"
+          cd "${workdir}"
+
+          find . -maxdepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
+          git add -A
+          git commit -m "Phase 3 cleanup: keep only CNAME and LICENSE" || true
+          git push origin HEAD:"${BRANCH}" --force
+
+      - name: Advance state bool3 -> bool4
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          if [ "$MANUAL_MODE" = "reset" ]; then
+            # Force reset: remove ALL bool files
+            for f in bool2 bool3 bool4 bool5; do
+              rm -f "$f" || true
+              git rm "$f" 2>/dev/null || true
+            done
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Reset: remove all state files [skip ci]" || true
+            git push || true
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "MODE: reset - all bool files removed"
+          elif [ -f "bool5" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  enable-actions:
+    runs-on: ubuntu-latest
+    needs: [cleanup-branch]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
+
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "enable-actions" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (enable-actions)"
+          elif [ -f "bool4" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Re-enable GitHub Actions
+        if: steps.state.outputs.active == 'true'
+        env:
+          TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        run: |
+          curl -X PUT \
+            -H "Authorization: token $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
+            -d '{"enabled": true}'
+
+      - name: Advance state bool4 -> bool5
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          if [ ! -f "bool4" ]; then
+            echo "bool4 not present, skipping"
+            exit 0
+          fi
+          rm -f "bool4" || true
+          git rm "bool4" 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
+          cat > "bool5" <<EOF
+          # DeployCommon State File
+          # Created: $TIMESTAMP
+          # Commit: $COMMIT
+          # Phase: 5 (complete)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "bool5"
+          git commit -m "Advance state to bool5 (complete)" || true
+          git push || true
+
+  finalize:
+    runs-on: ubuntu-latest
+    needs: [enable-actions]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+          fetch-depth: 0
+
+      - name: Determine state
+        id: state
+        shell: bash
+        run: |
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          JUMP="${{ github.event.inputs.jump_to }}"
+          if [ "$JUMP" = "finalize" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "JUMP: forced active (finalize)"
+          elif [ -f "bool5" ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Finalize - remove bool5 (reset state machine)
+        if: steps.state.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "pages" 2>/dev/null || exit 0
+          ls -la
+          rm -f "bool5" || true
+          git rm "bool5" 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Finalize: reset state machine [skip ci]" || true
+          git push || true
