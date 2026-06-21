@@ -80,6 +80,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - name: Determine state
         id: state
         shell: bash
@@ -89,10 +90,7 @@ jobs:
           else
             echo "advance=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - uses: actions/checkout@v6
-        if: steps.state.outputs.advance == 'false'
-
+		
       - uses: actions/setup-dotnet@v5
         if: steps.state.outputs.advance == 'false'
         with:
@@ -235,6 +233,12 @@ jobs:
   disable-actions:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
       - name: Determine state
         id: state
         shell: bash
@@ -244,12 +248,6 @@ jobs:
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
 
       - name: Disable GitHub Actions
         if: steps.state.outputs.active == 'true'
@@ -289,6 +287,12 @@ jobs:
   cleanup-branch:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
       - name: Determine state
         id: state
         shell: bash
@@ -298,12 +302,6 @@ jobs:
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
 
       - name: Delete everything except CNAME and LICENSE in target
         if: steps.state.outputs.active == 'true'
@@ -354,6 +352,12 @@ jobs:
   enable-actions:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
       - name: Determine state
         id: state
         shell: bash
@@ -363,12 +367,6 @@ jobs:
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
 
       - name: Re-enable GitHub Actions
         if: steps.state.outputs.active == 'true'
@@ -408,6 +406,12 @@ jobs:
   finalize:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        if: steps.state.outputs.active == 'true'
+        with:
+          token: ${{ secrets.%s }}
+          fetch-depth: 0
+
       - name: Determine state
         id: state
         shell: bash
@@ -417,12 +421,6 @@ jobs:
           else
             echo "active=false" >> "$GITHUB_OUTPUT"
           fi
-
-      - uses: actions/checkout@v6
-        if: steps.state.outputs.active == 'true'
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
 
       - name: Finalize - remove bool5 (reset state machine)
         if: steps.state.outputs.active == 'true'
@@ -460,16 +458,16 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
-        site.SourceFolder
-        site.TokenName
         site.TokenName
         site.SourceFolder
+        site.TokenName
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.TokenName
+        site.SourceFolder
         site.TargetRepo
         site.TargetBranch
         site.SourceFolder
@@ -477,15 +475,15 @@ jobs:
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
-        site.SourceFolder
-        site.TokenName
         site.TokenName
         site.SourceFolder
+        site.TokenName
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.TokenName
+        site.SourceFolder
         site.SourceFolder
         site.SourceFolder
