@@ -234,7 +234,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-		  cd "%s" 2>/dev/null || exit 0
+          cd "%s" 2>/dev/null || exit 0
           ls -la
           MANUAL_MODE="${{ github.event.inputs.mode }}"
           if [ "$MANUAL_MODE" = "deploy-only" ]; then
@@ -300,7 +300,7 @@ EOF
         run: |
           set -euo pipefail
           cd "%s" 2>/dev/null || exit 0
-		  ls -la
+          ls -la
           if [ ! -f "bool2" ]; then
             echo "bool2 not present, skipping"
             exit 0
@@ -434,7 +434,7 @@ EOF
         run: |
           set -euo pipefail
           cd "%s" 2>/dev/null || exit 0
-		  ls -la
+          ls -la
           if [ ! -f "bool4" ]; then
             echo "bool4 not present, skipping"
             exit 0
@@ -486,7 +486,7 @@ EOF
         run: |
           set -euo pipefail
           cd "%s" 2>/dev/null || exit 0
-		  ls -la
+          ls -la
           rm -f "bool5" || true
           git rm "bool5" 2>/dev/null || true
           git config user.name "github-actions[bot]"
