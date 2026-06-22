@@ -13,36 +13,36 @@ let render (site: SiteDeploy) =
 # ================= State Argument Map (32 YAML placeholders) ================= #
 #  1  site.WorkflowName     // name:
 #  2  site.SourceFolder     // paths '%%s/**'
-#  3  site.SourceFolder     // concurrency "deploy-%%s"
-#  4  site.SourceFolder     // build: cd "%%s" (state check)
-#  5  site.SourceFolder     // build: rm -rf "%%s/output"
-#  6  site.SourceFolder     // build: ".deploy/%%s"
-#  7  site.SourceFolder     // build: render-site "%%s"
-#  8  site.SourceFolder     // build: "%%s/output"
-#  9  site.SourceFolder     // build: cd "%%s/output"
-# 10  site.TargetRepo        // deploy: REPO="%%s"
-# 11  site.TargetBranch      // deploy: BRANCH="%%s"
-# 12  site.TokenName         // deploy: TOKEN="${%%s:-...}"
-# 13  site.SourceFolder     // deploy msg: "Deploy %%s [skip ci]"
-# 14  site.SourceFolder     // cleanup: rm -rf "%%s/output"
-# 15  site.SourceFolder     // cleanup: ".deploy/%%s"
-# 16  site.SourceFolder     // create bool2: cd "%%s"
+#  3  site.SourceFolder     // concurrency &amp;deploy-%%s&amp;
+#  4  site.SourceFolder     // build: cd &amp;%%s&amp; (state check)
+#  5  site.SourceFolder     // build: rm -rf &amp;%%s/output&amp;
+#  6  site.SourceFolder     // build: &amp;.deploy/%%s&amp;
+#  7  site.SourceFolder     // build: render-site &amp;%%s&amp;
+#  8  site.SourceFolder     // build: &amp;%%s/output&amp;
+#  9  site.SourceFolder     // build: cd &amp;%%s/output&amp;
+# 10  site.TargetRepo        // deploy: REPO=&amp;%%s&amp;
+# 11  site.TargetBranch      // deploy: BRANCH=&amp;%%s&amp;
+# 12  site.TokenName         // deploy: TOKEN=&amp;${%%s:-...}&amp;
+# 13  site.SourceFolder     // deploy msg: &amp;Deploy %%s [skip ci]&amp;
+# 14  site.SourceFolder     // cleanup: rm -rf &amp;%%s/output&amp;
+# 15  site.SourceFolder     // cleanup: &amp;.deploy/%%s&amp;
+# 16  site.SourceFolder     // create bool2: cd &amp;%%s&amp;
 # 17  site.TokenName         // disable-actions: checkout token
-# 18  site.SourceFolder     // disable-actions: cd "%%s" (state)
+# 18  site.SourceFolder     // disable-actions: cd &amp;%%s&amp; (state)
 # 19  site.TokenName         // disable-actions: API token
-# 20  site.SourceFolder     // disable-actions: cd "%%s" (advance)
+# 20  site.SourceFolder     // disable-actions: cd &amp;%%s&amp; (advance)
 # 21  site.TokenName         // cleanup-branch: checkout token
-# 22  site.SourceFolder     // cleanup-branch: cd "%%s" (state)
-# 23  site.TargetRepo        // cleanup: REPO="%%s"
-# 24  site.TargetBranch      // cleanup: BRANCH="%%s"
-# 25  site.SourceFolder     // cleanup-branch: cd "%%s" (advance)
+# 22  site.SourceFolder     // cleanup-branch: cd &amp;%%s&amp; (state)
+# 23  site.TargetRepo        // cleanup: REPO=&amp;%%s&amp;
+# 24  site.TargetBranch      // cleanup: BRANCH=&amp;%%s&amp;
+# 25  site.SourceFolder     // cleanup-branch: cd &amp;%%s&amp; (advance)
 # 26  site.TokenName         // enable-actions: checkout token
-# 27  site.SourceFolder     // enable-actions: cd "%%s" (state)
+# 27  site.SourceFolder     // enable-actions: cd &amp;%%s&amp; (state)
 # 28  site.TokenName         // enable-actions: API token
-# 29  site.SourceFolder     // enable-actions: cd "%%s" (advance)
+# 29  site.SourceFolder     // enable-actions: cd &amp;%%s&amp; (advance)
 # 30  site.TokenName         // finalize: checkout token
-# 31  site.SourceFolder     // finalize: cd "%%s" (state)
-# 32  site.SourceFolder     // finalize: cd "%%s" (remove)
+# 31  site.SourceFolder     // finalize: cd &amp;%%s&amp; (state)
+# 32  site.SourceFolder     // finalize: cd &amp;%%s&amp; (remove)
 
 name: %s
 
