@@ -1,6 +1,6 @@
 # F# Zensical for MkDocs — Cross-Repo Pages Orchestrator
 
-A complete **F# → GitHub Pages** workflow using Zensical (Material for MkDocs) with **F# and DSL support.** 
+A complete **F# → GitHub Pages** repo with **F# and DSL support.** - Template at [clonable](https://github.com/CommanderTurtle/orc/tree/clonable) branch.
 
 Designed with subdomains in mind, this orchestrator allows each site folder to build locally. GitHub Actions will build artifacts and push output to entirely separate GitHub repositories using token-authenticated git. 
 
@@ -17,13 +17,13 @@ This is a continuation repository - see the mkdocs implementation: [fsharp-mater
                        ╱|、     
                      (˚ˎ 。7 
                       |、˜〵    
-                      じしˍ,)ノzensical
+                      じしˍ,)ノzensical,node,vite,jekyll
 """
 ```
 
-Write type-safe F# configurations, build beautiful static sites, and deploy them with Zensical using dynamic content in F#.
+Write type-safe F# configurations, build beautiful static sites, and deploy them using dynamic content in F#.
 
-# Table of Contents
+# Table of Contents (background)
 (Quick Jumps)
 1. [Overview](https://github.com/CommanderTurtle/fsharp-zensical/#table-of-contents)
 2. [Features](https://github.com/CommanderTurtle/fsharp-zensical/#features)
@@ -46,9 +46,37 @@ Write type-safe F# configurations, build beautiful static sites, and deploy them
 
 ---
 
-Currently deploying a rust/python zensical documentation site, a custom ruby jekyll blog, two react apps, and two static git pages (default jekyll).
+Pruned repo for deploying a zensical documentation site, a custom ruby jekyll blog, a react app, and three static git pages repos (jekyll fallback for md's).
 
 More can be read in the overhead repo, this deployment maintains `docs/`, `blog/`, `vite/`, `app/`, `pages/`, and `lab/`
+
+<details>
+  <summary>Show setup</summary>
+
+Folders auto-detect schema based on existence of "GEMFILE" , "node-modules" , "zensical.fs"
+> if any of these exist. It "just works" automatically. Make any push or run sharpendabot manually on 'auto'.
+
+- all of deploy-X yamls (generated) during 'auto' run, will perform all checks for builds.
+- Builds use bun and uv temporary environments; they delete build files, and send over fully built sites to output, all on their own. If none of these files exist, it just sends over non-build-required repo using fsharp as a wrapper (as expected).
+- Works with js sites, ruby sites, and zensical docs sites. No preference on folder names!
+
+Note, "deploy-X.fs" must be configured with repo-name and CNAME. These are steamedyams (i.e. sharpymls) in .github/config/
+
+A lot is legacy/compatibility code for this repo to preserve iteration functionality. Nearly everything is done by two yamls - a deploy yaml and a translator yaml.
+
+Adding FS functionality to your site is only around 6 MB overhead (once) - after building F#. Which I find very cool.
+
+Highly recommended wrapping steps below when doing first import locally. Powershell recommended but not requirement.
+
+This repo opts more for a build-it approach and you just 'manually run' specific pushes. When actions are active, and sharpendabot detects a change, it always creates yamls. When any further push is done within each folder, that folder's "auto" runs. Therefore temporarily disabling actions is useful when doing consecutive commits to folders. Just re-enable after the fact.
+
+</details>
+
+Relies on github token configs named $GH_PAGES_TOKEN and $SHARPENDABOT_TOKEN — `admin:repo_hook, codespace, project, repo, workflow, write:packages`
+
+[Set them here](https://github.com/settings/tokens) - 'classic'
+
+Then add them to this repo's settings as secrets with the same name.
 
 ---
 
@@ -61,7 +89,9 @@ More can be read in the overhead repo, this deployment maintains `docs/`, `blog/
   
 #### Quick config (local development):
 
-/throw/ automatically bundles legacy files via sharpendabot.
+- /throw/ automatically bundles legacy files via sharpendabot. i.e. wrap-site is performed and likewise throws any file named "something.html" into a folder and renames as index.fs
+- therefore, highly recommended to just perform first-wraps with large sites following the workarounds below based on architecture.
+
   
 ```powershell
 # Perform a bundle:
