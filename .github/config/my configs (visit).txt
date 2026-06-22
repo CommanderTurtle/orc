@@ -1,4 +1,4 @@
-module Config.Workflows.DeployVite
+module Config.Workflows.DeployVibe
 
 let render() =
     Config.Workflows.DeployCommon.render {
