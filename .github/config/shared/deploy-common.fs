@@ -9,42 +9,7 @@ type SiteDeploy = {
 }
 
 let render (site: SiteDeploy) =
-    sprintf """# ================= Improved State Mechanics ================= #
-# ================= State Argument Map (32 YAML placeholders) ================= #
-#  1  site.WorkflowName     // name:
-#  2  site.SourceFolder     // paths '%%s/**'
-#  3  site.SourceFolder     // concurrency &amp;deploy-%%s&amp;
-#  4  site.SourceFolder     // build: cd &amp;%%s&amp; (state check)
-#  5  site.SourceFolder     // build: rm -rf &amp;%%s/output&amp;
-#  6  site.SourceFolder     // build: &amp;.deploy/%%s&amp;
-#  7  site.SourceFolder     // build: render-site &amp;%%s&amp;
-#  8  site.SourceFolder     // build: &amp;%%s/output&amp;
-#  9  site.SourceFolder     // build: cd &amp;%%s/output&amp;
-# 10  site.TargetRepo        // deploy: REPO=&amp;%%s&amp;
-# 11  site.TargetBranch      // deploy: BRANCH=&amp;%%s&amp;
-# 12  site.TokenName         // deploy: TOKEN=&amp;${%%s:-...}&amp;
-# 13  site.SourceFolder     // deploy msg: &amp;Deploy %%s [skip ci]&amp;
-# 14  site.SourceFolder     // cleanup: rm -rf &amp;%%s/output&amp;
-# 15  site.SourceFolder     // cleanup: &amp;.deploy/%%s&amp;
-# 16  site.SourceFolder     // create bool2: cd &amp;%%s&amp;
-# 17  site.TokenName         // disable-actions: checkout token
-# 18  site.SourceFolder     // disable-actions: cd &amp;%%s&amp; (state)
-# 19  site.TokenName         // disable-actions: API token
-# 20  site.SourceFolder     // disable-actions: cd &amp;%%s&amp; (advance)
-# 21  site.TokenName         // cleanup-branch: checkout token
-# 22  site.SourceFolder     // cleanup-branch: cd &amp;%%s&amp; (state)
-# 23  site.TargetRepo        // cleanup: REPO=&amp;%%s&amp;
-# 24  site.TargetBranch      // cleanup: BRANCH=&amp;%%s&amp;
-# 25  site.SourceFolder     // cleanup-branch: cd &amp;%%s&amp; (advance)
-# 26  site.TokenName         // enable-actions: checkout token
-# 27  site.SourceFolder     // enable-actions: cd &amp;%%s&amp; (state)
-# 28  site.TokenName         // enable-actions: API token
-# 29  site.SourceFolder     // enable-actions: cd &amp;%%s&amp; (advance)
-# 30  site.TokenName         // finalize: checkout token
-# 31  site.SourceFolder     // finalize: cd &amp;%%s&amp; (state)
-# 32  site.SourceFolder     // finalize: cd &amp;%%s&amp; (remove)
-
-name: %s
+    sprintf """name: %s
 
 on:
   push:
@@ -64,22 +29,12 @@ on:
         options:
           - auto
           - deploy-only
-          - deploy
-          - reset
-      jump_to:
-        description: 'Jump to phase (manual override)'
-        required: false
-        default: ''
-        type: choice
-        options:
-          - ''
+          - SetBaseline
           - disable-actions
-          - cleanup-branch
           - enable-actions
-          - finalize
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: "deploy-%s"
@@ -90,61 +45,115 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Determine state
-        id: state
+
+      - name: Determine mode
+        id: mode
         shell: bash
         run: |
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
           MANUAL_MODE="${{ github.event.inputs.mode }}"
-          JUMP="${{ github.event.inputs.jump_to }}"
-          if [ "$MANUAL_MODE" = "deploy-only" ]; then
-            echo "advance=false" >> "$GITHUB_OUTPUT"
-            echo "MODE: deploy-only (skip bool2, one-shot)"
-          elif [ "$MANUAL_MODE" = "deploy" ]; then
-            echo "advance=false" >> "$GITHUB_OUTPUT"
-            echo "MODE: deploy (full cycle from deploy)"
-          elif [ -n "$JUMP" ]; then
-            echo "advance=true" >> "$GITHUB_OUTPUT"
-            echo "JUMP: skipping deploy, jumping to $JUMP"
-          elif [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
-            echo "advance=true" >> "$GITHUB_OUTPUT"
+          echo "mode=${MANUAL_MODE:-auto}" >> "$GITHUB_OUTPUT"
+
+      - name: Set target branch to baseline
+        if: steps.mode.outputs.mode == 'SetBaseline'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="%s"
+          BRANCH="%s"
+          TOKEN="${%s:-${GITHUB_TOKEN}}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          baseline_dir="$(mktemp -d)"
+          cd "$baseline_dir"
+
+          echo "Baseline-ifying ${OWNER}/${REPO}:${BRANCH}"
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add target "${REMOTE_URL}" 2>/dev/null || \
+            git remote set-url target "${REMOTE_URL}"
+          preserve_dir="$(mktemp -d)"
+          if git clone --depth 1 --branch "$BRANCH" "$REMOTE_URL" "$preserve_dir/target" 2>/dev/null; then
+            [ -f "$preserve_dir/target/CNAME" ] && cp "$preserve_dir/target/CNAME" CNAME
+            [ -f "$preserve_dir/target/LICENSE" ] && cp "$preserve_dir/target/LICENSE" LICENSE
+          fi
+          rm -rf "$preserve_dir"
+
+          git add .
+          git commit -m "Baseline-ifying: reset branch [skip ci]" || echo "No changes"
+          git push target HEAD:"$BRANCH" --force
+
+      - name: Toggle GitHub Actions
+        if: steps.mode.outputs.mode == 'disable-actions' || steps.mode.outputs.mode == 'enable-actions'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="%s"
+          TOKEN="${%s:-${GITHUB_TOKEN}}"
+          MODE="${{ github.event.inputs.mode }}"
+
+          if [ "$MODE" = "disable-actions" ]; then
+            ENABLED="false"
+            echo "Disabling Actions on ${OWNER}/${REPO}"
           else
-            echo "advance=false" >> "$GITHUB_OUTPUT"
+            ENABLED="true"
+            echo "Enabling Actions on ${OWNER}/${REPO}"
+          fi
+
+          HTTP_CODE=$(curl -s -o /dev/null -w "%%{http_code}" -X PUT \
+            -H "Authorization: token ${TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${OWNER}/${REPO}/actions/permissions" \
+            -d "{\"enabled\": ${ENABLED}}")
+
+          if [ "$HTTP_CODE" = '204' ]; then
+            echo "Success"
+          else
+            echo "ERROR: HTTP ${HTTP_CODE}"
+            exit 1
           fi
 
       - uses: actions/setup-dotnet@v5
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         with:
           dotnet-version: '10.0.x'
 
       - uses: actions/setup-python@v6
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         with:
           python-version: '3.x'
 
       - uses: astral-sh/setup-uv@v6
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
 
       - uses: oven-sh/setup-bun@v2
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
 
       - uses: ruby/setup-ruby@v1
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         with:
           ruby-version: '3.4'
           bundler-cache: false
 
       - name: Render F# source tree to output
         timeout-minutes: 10
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         run: |
           rm -rf "%s/output" ".deploy/%s"
           dotnet fsi GenerateConfig.fsx render-site "%s" "%s/output" --clean
 
       - name: Detect and build site
         timeout-minutes: 15
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         shell: bash
         run: |
           set -euo pipefail
@@ -183,14 +192,14 @@ jobs:
           echo "SOURCE_OUTPUT=$PWD" >> "$GITHUB_ENV"
 
       - name: Scrub generated source-only files
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         shell: bash
         run: |
           set -euo pipefail
           find "$PUBLISH_DIR" \( -name '*.fs' -o -name '*.fsx' -o -name '.gitignore' -o -name '.gitattributes' -o -name '.nojekyll' -o -name 'CNAME' \) -delete
 
       - name: Deploy to target repo
-        if: steps.state.outputs.advance == 'false'
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         env:
           GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -225,281 +234,19 @@ jobs:
           git push target HEAD:"${BRANCH}" --force
 
       - name: Cleanup rendered output
-        if: always() && steps.state.outputs.advance == 'false'
+        if: always() && steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         shell: bash
         run: |
           rm -rf "%s/output" ".deploy/%s"
-
-      - name: Create bool2 (advance to phase 2)
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          MANUAL_MODE="${{ github.event.inputs.mode }}"
-          if [ "$MANUAL_MODE" = "deploy-only" ]; then
-            echo "deploy-only: skipping bool2 creation"
-            exit 0
-          fi
-          if [ -f "bool2" ] || [ -f "bool3" ] || [ -f "bool4" ] || [ -f "bool5" ]; then
-            echo "State already advanced, skipping bool2 creation"
-            exit 0
-          fi
-          TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
-          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "bool2" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 2 (disable actions)
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "bool2"
-          git commit -m "Create bool2 state file" || true
-          git push || true
-
-  disable-actions:
-    runs-on: ubuntu-latest
-    needs: [build-and-deploy]
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
-
-      - name: Determine state
-        id: state
-        shell: bash
-        run: |
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          JUMP="${{ github.event.inputs.jump_to }}"
-          if [ "$JUMP" = "disable-actions" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-            echo "JUMP: forced active (disable-actions)"
-          elif [ -f "bool2" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "active=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Disable GitHub Actions
-        if: steps.state.outputs.active == 'true'
-        env:
-          TOKEN: ${{ secrets.%s }}
-        run: |
-          curl -X PUT \
-            -H "Authorization: token $TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
-            -d '{"enabled": false}'
-
-      - name: Advance state bool2 -> bool3
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          if [ ! -f "bool2" ]; then
-            echo "bool2 not present, skipping"
-            exit 0
-          fi
-          rm -f "bool2" || true
-          git rm "bool2" 2>/dev/null || true
-          TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
-          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "bool3" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 3 (cleanup branch)
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "bool3"
-          git commit -m "Advance state to bool3" || true
-          git push || true
-
-  cleanup-branch:
-    runs-on: ubuntu-latest
-    needs: [disable-actions]
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
-
-      - name: Determine state
-        id: state
-        shell: bash
-        run: |
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          JUMP="${{ github.event.inputs.jump_to }}"
-          if [ "$JUMP" = "cleanup-branch" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-            echo "JUMP: forced active (cleanup-branch)"
-          elif [ -f "bool3" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "active=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Delete everything except CNAME and LICENSE in target
-        if: steps.state.outputs.active == 'true'
-        env:
-          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          OWNER="${{ github.repository_owner }}"
-          REPO="%s"
-          BRANCH="%s"
-          TOKEN="${GH_PAGES_TOKEN}"
-          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
-
-          workdir="$(mktemp -d)"
-          git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${workdir}"
-          cd "${workdir}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          find . -maxdepth 1 -mindepth 1 ! -name 'CNAME' ! -name 'LICENSE' ! -name '.git' -exec rm -rf {} +
-          git add -A
-          git commit -m "Phase 3 cleanup: keep only CNAME and LICENSE" || true
-          git push origin HEAD:"${BRANCH}" --force
-
-      - name: Advance state bool3 -> bool4
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          if [ ! -f "bool3" ]; then
-            echo "bool3 not present, skipping"
-            exit 0
-          fi
-          rm -f "bool3" || true
-          git rm "bool3" 2>/dev/null || true
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "bool4" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 4 (enable actions)
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "bool4"
-          git commit -m "Advance state to bool4" || true
-          git push || true
-
-  enable-actions:
-    runs-on: ubuntu-latest
-    needs: [cleanup-branch]
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
-
-      - name: Determine state
-        id: state
-        shell: bash
-        run: |
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          JUMP="${{ github.event.inputs.jump_to }}"
-          if [ "$JUMP" = "enable-actions" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-            echo "JUMP: forced active (enable-actions)"
-          elif [ -f "bool4" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "active=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Re-enable GitHub Actions
-        if: steps.state.outputs.active == 'true'
-        env:
-          TOKEN: ${{ secrets.%s }}
-        run: |
-          curl -X PUT \
-            -H "Authorization: token $TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/actions/permissions \
-            -d '{"enabled": true}'
-
-      - name: Advance state bool4 -> bool5
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          if [ ! -f "bool4" ]; then
-            echo "bool4 not present, skipping"
-            exit 0
-          fi
-          rm -f "bool4" || true
-          git rm "bool4" 2>/dev/null || true
-          TIMESTAMP=$(date -u +"%%Y-%%m-%%dT%%H:%%M:%%SZ")
-          COMMIT=$(git rev-parse --short HEAD || echo "unknown")
-          cat > "bool5" <<EOF
-          # DeployCommon State File
-          # Created: $TIMESTAMP
-          # Commit: $COMMIT
-          # Phase: 5 (complete)
-          EOF
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "bool5"
-          git commit -m "Advance state to bool5 (complete)" || true
-          git push || true
-
-  finalize:
-    runs-on: ubuntu-latest
-    needs: [enable-actions]
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.%s }}
-          fetch-depth: 0
-
-      - name: Determine state
-        id: state
-        shell: bash
-        run: |
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          JUMP="${{ github.event.inputs.jump_to }}"
-          if [ "$JUMP" = "finalize" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-            echo "JUMP: forced active (finalize)"
-          elif [ -f "bool5" ]; then
-            echo "active=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "active=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Finalize - remove bool5 (reset state machine)
-        if: steps.state.outputs.active == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "%s" 2>/dev/null || exit 0
-          ls -la
-          rm -f "bool5" || true
-          git rm "bool5" 2>/dev/null || true
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "Finalize: reset state machine [skip ci]" || true
-          git push || true
 """
         site.WorkflowName
         site.SourceFolder
         site.SourceFolder
-        site.SourceFolder
+        site.TargetRepo
+        site.TargetBranch
+        site.TokenName
+        site.TargetRepo
+        site.TokenName
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder
@@ -509,22 +256,5 @@ jobs:
         site.TargetBranch
         site.TokenName
         site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.SourceFolder
-        site.TokenName
-        site.SourceFolder
-        site.TokenName
-        site.SourceFolder
-        site.TokenName
-        site.SourceFolder
-        site.TargetRepo
-        site.TargetBranch
-        site.SourceFolder
-        site.TokenName
-        site.SourceFolder
-        site.TokenName
-        site.SourceFolder
-        site.TokenName
         site.SourceFolder
         site.SourceFolder
