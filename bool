@@ -1,0 +1,9 @@
+# Sharpendabot State File
+# Created: 2026-06-26T03:19:02Z
+# Commit: 34ddf4d
+# 
+# Trigger commands:
+# - "throw" : Trigger HTML→DSL conversion
+# - "regenerate" : Force regeneration
+# - "sync" : Encode YML state back to .fs
+# - "clean" : Skip execution, just cleanup
