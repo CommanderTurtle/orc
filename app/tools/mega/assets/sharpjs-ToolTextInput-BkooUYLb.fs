@@ -1,6 +1,0 @@
-﻿module ConvertedFiles.Mega.Assets.ToolTextInputBkooUYLbJs
-
-let file = """import{a as g,r as x,A as C,j as e,B as j}from"./index-aHpeEV8y.js";import{I as k}from"./ContentPaste-DKqpSfyH.js";import{I as y}from"./InputFooter-BDHup-Ls.js";import{T as F}from"./TextField-3OI-XynG.js";function A({value:r,onChange:n,title:d="Input text",placeholder:f}){const{t:o}=g(),{showSnackBar:s}=x.useContext(C),a=x.useRef(null),h=()=>{navigator.clipboard.writeText(r).then(()=>s(o("toolTextInput.copied"),"success")).catch(t=>{s(o("toolTextInput.copyFailed",{error:t}),"error")})},m=t=>{var i;const l=(i=t.target.files)==null?void 0:i[0];if(l){const p=new FileReader;p.onload=T=>{var u;const c=(u=T.target)==null?void 0:u.result;typeof c=="string"&&n(c)},p.readAsText(l)}},I=()=>{var t;(t=a.current)==null||t.click()};return e.jsxs(j,{children:[e.jsx(k,{title:d||o("toolTextInput.input")}),e.jsx(F,{value:r,onChange:t=>n(t.target.value),fullWidth:!0,multiline:!0,rows:10,placeholder:f||o("toolTextInput.placeholder"),sx:{"&.MuiTextField-root":{backgroundColor:"background.paper"}},inputProps:{"data-testid":"text-input"}}),e.jsx(y,{handleCopy:h,handleImport:I}),e.jsx("input",{type:"file",accept:"*",ref:a,style:{display:"none"},onChange:m})]})}export{A as T};
-"""
-
-let render() = file
