@@ -1,0 +1,6 @@
+﻿module ConvertedFiles.Mega.Assets.ServiceBy4TTpxyJs
+
+let file = """const i=(t,r,e)=>{let n;try{n=JSON.parse(t)}catch{throw new Error("Invalid JSON string")}return JSON.stringify(n,null,r==="tab"?"	":e)};export{i as b};
+"""
+
+let render() = file
