@@ -1,0 +1,8 @@
+﻿module ConvertedFiles.Mega.Assets.IndexBixbKFAJs
+
+let file = """import{r as u,j as r,B as d}from"./index-aHpeEV8y.js";import{T as f}from"./ToolContent-B4ORy3df.js";import{T as x}from"./ToolTextInput-BkooUYLb.js";import{T}from"./ToolTextResult-CwqjGqb-.js";import{h}from"./time-BMfyfj3I.js";import{T as v}from"./TextFieldWithDesc-Br8sqQWl.js";import"./TextField-3OI-XynG.js";import"./ContentPaste-DKqpSfyH.js";import"./InputFooter-BDHup-Ls.js";import"./ResultFooter-CLp_AWC-.js";function S(o,l){if(!o)return"";const t=parseInt(l.decimalPlaces,10);if(isNaN(t)||t<0)return"Invalid decimal places value.";const s=o.split(`
+`);if(!s)return"";const i=[];return s.forEach(e=>{if(e=e.trim(),!e)return;const{isValid:m,hours:c,minutes:a,seconds:n}=h(e);if(!m){i.push("Incorrect input format use `HH:MM:(SS)` or `HH.MM.(SS )`.");return}const p=c+a/60+n/3600;i.push(p.toFixed(t).toString())}),i.join(`
+`)}const j={decimalPlaces:"6"},C=[{title:"Convert time to decimal",description:"This example shows how to convert a formatted time (HH:MM:SS) to a decimal version.",sampleText:"31:23:59",sampleResult:"31.399722",sampleOptions:{decimalPlaces:"6"}}];function y({title:o,longDescription:l}){const[t,s]=u.useState(""),[i,e]=u.useState(""),m=(a,n)=>{e(S(n,a))},c=({values:a,updateField:n})=>[{title:"Decimal places",component:r.jsx(d,{children:r.jsx(v,{description:"How many decimal places should the result contain?",value:a.decimalPlaces,onOwnChange:p=>n("decimalPlaces",p),type:"text"})})}];return r.jsx(f,{title:o,input:t,inputComponent:r.jsx(x,{value:t,onChange:s}),resultComponent:r.jsx(T,{value:i}),initialValues:j,exampleCards:C,getGroups:c,setInput:s,compute:m,toolInfo:{title:`What is a ${o}?`,description:l}})}export{y as default};
+"""
+
+let render() = file
