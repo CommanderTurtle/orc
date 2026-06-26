@@ -1,17 +1,19 @@
 ﻿module ConvertedFiles.Docs.Projects.SurroundtestFreeblobsMd
 
-let file = """# SurroundTest and FreeBlobs
+let file = """# Blobs
 
-Two complementary projects: SurroundTest provides the definitive online surround sound test, and FreeBlobs is a curated library of useful Unicode characters for technical applications including steganography, formatting, and symbol reference.
+Blobs is a curated library of useful Unicode characters for technical applications including steganography, formatting, and symbol reference.
+
+Also some sound information
 
 ---
 
 ## Overview
 
 ???+ note "What this page covers"
-    This page documents two utility projects in the sHEL ecosystem:
+    This page documents utilities:
 
-    - **SurroundTest** — Web Audio API multi-channel surround sound testing
+    - **SurroundTest** — Web Audio API multi-channel surround sound testing (found randomly)
     - **FreeBlobs** — Unicode character reference for invisible characters, brackets, math symbols, box drawing, and arrows
 
     For invisible Unicode steganography applications, see [CAPTCHA Unicode](../xml-project/captcha-unicode.md). For encoding reference, see [Encoding](../wikispace/security/encoding.md).
@@ -229,16 +231,17 @@ flowchart TD
 
 ## Related Pages
 
-- [CAPTCHA Unicode](../xml-project/captcha-unicode.md) — Invisible Unicode steganography
-- [Encoding](../wikispace/security/encoding.md) — Base64, URL, HTML encoding reference
+- [CAPTCHA Unicode](../xml-project/captcha-unicode.md){ data-preview } — Invisible Unicode steganography
+- [Encoding](../wikispace/security/encoding.md){ data-preview } — Base64, URL, HTML encoding reference
 
 ## Related Deep Hole
 
-- [SurroundTest](https://is.gd/surroundtest) — Online surround sound test
-- [Web Audio API Specification](https://webaudio.github.io/web-audio-api/) — W3C standard
-- [Unicode Character Database](https://unicode.org/ucd/) — Official Unicode character data
-- [Invisible Characters Reference](https://invisible-characters.com/) — Zero-width and invisible characters
-- [Unicode Box Drawing Characters](https://unicode.org/charts/PDF/U2500.pdf) — Box drawing chart
+- [SurroundTest](https://is.gd/surroundtest){:rel="noopener noreferrer" target="blank"} — Online surround sound test
+- [Web Audio API Specification](https://webaudio.github.io/web-audio-api/){:rel="noopener noreferrer" target="blank"} — W3C standard
+- [Unicode Character Database](https://unicode.org/ucd/){:rel="noopener noreferrer" target="blank"} — Official Unicode character data
+- [Invisible Characters Reference](https://invisible-characters.com/){:rel="noopener noreferrer" target="blank"} — Zero-width and invisible characters
+- [Unicode Box Drawing Characters](https://unicode.org/charts/PDF/U2500.pdf){:rel="noopener noreferrer" target="blank"} — Box drawing chart
+- [W3 Schools XML Editor](https://www.w3schools.com/XML/tryit.asp?filename=try_dom_loadxmltext){:rel="noopener noreferrer" target="blank"}
 """
 
 let render() = file
