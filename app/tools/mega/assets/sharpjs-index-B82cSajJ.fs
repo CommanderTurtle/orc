@@ -1,0 +1,18 @@
+﻿module ConvertedFiles.Mega.Assets.IndexB82cSajJJs
+
+let file = """import{a as x,r as u,j as s,B as f}from"./index-aHpeEV8y.js";import{T as v}from"./ToolContent-B4ORy3df.js";import{T as g}from"./ToolTextInput-BkooUYLb.js";import{T as C}from"./ToolTextResult-CwqjGqb-.js";import{S as R}from"./SelectWithDesc-DRymgm_6.js";import{C as w}from"./CheckboxWithDesc-BstBhCI6.js";import"./TextField-3OI-XynG.js";import"./ContentPaste-DKqpSfyH.js";import"./InputFooter-BDHup-Ls.js";import"./ResultFooter-CLp_AWC-.js";import"./FormControlLabel-zEBePngt.js";import"./Checkbox-BjITWEtX.js";import"./SwitchBase-BAC9Dj1s.js";function D(e,a="F"){return`<t:${Math.floor(e.getTime()/1e3)}:${a}>`}function b(e,a){if(!e)return"";const{format:t,enforceUTC:m}=a,o=[];return e.split(`
+`).forEach(r=>{if(!r.trim()){o.push("");return}const n=r.trim(),l=m?new Date(n+"Z"):new Date(n);isNaN(l.getTime())?o.push(`❌  ${r}`):o.push(D(l,t))}),o.join(`
+`)}const d={format:"F",enforceUTC:!0},j=[{title:"Convert a single datetime",description:"In this example, we convert a single datetime into a Discord timestamp using the Long Date & Time format (F). The input is an ISO 8601 datetime string and the output is a Discord timestamp that will display the full date and time in each viewer's local timezone.",sampleText:"2025-03-15T10:00:00",sampleResult:"<t:1742032800:F>",sampleOptions:{...d,format:"F"}},{title:"Convert multiple datetimes",description:"In this example, we convert multiple datetimes at once — one per line. Blank lines are preserved in the output. Each valid datetime is converted to a Discord timestamp using the Short Date & Time format (f).",sampleText:`2025-03-15T10:00:00
+2025-07-20T18:45:00
+
+2025-11-05T08:15:00`,sampleResult:`<t:1742032800:f>
+<t:1753037100:f>
+
+<t:1762330500:f>`,sampleOptions:{...d,format:"f"}},{title:"Relative timestamps",description:'In this example, we use the Relative format (R) which displays how long ago or how far in the future a datetime is — for example "2 hours ago" or "in 3 days". This format is useful for countdowns or activity feeds and updates dynamically in Discord.',sampleText:`2025-03-15T10:00:00
+2025-07-20T18:45:00
+2025-11-05T08:15:00`,sampleResult:`<t:1742032800:R>
+<t:1753037100:R>
+<t:1762330500:R>`,sampleOptions:{...d,format:"R"}}];function N({title:e,longDescription:a}){const{t}=x("time"),[m,o]=u.useState(""),[r,n]=u.useState(""),l=(p,c)=>{n(b(c,p))},T=[{label:t("discordTimestamp.formats.short_time"),value:"t"},{label:t("discordTimestamp.formats.long_time"),value:"T"},{label:t("discordTimestamp.formats.short_date"),value:"d"},{label:t("discordTimestamp.formats.long_date"),value:"D"},{label:t("discordTimestamp.formats.short_datetime"),value:"f"},{label:t("discordTimestamp.formats.long_datetime"),value:"F"},{label:t("discordTimestamp.formats.relative"),value:"R"}],h=({values:p,updateField:c})=>[{title:t("discordTimestamp.utc.title"),component:s.jsx(f,{children:s.jsx(w,{checked:p.enforceUTC,onChange:i=>c("enforceUTC",i),title:t("discordTimestamp.utc.label"),description:t("discordTimestamp.utc.description")})})},{title:t("discordTimestamp.formats.title"),component:s.jsx(f,{children:s.jsx(R,{selected:p.format,onChange:i=>c("format",i),options:T.map(i=>({label:i.label,value:i.value})),description:t("discordTimestamp.formats.description")})})}];return s.jsx(v,{title:e,input:m,inputComponent:s.jsx(g,{value:m,title:t("discordTimestamp.inputTitle"),onChange:o}),resultComponent:s.jsx(C,{title:t("discordTimestamp.outputTitle"),value:r}),initialValues:d,getGroups:h,setInput:o,compute:l,toolInfo:{title:e,description:a},exampleCards:j})}export{N as default};
+"""
+
+let render() = file

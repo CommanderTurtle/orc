@@ -1,0 +1,22 @@
+﻿module ConvertedFiles.Mega.Assets.Fonts.Quicksand.QuickSandCss
+
+let file = """@font-face {
+  font-family: "Quicksand";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("Quicksand-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  font-named-instance: "Italic";
+  src: url("quicksand-italic.ttf");
+}
+"""
+
+let render() = file

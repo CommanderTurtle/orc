@@ -1,0 +1,15 @@
+﻿module ConvertedFiles.Mega.Assets.IndexC8X98R7WJs
+
+let file = """import{z as T,a as f,r as x,j as s}from"./index-aHpeEV8y.js";import{T as y}from"./ToolTextInput-BkooUYLb.js";import{T as R}from"./ToolTextResult-CwqjGqb-.js";import{C as u}from"./CheckboxWithDesc-BstBhCI6.js";import{T as L}from"./ToolContent-B4ORy3df.js";import"./ContentPaste-DKqpSfyH.js";import"./InputFooter-BDHup-Ls.js";import"./TextField-3OI-XynG.js";import"./ResultFooter-CLp_AWC-.js";import"./FormControlLabel-zEBePngt.js";import"./Checkbox-BjITWEtX.js";import"./SwitchBase-BAC9Dj1s.js";function g(o,e,p,m){let t=[],a=[];return e?t=o.split(`
+`):t.push(o),p&&(t=t.filter(Boolean)),m&&(t=t.map(r=>r.trim())),a=t.map(r=>T(r)),a.join(`
+`)}const c={multiLine:!0,emptyItems:!1,trim:!1},C=[{title:"Simple Text Reversal",description:"Reverses each character in the text. Perfect for creating mirror text.",sampleText:"Hello World",sampleResult:"dlroW olleH",sampleOptions:{...c,multiLine:!1}},{title:"Multi-line Reversal",description:"Reverses each line independently while preserving the line breaks.",sampleText:`First line
+Second line
+Third line`,sampleResult:`enil tsriF
+enil dnoceS
+enil drihT`,sampleOptions:{...c,multiLine:!0}},{title:"Clean Reversed Text",description:"Trims whitespace and skips empty lines before reversing the text.",sampleText:`  Spaces removed  
+
+Empty line skipped`,sampleResult:`devomer secapS
+deppiks enil ytpmE`,sampleOptions:{...c,multiLine:!0,emptyItems:!0,trim:!0}}];function z({title:o}){const{t:e}=f("string"),[p,m]=x.useState(""),[t,a]=x.useState(""),r=(n,l)=>{const{multiLine:i,emptyItems:v,trim:d}=n;a(g(l,i,v,d))},h=({values:n,updateField:l})=>[{title:e("reverse.reversalOptions"),component:[s.jsx(u,{checked:n.multiLine,title:e("reverse.processMultiLine"),description:e("reverse.processMultiLineDescription"),onChange:i=>l("multiLine",i)},"multiLine"),s.jsx(u,{checked:n.emptyItems,title:e("reverse.skipEmptyLines"),description:e("reverse.skipEmptyLinesDescription"),onChange:i=>l("emptyItems",i)},"emptyItems"),s.jsx(u,{checked:n.trim,title:e("reverse.trimWhitespace"),description:e("reverse.trimWhitespaceDescription"),onChange:i=>l("trim",i)},"trim")]}];return s.jsx(L,{title:o,initialValues:c,getGroups:h,compute:r,input:p,setInput:m,inputComponent:s.jsx(y,{title:e("reverse.inputTitle"),value:p,onChange:m}),resultComponent:s.jsx(R,{title:e("reverse.resultTitle"),value:t}),exampleCards:C})}export{z as default};
+"""
+
+let render() = file
