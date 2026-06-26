@@ -10,8 +10,8 @@ let page =
             title [] [
                 str "Macrohard Visual Assembly"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/macro/assets/index-DonpFP42.js" ] [ rawText ("""""") ]
-            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/macro/assets/index-AJdfNqds.css" ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/assets/index-BPS_dW5A.js" ] [ rawText ("""""") ]
+            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/assets/index-Cllx_LW0.css" ]
         ]
         body [] [
             div [ _id "root" ] []
