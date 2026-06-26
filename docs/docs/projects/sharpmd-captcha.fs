@@ -9,7 +9,7 @@ A multi-modal CAPTCHA and anti-bot system combining dice-based authentication, i
 ## Overview
 
 ???+ note "What this page covers"
-    Multi-modal CAPTCHA system with four verification layers: dice authentication overlay, invisible Unicode steganography (U+FFA0), parsel CSS validation, and quine self-replication. For the invisible Unicode character reference, see [SurroundTest + FreeBlobs](surroundtest-freeblobs.md). For the related XML project encoding work, see [CAPTCHA Unicode](../xml-project/captcha-unicode.md).
+    Multi-modal CAPTCHA system with four verification layers: dice authentication overlay, invisible Unicode steganography (U+FFA0), parsel CSS validation, and quine self-replication. For the invisible Unicode character reference, see [aem1k.com](https://aem1k.com/invisible){:rel="noopener noreferrer" target="blank"}. For related XML project encoding work, see [CAPTCHA Unicode](../xml-project){ data-preview }.
 
 ---
 
@@ -341,12 +341,12 @@ The CAPTCHA system is designed for non-intrusive integration. The dice overlay i
 
 ## Related Deep Hole
 
-- [CAPTCHA Project Repository](https://github.com/CommanderTurtle/CommanderTurtle.github.io/tree/master/projects/captcha) — Source code and documentation
-- [CAPTCHA Documentation](https://github.com/CommanderTurtle/CommanderTurtle.github.io/blob/master/projects/captcha/docs/index.md) — Implementation guide (187 lines)
-- [Invisible Encoder](https://github.com/CommanderTurtle/CommanderTurtle.github.io/blob/master/projects/captcha/invisible/encoder) — U+FFA0 steganographic encoder
-- [Aem1k Invisible Code](https://aem1k.com/) — JavaScript and Unicode experiments
-- [Invisible Unicode Characters](https://invisible-characters.com/) — Reference of invisible Unicode code points
-- [Code Golf: Whitespace](https://codegolf.stackexchange.com/questions/tagged/whitespace) — Community invisible character challenges
+- [CAPTCHA Project Repository](https://github.com/CommanderTurtle/orc/tree/main/pages/projects/captcha){:rel="noopener noreferrer" target="blank"} — Source code and documentation
+- [CAPTCHA Documentation](https://vibe.shel.sh/projects/captcha/docs/){:rel="noopener noreferrer" target="blank"} — Implementation guide
+- [Invisible Encoder](https://vibe.shel.sh/projects/captcha/invisible/encoder){:rel="noopener noreferrer" target="blank"} — U+FFA0 steganographic encoder
+- [Aem1k Codegolf](https://aem1k.com/){:rel="noopener noreferrer" target="blank"} — JavaScript and Unicode experiments
+- [Invisible Unicode Characters](https://invisible-characters.com/){:rel="noopener noreferrer" target="blank"} — Reference of invisible Unicode code points
+- [Code Golf: Whitespace](https://codegolf.stackexchange.com/questions/tagged/whitespace){:rel="noopener noreferrer" target="blank"} — Community invisible character challenges
 """
 
 let render() = file

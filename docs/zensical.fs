@@ -181,7 +181,13 @@ Captcha = "projects/captcha.md"
 Countku = "projects/countku.md"
 
 [[project.nav.Projects]]
+Automate = "projects/automate.md"
+
+[[project.nav.Projects]]
 Macrohard = "projects/macrohard.md"
+
+[[project.nav.Projects]]
+Gemma = "projects/nvfp4.md"
 
 [[project.nav.Projects]]
 Regedited = "projects/regedited.md"
