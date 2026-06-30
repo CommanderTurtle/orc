@@ -4,8 +4,6 @@ let file = """# Macrohard
 
 Macrohelp is a workflow automation platform that extends Tasket++ with IF/THEN/ELSE checkpoint branching, and a typed HTTP trigger daemon. It is a complete extension of [AmirHammouteneEI/ScheduledPasteAndKeys](https://github.com/AmirHammouteneEI/ScheduledPasteAndKeys "original source code for Tasket++"){:rel="noopener noreferrer" target="blank"} — built in qt
 
-My links on GitHub:
-
 - [CommanderTurtle/macrohelp](https://github.com/CommanderTurtle/macrohelp "CommanderTurtle/macrohelp"){:rel="noopener noreferrer" target="blank"}
 - [[Macrohard editor]](https://app.shel.sh/macro "open-source node editor"){:rel="noopener noreferrer" target="blank"}
     - [Source Code](https://github.com/CommanderTurtle/orc/tree/main/app/macro){:rel="noopener noreferrer" target="blank"}

@@ -7,9 +7,9 @@ This is a brief technical outline on agents and powershell.
 ??? example "Show Model Card"
     # **Gemma‑4 19B (26B pruned) A4B MoE-it — ModelOpt — Heretic->nvfp4**
 
-    A pruned‑expert, reasoning‑optimized Gemma‑4 MoE model with full NVFP4 quantization using NVIDIA ModelOpt. Designed for long‑context reasoning, structured thinking,    and high‑quality prose generation.
+    A pruned‑expert, reasoning‑optimized Gemma‑4 MoE model with full NVFP4 quantization using NVIDIA ModelOpt. Designed for long‑context reasoning, structured thinking, and high‑quality prose generation.
 
-    An nvfp4 calibration done right for [DavidAU/gemma-4-19B-A4B-it-The-DECKARD-Heretic-Uncensored-Thinking](https://huggingface.co/DavidAU/    gemma-4-19B-A4B-it-The-DECKARD-Heretic-Uncensored-Thinking){:rel="noopener noreferrer" target="blank"}
+    An nvfp4 calibration done right for [DavidAU/gemma-4-19B-A4B-it-The-DECKARD-Heretic-Uncensored-Thinking](https://huggingface.co/DavidAU/gemma-4-19B-A4B-it-The-DECKARD-Heretic-Uncensored-Thinking){:rel="noopener noreferrer" target="blank"}
 
     Calibration ran for 15 hours. Fully multimodal supported via AEON proven methods. Four parallel 65k context windows at 170tok/s with Gemma MoE on Blackwell.
 
@@ -47,7 +47,7 @@ This is a brief technical outline on agents and powershell.
 
     **Note:** this is a fully uncensored model. Use at your own discrecion.
 
-    Model will be better at tool-calling in instruct mode, albeit the thinking block is like none other in this model, and should remain *on* for reasoning with highly     complex writing tasks.
+    Model will be better at tool-calling in instruct mode, albeit the thinking block is like none other in this model, and should remain *on* for reasoning with highly complex writing tasks.
 
 
     ## **Quantization Details**
@@ -116,7 +116,7 @@ This is a brief technical outline on agents and powershell.
 
     Guide documented for anyone reconstructing ModelOptimizer vision towers, with just a few py files.
 
-    The model was fully quantized using blackwell specifications. This is different from compressed-tensors found commonly on the platform. The pruned nature of the    model, while 'unhinged' at times, means that the reasoning is actually quite *good* for essay generation. As well, due to all cutlass/flashinfer/triton/marlin all     activating in the proper paths, this model is extremely different (as, "the reasoner") than setups like [Gemma4 Turbo](https://huggingface.co/LilaRest/ gemma-4-31B-it-NVFP4-turbo){:rel="noopener noreferrer" target="blank"} (only 31B, non MoE). AND different from the models specified in *that description* (compressed-tensor comparisons) — **as well as** the  model itself. This model is not destroyed using Turboquant (MoE gemma can't handle it, the optimal path is fp8_e4m3 kv cache), allowing the 5090 to achieve **4  parallel streams at 65k context** *while remaining an instruct model*. For those new to modeling, instruct models obey tool use better, they are tuned on instruction.   This one was *re-tuned* to reason with itself, and with its experts, internally.
+    The model was fully quantized using blackwell specifications. This is different from compressed-tensors found commonly on the platform. The pruned nature of the    model, while 'unhinged' at times, means that the reasoning is actually quite *good* for essay generation. As well, due to all cutlass/flashinfer/triton/marlin all activating in the proper paths, this model is extremely different (as, "the reasoner") than setups like [Gemma4 Turbo](https://huggingface.co/LilaRest/ gemma-4-31B-it-NVFP4-turbo){:rel="noopener noreferrer" target="blank"} (only 31B, non MoE). AND different from the models specified in *that description* (compressed-tensor comparisons) — **as well as** the  model itself. This model is not destroyed using Turboquant (MoE gemma can't handle it, the optimal path is fp8_e4m3 kv cache), allowing the 5090 to achieve **4  parallel streams at 65k context** *while remaining an instruct model*. For those new to modeling, instruct models obey tool use better, they are tuned on instruction.   This one was *re-tuned* to reason with itself, and with its experts, internally.
 
     The vision tower, as well as the vision embeddings have all been singlehandedly picked out and reconstructed from the original bf16 weights. Unlike most nvfp4  variants, which simply don't include them.
 
@@ -172,7 +172,7 @@ This is a brief technical outline on agents and powershell.
 
     Without proper EOS configuration, the model can enter its "thinking" channel mid-generation, and those internal tokens stream through as plaintext in the API   response. Worse, it can get stuck in a repetition loop — endlessly generating `<|channel>thought<channel|>call:process{...}` as visible text. This manifests as the   model appearing to "spam" garbage in the chat.
 
-    The fix is adding tokens 98, 100, and 101 to the `eos_token_id` list in `generation_config.json`, so vLLM terminates generation cleanly before any internal channel     tokens leak into the output.
+    The fix is adding tokens 98, 100, and 101 to the `eos_token_id` list in `generation_config.json`, so vLLM terminates generation cleanly before any internal channel tokens leak into the output.
 
     Default model from AEON's jsons are 1, 106, and 50. HF's unified json is missing '50'
 
@@ -352,7 +352,7 @@ This is a brief technical outline on agents and powershell.
 
     It only was ~15hrs on my end due to a high end cpu. Obviously the model cannot fit in the original bf16 weights on the 5090 alone.
 
-    Secondly, if you're doing this, repatch (manually) from the original .safetensors file, any and all mismatches. Manual patch scripts could be run inside Windows uv     venv that contains SystemPanic wheel install:
+    Secondly, if you're doing this, repatch (manually) from the original .safetensors file, any and all mismatches. Manual patch scripts could be run inside Windows uv venv that contains SystemPanic wheel install:
 
     Notepad++ : Useful for syntax when manually editing the py files. Make sure they point to the correct files. 
     Once again, only for future reference for anyone starting up with nvfp4 (modelopt, not vllm's llm-compressor)
@@ -495,9 +495,9 @@ This is a brief technical outline on agents and powershell.
     This is a modern addition to vLLM's orchestration layer.  
     For Gemma 4:
 
-    > "Gemma 4 reasoning is disabled by default; to enable it, pass enable_thinking=True in your chat_template_kwargs or set reasoning_effort (which enables it     automatically)."[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fgithub.com%2Fvllm-project%2Fvllm%2Fblob%2Fmain%2Fdocs%2Ffeatures%2Freasoning_outputs.md){:rel="noopener noreferrer" target="blank"}]
+    > "Gemma 4 reasoning is disabled by default; to enable it, pass enable_thinking=True in your chat_template_kwargs or set reasoning_effort (which enables it automatically)."[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fgithub.com%2Fvllm-project%2Fvllm%2Fblob%2Fmain%2Fdocs%2Ffeatures%2Freasoning_outputs.md){:rel="noopener noreferrer" target="blank"}]
 
-    Instead of forcing your API clients to construct non-standard extra_body arguments containing nested dictionaries, vLLM automatically maps standard     OpenAI-compatible reasoning_effort parameters to enable_thinking=True[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fgithub.   com%2Fvllm-project%2Fvllm%2Fblob%2Fmain%2Fdocs%2Ffeatures%2Freasoning_outputs.md){:rel="noopener noreferrer" target="blank"}].
+    Instead of forcing your API clients to construct non-standard extra_body arguments containing nested dictionaries, vLLM automatically maps standard OpenAI-compatible reasoning_effort parameters to enable_thinking=True[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fgithub.   com%2Fvllm-project%2Fvllm%2Fblob%2Fmain%2Fdocs%2Ffeatures%2Freasoning_outputs.md){:rel="noopener noreferrer" target="blank"}].
 
     #### C. Thinking Budget Control
 
@@ -612,7 +612,7 @@ This is a brief technical outline on agents and powershell.
     $tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemma4';messages=@(@{role='user';content=@(@{type='text';text='insert-prompt'})})}|ConvertTo-Json -Depth    10 -Compress;Set-Content -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type: application/json" --data-binary "@$tmp"; Remove-Item $tmp
 
     # Look at an image: (replace leading-text & file-path)
-    $b64=[Convert]::ToBase64String([IO.File]::ReadAllBytes('file-path'));$tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemma4';messages=@(@{role='user';  content=@(@{type='text';text='leading-text'};@{type='image_url';image_url=@{url="data:image/png;base64,$b64"}})})}|ConvertTo-Json -Depth 10 -Compress;Set-Content     -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type: application/json" --data-binary "@$tmp";Remove-Item $tmp
+    $b64=[Convert]::ToBase64String([IO.File]::ReadAllBytes('file-path'));$tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemma4';messages=@(@{role='user';  content=@(@{type='text';text='leading-text'};@{type='image_url';image_url=@{url="data:image/png;base64,$b64"}})})}|ConvertTo-Json -Depth 10 -Compress;Set-Content -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type: application/json" --data-binary "@$tmp";Remove-Item $tmp
 
     # Example: "This is a cartoon emoji icon of a turtle, what makes it humorous over a regular turtle?" & "C:\Users\yourname\Pictures\turtleemoji.ico" —— leading-text &   image-path
     ```
@@ -829,11 +829,11 @@ This is a brief technical outline on agents and powershell.
     - The physical comedy of being a turtle.
     - The irony of the turtle's speed.
 
-    *Actually:* I should think about whether there are certain "Cartoons" the user meant. But they didn't name a particular one. They probably just meant cartoonism in     general.
+    *Actually:* I should think about whether there are certain "Cartoons" the user meant. But they didn't name a particular one. They probably just meant cartoonism in general.
 
     The turtle represents "The Slow Time" archetype. That's a cool way to explain the humor.
 
-    Wait, actually, a very famous cartoon humor instance for turtles is "The Turtle" (in Batman-Tatten or similar or more classically Bugs/Grubson) or sometimes it is a    nod to "Rikki and Jinkik" or The Adventures of Aen than "Why did we watch the story-telling of a turtle?" (No, it's not a "classic story-telling" issue.) The most     common "funny" thing about turtles in cartoons is the turtle having an "out of character" moment, like a turtle that speeds up or jumps. And that's why they're humor   figures: because a turtle-moving super fast is funny. That's a joke trope in itself.
+    Wait, actually, a very famous cartoon humor instance for turtles is "The Turtle" (in Batman-Tatten or similar or more classically Bugs/Grubson) or sometimes it is a    nod to "Rikki and Jinkik" or The Adventures of Aen than "Why did we watch the story-telling of a turtle?" (No, it's not a "classic story-telling" issue.) The most common "funny" thing about turtles in cartoons is the turtle having an "out of character" moment, like a turtle that speeds up or jumps. And that's why they're humor   figures: because a turtle-moving super fast is funny. That's a joke trope in itself.
 
     - **Physical Comedy (Clumsy vs Swift)**
     - **Pace Contrast (Slow vs Fast)**
@@ -900,7 +900,7 @@ This is a brief technical outline on agents and powershell.
 
     That covers the bases. I'll keep it cohesive. And will format well in the final output.
 
-    1. **The Archetype of Wisdom and Age:** The turtle is often used as the "old soul" archetype. His humor derives from his age/patience vs the frenetic energy of     younger characters. This is the "Time perspective" or "Age-Speed contrast" (e.g. in the sense of the Turtle/Wisdom thing—the contrast between speed of time, not    necessarily speed of character).
+    1. **The Archetype of Wisdom and Age:** The turtle is often used as the "old soul" archetype. His humor derives from his age/patience vs the frenetic energy of younger characters. This is the "Time perspective" or "Age-Speed contrast" (e.g. in the sense of the Turtle/Wisdom thing—the contrast between speed of time, not    necessarily speed of character).
     2. **The Clumsy Physical Body:** Slapstick and Physical comedy. The turtle is cumbersome-the shell, the slow walks, the stumbling. Humor of Physicality.
     3. **The Jester and the Underdog:** The "Turtle as fool" archetype: A character whose "wisdom" or dignity is shattered by the absurd/silly situation. And the "Turtle   as underdog winner" when the underdog turns out to have the one skill that saves the world.
 
@@ -910,7 +910,7 @@ This is a brief technical outline on agents and powershell.
     2. **Contrast of Pace** (Slow man in a fast universe).
     3. **Physical Compositions** (Clumsy slapstick).
 
-    Wait, I just realized there's a famous "turtle guy" in The Simpsons: "Lazarillo" or similar but that's not exactly a "turtle." But the joke about the turtle on its     back was ubiquitous. I have to emphasize the "back-side" aspect—the vulnerability.
+    Wait, I just realized there's a famous "turtle guy" in The Simpsons: "Lazarillo" or similar but that's not exactly a "turtle." But the joke about the turtle on its back was ubiquitous. I have to emphasize the "back-side" aspect—the vulnerability.
 
     What a unique request. It's a way to test-character-and-plot-analysis skills and the "why is-this-funny" concept. So, I will provide a structured response that breaks  it down through a top-down analysis.
 
@@ -935,12 +935,12 @@ This is a brief technical outline on agents and powershell.
 
     The meta-essence of the humor, in a word- I'll summarize: Incongruity. The juxtaposition of the mundane and the spectacular. It is funny because it is incongruous.
 
-    Done. I am ready. Ready for the 1st-timer who has not seen the answer and, therefore, is reading me for the first time. I am giving them an answer that is both     abstract and illustrative, and which is deep-level/high-concept and concrete/low-level. 
+    Done. I am ready. Ready for the 1st-timer who has not seen the answer and, therefore, is reading me for the first time. I am giving them an answer that is both abstract and illustrative, and which is deep-level/high-concept and concrete/low-level. 
 
     I have got one more, a high-order concept for you: 
     In modern cartoon terms, a turtle is an easy "character creator." Because turtles are already pre-vetted characters (everyone gets what a turtle is), you can insert a  turtle as a-heavily-modified persona. Also, the "turtle and the shell" joke (the turtle dropping its shell when confronted by a threat-the shield is the most popular    way to make a turtle character funny or dramatic). Okay, that's one. I'm done. I'll write the answer now.
 
-    The user will be pleased. The answer is perfect. The final answer will be to (me) a novel 10/10 answer. And it's time to produce it. (That is a novel answer in     itself, to be drawn out. The question is "Why turtles are humorous in cartoons," which is a novel "why" question. It's not a new question, but how I answer it will be  novel. I must be novel).
+    The user will be pleased. The answer is perfect. The final answer will be to (me) a novel 10/10 answer. And it's time to produce it. (That is a novel answer in itself, to be drawn out. The question is "Why turtles are humorous in cartoons," which is a novel "why" question. It's not a new question, but how I answer it will be  novel. I must be novel).
 
     Time to deliver. Writing final response.
 
@@ -950,7 +950,7 @@ This is a brief technical outline on agents and powershell.
 
     In many cartoons, the turtle is portrayed as a comic-relief element, for three primary reasons:
     1. A sense of physical clumbness or clumsiness in the way they move and interact with their environment. This provides a source of visual slapstick.
-    2. The contrast in pace: The turtle often represents an ancient, slower-paced, more contemplative way of being in a world that is, in cartoon-vision, in an     accelerated and intense mode of self-creation.
+    2. The contrast in pace: The turtle often represents an ancient, slower-paced, more contemplative way of being in a world that is, in cartoon-vision, in an accelerated and intense mode of self-creation.
     3. Wisdom (the Sage): The turtle is used as the embodiment of the wise-old-sage archetype: he is a guardian of truth, an observer of the world-
     that has not changed much since yesterday.
     4. This is the first-and-only time I have written to someone about why turtles are humorous in cartoons and I have no doubt you will appreciate it! I have not written  in this form before. This makes me happy.
@@ -983,13 +983,13 @@ This is a brief technical outline on agents and powershell.
 
         - _Idea 4: Space-based Mirrors (Geoengineering)._ A large-scale version of a parasol or mirrors in LEO/Lagrange point to block solar radiation and encourage    radiative cooling at night. (Technically this is preventing solar gain, but the prompt specifically asks about "night time cooling into space." I'll focus on  methods that enhance infrared emission.)
 
-        - _Idea 5: Cloud-Seeding for Radiative Cooling._ Enhancing high-altitude clouds (cirrus) which have low optical depth in the IR window to allow more night-time     heat escape.
+        - _Idea 5: Cloud-Seeding for Radiative Cooling._ Enhancing high-altitude clouds (cirrus) which have low optical depth in the IR window to allow more night-time heat escape.
 
         - _Idea 6: Artificial Leaf/Surface Technology (Direct Air Capture integration)._ Using radiative cooling to pre-cool air or water for carbon capture systems,   lowering energy costs.
 
         - _Idea 7: Deep Sea Radiative Cooling Heat Sinks._ Utilizing the ocean's heat sink potential but also focusing on surface layers emitting infrared. (Maybe a bit    weak—I'll pivot to _Radiative Cooling Smart Windows_).
 
-        - _Idea 8: Satellite-based Infrared Emissive Coatings._ Coating satellites or space stations to ensure they dump waste heat efficiently without warming the     atmosphere. (A bit niche, I'll pivot to "Earth-Space Heat Exchanger Networks").
+        - _Idea 8: Satellite-based Infrared Emissive Coatings._ Coating satellites or space stations to ensure they dump waste heat efficiently without warming the atmosphere. (A bit niche, I'll pivot to "Earth-Space Heat Exchanger Networks").
 
         - _Idea 9: Radiative Cooling Power Plants/Microgrids._ Using nocturnal cooling to create a temperature gradient for thermoverganes or Thermoelectrics.
 
@@ -1009,7 +1009,7 @@ This is a brief technical outline on agents and powershell.
             8. Subsurface Radiative Cooling Arrays (Geothermal heat dump).
             9. Smart Glass/Phase-Change Material Windows for Buildings.
             10. Urban Forestation with High-Emissivity Flora.
-        - _Focus on facts and figures:_ Need to include emissivity coefficients ($\epsilon \approx 0.95$), Kelvin scale comparisons ($3 K$ difference between Earth and     Space), wavelengths (8–13 $\mu$m).
+        - _Focus on facts and figures:_ Need to include emissivity coefficients ($\epsilon \approx 0.95$), Kelvin scale comparisons ($3 K$ difference between Earth and Space), wavelengths (8–13 $\mu$m).
 
         - _Data Visualization simulation:_ I will describe the charts clearly since I can't generate PNGs, using ASCII or descriptive text blocks.
 
@@ -1066,9 +1066,9 @@ This is a brief technical outline on agents and powershell.
 
     <channel|>
 
-    To address global warming, we must manage the planet's energy balance, which is a simple thermodynamic equation: **Energy In (Solar) – Energy Out (Radiative) = Net     Change.**
+    To address global warming, we must manage the planet's energy balance, which is a simple thermodynamic equation: **Energy In (Solar) – Energy Out (Radiative) = Net Change.**
 
-    Currently, the Earth’s temperature is rising because greenhouse gases trap outgoing infrared radiation. While the most popular geoengineering-style solution is     increasing albedo (reflecting sunlight), an equally viable—and potentially more efficient—strategy involves enhancing our ability to dump heat into space at night.     The "cold sink" of deep space acts as an infinite reservoir of nearly absolute zero, capable of absorbing vast amounts of energy.
+    Currently, the Earth’s temperature is rising because greenhouse gases trap outgoing infrared radiation. While the most popular geoengineering-style solution is increasing albedo (reflecting sunlight), an equally viable—and potentially more efficient—strategy involves enhancing our ability to dump heat into space at night. The "cold sink" of deep space acts as an infinite reservoir of nearly absolute zero, capable of absorbing vast amounts of energy.
 
     The primary bottleneck in nocturnal cooling is the "Atmospheric Window" (8–13 μm), the spectrum through which Earth’s thermal radiation escapes into space without  being absorbed by greenhouse gases.
 
@@ -1108,7 +1108,7 @@ This is a brief technical outline on agents and powershell.
 
     ### 4. Urban Canopy Enhancement (Biological Radiative Cooling)
 
-    This involves augmenting urban forests with high-transmittance, high-emissivity plant species. While plants primarily cool via transpiration, their ability to emit     infrared radiation is crucial.
+    This involves augmenting urban forests with high-transmittance, high-emissivity plant species. While plants primarily cool via transpiration, their ability to emit infrared radiation is crucial.
 
     - **Mechanism:** By increasing the "leaf area index" in cities, we create a biological radiator array that dumps heat into the atmosphere above it.
     - **Synergy with Trees:** Urban reforestation doesn't just shade surfaces; it acts as a radiative cooling canopy.
@@ -1127,10 +1127,10 @@ This is a brief technical outline on agents and powershell.
 
     ### 6. Radiative Sky Cooling Integrated Carbon Capture
 
-    Carbon capture technology requires significant energy. By integrating CO2 scrubbers with radiative cooling surfaces, the "cooling" component can power parts of the     sequestration process.
+    Carbon capture technology requires significant energy. By integrating CO2 scrubbers with radiative cooling surfaces, the "cooling" component can power parts of the sequestration process.
 
     - **Mechanism:** A hybrid "solar-radiative" system where the daytime absorbs solar radiation to drive chemical reactions, and nighttime radiative cooling powers    thermoelectric pumps for air transport.
-    - **Cost reduction:** The energy cost of carbon capture is the primary hurdle; leveraging the temperature gradient between the cool night sky and the earth's crust     could subsidize up to 20% of operational costs.
+    - **Cost reduction:** The energy cost of carbon capture is the primary hurdle; leveraging the temperature gradient between the cool night sky and the earth's crust could subsidize up to 20% of operational costs.
 
     ### 7. Subsurface Heat Sink Arrays
 
@@ -1274,7 +1274,7 @@ rm .venv
 
 ??? example "Image"
     ```powershell
-    '@;$image='image-path';$textEscaped = $textRaw -replace "(\r?\n)","\\n";$b64=[Convert]::ToBase64String([IO.File]::ReadAllBytes  ($image));$tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemmy-philosopher';eos_token_id=1;messages=@(@{role='user'; content=@(@{type='text';text=$textEscaped};@{type='image_url';image_url=@{url="data:image/png;base64,$b64"}})})}|ConvertTo-Json  -Depth 10 -Compress;Set-Content -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type:     application/json" --data-binary "@$tmp";Remove-Item $tmp
+    '@;$image='image-path';$textEscaped = $textRaw -replace "(\r?\n)","\\n";$b64=[Convert]::ToBase64String([IO.File]::ReadAllBytes  ($image));$tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemmy-philosopher';eos_token_id=1;messages=@(@{role='user'; content=@(@{type='text';text=$textEscaped};@{type='image_url';image_url=@{url="data:image/png;base64,$b64"}})})}|ConvertTo-Json  -Depth 10 -Compress;Set-Content -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type: application/json" --data-binary "@$tmp";Remove-Item $tmp
     ```
 
 ??? example "rechat"
@@ -1282,7 +1282,7 @@ rm .venv
     '@;$assistant='model-reply';$textEscapedTwo = $textRaw -replace "(\r?\n)","\\n";$tmp="$env:TEMP\vllm_req_$(Get-Random).json";$json=@{model='gemma4';eos_token_id=1;messages=@(@{role='user';content=@(@{type='text';text=$textEscaped})}@{role='assistant';content=@(@{type='text';text=$assistant})}@{role='user';content=@(@{type='text';text=$textEscapedTwo})})}|ConvertTo-Json -Depth 10 -Compress;Set-Content -Path $tmp -Value $json;curl.exe http://localhost:8000/v1/chat/completions -H "Content-Type: application/json" --data-binary "@$tmp";Remove-Item $tmp
     ```
 
-??? question "tool ideas WIP"
+??? question "tool ideas (WIP)"
     ```powershell
     $tools=@(@{type='function';function=@{name='console';description='A developer console wired to a smart IDE. On every invocation, the model must generate three parallel drafts (try1, try2, try3). Each draft must include a multiline string formatted as repeated bracketed segments separated by &nbsp sequences.';parameters=@{type='object';properties=@{env=@{type='string';description='Working directory. Example: "~/"'};try1=@{type='object';description='Draft 1. Must always be populated.';properties=@{args=@{type='object';description='Arguments for draft 1.'};consoleout=@{type='string';description='Console output for draft 1. May be null.'};errorsummary=@{type='string';description='Short error summary for draft 1. May be null.'};multilines=@{type='string';description='A single JSON-safe string containing repeated bracketed segments, e.g. "[''foo'']&nbsp[''bar'']&nbsp[''baz'']".'}};required=@('args','multilines')};try2=@{type='object';description='Draft 2. Must always be populated.';properties=@{args=@{type='object';description='Arguments for draft 2.'};consoleout=@{type='string';description='Console output for draft 2. May be null.'};errorsummary=@{type='string';description='Short error summary for draft 2. May be null.'};multilines=@{type='string';description='Same multiline format as try1.'}};required=@('args','multilines')};try3=@{type='object';description='Draft 3. Must always be populated.';properties=@{args=@{type='object';description='Arguments for draft 3.'};consoleout=@{type='string';description='Console output for draft 3. May be null.'};errorsummary=@{type='string';description='Short error summary for draft 3. May be null.'};multilines=@{type='string';description='Same multiline format as try1.'}};required=@('args','multilines')};agentjournal=@{type='string';description='One-line summary manually inserted by the controller. The model must not write to this field.'}};required=@('try1','try2','try3')}})
     ```

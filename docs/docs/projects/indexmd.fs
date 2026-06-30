@@ -23,38 +23,12 @@ Documentation for individual projects developed as part of the sHEL ecosystem. E
 
 ## Project Index
 
-```mermaid
-flowchart TD
-    subgraph Projects["sHEL Ecosystem Projects"]
-        direction LR
-        C["Countku<br/>(Game)"]
-        CAP["CAPTCHA<br/>(Security)"]
-        S["SurroundTest<br/>(Audio)"]
-        F["FreeBlobs<br/>(Unicode)"]
-        R["Regedited<br/>(Database)"]
-        M["Macrohard<br/>(Automation)"]
-    end
-
-    C -->|"Syllable counting<br/>constraints"| CAP
-    S -->|"Web Audio API"| C
-    F -->|"Invisible chars<br/>steganography"| CAP
-    R -->|"Rust parser"| M
-
-    style C fill:#4a90d9
-    style CAP fill:#7ed321
-    style S fill:#f5a623
-    style F fill:#9013fe
-    style R fill:#bd10e0
-    style M fill:#d0021b
-```
-
----
 
 ## Countku
 
 A constraint-based language game that uses English syllable counting as its mathematical foundation. Players construct expressions where the total syllable count of the words must equal a target number.
 
-[Countku Documentation](countku.md)
+[Countku Documentation](countku.md){ data-preview }
 
 ---
 
@@ -62,15 +36,15 @@ A constraint-based language game that uses English syllable counting as its math
 
 A multi-modal CAPTCHA and anti-bot system combining dice-based authentication, invisible Unicode steganography, and CSS selector parsing.
 
-[CAPTCHA Documentation](captcha.md)
+[CAPTCHA Documentation](captcha.md){ data-preview }
 
 ---
 
-## SurroundTest + FreeBlobs
+## Blobs
 
-SurroundTest provides the definitive online surround sound test via Web Audio API. FreeBlobs is a curated library of useful Unicode characters for technical applications.
+Random information on the Web Audio API, as well as a blob library of useful Unicode characters for technical applications.
 
-[SurroundTest + FreeBlobs Documentation](surroundtest-freeblobs.md)
+[Blob Documentation](surroundtest-freeblobs.md){ data-preview }
 
 ---
 
@@ -78,26 +52,26 @@ SurroundTest provides the definitive online surround sound test via Web Audio AP
 
 A fast plaintext parse-ment database written in Rust. Reimagines structured data storage by combining safetensors-style memory mapping with typed hex-word addressing, enabling O(1) section jumps on multi-gigabyte files.
 
-[Regedited Documentation](regedited.md)
+[Regedited Documentation](regedited.md){ data-preview }
 
 ---
 
 ## Macrohard
 
-A visual workflow automation platform extending Tasket++ with a ComfyUI-style node editor, IF/THEN/ELSE checkpoint branching, and a typed HTTP trigger daemon. Complete rewrite of ScheduledPasteAndKeys in C++ and TypeScript.
+A visual workflow automation platform extending Tasket++ with a ComfyUI-style node editor, IF/THEN/ELSE checkpoint branching, and a typed HTTP trigger daemon. Complete extension utlizing Tasket as a backend library.
 
-[Macrohard Documentation](macrohard.md)
+[Macrohard Documentation](./macrohard.md){ data-preview }
 
 ---
 
 ## Related Deep Hole
 
-- [sHEL GitHub Repository](https://github.com/CommanderTurtle/CommanderTurtle.github.io) — Source code for all projects
-- [Countku Game](https://commanderturtle.github.io/projects/) — Play Countku online
-- [CAPTCHA Demo](https://commanderturtle.github.io/projects/captcha/) — Live CAPTCHA demonstration
-- [SurroundTest](https://is.gd/surroundtest) — Online surround sound test
-- [Regedited GitHub](https://github.com/CommanderTurtle/regedited) — Rust plaintext database
-- [Macrohard GitHub](https://github.com/CommanderTurtle/macrohard) — Visual workflow automation
+- [shel.sh GitHub Repository](https://github.com/CommanderTurtle/orc#f-zensical-for-mkdocs--cross-repo-pages-orchestrator){:rel="noopener noreferrer" target="blank"} — Source code for all projects
+- [Countku Game](https://app.shel.sh/countku){:rel="noopener noreferrer" target="blank"} — Play Countku online
+- [CAPTCHA Demo](https://vibe.shel.sh/projects/captcha/docs/){:rel="noopener noreferrer" target="blank"} — Live CAPTCHA demonstration
+- [Regedited](./regedited.md){ data-preview } — Source code and documentation
+- [CMD](../xml-project/index.md){ data-preview } — Reproducable format for boolean if-then in C
+- [Gemma](./nvfp4.md){ data-preview } — Document on powershell oneliner harnessing a local agent
 """
 
 let render() = file

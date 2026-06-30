@@ -11,7 +11,7 @@ In the modern era, there is a number of sources:
 - [Tasket++](https://github.com/AmirHammouteneEI/ScheduledPasteAndKeys "AmirHammouteneEI/ScheduledPasteAndKeys <br> This is a dev tool written in C++, <br>ported to MSIX (Microsoft store)"){:rel="noopener noreferrer" target="blank"}
     - [see: the macro sidecar](./macrohard.md){ data-preview } - a native http daemon to "harness" tasket
     - and of course, [the UI](https://app.shel.sh/macro "a preview for importing machine code to the sidecar daemon"){:rel="noopener noreferrer" target="blank"}
-- [Surfingkeys](https://github.com/brookhong/Surfingkeys "brookhong/Surfingkeys <br> This is a full suite for keyboard surfing in web browsers."){:rel="noopener noreferrer"}
+- [Surfingkeys](https://github.com/brookhong/Surfingkeys "brookhong/Surfingkeys <br> This is a full suite for keyboard surfing in web browsers."){:rel="noopener noreferrer" target="blank"}
 - [Powertoys](https://github.com/microsoft/PowerToys/tree/main/doc/devdocs "microsoft's take on QoL<br>a helpful program one cannot live without"){:rel="noopener noreferrer" target="blank"}
 
 *[native]: ~300kb harnness<br> ...with more scriptability than Autohotkey<br>written solely with Qt
@@ -139,7 +139,93 @@ Prerequisites ?
         irm get.scoop.sh | iex
     ```
 
+---
 
+# A 'simple snippet' json - for html developer pastes ✍️
+
+- install Powertoys [here (github)](https://github.com/microsoft/PowerToys/tree/main/doc/devdocs){:rel="noopener noreferrer" target="blank"}
+- [or here (msstore)](https://apps.microsoft.com/detail/xp89dcgq3k6vld){:rel="noopener noreferrer" target="blank"}
+- get SimpleSnippet (`winget install --source msstore Simple Snippet for "Command Palette"`)
+
+Alternatively, just use 'Scripter for Command Palette'. These pastes are useful to have on hand for web-development, though.
+
+`~\AppData\Local\Packages\INGPlay.SimpleSnippetforCommandPalette_fta6ge0ntyrtj\LocalState` :
+
+??? tip "Click to expand `list.json`"
+    ```json
+    [
+      {
+        "Id": "cec10ab7-a784-4ba5-8f30-07e094998ae5",
+        "Title": "Base64 Clip File PDF",
+        "Content": "\u0022data:application/pdf;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "SummaryContent": "\u0022data:application/pdf;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "Type": "Text",
+        "Created": "2026-06-23T12:26:13.3280139-04:00",
+        "LastUpdated": "2026-06-23T12:26:13.3280153-04:00",
+        "LastCopied": "2026-06-23T12:41:09.0724171-04:00"
+      },
+      {
+        "Id": "759de201-1573-41dc-a49c-ec5fbb633835",
+        "Title": "Base64 Clip Image JPEG",
+        "Content": "\u0022data:image/jpeg;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "SummaryContent": "\u0022data:image/jpeg;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "Type": "Text",
+        "Created": "2026-06-23T12:23:53.2158488-04:00",
+        "LastUpdated": "2026-06-23T12:23:53.2158504-04:00",
+        "LastCopied": "2026-06-23T12:42:02.689572-04:00"
+      },
+      {
+        "Id": "5aa80ee7-070b-4a1d-a4a2-7a4b0c9af599",
+        "Title": "Base64 Clip File TXT",
+        "Content": "\u0022data:text/plain;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "SummaryContent": "\u0022data:text/plain;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "Type": "Text",
+        "Created": "2026-06-23T12:25:21.4238716-04:00",
+        "LastUpdated": "2026-06-23T12:25:33.0877896-04:00",
+        "LastCopied": "2026-06-23T12:42:26.4575759-04:00"
+      },
+      {
+        "Id": "ad308e38-136e-431a-9f64-ae6486c951aa",
+        "Title": "MD5 / SHA Hash (file-path)",
+        "Content": "$fp=\u0022file-path\u0022; \u0022SHA256: $((Get-FileHash $fp -Algorithm SHA256).Hash)\u0060nSHA1:   $((Get-FileHash $fp -Algorithm SHA1).Hash)\u0060nMD5:    $((Get-FileHash $fp -Algorithm MD5).Hash)\u0022",
+        "SummaryContent": "$fp=\u0022file-path\u0022; \u0022SHA256: $((Get-FileHash $fp -Algorithm SHA256).Hash)\u0060nSHA1:   $((Get-FileHash $fp -Algorithm SHA1).Hash)\u0060nMD5:    $((Get-FileHash $f...",
+        "Type": "Text",
+        "Created": "2026-06-22T17:24:18.9644226-04:00",
+        "LastUpdated": "2026-06-25T22:56:01.9955387-04:00",
+        "LastCopied": "2026-06-25T22:55:06.082657-04:00"
+      },
+      {
+        "Id": "5efb9e63-8b0d-4275-949f-535a033759a9",
+        "Title": "Base64 Clip Image PNG",
+        "Content": "\u0022data:image/png;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "SummaryContent": "\u0022data:image/png;base64,\u0022 \u002B ([Convert]::ToBase64String([IO.File]::ReadAllBytes(\u0022here\u0022))) | Set-Clipboard",
+        "Type": "Text",
+        "Created": "2026-06-23T12:23:21.8883119-04:00",
+        "LastUpdated": "2026-06-23T12:24:09.0320148-04:00",
+        "LastCopied": "2026-06-27T22:32:31.1444425-04:00"
+      },
+      {
+        "Id": "f950bc14-1373-457a-9345-44794583c9f3",
+        "Title": "HREF (Remove PX Optional For Fill)",
+        "Content": "\u003Ca href=\u0022https://example.com\u0022 title=\u0022this is sparta, no, this is thumbnail\u0022\u003E\u003Cimg src=\u0022data:image/png;base64,INSERT\u0022\u00A0alt=\u0022This part is accessibility read by screen readers.\u0022\u00A0style=\u0022max-width:100;width:64px;height:auto;\u0022\u003E\u003C/a\u003E\u003Cbr\u003E\u003Cspan style=\u0022font-size:13px; color:#666;\u0022\u003EFigure 1 \u2014 Example icon description\u003C/span\u003E",
+        "SummaryContent": "\u003Ca href=\u0022https://example.com\u0022 title=\u0022this is sparta, no, this is thumbnail\u0022\u003E\u003Cimg src=\u0022data:image/png;base64,INSERT\u0022\u00A0alt=\u0022This part is accessibility re...",
+        "Type": "Text",
+        "Created": "2026-03-16T11:31:39.1685874-04:00",
+        "LastUpdated": "2026-03-16T12:00:47.4763197-04:00",
+        "LastCopied": "2026-06-27T22:37:52.5765168-04:00"
+      },
+      {
+        "Id": "00b0c978-e9e8-4884-a7a5-abc07f3fe725",
+        "Title": "Image (Remove PX Optional for Fill)",
+        "Content": "\u003Cimg src=\u0022data:image/png;base64,\u0022 alt=\u0022ACCESSIBILITY\u0022 style=\u0022max-width:100;width:300px;height:auto;\u0022\u003E\u003Cbr\u003E\u003Cspan style=\u0022font-size:13px; color:#666;\u0022\u003EFigure 1 \u2014 Example icon description\u003C/span\u003E",
+        "SummaryContent": "\u003Cimg src=\u0022data:image/png;base64,\u0022 alt=\u0022ACCESSIBILITY\u0022 style=\u0022max-width:100;width:300px;height:auto;\u0022\u003E\u003Cbr\u003E\u003Cspan style=\u0022font-size:13px; color:#666;\u0022\u003EFig...",
+        "Type": "Text",
+        "Created": "2026-03-16T11:33:33.8719173-04:00",
+        "LastUpdated": "2026-03-16T12:00:05.1607765-04:00",
+        "LastCopied": "2026-06-27T22:53:33.5916152-04:00"
+      }
+    ]
+    ```
 
 ### Related pages:
 - [Regedited GitHub Repository](./regedited.md){ data-preview } — Source code and documentation
