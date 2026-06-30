@@ -1,0 +1,229 @@
+name: Deploy App
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'app/**'
+      - '.github/config/deploy-*.fs'
+      - '.github/config/shared/deploy-common.fs'
+      - 'GenerateConfig.fsx'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Execution mode'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - deploy-only
+          - SetBaseline
+          - disable-actions
+          - enable-actions
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "deploy-app"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Determine mode
+        id: mode
+        shell: bash
+        run: |
+          MANUAL_MODE="${{ github.event.inputs.mode }}"
+          echo "mode=${MANUAL_MODE:-auto}" >> "$GITHUB_OUTPUT"
+
+      - name: Set target branch to baseline
+        if: steps.mode.outputs.mode == 'SetBaseline'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="app-pages"
+          BRANCH="main"
+          TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          baseline_dir="$(mktemp -d)"
+          cd "$baseline_dir"
+
+          echo "Baseline-ifying ${OWNER}/${REPO}:${BRANCH}"
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add target "${REMOTE_URL}" 2>/dev/null || \
+            git remote set-url target "${REMOTE_URL}"
+          preserve_dir="$(mktemp -d)"
+          if git clone --depth 1 --branch "$BRANCH" "$REMOTE_URL" "$preserve_dir/target" 2>/dev/null; then
+            [ -f "$preserve_dir/target/CNAME" ] && cp "$preserve_dir/target/CNAME" CNAME
+            [ -f "$preserve_dir/target/LICENSE" ] && cp "$preserve_dir/target/LICENSE" LICENSE
+          fi
+          rm -rf "$preserve_dir"
+
+          git add .
+          git commit -m "Baseline-ifying: reset branch [skip ci]" || echo "No changes"
+          git push target HEAD:"$BRANCH" --force
+
+      - name: Toggle GitHub Actions
+        if: steps.mode.outputs.mode == 'disable-actions' || steps.mode.outputs.mode == 'enable-actions'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="app-pages"
+          TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
+          MODE="${{ github.event.inputs.mode }}"
+
+          if [ "$MODE" = "disable-actions" ]; then
+            ENABLED="false"
+            echo "Disabling Actions on ${OWNER}/${REPO}"
+          else
+            ENABLED="true"
+            echo "Enabling Actions on ${OWNER}/${REPO}"
+          fi
+
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT \
+            -H "Authorization: token ${TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${OWNER}/${REPO}/actions/permissions" \
+            -d "{\"enabled\": ${ENABLED}}")
+
+          if [ "$HTTP_CODE" = '204' ]; then
+            echo "Success"
+          else
+            echo "ERROR: HTTP ${HTTP_CODE}"
+            exit 1
+          fi
+
+      - uses: actions/setup-dotnet@v5
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        with:
+          dotnet-version: '10.0.x'
+
+      - uses: actions/setup-python@v6
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        with:
+          python-version: '3.x'
+
+      - uses: astral-sh/setup-uv@v6
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+
+      - uses: oven-sh/setup-bun@v2
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+
+      - uses: ruby/setup-ruby@v1
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        with:
+          ruby-version: '3.4'
+          bundler-cache: false
+
+      - name: Render F# source tree to output
+        timeout-minutes: 10
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        run: |
+          rm -rf "app/output" ".deploy/app"
+          dotnet fsi GenerateConfig.fsx render-site "app" "app/output" --clean
+
+      - name: Detect and build site
+        timeout-minutes: 15
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "app/output"
+
+          if [ -f "zensical.toml" ]; then
+            echo "Detected Zensical site"
+            uv venv --python 3.12.10 --seed --managed-python
+            source .venv/bin/activate
+            uv pip install zensical
+            zensical build
+            deactivate
+            rm -rf .venv
+            rm -rf .cache
+            publish="$PWD/site"
+          elif [ -f "Gemfile" ]; then
+            echo "Detected Jekyll site"
+            bundle install
+            bundle exec jekyll build --disable-disk-cache
+            rm -rf Gemfile.lock
+            publish="$PWD/_site"
+          elif [ -f "package.json" ]; then
+            echo "Detected JavaScript package site"
+            bun install
+            bun run build
+            rm -rf node_modules
+            rm -rf bun.lock
+            publish="$PWD/dist"
+          else
+            echo "Detected static push site"
+            publish="$PWD"
+          fi
+
+          test -d "$publish"
+          echo "PUBLISH_DIR=$publish" >> "$GITHUB_ENV"
+          echo "SOURCE_OUTPUT=$PWD" >> "$GITHUB_ENV"
+
+      - name: Scrub generated source-only files
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$PUBLISH_DIR" \( -name '*.fs' -o -name '*.fsx' -o -name '.gitignore' -o -name '.gitattributes' -o -name '.nojekyll' -o -name 'CNAME' \) -delete
+
+      - name: Deploy to target repo
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        env:
+          GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          OWNER="${{ github.repository_owner }}"
+          REPO="app-pages"
+          BRANCH="main"
+          TOKEN="${GH_PAGES_TOKEN:-${GITHUB_TOKEN}}"
+          REMOTE_URL="https://x-access-token:${TOKEN}@github.com/${OWNER}/${REPO}.git"
+
+          cd "$PUBLISH_DIR"
+          preserve_dir="$(mktemp -d)"
+          if git clone --depth 1 --branch "${BRANCH}" "${REMOTE_URL}" "${preserve_dir}/target" 2>/dev/null; then
+            if [ -f "${preserve_dir}/target/CNAME" ]; then
+              cp "${preserve_dir}/target/CNAME" CNAME
+              echo "Preserved existing target CNAME"
+            fi
+          else
+            echo "No existing target branch to preserve"
+          fi
+          rm -rf "$preserve_dir"
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add target "${REMOTE_URL}" 2>/dev/null || \
+            git remote set-url target "${REMOTE_URL}"
+          git add .
+          git commit -m "Deploy app [skip ci]" || echo "No changes"
+          git push target HEAD:"${BRANCH}" --force
+
+      - name: Cleanup rendered output
+        if: always() && steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
+        shell: bash
+        run: |
+          rm -rf "app/output" ".deploy/app"
