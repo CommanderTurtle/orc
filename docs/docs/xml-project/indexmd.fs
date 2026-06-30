@@ -715,17 +715,17 @@ buffer=error
 
     "The Snipping Tool will now scan for text and extract it, which can now copy. You can copy all text using the option visible or you can specifically copy part of text from the image, by selecting it."
 
-    — Microsoft Learn<sup>[link](https://learn.microsoft.com/en-us/answers/questions/2285914/how-to-extract-text-from-images-on-windows-11-arti){:rel="noopener noreferrer"}</sup>
+    — Microsoft Learn<sup>[link](https://learn.microsoft.com/en-us/answers/questions/2285914/how-to-extract-text-from-images-on-windows-11-arti){:rel="noopener noreferrer" target="blank"}</sup>
 
-![](https://learn-attachment.microsoft.com/api/attachments/f4ea0190-cf1c-41b2-80ad-421225d9644a?platform=QnA){:rel="noopener noreferrer"}
+![](https://learn-attachment.microsoft.com/api/attachments/f4ea0190-cf1c-41b2-80ad-421225d9644a?platform=QnA){:rel="noopener noreferrer" target="blank"}
 
-Win+Shift+T , alternatively, with [Microsoft Powertoys](https://learn.microsoft.com/en-us/windows/powertoys/){:rel="noopener noreferrer"}
+Win+Shift+T , alternatively, with [Microsoft Powertoys](https://learn.microsoft.com/en-us/windows/powertoys/){:rel="noopener noreferrer" target="blank"}
 
-- [Razer Macros](https://mysupport.razer.com/app/answers/detail/a_id/2003/~/how-to-create-macros-on-a-razer-mouse){:rel="noopener noreferrer"}
-- [Tasket++](https://github.com/AmirHammouteneEI/ScheduledPasteAndKeys#tasket){:rel="noopener noreferrer"}
+- [Razer Macros](https://mysupport.razer.com/app/answers/detail/a_id/2003/~/how-to-create-macros-on-a-razer-mouse){:rel="noopener noreferrer" target="blank"}
+- [Tasket++](https://github.com/AmirHammouteneEI/ScheduledPasteAndKeys#tasket){:rel="noopener noreferrer" target="blank"}
 
 ??? abstract "Click to load preview"
-    ![](https://camo.githubusercontent.com/ab15c2a569502dea9cf77fc6832a9c2902bfee25d8eebf03efac448b52be41b4/68747470733a2f2f66696c65732e616d697268616d6d6f7574656e652e6465762f5461736b65742b2b2f73637265656e73686f74732f312d6d61696e2e706e67){:rel="noopener noreferrer"}
+    ![](https://camo.githubusercontent.com/ab15c2a569502dea9cf77fc6832a9c2902bfee25d8eebf03efac448b52be41b4/68747470733a2f2f66696c65732e616d697268616d6d6f7574656e652e6465762f5461736b65742b2b2f73637265656e73686f74732f312d6d61696e2e706e67){:rel="noopener noreferrer" target="blank"}
 
 #### Related projects (on this site):
 

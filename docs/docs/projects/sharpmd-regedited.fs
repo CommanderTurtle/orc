@@ -4,9 +4,8 @@ let file = """# Regedited
 
 Regedited is a fast plaintext parse-ment database written in Rust. It reimagines structured data storage by combining the memory-mapping techniques of the safetensors format with a typed hex-word addressing system, enabling O(1) section jumps on multi-gigabyte files without loading them into RAM. The project is licensed under AGPL-3.0.
 
-My link on GitHub:
-
-[CommanderTurtle/regedited](https://github.com/CommanderTurtle/regedited){:rel="noopener noreferrer"}
+- [CommanderTurtle/regedited](https://github.com/CommanderTurtle/regedited){:rel="noopener noreferrer" target="blank"} - Source Code
+- [Deepwiki](https://deepwiki.com/CommanderTurtle/regedited){:rel="noopener noreferrer" target="blank"} - polled against the latest push (until these docs are further updated)
 
 ---
 
@@ -20,6 +19,18 @@ My link on GitHub:
 ## Architecture
 
 Regedited addresses the fundamental limitation of plaintext databases: linear scanning. Where traditional tools such as `cat` and `grep` require O(n) traversal, regedited builds an index of section headers at parse time, enabling direct byte-offset jumps to any section.
+
+```plain
+## SECTION: Data
+index: 2
+0x0000000 : 0x0000000 : 0x0000000 : 0x0000000 : 0x0000000 : 0x0000000
+0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0
+Data description and notes
+Second string line
+Third string line
+---
+# Data Section
+```
 
 ```mermaid
 flowchart LR
@@ -50,7 +61,7 @@ The trick is the hex-word store: each section header contains typed line-number 
 
 ## Hex-Word Format
 
-Each value follows the format `0xTLLLLLLL` where:
+Each value follows the format `TxLLLLLLL` where:
 
 | Nibble | Field | Description |
 |--------|-------|-------------|
@@ -61,21 +72,21 @@ Each value follows the format `0xTLLLLLLL` where:
 
 | Hex-Word | Type | Line | Meaning |
 |----------|------|------|---------|
-| `0x0000000A` | Markdown | 10 | Text at line 10 |
-| `0x10000050` | Code | 80 | Code at line 80 |
-| `0x20000A00` | Media | 2560 | Media at line 2560 |
-| `0x30000001` | Database | 1 | Data at line 1 |
+| `0x000000A` | Markdown | 10 | Text at line 10 |
+| `1x0000050` | Code | 80 | Code at line 80 |
+| `2x0000A00` | Media | 2560 | Media at line 2560 |
+| `3x0000001` | Database | 1 | Data at line 1 |
 
 ### Line Range Conversion
 
 ```bash
 # Convert line ranges to hex-words
 regedited convert 50 80 --zone-type code
-# Start: 0x10000032
-# End:   0x10000050
+# Start: 1x0000032
+# End:   1x0000050
 
 # Paste into .md:
-# 0x10000032 : 0x10000050 : 0x00000000 : 0x00000000 : 0x00000000 : 0x00000000
+# 1x0000032 : 1x0000050 : 0x0000000 : 0x0000000 : 0x0000000 : 0x0000000
 ```
 
 ---
@@ -152,8 +163,21 @@ regedited/
 ## Quick Start
 
 ```bash
+# winget Rustup (if not already)
+winget install --source winget --id Rustland.Rustup
+
+# Git Clone
+git clone https://github.com/CommanderTurtle/regedited regedited
+cd regedited
+
 # Build
 cargo build --release
+
+# Add release to path:
+sysdm.cpl # Windows (environment variables, add PATH)
+# or for linux...
+export PATH="$PATH:/home/alienl/repos/regedited/target/release"
+source ~/.bashrc
 
 # List sections in a document
 ./target/release/regedited list myfile.md
@@ -181,20 +205,23 @@ cat new_code.rs | ./target/release/regedited zone-replace myfile.md MySection 1
 
 ## Inspiration
 
-> "The best way to predict the future is to invent it." — Alan Kay
-
 Regedited is inspired by the safetensors format's ability to scan, diff, and replace keys in multi-gigabyte files without loading them into RAM — applied to structured markdown documents with full key-value semantics.
 
-The project originated from the observation: "Why need a DB? You should dangerously grep a million-line markdown file." The answer: you shouldn't, if you have regedited.
+> "Why need a DB? You should dangerously grep a million-line markdown file." 
+
+It's entirely possible — if you have regedited.
 
 ---
 
+This project is very useful in assembly-mapping entire imports to clipboard for the [macrohelp](macrohard.md){ data-preview } project. <br>
+(Entire workflows can be indexed) [app.shel.sh/macro](https://app.shel.sh/macro){:rel="noopener noreferrer" target="blank"}
+
 ## Related Deep Hole
 
-- [Regedited GitHub Repository](https://github.com/CommanderTurtle/regedited) — Source code and documentation
-- [safetensors](https://github.com/huggingface/safetensors) — Hugging Face format that inspired regedited
-- [Rust Memory Mapping](https://doc.rust-lang.org/std/fs/struct.File.html) — std::fs::File and memory mapping
-- [Alan Kay Quotes](https://www.goodreads.com/author/quotes/117227.Alan_Kay) — Computing pioneer quotes
+- [Regedited GitHub Repository](https://github.com/CommanderTurtle/regedited){:rel="noopener noreferrer" target="blank"} — Source code and documentation
+- [safetensors](https://github.com/huggingface/safetensors){:rel="noopener noreferrer" target="blank"} — Hugging Face format that inspired regedited
+- [Rust Memory Mapping](https://doc.rust-lang.org/std/fs/struct.File.html){:rel="noopener noreferrer" target="blank"} — std::fs::File and memory mapping
+- [Alan Kay Quotes](https://www.goodreads.com/author/quotes/117227.Alan_Kay){:rel="noopener noreferrer" target="blank"} — Computing pioneer quotes
 """
 
 let render() = file

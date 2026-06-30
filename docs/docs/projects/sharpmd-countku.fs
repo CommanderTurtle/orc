@@ -9,7 +9,7 @@ Countku is a constraint-based language game that uses English syllable counting 
 ## Overview
 
 ???+ note "What this page covers"
-    Countku is a constraint-based language game using English syllable counting as its mathematical foundation. This page documents game rules, database structure, the parsing algorithm, and JavaScript implementation. Play the game at [commanderturtle.github.io/projects](https://commanderturtle.github.io/projects/). For the related CAPTCHA system using invisible Unicode, see [CAPTCHA Unicode](../xml-project/captcha-unicode.md).
+    Countku is a constraint-based language game using English syllable counting as its mathematical foundation. This page documents game rules, database structure, the parsing algorithm, and JavaScript implementation. Play the game at [app.shel.sh/countku](https://app.shel.sh/countku){:rel="noopener noreferrer" target="blank"}. For the related source-code and numbering system, see [the source code](https://github.com/CommanderTurtle/orc/blob/main/app/countku/index.fs){:rel="noopener noreferrer" target="blank"}.
 
 ---
 
@@ -74,50 +74,12 @@ A countku is valid if and only if:
 
 ---
 
-## Database Structure
+## Syllable Appendix:
 
-The countku database consists of substrings with associated syllable counts and grammatical flags:
+Database Structure for Scale Words, Function Words, and Constants
 
-| Flag | Meaning | Example Words |
-|------|---------|---------------|
-| IsBase | Can stand alone as a number | one, two, three, ..., ninety |
-| IsScale | Multiplies the preceding number | hundred, thousand, million, billion |
-| IsMathOp | Mathematical operation | plus, minus, times, divided by |
-| IsPrep | Preposition | of, by, to |
-| IsPassv | Passive voice marker | (reserved) |
-
-### Scale Words
-
-Scale words multiply the preceding number:
-
-| Word | Syllables | Multiplier | Example |
-|------|-----------|------------|---------|
-| hundred | 2 | x100 | "three hundred" = 300 (2+2 = 4 syllables for 300) |
-| thousand | 2 | x1,000 | "five thousand" = 5,000 |
-| million | 2 | x1,000,000 | "two million" = 2,000,000 |
-| billion | 2 | x1,000,000,000 | "seven billion" = 7,000,000,000 |
-| trillion | 2 | x1,000,000,000,000 | "one trillion" = 1,000,000,000,000 |
-
-### Function Words
-
-| Word | Syllables | Operation |
-|------|-----------|-----------|
-| sin | 1 | sine |
-| cos | 1 | cosine |
-| tan | 1 | tangent |
-| log | 1 | logarithm |
-| sqrt | 1 | square root |
-| cbrt | 1 | cube root |
-| pow | 1 | power |
-
-### Constants
-
-| Word | Syllables | Value |
-|------|-----------|-------|
-| pi | 1 | 3.14159... |
-| tau | 1 | 6.28318... |
-| phi | 1 | 1.61803... |
-| e | 1 | 2.71828... |
+- [[view]](https://app.shel.sh/countku/1#data-matricies){:rel="noopener noreferrer" target="blank"}
+- [[view raw]](https://app.shel.sh/countku/1.md){:rel="noopener noreferrer" target="blank"}
 
 ---
 
@@ -150,7 +112,7 @@ The parser handles the special case of "and" as a conjunction that can indicate 
 
 ### Phase 3: Evaluation
 
-The AST is evaluated by summing syllable counts, actively available in the [database syllable tree](https://shel.sh/projects/1.md).
+The AST is evaluated by summing syllable counts, actively available in the database syllable tree.
 
 The actual countku target is the syllable count, not the numerical value. So:
 
@@ -199,6 +161,8 @@ Version 7 introduces enhanced grammatical support and an expanded database:
 - **Negative numbers**: "negative five", "minus three"
 - **Scientific notation**: "ten to the power of six"
 
+There are also a number of other touchups perfected like logarithms, exponents, and trigonometry (pythagorean rules work)
+
 ### Engine Reference Manual
 
 The engine reference manual (3.md) documents the full API:
@@ -215,11 +179,11 @@ The engine reference manual (3.md) documents the full API:
 
 ## Related Deep Hole
 
-- [Countku GitHub Repository](https://github.com/CommanderTurtle/CommanderTurtle.github.io/tree/master/projects) — Source code and game
-- [Countku Engine v7.4 Documentation](https://github.com/CommanderTurtle/CommanderTurtle.github.io/blob/master/projects/1.md) — Full database and rules (777 lines)
-- [Countku Engine Reference](https://github.com/CommanderTurtle/CommanderTurtle.github.io/blob/master/projects/3.md) — API documentation
-- [Syllable Counting in English](https://en.wikipedia.org/wiki/English_phonology) — Phonological foundation
-- [Constraint Satisfaction Problems](https://en.wikipedia.org/wiki/Constraint_satisfaction_problem) — Mathematical basis
+- [Sokka in avatar](https://avatar.fandom.com/wiki/Transcript:The_Tales_of_Ba_Sing_Se:~:text=at%20Kenji%27s%20statement.-,The%20Tale%20of%20Sokka,-Scene%20changes%20to){:rel="noopener noreferrer" target="blank"} - Sokka's haiku scene in Avatar the Last Airbender
+- [Countku Engine Reference](https://app.shel.sh/countku/3.md){:rel="noopener noreferrer" target="blank"} — Engine documentation
+- [Syllable Counting in English](https://en.wikipedia.org/wiki/English_phonology){:rel="noopener noreferrer" target="blank"} — Phonological foundation
+- [Constraint Satisfaction Problems](https://en.wikipedia.org/wiki/Constraint_satisfaction_problem){:rel="noopener noreferrer" target="blank"} — Mathematical basis
+- [jsfuck](https://jsfuck.com/){:rel="noopener noreferrer" target="blank"} — Inspiration for future use as a mathematical invalidator
 """
 
 let render() = file
