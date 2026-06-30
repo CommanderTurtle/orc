@@ -145,7 +145,7 @@ Prerequisites ?
 
 - install Powertoys [here (github)](https://github.com/microsoft/PowerToys/tree/main/doc/devdocs){:rel="noopener noreferrer" target="blank"}
 - [or here (msstore)](https://apps.microsoft.com/detail/xp89dcgq3k6vld){:rel="noopener noreferrer" target="blank"}
-- get SimpleSnippet (`winget install --source msstore Simple Snippet for "Command Palette"`)
+- get SimpleSnippet (`winget install --source msstore "Simple Snippet for Command Palette"`)
 
 Alternatively, just use 'Scripter for Command Palette'. These pastes are useful to have on hand for web-development, though.
 
