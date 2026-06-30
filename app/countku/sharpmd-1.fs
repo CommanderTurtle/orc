@@ -103,7 +103,7 @@ This can be expanded upon by making an entire number system that factors in syll
 
 ---
 
-## Part 2, The goal of countku and vibecoding with an LLM (Kimi, you).
+## Part 2, The goal of countku
 
 Countku does not have very many specific rules, other than the nuance that English syllabic count and intended structure is VERY specific. Given all nuance of english and syllables, refer to the following Rulebook, which contains a Complete Database of Every Part of Countku. This Part of Introduction.md will be solely for maintaining structure of how Countku math should work.
 
@@ -244,7 +244,9 @@ Square root: Math.sqrt(x) is a shortcut for Math.pow(x, 0.5).
 Cube root: Math.cbrt(x) is a shortcut for Math.pow(x, 1/3).
 
 #### Table 2: Base Glossary
-| Index            | Range                                                                          | Note (if any)                                                            | Codex
+
+| Index            | Range                                                                          | Note (if any)                                                            |
+|------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | Zero             | 0                                                                              | Zed or Zero                                                              |
 | Decimal-Place    | .                                                                              | The decimal point itself. Continuous trailing $BaseNums till next ()func |
 | Non-Whole        | 0-1                                                                            | Physically, the same as $BaseNum's, following the word "point"           |
@@ -464,7 +466,7 @@ This can be expanded upon by making an entire number system that factors in syll
 
 ---
 
-## Part 2, The goal of countku and vibecoding with an LLM (Kimi, you).
+## Part 2, The goal of countku
 
 Countku does not have very many specific rules, other than the nuance that English syllabic count and intended structure is VERY specific. Given all nuance of english and syllables, refer to the following Rulebook, which contains a Complete Database of Every Part of Countku. This Part of Introduction.md will be solely for maintaining structure of how Countku math should work.
 
@@ -715,9 +717,9 @@ This defines every legal programmatic variable that maps natively to numerical `
 
 ---
 
-### Part 3: Countku Engine Implementation Guide & LLM Directive
+### Part 3: Countku Engine Implementation Guide
 
-**System Prompt / Developer Implementation Paradigm:**
+**Developer Implementation Paradigm:**
 To implement the Countku parsing engine flawlessly within JS/HTML state execution, the string parser MUST process user input via this rigid chronological sequence:
 
 1. **Syllable & Haiku Constraint Check:** 
