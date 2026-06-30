@@ -8,24 +8,26 @@ layout: base
 <section class="hero-section">
   <div class="hero-bg-pattern"></div>
   <div class="wrapper hero-content">
-    <div class="hero-badge reveal">
-      <span>🐢</span>
-      <span>All the protection of a turtle, none of the soft underbelly</span>
+    <div class="hero-title reveal">
+        <img src="{{ '/assets/images/shel-title-dark.png' | relative_url }}" alt="sHEL" height="auto" style="display:block; margin:0 auto;"">
     </div>
-    <h1 class="hero-title reveal reveal-delay-1">
-      The <span class="gradient-text">sHEL</span> Data Substrate
-    </h1>
+    <h4 class="hero-title reveal reveal-delay-1">
+      The <span class="gradient-text">Highly-Robust</span> and <span class="gradient-text">Low-Overhead</span> framework for devs
+    </h4>
     <p class="hero-subtitle reveal reveal-delay-2">
-      Volatile, literal-safe, automation-friendly. sHEL is a new kind of data format that brings the reliability of a shell with the flexibility of modern data interchange.
+      Volatile and fast database automation for everyone. Open-Source.
     </p>
     <div class="hero-cta-group reveal reveal-delay-3">
-      <a href="{{ site.docs_url }}" class="btn btn-primary">Get Started</a>
-      <a href="https://github.com/CommanderTurtle/docs-pages" class="btn btn-secondary">View on GitHub</a>
+      <a href="{{ site.start_url }}" class="btn btn-primary">Get Started</a>
+      <a href="{{ site.deep_url }}" class="btn btn-secondary">View on DeepWiki</a>
+    </div><br>
+    <div class="hero-badge reveal reveal-delay-4">
+      <span>🐢</span>
+      <span>All the protection of a turtle, none of the soft underbelly</span>
     </div>
   </div>
 </section>
 
-{{ content }}
-"""
+{{ content }}"""
 
 let render() = file

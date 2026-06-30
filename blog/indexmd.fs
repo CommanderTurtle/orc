@@ -52,7 +52,7 @@ title: null
   <div class="wrapper">
     <div class="section-header reveal">
       <h2>Get sHEL</h2>
-      <p>Install in seconds, use for a lifetime.</p>
+      <p>This project is still under development. Placeholder block.</p>
     </div>
     <div class="install-block reveal">
       <div class="install-tabs">
@@ -70,7 +70,7 @@ title: null
     </div>
     <div style="text-align: center; margin-top: 24px;">
       <p style="color: var(--text-muted); font-size: 0.875rem;">
-        See the <a href="{{ site.docs_url }}/getting-started/">full installation guide</a> for more options.
+        See the <a href="{{ site.docs_url }}/projects/macrohard/#installation-instructions">full installation guide</a> for more options.
       </p>
     </div>
   </div>
@@ -81,19 +81,19 @@ title: null
   <div class="wrapper">
     <div class="stats-bar reveal">
       <div class="stat-item">
-        <div class="stat-number">50+</div>
+        <div class="stat-number">1</div>
         <div class="stat-label">Contributors</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">1.2k</div>
+        <div class="stat-number">8</div>
         <div class="stat-label">GitHub Stars</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">10M+</div>
-        <div class="stat-label">Downloads</div>
+        <div class="stat-number">433+</div>
+        <div class="stat-label">Downloads<p>(on hf.co)</p></div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">0.3ms</div>
+        <div class="stat-number">&lt;2ms</div>
         <div class="stat-label">Avg. Latency</div>
       </div>
     </div>
@@ -108,19 +108,19 @@ title: null
       <p>Connect with other sHEL users, contributors, and enthusiasts.</p>
     </div>
     <div class="community-grid">
-      <a href="https://github.com/CommanderTurtle/docs-pages" class="community-card reveal reveal-delay-1" target="_blank" rel="noopener">
+      <a href="{{ site.github_url }}" class="community-card reveal reveal-delay-1" target="_blank" rel="noopener">
         <div class="community-icon">💻</div>
         <h4>GitHub</h4>
-        <p>Star us, file issues, contribute code</p>
+        <p>Leave a star, file issues, contribute code!</p>
       </a>
-      <a href="https://slack.shel.sh" class="community-card reveal reveal-delay-2" target="_blank" rel="noopener">
-        <div class="community-icon">💬</div>
+      <a href="{{ site.slack_url }}" class="community-card reveal reveal-delay-2" target="_blank" rel="noopener">
+        <div class="community-icon">📫</div>
         <h4>Slack</h4>
         <p>Real-time chat with the community</p>
       </a>
-      <a href="https://x.com/commanderturtle" class="community-card reveal reveal-delay-3" target="_blank" rel="noopener">
-        <div class="community-icon">🐦</div>
-        <h4>X / Twitter</h4>
+      <a href="{{ '/blog/' | relative_url }}" class="community-card reveal reveal-delay-3">
+        <div class="community-icon">📝</div>
+        <h4>Blog</h4>
         <p>Updates, tips, and announcements</p>
       </a>
       <a href="{{ '/events/' | relative_url }}" class="community-card reveal reveal-delay-1">
@@ -140,14 +140,14 @@ title: null
       <p>Everything you need to get the most out of sHEL.</p>
     </div>
     <div class="resource-grid">
-      <a href="{{ site.docs_url }}/getting-started/" class="resource-card reveal reveal-delay-1">
+      <a href="{{ site.docs_url }}" class="resource-card reveal reveal-delay-1">
         <div class="resource-icon">📖</div>
         <div class="resource-content">
           <h4>Documentation</h4>
           <p>Comprehensive guides, API reference, and tutorials.</p>
         </div>
       </a>
-      <a href="{{ site.docs_url }}/tutorials/" class="resource-card reveal reveal-delay-2">
+      <a href="{{ site.docs_url }}/projects/automate/" class="resource-card reveal reveal-delay-2">
         <div class="resource-icon">🎓</div>
         <div class="resource-content">
           <h4>Tutorials</h4>
@@ -161,11 +161,18 @@ title: null
           <p>Latest news, deep dives, and community spotlights.</p>
         </div>
       </a>
-      <a href="{{ site.docs_url }}/examples/" class="resource-card reveal reveal-delay-1">
+      <a href="{{ site.docs_url }}/projects/regedited/#core-capabilities" class="resource-card reveal reveal-delay-1">
         <div class="resource-icon">🔍</div>
         <div class="resource-content">
           <h4>Examples</h4>
           <p>Real-world examples and sample configurations.</p>
+        </div>
+      </a>
+      <a href="{{ site.github_url }}/orc#f-zensical-for-mkdocs--cross-repo-pages-orchestrator" class="resource-card reveal reveal-delay-2">
+        <div class="resource-icon">🌐</div>
+        <div class="resource-content">
+          <h4>Web Development</h4>
+          <p>Get started with any web-app.</p>
         </div>
       </a>
     </div>

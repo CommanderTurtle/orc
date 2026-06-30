@@ -1,4 +1,4 @@
-﻿module Imported.ConfigYml
+﻿module ConvertedFiles.ConfigYml
 
 let file = """# Welcome to Jekyll!
 #
@@ -31,10 +31,20 @@ url: "https://shel.sh" # the base hostname & protocol for your site, e.g. http:/
 
 # Docs link (external)
 docs_url: "https://docs.shel.sh"
+# Automation app link (external)
+start_url: "https://app.shel.sh/macro"
+# Deepwiki url (external)
+deep_url: "https://deepwiki.com/CommanderTurtle/regedited"
+
+# Re-inclusion of socials (See social_links below)
+github_url: "https://github.com/CommanderTurtle"
+twitter_url: "https://x.com/commanderturtle"
+linkedin_url: "https://linkedin.com/company/turtleprotectinc"
+slack_url: "https://shelsh.slack.com"
 
 # Author information
 author:
-  name: sHEL Team
+  name: sHEL Contributors
   email: clement.keynote-1e@icloud.com
 
 # Build settings
@@ -116,6 +126,7 @@ defaults:
 
 exclude:
   - README.md
+
 """
 
 let render() = file

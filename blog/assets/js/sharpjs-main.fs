@@ -257,6 +257,53 @@ let file = """// ============================================================
     });
   });
 
+  // --- Contact form ---
+      document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('sHEL-contact-form');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          // 1. Gather form data
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const subjectInput = document.getElementById('subject').value;
+          const message = document.getElementById('message').value;
+
+          // 2. Construct the email body
+          const body = `New Message via sHEL Contact Form
+
+Name: ${name}
+Email: ${email}
+Subject: ${subjectInput || 'No subject provided'}
+
+Message:
+${message}
+
+---
+Submitted via shel.sh/contact`;
+          // 2.1 {{ site.author.email }} manual entry
+          const recipient = 'clement.keynote-1e@icloud.com';
+          const subjectEncoded = encodeURIComponent(`New Inquiry: ${subjectInput || 'Contact Form'} from ${name}`);
+          const bodyEncoded = encodeURIComponent(body);
+
+          // 3. Copy body to clipboard
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(body).catch(function(err) {
+              console.error('Failed to copy text to clipboard: ', err);
+            });
+          }
+
+          // 4. Build mailto URL
+          const mailto = `mailto:${recipient}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+
+          // 5. Trigger the mail client
+          window.location.href = mailto;
+        });
+      }
+    });
+
 })();
 """
 
