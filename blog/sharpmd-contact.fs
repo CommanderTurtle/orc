@@ -10,7 +10,7 @@ permalink: /contact/
 <div class="contact-grid">
   <div class="contact-form">
     <h3 style="margin-top: 0; margin-bottom: 24px;">Send us a message</h3>
-    <form action="https://formspree.io/f/hello@shel.sh" method="POST">
+    <form id="sHEL-contact-form">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required placeholder="Your name">
@@ -37,8 +37,8 @@ permalink: /contact/
     <div class="info-item">
       <div class="info-icon">📧</div>
       <div>
-        <h4>Email</h4>
-        <a href="mailto:hello@shel.sh">hello@shel.sh</a>
+        <h4>Email (icloud private address)</h4>
+        <a href="mailto:clement.keynote-1e@shel.sh">clement.keynote-1e@icloud.com</a>
       </div>
     </div>
 
@@ -46,17 +46,17 @@ permalink: /contact/
       <div class="info-icon">💬</div>
       <div>
         <h4>Slack</h4>
-        <a href="https://slack.shel.sh" target="_blank" rel="noopener">slack.shel.sh</a>
+        <a href="{{ site.slack_url }}" target="_blank" rel="noopener">&lbrack; redirect to slack &rbrack;</a>
         <p>Fastest response for technical questions</p>
       </div>
     </div>
 
     <div class="info-item">
-      <div class="info-icon">🐛</div>
+      <div class="info-icon">🫂</div>
       <div>
-        <h4>Bug Reports</h4>
-        <a href="https://github.com/CommanderTurtle/docs-pages/issues" target="_blank" rel="noopener">GitHub Issues</a>
-        <p>For bugs and feature requests</p>
+        <h4>Support</h4>
+        <a href="https://app.shel.sh/support" target="_blank" rel="noopener" title="app.shel.sh/support">Problem? Support.</a>
+        <p>For bugs and framework issues</p>
       </div>
     </div>
 
@@ -64,8 +64,8 @@ permalink: /contact/
       <div class="info-icon">🏢</div>
       <div>
         <h4>Office Hours</h4>
-        <p>Every Thursday, 4pm UTC</p>
-        <p><a href="https://slack.shel.sh" target="_blank" rel="noopener">Join us on Slack</a></p>
+        <p>Every Sunday, 4pm EST</p>
+        <p><a href="{{ site.slack_url }}" target="_blank" rel="noopener">Join us on Slack</a></p>
       </div>
     </div>
   </div>

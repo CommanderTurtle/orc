@@ -26,22 +26,22 @@ permalink: /community/
   <div class="contrib-card">
     <div class="contrib-icon">🐛</div>
     <h4>Report Bugs</h4>
-    <p>Found an issue? <a href="https://github.com/CommanderTurtle/docs-pages/issues" target="_blank" rel="noopener">File a bug report</a> on GitHub. Include steps to reproduce, expected vs. actual behavior, and your environment.</p>
+    <p>Found an issue? <a href="{{ site.github_url }}/macrohelp/issues" target="_blank" rel="noopener">File a bug report</a> on GitHub. Include steps to reproduce, expected vs. actual behavior, and your environment.</p>
   </div>
   <div class="contrib-card">
     <div class="contrib-icon">💻</div>
     <h4>Contribute Code</h4>
-    <p>Check out our <a href="https://github.com/CommanderTurtle/docs-pages" target="_blank" rel="noopener">GitHub repository</a> and see the <a href="{{ site.docs_url }}/contributing/">Contributing Guide</a> for setup instructions, coding standards, and the PR process.</p>
+    <p>Check out our <a href="{{ site.github_url }}/orc#f-zensical-for-mkdocs--cross-repo-pages-orchestrator" target="_blank" rel="noopener">GitHub repository</a> and see the <a href="{{ site.github_url }}/orc/blob/main/blog/sharpmd-README.fs">Post Guide</a>, ctrl+F: "Adding a Blog Post". Else, visit individual project links for setup instructions, coding standards, and the PR process.</p>
   </div>
   <div class="contrib-card">
-    <div class="contrib-icon">📝</div>
+    <div class="contrib-icon">✍️</div>
     <h4>Write Documentation</h4>
     <p>Great docs make great projects. Help us improve guides, fix typos, or add examples. Every page in our docs has an "Edit" link.</p>
   </div>
   <div class="contrib-card">
     <div class="contrib-icon">💬</div>
     <h4>Answer Questions</h4>
-    <p>Help others in <a href="https://slack.shel.sh" target="_blank" rel="noopener">Slack</a> or on <a href="https://github.com/CommanderTurtle/docs-pages/discussions" target="_blank" rel="noopener">GitHub Discussions</a>. Sharing knowledge strengthens the community.</p>
+    <p>Help others in <a href="{{ site.slack_url }}" target="_blank" rel="noopener">Slack</a> or on <a href="https://github.com/CommanderTurtle/docs-pages/discussions" target="_blank" rel="noopener">GitHub Discussions</a>. Sharing knowledge strengthens the community.</p>
   </div>
   <div class="contrib-card">
     <div class="contrib-icon">📢</div>
@@ -53,19 +53,19 @@ permalink: /community/
 <h3 style="margin-top: 48px;">Community Channels</h3>
 
 <div class="community-grid" style="margin-top: 24px;">
-  <a href="https://github.com/CommanderTurtle/docs-pages" class="community-card" target="_blank" rel="noopener">
+  <a href="{{ site.github_url }}" class="community-card" target="_blank" rel="noopener">
     <div class="community-icon">⭐</div>
     <h4>Star on GitHub</h4>
     <p>Show your support</p>
   </a>
-  <a href="https://slack.shel.sh" class="community-card" target="_blank" rel="noopener">
-    <div class="community-icon">💬</div>
+  <a href="{{ site.slack_url }}" class="community-card" target="_blank" rel="noopener">
+    <div class="community-icon">📫</div>
     <h4>Join Slack</h4>
     <p>Real-time community chat</p>
   </a>
-  <a href="https://x.com/commanderturtle" class="community-card" target="_blank" rel="noopener">
-    <div class="community-icon">🐦</div>
-    <h4>Follow on X</h4>
+  <a href="{{ '/blog/' | relative_url }}" class="community-card" target="_blank" rel="noopener">
+    <div class="community-icon">📝</div>
+    <h4>Follow the Blog</h4>
     <p>News and updates</p>
   </a>
   <a href="{{ '/feed.xml' | relative_url }}" class="community-card">
@@ -77,9 +77,8 @@ permalink: /community/
 
 <h3 style="margin-top: 48px;">Acknowledgments</h3>
 
-<p>sHEL is made possible by the contributions of <a href="https://github.com/CommanderTurtle/docs-pages/graphs/contributors" target="_blank" rel="noopener">dozens of community members</a>. Thank you to everyone who has helped shape this project.</p>
+<p>sHEL is made possible by the contributions of <a href="https://zensical.org/about/team/" target="_blank" rel="noopener noreferrer">the community at zensical</a>. Thank you to everyone who has helped shape this evolving site framework.</p>
 
-</div>
-"""
+</div>"""
 
 let render() = file
