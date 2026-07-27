@@ -17,7 +17,7 @@ let file = """#### Datasheet, one liner for powershell
 ###### Turtle Protect is a florida-based project. 🐢
 ---
 #### Legal
-| ™ 2026 Turtle Protect, Inc. |  [Terms](https://shel.sh/home/1.md) |  [Privacy](https://shel.sh/home/2.md) |  [Contact](https://shel.sh/home/3.md) |  [Pricing](https://shel.sh/home/4.md) |  [Careers](https://shel.sh/home/5.md) |  [Blog](https://shel.sh/blog) |
+| ™ 2026 Turtle Protect, Inc. |  [Terms](https://vibe.shel.sh/home/1.md) |  [Privacy](https://vibe.shel.sh/home/2.md) |  [Contact](https://vibe.shel.sh/home/3.md) |  [Pricing](https://vibe.shel.sh/home/4.md) |  [Careers](https://vibe.shel.sh/home/5.md) |  [Blog](https://shel.sh/blog) |
 |:---------|---------:|---------:|---------:|---------:|---------:|---------:|
 """
 

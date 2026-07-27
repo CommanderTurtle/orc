@@ -2,10 +2,10 @@
 
 let file = """# what would you like to protect?
 
-| **Options:** | \|[My Life](https://shel.sh/shells#life "/shells#life") | \|[My Home](https://shel.sh/shells#estate "/shells#estate") | \|[My Money](https://shel.sh/shells#money "/shells#money") |
+| **Options:** | \|[My Life](https://vibe.shel.sh/shells#life "/shells#life") | \|[My Home](https://vibe.shel.sh/shells#estate "/shells#estate") | \|[My Money](https://vibe.shel.sh/shells#money "/shells#money") |
 |----------|----------|----------|----------|
-|| \|[My Privacy](https://shel.sh/shells#privacy "/shells#privacy") | \|[My Internet](https://shel.sh/shells#internet "/shells#internet") | \|[My Health](https://shel.sh/shells#health "/shells#health") |
-| **advanced:** | \|[My Hair (oh no)](https://shel.sh/shells#oh-no "/shells#oh-no") | \|[My Equity](https://shel.sh/shells#equity "/shells#equity") | \|[My Assets](https://shel.sh/shells#assets "/shells#assets") |
+|| \|[My Privacy](https://vibe.shel.sh/shells#privacy "/shells#privacy") | \|[My Internet](https://vibe.shel.sh/shells#internet "/shells#internet") | \|[My Health](https://vibe.shel.sh/shells#health "/shells#health") |
+| **advanced:** | \|[My Hair (oh no)](https://vibe.shel.sh/shells#oh-no "/shells#oh-no") | \|[My Equity](https://vibe.shel.sh/shells#equity "/shells#equity") | \|[My Assets](https://vibe.shel.sh/shells#assets "/shells#assets") |
 
 </br></br></br></br></br></br>
 
@@ -20,7 +20,7 @@ let file = """# what would you like to protect?
 set "var=["'I am a hater of XML'"]" && echo %var%| clip
 <# ["'I am a hater of XML </s>'"] <--- added to clipboard.
 ```
-[learn more about XML in dos shell](https://shel.sh/projects/XML/)
+[learn more about XML in dos shell](https://docs.shel.sh/xml-project/)
 
 </br></br>
 
@@ -46,7 +46,7 @@ set "var=["'I am a hater of XML'"]" && echo %var%| clip
 ###### Turtle Protect is a florida-based project. 🐢
 ---
 #### Legal
-| ™ 2026 Turtle Protect, Inc. |  [Terms](https://shel.sh/home/1.md) |  [Privacy](https://shel.sh/home/2.md) |  [Contact](https://shel.sh/home/3.md) |  [Pricing](https://shel.sh/home/4.md) |  [Careers](https://shel.sh/home/5.md) |  [Blog](https://shel.sh/blog) |
+| ™ 2026 Turtle Protect, Inc. |  [Terms](https://vibe.shel.sh/home/1.md) |  [Privacy](https://vibe.shel.sh/home/2.md) |  [Contact](https://vibe.shel.sh/home/3.md) |  [Pricing](https://vibe.shel.sh/home/4.md) |  [Careers](https://vibe.shel.sh/home/5.md) |  [Blog](https://shel.sh/blog) |
 |:---------|---------:|---------:|---------:|---------:|---------:|---------:|
 """
 

@@ -3,7 +3,7 @@
 let file = """Terms of Service—— (Last Updated 02/24/2026)
 
 #### This page is still in the works and in placeholder status (02/24/2026)
-#### Do you need support? Try the help desk https://shel.sh/projects/support/
+#### Do you need support? Try the help desk https://app.shel.sh/support/
 #### Please see licensing terms below, covering all source code and projects by Turtle Protect Inc. ;
 
                     GNU AFFERO GENERAL PUBLIC LICENSE
