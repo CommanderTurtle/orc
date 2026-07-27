@@ -7,4 +7,5 @@ let render() =
         TargetRepo = "CommanderTurtle.github.io"
         TargetBranch = "master"
         TokenName = "GH_PAGES_TOKEN"
+        UseSharedStrings = false
     }

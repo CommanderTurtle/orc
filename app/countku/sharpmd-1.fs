@@ -3,7 +3,7 @@
 let file = """# project db
 # This file documents all of the rules and nuances of countku.
 
-<br><a href="https://shel.sh/projects/1.md" title="[logic]">[logic]</a> . <a href="https://shel.sh/projects/2.md" title="[changelog]">[changelog]</a> . <a href="https://shel.sh/projects/3.md" title="[guidebook]">[guidebook]</a><br>
+<br><a href="https://app.shel.sh/countku/1" title="[logic]">[logic]</a> . <a href="https://app.shel.sh/countku/2" title="[changelog]">[changelog]</a> . <a href="https://app.shel.sh/countku/3" title="[guidebook]">[guidebook]</a><br>
 
 ## Part 1, an introductory post by u/CommanderT1562 on Reddit (this is me),
 

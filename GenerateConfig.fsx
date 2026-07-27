@@ -316,11 +316,22 @@ let sharedPreludeLines() =
 let injectPrelude (sourceText: string) =
     let prelude =
         sharedPreludeLines()
-        |> List.filter (fun line -> not (sourceText.Contains(line)))
+        |> List.filter (fun line ->
+            let opensSelf =
+                line.StartsWith("open ", StringComparison.Ordinal)
+                && sourceText.Contains(
+                    "module " + line.Substring("open ".Length),
+                    StringComparison.Ordinal
+                )
+            not opensSelf && not (sourceText.Contains(line)))
 
     if List.isEmpty prelude then
         sourceText
     else
+        let newline =
+            if sourceText.Contains("\r\n", StringComparison.Ordinal) then "\r\n"
+            elif sourceText.Contains("\r", StringComparison.Ordinal) then "\r"
+            else "\n"
         let lines = splitLines sourceText
 
         let insertAt =
@@ -332,7 +343,7 @@ let injectPrelude (sourceText: string) =
             |> Option.defaultValue 0
 
         let before, after = lines |> List.splitAt insertAt
-        String.concat "\n" (before @ prelude @ after)
+        String.concat newline (before @ prelude @ after)
 
 let stageFsFile (stageRoot: string) (sourceRoot: string) (sourcePath: string) =
     let rel = relativeTo sourceRoot sourcePath
@@ -354,9 +365,10 @@ let helperIsReferencedBy (sourceText: string) (helperPath: string) =
 
 let renderFsFile (sourceRoot: string) (stageRoot: string) (helpers: string list) (sourcePath: string) (destPath: string) =
     let sourceText = File.ReadAllText(sourcePath)
+    let effectiveSourceText = injectPrelude sourceText
     let selectedHelpers =
         helpers
-        |> List.filter (helperIsReferencedBy sourceText)
+        |> List.filter (helperIsReferencedBy effectiveSourceText)
 
     let stagedHelpers =
         selectedHelpers
@@ -412,7 +424,7 @@ let renderFsFilesBatch (sourceRoot: string) (helpers: string list) (targets: (st
                     targets
                     |> List.exists (fun (sourcePath, _) ->
                         let sourceText = File.ReadAllText(sourcePath)
-                        helperIsReferencedBy sourceText helper))
+                        helperIsReferencedBy (injectPrelude sourceText) helper))
 
             let combinedSource =
                 (targets |> List.map fst) @ selectedHelpers
@@ -526,7 +538,7 @@ let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) =
     printfn "  copied:   %d literal file(s)" copied
 
 let defaultSiteFolders =
-    [ "docs"; "blog"; "vite"; "app"; "pages"; "lab" ]
+    [ "docs"; "blog"; "vite"; "app"; "pages"; "lab"; "net" ]
 
 let renderAll (outputRoot: string) (clean: bool) =
     for folder in defaultSiteFolders do

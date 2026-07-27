@@ -7,4 +7,5 @@ let render() =
         TargetRepo = "reactproj"
         TargetBranch = "main"
         TokenName = "GH_PAGES_TOKEN"
+        UseSharedStrings = false
     }

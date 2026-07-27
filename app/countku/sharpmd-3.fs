@@ -8,6 +8,100 @@ The Countku engine converts English word phrases into executable JavaScript math
 
 ---
 
+## Current Architecture: Executable Tables (v8)
+
+The rules tables are the language. The JavaScript adds only the mechanics that
+cannot live in a row: longest-match tokenization, precedence, numeric state, and
+line boundaries.
+
+### 1. One Whole-Word Syllable Source
+
+`wordGroups` assigns every complete legal word exactly one syllable count.
+Phrase recognition never supplies a second count. This is important:
+`cube root of` may be one mathematical token, but the haiku still sees three
+indivisible English words.
+
+`HaikuValidator` reads those whole words into 5, 7, and 5. A word that would
+cross a boundary is rejected at that word. Explicit `/` separators are accepted
+for copying examples, but must describe the same exact 5-7-5.
+
+### 2. Phrase and Operator Matrices
+
+`phraseRows` contains fixed phrases such as roots, functions, logarithms, and
+legal filler. Longest match wins, so:
+
+- `under the influence of division from` is the passive flipped division
+  operator;
+- `under the influence of` by itself is removable filler;
+- `log base` begins a base-first logarithm;
+- `cube root of` and ordinal `root of` share the same root AST.
+
+Table 4 is generated from:
+
+1. action/passive connective;
+2. optional `the`;
+3. operator noun;
+4. legal trailing preposition.
+
+That Cartesian construction covers the table without duplicating nearly
+identical branches.
+
+### 3. Traditional Expression Grammar
+
+`CountkuParser` is a Pratt parser:
+
+| Precedence | Forms |
+|---|---|
+| Prefix | roots, logs, trig, inverse, half/double, add/subtract |
+| Postfix | squared, cubed, halved, doubled, tripled, quadrupled |
+| 30 | powers (right associative) |
+| 20 | multiplication, division, modulo, traditional adjacency |
+| 10 | addition and subtraction |
+
+Function arguments close after their direct grammatical object. Thus
+`sine of zero minus three` is `sin(0) - 3`, while nested functions remain
+nested.
+
+After exact filler phrases are removed, adjacent complete mathematical objects
+use traditional implicit multiplication. For example:
+
+> the cube root of eight / under the influence of / eighth power of six
+
+is a valid 5-7-5 and becomes:
+
+```latex
+\sqrt[3]{8}\,6^8
+```
+
+### 4. One AST, Three Projections
+
+A valid parse produces a small AST (`number`, `constant`, `unary`, `binary`,
+or base-log). Three pure walkers consume it:
+
+- `evaluateAst` gives the game result without `eval`;
+- `renderJs` gives a readable executable expression;
+- `renderLatex` gives the stable textbook representation.
+
+The live console shows all three views. They cannot disagree because none of
+them reparses the sentence.
+
+### 5. Numeric State and Locks
+
+- Cardinal composition implements tens, hundreds, and higher scales.
+- After `point`, only zero forms, digits one through nine, or `ten` are legal.
+- `$AndMatrix` records whether each three-digit group uses its `and`.
+- Zero (`zero`/`zed`/`oh`), multiplication (`times`/`multiplied by`), Euler,
+  and `$AndMatrix` choices become run locks only after a successful submission.
+  Live typing never mutates them.
+
+---
+
+## Legacy Deferred-Emission Reference
+
+The sections below document the pre-v8 implementation and remain as design
+history. Names such as `COUNTKU_DB`, `COUNTKU_MULTI`, and `convertTokens()` no
+longer describe the live engine.
+
 ## 1. Database Tables
 
 ### 1.1 COUNTKU_DB (Word Dictionary)

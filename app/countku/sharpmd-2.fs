@@ -2,6 +2,58 @@
 
 let file = """# Sakura Count Ninja - Changelog
 
+## Version 8.1 (2026-07-27) - Matrix Fidelity Pass
+
+- Played every Table 5 alias through roots and powers against the live game.
+- Added the documented `hendecagonal`, `undecagonal`, and `duodecagonal`
+  degree forms and made `half` and `square` obey the same degree path.
+- Corrected whole-word syllables for `influence`, `logarithm`, `multiplied`,
+  `over`, `octadic`, and `duodecic`.
+- Corrected the help counts for roots, inverse, absolute value, and the
+  influence filler phrases.
+- Made optional `the` a true prefix rather than an accidental adjacency
+  operator.
+- Added the intended passive `subtracted from` and active `added to/with`
+  forms.
+
+## Version 8.0 (2026-07-27) - Tables Become the Interpreter
+
+### One Authoritative Language
+- Replaced the duplicate word validator and expression state machine with one
+  whole-word syllable lexicon, one longest-match phrase matrix, and one ordinal
+  matrix.
+- Table 4 noun grammar is generated as a Cartesian matrix. `using`, `with`,
+  `undergoing`, optional `the`, each operator noun, and its legal delimiter no
+  longer need bespoke branches.
+- A compact Pratt parser supplies only precedence and associativity. The
+  markdown tables continue to define the language.
+
+### Sentence → AST → Absolute Representations
+- Every valid sentence produces one AST.
+- Numeric evaluation, executable JavaScript, and unambiguous LaTeX are rendered
+  from that same AST, preventing the former debug/execution drift.
+- Traditional implicit multiplication is supported after filler removal:
+  `the cube root of eight / under the influence of / eighth power of six`
+  becomes `\sqrt[3]{8}\,6^8`.
+- Prefix functions close after their direct argument, preserving the canonical
+  `sine of zero minus ...` interpretation as `sin(0) - ...`.
+
+### Table 6 and Haiku Corrections
+- `point ten` expands to decimal digits `10`; `point twenty`, scales, and
+  ordinals are fatal while the float state is active.
+- `$AndMatrix` is recorded by three-digit scale position and committed only
+  after a successful Countku.
+- Zero, multiplication, and Euler variants are likewise previewed without
+  mutation and committed only on a successful turn.
+- Phrase-only words such as `cube`, `total`, and `effect` now share the same
+  syllable source as the math parser.
+- Multi-syllable words are atomic. The validator now reports the exact word
+  crossing a 5/7/5 boundary instead of blaming the preceding word.
+- Corrected the third rules example to begin `The square root of one`.
+- Corrected `using the addition of` from six to seven syllables.
+- Fixed `log base two of eight`, strict decimal rejection, and Countku help
+  links.
+
 ## Version 6.0 (2025-05-17) - Deferred Emission Engine
 
 ### Core Architecture

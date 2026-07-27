@@ -48,7 +48,7 @@ Write type-safe F# configurations, build beautiful static sites, and deploy them
 
 Pruned repo for deploying a zensical documentation site, a custom ruby jekyll blog, a react app, and three static git pages repos (jekyll fallback for md's).
 
-More can be read in the overhead repo, this deployment maintains `docs/`, `blog/`, `vite/`, `app/`, `pages/`, and `lab/`
+More can be read in the overhead repo, this deployment maintains `docs/`, `blog/`, `vite/`, `app/`, `pages/`, `lab/`, and `net/`
 
 <details>
   <summary>Show setup</summary>
@@ -61,6 +61,10 @@ Folders auto-detect schema based on existence of "GEMFILE" , "node-modules" , "z
 - Works with js sites, ruby sites, and zensical docs sites. No preference on folder names!
 
 Note, "deploy-X.fs" must be configured with repo-name and CNAME. These are steamedyams (i.e. sharpymls) in .github/config/
+
+Each deploy record also has `UseSharedStrings`. Set it to `true` only when that
+site owns a `strings/sharedstrings.fs` helper; the renderer opens the helper
+for that site without publishing the F# catalog.
 
 A lot is legacy/compatibility code for this repo to preserve iteration functionality. Nearly everything is done by two yamls - a deploy yaml and a translator yaml.
 
@@ -82,7 +86,7 @@ Then add them to this repo's settings as secrets with the same name.
 
 ###### [Try our js math library, requiring all math to be written in type-safe Haiku!](https://app.shel.sh/countku)
 
-[Docs](https://docs.shel.sh) actively being updated, as well as main blog. Any pushes to this repo automatically configure all six site deployments.
+[Docs](https://docs.shel.sh) actively being updated, as well as main blog. Any pushes to this repo automatically configure all seven site deployments.
 
 <details>
   <summary>Show extra debug</summary>

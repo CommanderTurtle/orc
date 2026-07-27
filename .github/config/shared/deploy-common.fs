@@ -6,9 +6,16 @@ type SiteDeploy = {
     TargetRepo: string
     TargetBranch: string
     TokenName: string
+    UseSharedStrings: bool
 }
 
 let render (site: SiteDeploy) =
+    let sharedStringsEnvironment =
+        if site.UseSharedStrings then
+            "        env:\n          SHARED_FSHARP_OPENS: SharedStrings\n"
+        else
+            ""
+
     sprintf """name: %s
 
 on:
@@ -147,9 +154,19 @@ jobs:
       - name: Render F# source tree to output
         timeout-minutes: 10
         if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
-        run: |
+%s        run: |
           rm -rf "%s/output" ".deploy/%s"
           dotnet fsi GenerateConfig.fsx render-site "%s" "%s/output" --clean
+
+      - name: Build Netdocs site
+        timeout-minutes: 15
+        if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions' && hashFiles('%s/output/appsettings.json') != ''
+        uses: XtremeOwnage/Netdocs@v1
+        with:
+          command: build
+          config: appsettings.json
+          args: --prod
+          working-directory: '%s/output'
 
       - name: Detect and build site
         timeout-minutes: 15
@@ -159,7 +176,12 @@ jobs:
           set -euo pipefail
           cd "%s/output"
 
-          if [ -f "zensical.toml" ]; then
+          if [ -f "appsettings.json" ]; then
+            echo "Detected Netdocs site"
+            site_dir="$(jq -r '.Netdocs.siteDir // .Netdocs.site_dir // "site"' appsettings.json)"
+            [ -n "$site_dir" ] && [ "$site_dir" != "null" ] || site_dir="site"
+            publish="$PWD/$site_dir"
+          elif [ -f "zensical.toml" ]; then
             echo "Detected Zensical site"
             uv venv --python 3.12.10 --seed --managed-python
             source .venv/bin/activate
@@ -247,6 +269,9 @@ jobs:
         site.TokenName
         site.TargetRepo
         site.TokenName
+        sharedStringsEnvironment
+        site.SourceFolder
+        site.SourceFolder
         site.SourceFolder
         site.SourceFolder
         site.SourceFolder

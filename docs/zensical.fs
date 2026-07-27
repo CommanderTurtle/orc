@@ -199,6 +199,7 @@ Blobs = "projects/surroundtest-freeblobs.md"
 
 [[project.nav.Projects.XML]]
 Index = "xml-project/index.md"
+Home = "xml-project/xlsx.md"
 
 [[project.nav.Projects.XML]]
 Base64 = "xml-project/base64.md"

@@ -1,0 +1,296 @@
+﻿module ConvertedFiles.Docs.Setup.PublishingMd
+
+let file = """---
+title: Publishing
+---
+
+# Publishing to GitHub Pages
+
+Netdocs builds a plain static site, so it deploys anywhere that serves files. The
+repository ships a **GitHub Actions** workflow that builds this documentation site and
+publishes it to GitHub Pages.
+
+## The workflow
+
+`.github/workflows/docs.yml` builds the CLI, runs `netdocs build` against
+`docs-site/appsettings.json`, and uploads the output as a Pages artifact:
+
+```yaml
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # git-revision-date needs full history
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Build docs
+        run: dotnet run --project src/Netdocs.Cli -c Release -- build --prod --config docs-site/appsettings.json
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-site/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+## One-time setup
+
+1. In the repository **Settings → Pages**, set **Source** to **GitHub Actions**.
+2. Set `siteUrl` in `docs-site/appsettings.json` to your Pages URL
+   (e.g. `https://<user>.github.io/<repo>/`).
+3. Push to `main` — the workflow builds and deploys automatically. You can also trigger it
+   manually via **Run workflow** (`workflow_dispatch`).
+
+## Publishing your own site
+
+Use the same pattern: point the `--config` at your site's `appsettings.json` and upload
+its `siteDir`. For a project-page URL under a subpath, make sure `siteUrl` includes the
+subpath so links, the sitemap, and social cards resolve correctly.
+
+## Using the Netdocs GitHub Action
+
+If your site lives in its **own** repository (i.e. you are not building from the Netdocs
+source tree), you don't need .NET on the runner at all. The reusable
+[`XtremeOwnage/Netdocs`](https://github.com/XtremeOwnage/Netdocs) action downloads the
+matching native `netdocs` binary from the releases page and runs it for you:
+
+```yaml
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # git-revision-date needs full history
+
+      - name: Build with Netdocs
+        uses: XtremeOwnage/Netdocs@v1
+        with:
+          command: build
+          config: appsettings.json
+          args: --prod
+          # version: 1.0.0   # pin a release, or omit for 'latest'
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+Inputs:
+
+| Input | Default | Description |
+| --- | --- | --- |
+| `command` | `build` | Netdocs subcommand (`build`, `serve`, `import`). |
+| `config` | *(none)* | Path to the config file; passed as `--config` when set. |
+| `version` | `latest` | Release version to download (e.g. `1.0.0`), or `latest`. |
+| `args` | *(none)* | Extra arguments appended verbatim (e.g. `--prod --strict`). |
+| `working-directory` | `.` | Directory to run `netdocs` in. |
+
+The action runs on Linux, Windows, and macOS runners (x64, plus Apple Silicon). Pin to a
+major tag like `@v1` for stability, or a full version tag for reproducible builds.
+
+## Built-in deploy targets
+
+Instead of wiring up a workflow, `netdocs` can publish the build itself. Add a `deploy`
+section to the `Netdocs` block of `appsettings.json` and run `netdocs deploy` (which builds
+first, then publishes), or `netdocs build --deploy`.
+
+### Filesystem
+
+Copy the built site to a local (or mounted) directory — handy for nginx web roots or a
+synced folder:
+
+```json
+{
+  "Netdocs": {
+    "deploy": {
+      "target": "filesystem",
+      "path": "/var/www/docs",
+      "clean": true
+    }
+  }
+}
+```
+
+- `path` — destination directory (absolute, or relative to the project root).
+- `clean` — when `true` (default), files at the destination that the build no longer
+  produces are pruned.
+
+### Git branch
+
+Publish the output to a branch (e.g. `gh-pages`) using a temporary git worktree, so your
+main working tree is never touched:
+
+```json
+{
+  "Netdocs": {
+    "deploy": {
+      "target": "git",
+      "branch": "gh-pages",
+      "remote": "origin",
+      "message": "Deploy docs",
+      "push": true
+    }
+  }
+}
+```
+
+- The branch is created (as an orphan) on first deploy if it does not exist.
+- Set `push` to `false` to commit locally without pushing.
+- Requires `git` on `PATH` and the project to be inside a git repository.
+
+```bash
+# Build and publish in one step
+netdocs deploy --config appsettings.json
+```
+
+### AWS S3
+
+Sync the output to an S3 bucket for an AWS-hosted static site. This shells out to the
+[AWS CLI](https://docs.aws.amazon.com/cli/) (`aws s3 sync`), so credentials and region are
+resolved the standard AWS way (environment variables, `~/.aws/config`, or an instance role):
+
+```json
+{
+  "Netdocs": {
+    "deploy": {
+      "target": "s3",
+      "bucket": "my-docs-bucket",
+      "prefix": "docs",
+      "region": "us-east-1",
+      "clean": true
+    }
+  }
+}
+```
+
+- `bucket` is required; `prefix` (optional) publishes under a sub-path of the bucket.
+- `clean: true` passes `--delete` so objects no longer produced by the build are removed.
+- `region` is optional — omit it to use the AWS CLI's configured default.
+- Requires the AWS CLI (`aws`) on `PATH`.
+
+## Optimization
+
+Enable HTML minification to shrink emitted pages (whitespace collapse + comment removal,
+preserving `pre`/`code`/`script`/`style`), plus optional CSS and JavaScript minification of
+copied assets:
+
+```json
+{
+  "Netdocs": {
+    "optimize": {
+      "minifyHtml": true,
+      "minifyCss": true,
+      "minifyJs": true,
+      "convertImagesToWebp": true,
+      "webpQuality": 80
+    }
+  }
+}
+```
+
+`minifyCss`/`minifyJs` strip comments and collapse whitespace in `.css`/`.js` assets as they
+are copied into the output. The minifier is conservative — it never renames identifiers or
+reorders rules, and it preserves string, template, and URL contents verbatim. Files that are
+already minified (`*.min.css`, `*.min.js`) are copied through untouched.
+
+### WebP image conversion
+
+`convertImagesToWebp` emits a `.webp` sibling next to every copied `.png`/`.jpg`/`.jpeg`
+image and rewrites local `<img>` references into a `<picture>` element:
+
+```html
+<picture>
+  <source srcset="images/diagram.webp" type="image/webp">
+  <img src="images/diagram.png" alt="Diagram">
+</picture>
+```
+
+This is **non-destructive** — the original raster file is kept and referenced as the
+`<img>` fallback, so browsers without WebP support still render correctly while modern
+browsers download the smaller WebP. `webpQuality` (1–100, default `80`) controls the
+encoder quality. Conversions are cached by source content hash under `.cache/webp/`, so
+unchanged images are not re-encoded on subsequent builds. Remote images (`http://`,
+`https://`, `//`, `data:`), SVGs, and images already in WebP format are left untouched.
+
+### Incremental builds and deploys
+
+Netdocs avoids redundant work through content-hash caches rather than a bespoke deploy
+manifest:
+
+- **Render cache** (`.cache/render.json`) keys each page's rendered HTML/TOC on its
+  processed markdown, the pipeline configuration, and the link map. Unchanged pages skip
+  the expensive parse/render step on the next build.
+- **WebP cache** (`.cache/webp/`) keys converted images on source content hash + quality,
+  so unchanged images are never re-encoded.
+- **Deploy transfer** is already incremental at the backend: the **git branch** target is
+  content-addressed and only commits changed blobs, and the **S3** target uses
+  `aws s3 sync`, which compares size/modified time and uploads only changed objects.
+
+Because the deploy backends already skip unchanged files, Netdocs does not publish a
+separate file-hash manifest to the publish branch — doing so would duplicate git/S3
+behavior. Remember that navigation or metadata changes invalidate a page's render-cache
+entry (the link map hash changes), so those pages are correctly rebuilt.
+
+## Other hosts
+
+The `site/` output is static HTML/CSS/JS. Upload it to any static host (Netlify, S3 +
+CloudFront, nginx, etc.). Point the host at the build output directory.
+"""
+
+let render() = file

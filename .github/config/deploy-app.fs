@@ -7,4 +7,5 @@ let render() =
         TargetRepo = "app-pages"
         TargetBranch = "main"
         TokenName = "GH_PAGES_TOKEN"
+        UseSharedStrings = true
     }
