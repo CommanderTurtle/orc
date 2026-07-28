@@ -6,10 +6,15 @@ let page =
     html [ _lang "en" ] [
         head [] [
             meta [ attr "charset" "UTF-8" ]
-            meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1.0" ]
+            meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1.0, viewport-fit=cover" ]
+            meta [ attr "name" "theme-color"; attr "content" "#12132c" ]
+            meta [ attr "name" "apple-mobile-web-app-capable"; attr "content" "yes" ]
+            meta [ attr "name" "apple-mobile-web-app-status-bar-style"; attr "content" "black-translucent" ]
             title [] [
                 str "桜 COUNT 忍者 - Sakura Count Ninja"
             ]
+            link [ _href "manifest.webmanifest"; attr "rel" "manifest" ]
+            link [ _href "game/assets/countku-mark.svg"; attr "rel" "icon"; _type "image/svg+xml" ]
             link [ _href "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"; attr "rel" "stylesheet" ]
             style [] [
                     rawText ("""* { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +28,7 @@ let page =
         .wind-swirl { position: fixed; width: 80px; height: 80px; background-size: contain; background-repeat: no-repeat; pointer-events: none; z-index: 1; animation: swirl 3s ease-out forwards; }
         @keyframes ninjaRun { 0% { transform: translateX(-100px); } 100% { transform: translateX(calc(50vw - 50px)); } }
         @keyframes ninjaJump { 0% { transform: translateX(calc(50vw - 50px)) translateY(0) scaleY(1); } 30% { transform: translateX(calc(50vw - 30px)) translateY(-100px) scaleY(1.1); } 60% { transform: translateX(calc(50vw - 10px)) translateY(-70px) scaleY(0.9); } 100% { transform: translateX(calc(50vw + 20px)) translateY(0) scaleY(1); } }
-        @keyframes ninjaIdle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        @keyframes ninjaIdle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
         .ninja-run { animation: ninjaRun 0.8s ease-in-out forwards; }
         .ninja-jump { animation: ninjaJump 0.6s ease-in-out forwards; }
         .ninja-idle { animation: ninjaIdle 2s ease-in-out infinite; }
@@ -118,14 +123,9 @@ let page =
         .mode-btn.active { background: linear-gradient(135deg, #ff6496 0%, #ff8ab3 100%); border-color: #ff6496; color: white; box-shadow: 0 4px 15px rgba(255, 100, 150, 0.4); }
         .mode-label { font-size: 0.7rem; opacity: 0.7; display: block; margin-top: 2px; }""")
             ]
+            link [ _href "game/countku-app.css?v=0.6.1"; attr "rel" "stylesheet" ]
         ]
         body [] [
-            audio [ _id "sound-ding"; attr "preload" "auto" ] [
-                source [ _src "ding.mp3"; _type "audio/mpeg" ]
-            ]
-            audio [ _id "sound-failure"; attr "preload" "auto" ] [
-                source [ _src "failure.mp3"; _type "audio/mpeg" ]
-            ]
             img [ _src ("data:image/png;base64," + Image.SakuraTreeBackground); _alt "Sakura Tree"; _class "bg-tree" ]
             div [ _id "petals-container" ] []
             div [ _id "wind-container" ] []
@@ -210,7 +210,7 @@ let page =
                 ]
                 form [ _id "gameForm"; attr "onsubmit" "handleSubmit(event)" ] [
                     div [ _class "input-wrapper"; _id "inputWrapper" ] [
-                        input [ _type "text"; _id "gameInput"; _class "game-input"; attr "placeholder" "Enter expression (e.g., 1+46+8)"; attr "autocomplete" "off" ]
+                        input [ _type "text"; _id "gameInput"; _class "game-input"; attr "placeholder" "Enter expression (e.g., 1+46+8)"; attr "autocomplete" "off"; attr "inputmode" "text"; attr "enterkeyhint" "go"; attr "autocapitalize" "sentences"; attr "spellcheck" "true"; attr "aria-label" "Count or compose a Countku" ]
                         button [ _type "submit"; _class "go-btn" ] [
                             str "GO"
                         ]
@@ -1777,7 +1777,10 @@ function resetGame() {
     totalAttempts = 0; correctAttempts = 0;
     if (bubbleTimeout) clearTimeout(bubbleTimeout);
     document.getElementById('gameInput').value = '';
+    document.getElementById('chatBubble').style.display = 'none';
+    document.getElementById('bubbleContent').classList.remove('fade-out');
     document.getElementById('streakIndicator').style.display = 'none';
+    document.getElementById('streakValue').textContent = '0';
     document.getElementById('dashboard').classList.remove('active');
     document.getElementById('haikuDisplay').style.display = 'none';
     if (countkuConverter) countkuConverter.resetVariants();
@@ -1791,9 +1794,18 @@ function showHelp() {
 
 function hideHelp() { document.getElementById('helpModal').classList.remove('active'); }
 
+window.CountkuHost = Object.freeze({
+    setMode,
+    handleSubmit,
+    resetGame,
+    showHelp,
+    hideHelp
+});
+
 document.getElementById('helpModal').addEventListener('click', function(e) { if (e.target === this) hideHelp(); });
 document.getElementById('gameInput').focus();""")
             ]
+            script [ _src "game/countku-app.js?v=0.6.1"; _type "module" ] []
         ]
     ]
 
