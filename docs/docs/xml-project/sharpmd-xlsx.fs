@@ -14,7 +14,7 @@ Copy with the copy button. Then:
 
 - Click to send optional analytics!
 
-#### [[Click to try our security system]](https://vibe.shel.sh/captcha/docs) or.. [[Try your hand at counting in haiku]](https://app.shel.sh/countku) - the minigame. See changelog on help screen.
+#### [[Click to try our security system]](https://vibe.shel.sh/projects/captcha/docs) or.. [[Try your hand at counting in haiku]](https://app.shel.sh/countku) - the minigame. See changelog on help screen.
 
 </br></br></br></br></br></br></br></br>
 
