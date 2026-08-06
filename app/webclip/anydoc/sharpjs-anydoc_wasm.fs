@@ -1,4 +1,6 @@
-/* @ts-self-types="./anydoc_wasm.d.ts" */
+﻿module ConvertedFiles.Anydoc.AnydocWasmJs
+
+let file = """/* @ts-self-types="./anydoc_wasm.d.ts" */
 
 /**
  * Detect the format from the content itself: the signature and identity each
@@ -412,3 +414,6 @@ async function __wbg_init(module_or_path) {
 }
 
 export { initSync, __wbg_init as default };
+"""
+
+let render() = file

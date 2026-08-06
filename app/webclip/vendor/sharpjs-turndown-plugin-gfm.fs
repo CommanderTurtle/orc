@@ -1,4 +1,6 @@
-var turndownPluginGfm = (function (exports) {
+﻿module ConvertedFiles.Vendor.TurndownPluginGfmJs
+
+let file = """var turndownPluginGfm = (function (exports) {
 'use strict';
 
 var highlightRegExp = /highlight-(?:text|source)-([a-z0-9]+)/;
@@ -237,3 +239,6 @@ exports.taskListItems = taskListItems;
 return exports;
 
 }({}));
+"""
+
+let render() = file
