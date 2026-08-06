@@ -47,11 +47,13 @@ let page =
     .output-wrap{position:relative;flex:1;min-height:0}.output{height:100%;max-height:520px;overflow:auto;padding:20px}.raw{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:12px;line-height:1.65}.empty{display:grid;place-items:center;height:100%;min-height:390px;text-align:center;color:var(--muted);padding:30px}.empty-icon{display:grid;place-items:center;width:54px;height:54px;border:1px solid var(--line);border-radius:14px;margin:0 auto 12px;color:var(--heat);font-size:25px}
     .preview{font-size:14px}.preview h1,.preview h2,.preview h3{line-height:1.25;letter-spacing:-.02em}.preview h1{font-size:28px}.preview h2{font-size:21px;border-bottom:1px solid var(--line);padding-bottom:7px}.preview h3{font-size:17px;color:var(--heat)}.preview a{color:var(--heat)}.preview code{font-family:var(--mono);font-size:.9em;background:var(--raised);border:1px solid var(--line);border-radius:5px;padding:2px 5px}.preview pre{overflow:auto;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--raised)}.preview pre code{border:0;padding:0}.preview blockquote{margin-left:0;border-left:3px solid var(--heat);padding:8px 14px;color:var(--muted);background:var(--heat-soft)}.preview table{width:100%;border-collapse:collapse;font-size:12px}.preview th,.preview td{border:1px solid var(--line);padding:7px 9px;text-align:left}.preview th{background:var(--raised)}.preview img{max-width:100%}
     .status{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:15px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--muted);font-size:11px}.status strong{color:var(--text);font-weight:650}.status .state{color:var(--ok)}.status .state.error{color:var(--danger)}
+    .archive-lab{margin-top:28px;padding-top:25px;border-top:1px solid var(--line)}.section-kicker{margin:0 0 5px;color:var(--heat);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:15px}.section-head h2{margin:0;font-size:24px;letter-spacing:-.035em}.section-head p{max-width:660px;margin:0;color:var(--muted);font-size:13px}
+    .archive-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.route{border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}.route-head{display:flex;align-items:flex-start;gap:12px;padding:17px;border-bottom:1px solid var(--line);background:var(--raised)}.route-number{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:8px;background:var(--heat);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700}.route h3{margin:0;font-size:15px}.route-head p{margin:2px 0 0;color:var(--muted);font-size:11px}.route-body{padding:17px}.route-note{margin:0 0 14px;color:var(--muted);font-size:12px}.route-note a{color:var(--heat)}.route-note.tail{margin:11px 0 0;font-size:10px}.route-note.tail a:before,.route-note.tail a:after{content:" "}.url-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-bottom:10px}.text-input,.number-input{min-width:0;border:1px solid var(--line);border-radius:9px;background:var(--raised);color:var(--text);padding:9px 11px;font-family:var(--mono);font-size:11px;outline:0}.text-input:focus,.number-input:focus{border-color:var(--heat)}.route-actions{display:flex;flex-wrap:wrap;gap:8px}.route-actions+.route-actions{margin-top:8px}.route-steps{margin:14px 0 0;padding-left:19px;color:var(--muted);font-size:11px}.route-steps li+li{margin-top:5px}.asset-drop{display:block;border:1px dashed var(--line);border-radius:11px;background:var(--raised);padding:17px;text-align:center;cursor:pointer}.asset-drop:hover,.asset-drop.over{border-color:var(--heat);background:var(--heat-soft)}.asset-drop strong{display:block;font-size:13px}.asset-drop span{display:block;margin-top:3px;color:var(--muted);font-size:11px}.asset-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.option{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:var(--raised);color:var(--muted);font-size:10px}.option input[type=number]{width:58px;padding:2px 4px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);font-family:var(--mono);font-size:10px}.option input[type=checkbox]{accent-color:var(--heat)}.asset-report{min-height:38px;margin:12px 0 0;padding:9px 11px;border-radius:9px;background:var(--raised);color:var(--muted);font-family:var(--mono);font-size:10px;line-height:1.55;overflow-wrap:anywhere}.asset-report strong{color:var(--text)}
     .formats{margin-top:28px;border-top:1px solid var(--line);padding-top:25px}.formats h2{font-size:15px;margin:0 0 12px}.format-grid{display:flex;flex-wrap:wrap;gap:7px}.format-grid span{padding:5px 9px;border:1px solid var(--line);border-radius:7px;background:var(--surface);font-family:var(--mono);font-size:10px;color:var(--muted)}
     .toast{position:fixed;right:22px;bottom:22px;padding:10px 14px;border-radius:9px;background:var(--text);color:var(--bg);font-size:12px;font-weight:650;box-shadow:var(--shadow);transform:translateY(20px);opacity:0;pointer-events:none;transition:.2s}.toast.show{transform:none;opacity:1}
     .busy:after{content:"";display:inline-block;width:10px;height:10px;margin-left:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-    @media(max-width:850px){.hero{grid-template-columns:1fr}.privacy{white-space:normal}.workspace{grid-template-columns:1fr}.panel{min-height:560px}.output{max-height:none}.toplinks .secondary{display:none}}
-    @media(max-width:520px){.shell{width:min(100% - 20px,1280px);padding-top:12px}.hero{padding-top:28px}.panel-head,.actions{padding-left:13px;padding-right:13px}.drop{margin-left:13px;margin-right:13px}.source{padding:16px}.hero h1{font-size:42px}}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.privacy{white-space:normal}.workspace,.archive-grid{grid-template-columns:1fr}.panel{min-height:560px}.output{max-height:none}.toplinks .secondary{display:none}.section-head{align-items:flex-start;flex-direction:column;gap:6px}}
+    @media(max-width:520px){.shell{width:min(100% - 20px,1280px);padding-top:12px}.hero{padding-top:28px}.panel-head,.actions{padding-left:13px;padding-right:13px}.drop{margin-left:13px;margin-right:13px}.source{padding:16px}.hero h1{font-size:42px}.url-row,.asset-options{grid-template-columns:1fr}.url-row .btn{width:100%}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}""")
             ]
         ]
@@ -233,6 +235,136 @@ let page =
                         ]
                     ]
                 ]
+                section [ _class "archive-lab" ] [
+                    p [ _class "section-kicker" ] [
+                        str "Offline archive lab"
+                    ]
+                    div [ _class "section-head" ] [
+                        h2 [] [
+                            str "Capture the page you actually saw."
+                        ]
+                        p [] [
+                            str "Two deliberate routes: run the original capture workflow inside the source page, or assemble a compact, self-contained Markdown archive here with local browser processing."
+                        ]
+                    ]
+                    div [ _class "archive-grid" ] [
+                        article [ _class "route" ] [
+                            div [ _class "route-head" ] [
+                                span [ _class "route-number" ] [
+                                    str "01"
+                                ]
+                                div [] [
+                                    h3 [] [
+                                        str "Source-page capture kit"
+                                    ]
+                                    p [] [
+                                        str "Maximum reach · original browser context"
+                                    ]
+                                ]
+                            ]
+                            div [ _class "route-body" ] [
+                                p [ _class "route-note" ] [
+                                    str "Open the page without an opener or referrer, interact until lazy media is visible, then run the copied commands in that page’s developer console."
+                                ]
+                                div [ _class "url-row" ] [
+                                    input [ _class "text-input"; _id "target-url"; _type "url"; attr "inputmode" "url"; attr "placeholder" "https://example.com/article"; attr "aria-label" "Source page URL" ]
+                                    button [ _class "btn"; _id "open-page"; _type "button" ] [
+                                        str "Open interactive page"
+                                    ]
+                                ]
+                                div [ _class "route-actions" ] [
+                                    button [ _class "btn primary"; _id "copy-serialize"; _type "button" ] [
+                                        str "Copy serialize command"
+                                    ]
+                                    button [ _class "btn"; _id "copy-media-command"; _type "button" ] [
+                                        str "Copy media command"
+                                    ]
+                                    button [ _class "btn"; _id "paste-capture"; _type "button" ] [
+                                        str "Paste captured HTML"
+                                    ]
+                                ]
+                                ol [ _class "route-steps" ] [
+                                    li [] [
+                                        str "Scroll, expand, or play the source until its real state is loaded."
+                                    ]
+                                    li [] [
+                                        str "Serialize that exact DOM to the clipboard; optionally download media over 12 KB."
+                                    ]
+                                    li [] [
+                                        str "Return here, paste the capture, then use route 02 for a one-file archive."
+                                    ]
+                                ]
+                            ]
+                        ]
+                        article [ _class "route"; _id "archive-route" ] [
+                            div [ _class "route-head" ] [
+                                span [ _class "route-number" ] [
+                                    str "02"
+                                ]
+                                div [] [
+                                    h3 [] [
+                                        str "Local self-contained archive"
+                                    ]
+                                    p [] [
+                                        str "Canvas compression · Base64 portability"
+                                    ]
+                                ]
+                            ]
+                            div [ _class "route-body" ] [
+                                p [ _class "route-note" ] [
+                                    str "Supply the files downloaded by route 01, or let Webclip fetch CORS-readable URLs. PNG becomes JPEG; existing JPEG is only replaced when smaller. Video, audio, SVG, AVIF, GIF, and PDF remain in their native formats."
+                                ]
+                                button [ _class "asset-drop"; _id "asset-drop"; _type "button" ] [
+                                    strong [] [
+                                        str "Add downloaded media"
+                                    ]
+                                    span [] [
+                                        str "Select files or drag them here; matching is based on the serialized URL’s filename."
+                                    ]
+                                ]
+                                input [ _id "assets"; _type "file"; attr "hidden" ""; attr "multiple" ""; attr "accept" "image/*,video/*,audio/*,.pdf,application/pdf" ]
+                                div [ _class "asset-options" ] [
+                                    label [ _class "option" ] [
+                                        str "minimum"
+                                        input [ _id "min-media"; _type "number"; attr "min" "0"; attr "step" "1"; attr "value" "12" ]
+                                        str "KB"
+                                    ]
+                                    label [ _class "option" ] [
+                                        str "JPEG quality"
+                                        input [ _id "image-quality"; _type "number"; attr "min" "35"; attr "max" "95"; attr "step" "1"; attr "value" "78" ]
+                                        str "%"
+                                    ]
+                                    label [ _class "option" ] [
+                                        input [ _id "fetch-remote"; _type "checkbox"; attr "checked" "" ]
+                                        str "fetch CORS-readable media"
+                                    ]
+                                    label [ _class "option" ] [
+                                        input [ _id "append-unmatched"; _type "checkbox"; attr "checked" "" ]
+                                        str "append unmatched local files"
+                                    ]
+                                ]
+                                div [ _class "route-actions" ] [
+                                    button [ _class "btn primary"; _id "build-archive"; _type "button" ] [
+                                        str "Build self-contained Markdown"
+                                    ]
+                                    button [ _class "btn"; _id "clear-assets"; _type "button" ] [
+                                        str "Clear media"
+                                    ]
+                                ]
+                                div [ _class "asset-report"; _id "asset-report"; attr "aria-live" "polite" ] [
+                                    str "No local media selected. Remote media will be attempted only when its server permits browser access."
+                                ]
+                                p [ _class "route-note tail" ] [
+                                    str "For H.264/AAC, M4A, animated AVIF, response recording, and authenticated dynamic captures, use the full"
+                                    a [ _href "https://github.com/CommanderTurtle/web-archive"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                                        str "Web Archive"
+                                    ]
+                                    str "pipeline."
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
                 section [ _class "formats" ] [
                     h2 [] [
                         str "Local conversion coverage"
@@ -279,7 +411,7 @@ let page =
                     rawText ("""(() => {
     'use strict';
     const $ = id => document.getElementById(id);
-    const state = { markdown:'', file:null, baseName:'web-clip', title:'Web Clip', url:'', busy:false };
+    const state = { markdown:'', file:null, assetFiles:[], baseName:'web-clip', title:'Web Clip', url:'', busy:false };
     const textExtensions = new Set(['html','htm','txt','md','markdown','json']);
 
     const escapeHtml = value => { const node=document.createElement('div'); node.textContent=value; return node.innerHTML; };
@@ -287,11 +419,42 @@ let page =
     const dateStamp = () => new Date().toISOString().replace(/:/g,'-').replace(/\.\d{3}Z$/,'Z');
     const safeBase = name => (name || 'web-clip').replace(/\.[^.]+$/,'').replace(/[\\/:*?"<>|]+/g,'-') || 'web-clip';
     const extensionOf = name => (name.split('.').pop() || '').toLowerCase();
+    const serializeCommand = "copy(new XMLSerializer().serializeToString(document)); console.log('Webclip: serialized live DOM copied to the clipboard.');";
+    const mediaDownloadCommand = `(async()=>{
+  const threshold=12*1024, urls=new Set(), mediaPattern=/\\.(?:avif|bmp|gif|jpe?g|png|svg|webp|m4a|mov|mp3|mp4|ogg|wav|webm|pdf)(?:$|[?#])/i;
+  const add=value=>{try{const url=new URL(value,document.baseURI);if(/^https?:$/.test(url.protocol))urls.add(url.href)}catch{}};
+  document.querySelectorAll('img').forEach(node=>{add(node.currentSrc||node.src);(node.srcset||'').split(',').forEach(item=>add(item.trim().split(/\\s+/)[0]))});
+  document.querySelectorAll('video,audio').forEach(node=>{add(node.currentSrc||node.src);if(node.poster)add(node.poster);node.querySelectorAll('source').forEach(source=>add(source.src))});
+  document.querySelectorAll('picture source').forEach(node=>(node.srcset||'').split(',').forEach(item=>add(item.trim().split(/\\s+/)[0])));
+  document.querySelectorAll('a[href],object[data],embed[src]').forEach(node=>{const value=node.href||node.data||node.src;if(mediaPattern.test(value||''))add(value)});
+  const cssPattern=/url\\((?:"|')?([^"')]+)(?:"|')?\\)/g;
+  Array.from(document.querySelectorAll('*')).slice(0,5000).forEach(node=>{const style=getComputedStyle(node);[style.backgroundImage,style.maskImage].forEach(value=>{for(const match of value.matchAll(cssPattern))add(match[1])})});
+  performance.getEntriesByType('resource').forEach(entry=>{if(mediaPattern.test(entry.name)||['img','video','audio'].includes(entry.initiatorType))add(entry.name)});
+  let saved=0,skipped=0,failed=0;
+  for(const url of urls){try{const response=await fetch(url,{credentials:'same-origin'});if(!response.ok)throw new Error('HTTP '+response.status);const blob=await response.blob();if(blob.size<threshold){skipped++;console.log('Webclip skipped (<12 KB):',url,blob.size);continue}const pathname=new URL(url).pathname;let name=decodeURIComponent(pathname.split('/').pop()||'media').replace(/[\\/:*?"<>|]+/g,'-');if(!name.includes('.')){const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif','video/mp4':'mp4','video/webm':'webm','audio/mpeg':'mp3','audio/mp4':'m4a','application/pdf':'pdf'}[blob.type]||'bin';name+='.'+ext}const href=URL.createObjectURL(blob);const link=Object.assign(document.createElement('a'),{href,download:name});document.body.appendChild(link);link.click();link.remove();await new Promise(resolve=>setTimeout(resolve,120));URL.revokeObjectURL(href);saved++}catch(error){failed++;console.warn('Webclip failed:',url,error)}}
+  console.log('Webclip media pass complete:',{found:urls.size,saved,skipped,failed,threshold});
+})()`;
 
     function toast(message){ const el=$('toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),1800); }
     function setState(message,error=false){ $('state').textContent=message; $('state').classList.toggle('error',error); }
     function setBusy(on,label='Converting'){ state.busy=on; $('convert').disabled=on; $('convert').classList.toggle('busy',on); $('convert').textContent=on?label:'Convert'; }
     function updateInputStats(bytes){ $('input-stats').textContent=bytesLabel(bytes); }
+    function archiveReport(message,error=false){ const report=$('asset-report'); report.innerHTML=error?`<strong>Stopped.</strong> ${escapeHtml(message)}`:message; report.style.color=error?'var(--danger)':''; }
+    async function writeClipboard(value,label){
+      try{ await navigator.clipboard.writeText(value); toast(label); }
+      catch{
+        const field=Object.assign(document.createElement('textarea'),{value}); field.style.cssText='position:fixed;opacity:0;pointer-events:none'; document.body.appendChild(field); field.select();
+        const copied=document.execCommand('copy'); field.remove(); if(!copied) throw new Error('Clipboard access was denied.'); toast(label);
+      }
+    }
+    function normalizedAssetName(name){ return String(name||'').toLowerCase().replace(/^\d{3,4}[-_]/,''); }
+    function addAssetFiles(files){
+      const merged=new Map(state.assetFiles.map(file=>[`${file.name.toLowerCase()}:${file.size}:${file.lastModified}`,file]));
+      for(const file of files){ if(/^(?:image|video|audio)\//.test(file.type)||file.type==='application/pdf'||/\.pdf$/i.test(file.name)) merged.set(`${file.name.toLowerCase()}:${file.size}:${file.lastModified}`,file); }
+      state.assetFiles=[...merged.values()]; $('assets').value='';
+      const total=state.assetFiles.reduce((sum,file)=>sum+file.size,0);
+      archiveReport(state.assetFiles.length?`<strong>${state.assetFiles.length} local file${state.assetFiles.length===1?'':'s'}</strong> ready · ${bytesLabel(total)} total`:'No local media selected. Remote media will be attempted only when its server permits browser access.');
+    }
 
     function firecrawlConverter(){
       if(!window.TurndownService || !window.turndownPluginGfm) throw new Error('The Firecrawl HTML transformer did not load.');
@@ -354,6 +517,80 @@ let page =
       blocks.forEach((block,index)=>{ html=html.replace(`@@BLOCK${index}@@`,block); }); return html;
     }
 
+    function archiveCandidates(html,baseUrl){
+      const doc=new DOMParser().parseFromString(html,'text/html'); const candidates=new Map();
+      const mediaPattern=/\.(?:avif|bmp|gif|jpe?g|png|svg|webp|m4a|mov|mp3|mp4|ogg|wav|webm|pdf)(?:$|[?#])/i;
+      const resolve=raw=>{ try{return new URL(raw,baseUrl||document.baseURI).href}catch{return raw} };
+      const kindFor=(element,url)=>element?.matches('img,picture')||/\.(?:avif|bmp|gif|jpe?g|png|svg|webp)(?:$|[?#])/i.test(url)?'image':element?.matches('video')||element?.closest('video')||/\.(?:mov|mp4|webm)(?:$|[?#])/i.test(url)?'video':element?.matches('audio')||element?.closest('audio')||/\.(?:m4a|mp3|ogg|wav)(?:$|[?#])/i.test(url)?'audio':/\.pdf(?:$|[?#])/i.test(url)?'pdf':'other';
+      const add=(element,attr,raw,origin='dom')=>{ if(!raw||/^data:/i.test(raw))return; const resolved=resolve(raw); const key=resolved||raw; const current=candidates.get(key)||{raw,resolved,kind:kindFor(element,resolved),alt:element?.getAttribute?.('alt')||'',origin,refs:[]}; current.refs.push({element,attr}); candidates.set(key,current); };
+      doc.querySelectorAll('img[src]').forEach(node=>add(node,'src',node.getAttribute('src')));
+      doc.querySelectorAll('img[srcset],picture source[srcset]').forEach(node=>(node.getAttribute('srcset')||'').split(',').forEach(item=>add(node,'srcset',item.trim().split(/\s+/)[0])));
+      doc.querySelectorAll('video[src],audio[src],video source[src],audio source[src]').forEach(node=>add(node,'src',node.getAttribute('src')));
+      doc.querySelectorAll('video[poster]').forEach(node=>add(node,'poster',node.getAttribute('poster')));
+      doc.querySelectorAll('a[href],object[data],embed[src]').forEach(node=>{ const attr=node.hasAttribute('href')?'href':node.hasAttribute('data')?'data':'src'; const raw=node.getAttribute(attr); if(mediaPattern.test(raw||''))add(node,attr,raw); });
+      const cssPattern=/url\((?:"|')?([^"')]+)(?:"|')?\)/g;
+      doc.querySelectorAll('[style],style').forEach(node=>{ const value=node.tagName==='STYLE'?node.textContent||'':node.getAttribute('style')||''; for(const match of value.matchAll(cssPattern))add(null,'css',match[1],'css'); });
+      return {doc,candidates:[...candidates.values()]};
+    }
+
+    function localAssetFor(candidate){
+      let basename=''; try{basename=decodeURIComponent(new URL(candidate.resolved).pathname.split('/').pop()||'')}catch{basename=String(candidate.raw).split('/').pop().split('?')[0]}
+      const expected=normalizedAssetName(basename); return state.assetFiles.find(file=>normalizedAssetName(file.name)===expected||file.name.toLowerCase()===basename.toLowerCase());
+    }
+    function assetKind(type,name,fallback='other'){
+      if(/^image\//.test(type)||/\.(?:avif|bmp|gif|jpe?g|png|svg|webp)$/i.test(name))return'image';
+      if(/^video\//.test(type)||/\.(?:mov|mp4|webm)$/i.test(name))return'video';
+      if(/^audio\//.test(type)||/\.(?:m4a|mp3|ogg|wav)$/i.test(name))return'audio';
+      if(type==='application/pdf'||/\.pdf$/i.test(name))return'pdf'; return fallback;
+    }
+    async function sanitizeSvg(blob){
+      const doc=new DOMParser().parseFromString(await blob.text(),'image/svg+xml'); doc.querySelectorAll('script,foreignObject').forEach(node=>node.remove());
+      doc.querySelectorAll('*').forEach(node=>{ for(const attr of [...node.attributes]){ if(/^on/i.test(attr.name)||( /^(?:href|xlink:href)$/i.test(attr.name)&&/^\s*(?:javascript:|https?:)/i.test(attr.value)))node.removeAttribute(attr.name); } if(node.hasAttribute('style'))node.setAttribute('style',node.getAttribute('style').replace(/url\(\s*(?:"|')?\s*https?:[^)]+\)/gi,'none')); });
+      return new Blob([new XMLSerializer().serializeToString(doc)],{type:'image/svg+xml'});
+    }
+    async function optimizeAsset(blob,kind){
+      const mime=(blob.type||'application/octet-stream').split(';')[0].toLowerCase();
+      if(mime==='image/svg+xml')return{blob:await sanitizeSvg(blob),mime,optimized:true};
+      if(kind!=='image'||!['image/png','image/jpeg','image/bmp'].includes(mime))return{blob,mime,optimized:false};
+      const bitmap=await createImageBitmap(blob); const scale=Math.min(1,1600/Math.max(1,bitmap.width)); const canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(bitmap.width*scale)); canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+      const context=canvas.getContext('2d',{alpha:false}); context.fillStyle='#fff'; context.fillRect(0,0,canvas.width,canvas.height); context.drawImage(bitmap,0,0,canvas.width,canvas.height); bitmap.close?.();
+      const quality=Math.min(.95,Math.max(.35,Number($('image-quality').value||78)/100)); const jpeg=await new Promise((resolve,reject)=>canvas.toBlob(result=>result?resolve(result):reject(new Error('Canvas JPEG conversion failed.')),'image/jpeg',quality));
+      if(mime!=='image/png'&&mime!=='image/bmp'&&jpeg.size>=blob.size)return{blob,mime,optimized:false}; return{blob:jpeg,mime:'image/jpeg',optimized:true};
+    }
+    function dataUrl(blob){ return new Promise((resolve,reject)=>{ const reader=new FileReader(); reader.onerror=()=>reject(reader.error); reader.onload=()=>resolve(String(reader.result)); reader.readAsDataURL(blob); }); }
+    function appendixBlock(asset){
+      const label=escapeHtml(asset.label||'Captured media'),src=asset.dataUri,mime=escapeHtml(asset.mime);
+      if(asset.kind==='image')return `<figure>\n<img src="${src}" alt="${label}" style="max-width:640px;width:100%;height:auto">\n<figcaption>${label}</figcaption>\n</figure>`;
+      if(asset.kind==='video')return `<figure>\n<video controls preload="metadata" width="640"><source src="${src}" type="${mime}"></video>\n<figcaption>${label}</figcaption>\n</figure>`;
+      if(asset.kind==='audio')return `<figure>\n<audio controls preload="metadata"><source src="${src}" type="${mime}"></audio>\n<figcaption>${label}</figcaption>\n</figure>`;
+      return `<figure>\n<object data="${src}" type="application/pdf" width="100%" height="720"><a href="${src}">${label}</a></object>\n<figcaption>${label}</figcaption>\n</figure>`;
+    }
+    async function buildBrowserArchive(){
+      const html=$('source').value.trim(); if(!html||detectText(html)!=='HTML'){ archiveReport('Paste a serialized HTML document before building an archive.',true); return; }
+      const button=$('build-archive'); button.disabled=true; button.classList.add('busy'); button.textContent='Building'; setState('Archiving'); const started=performance.now();
+      try{
+        const meta=extractHtmlMeta(html),base=$('target-url').value.trim()||meta.url||document.baseURI,{doc,candidates}=archiveCandidates(html,base); const threshold=Math.max(0,Number($('min-media').value||12))*1024; const localMatched=new Set(); const embedded=[]; const failures=[]; let skipped=0,optimized=0;
+        for(const candidate of candidates){
+          try{
+            const local=localAssetFor(candidate); let blob;
+            if(local){blob=local;localMatched.add(local)} else if($('fetch-remote').checked&&/^https?:/i.test(candidate.resolved)){const response=await fetch(candidate.resolved,{mode:'cors',credentials:'omit'});if(!response.ok)throw new Error(`HTTP ${response.status}`);blob=await response.blob()} else {throw new Error('No matching local file')}
+            const kind=assetKind(blob.type,local?.name||candidate.resolved,candidate.kind); if(['image','video','audio'].includes(kind)&&blob.size<threshold){skipped++;continue}
+            const result=await optimizeAsset(blob,kind); if(result.optimized)optimized++; const uri=await dataUrl(result.blob); const asset={candidate,kind,mime:result.mime||blob.type||'application/octet-stream',dataUri:uri,label:candidate.alt||local?.name||decodeURIComponent(String(candidate.resolved).split('/').pop().split('?')[0])||kind,append:candidate.origin==='css'||kind!=='image'}; embedded.push(asset);
+            for(const ref of candidate.refs){ if(!ref.element)continue; ref.element.setAttribute(ref.attr,uri); if(ref.element.matches('img')&&ref.attr==='src')ref.element.removeAttribute('srcset'); }
+          }catch(error){failures.push(`${candidate.resolved}: ${error?.message||error}`)}
+        }
+        if($('append-unmatched').checked){
+          for(const file of state.assetFiles.filter(file=>!localMatched.has(file))){ try{const kind=assetKind(file.type,file.name);if(kind==='other'||(['image','video','audio'].includes(kind)&&file.size<threshold)){skipped++;continue}const result=await optimizeAsset(file,kind);if(result.optimized)optimized++;embedded.push({kind,mime:result.mime||file.type||'application/octet-stream',dataUri:await dataUrl(result.blob),label:file.name,append:true});}catch(error){failures.push(`${file.name}: ${error?.message||error}`)} }
+        }
+        let markdown=firecrawlConverter().turndown(doc.body?.innerHTML||html); const seen=new Set(); const appendix=[];
+        for(const asset of embedded){if(asset.append&&!seen.has(asset.dataUri)){seen.add(asset.dataUri);appendix.push(appendixBlock(asset))}}
+        if(appendix.length)markdown+=`\n\n## Additional captured media\n\n${appendix.join('\n\n')}`;
+        const metadata=frontmatter(meta.title,base,'Webclip browser archive').split('\n'); metadata.splice(-1,0,`media_candidates: ${candidates.length}`,`embedded_assets: ${embedded.length}`,`optimized_images: ${optimized}`,`skipped_assets: ${skipped}`,`unavailable_assets: ${failures.length}`); markdown=`${metadata.join('\n')}\n\n# ${meta.title}\n\n${markdown}`;
+        state.baseName=safeBase(meta.title); present(markdown,'Browser archive',performance.now()-started,new TextEncoder().encode(html).length+state.assetFiles.reduce((sum,file)=>sum+file.size,0));
+        archiveReport(`<strong>${embedded.length} embedded</strong> · ${optimized} image${optimized===1?'':'s'} optimized · ${skipped} below threshold · ${failures.length} unavailable${failures.length?' (supply their downloaded files to retry)':''}`);
+      }catch(error){setState(error?.message||String(error),true);archiveReport(error?.message||String(error),true)}finally{button.disabled=false;button.classList.remove('busy');button.textContent='Build self-contained Markdown'}
+    }
+
     function waitForAnyDoc(){
       if(window.WebclipAnyDoc?.ready) return Promise.resolve(window.WebclipAnyDoc);
       if(window.WebclipAnyDoc?.error) return Promise.reject(window.WebclipAnyDoc.error);
@@ -377,6 +614,13 @@ let page =
     function clearAll(){ state.markdown='';state.file=null;state.baseName='web-clip';$('source').value='';$('file').value='';$('file-chip').classList.remove('show');$('file-chip').textContent='';$('input-meta').textContent='paste or drop';$('raw').textContent='';$('preview').innerHTML='';$('raw').hidden=true;$('preview').hidden=true;$('empty').hidden=false;$('copy').disabled=true;$('download').disabled=true;$('engine').textContent='—';$('output-meta').textContent='waiting';$('input-stats').textContent='0 B';$('output-stats').textContent='0 chars';$('time').textContent='—';setState('Ready');setBusy(false); }
     function download(){ if(!state.markdown)return; const url=URL.createObjectURL(new Blob([state.markdown],{type:'text/markdown;charset=utf-8'})); const link=Object.assign(document.createElement('a'),{href:url,download:`${state.baseName || 'web-clip'}.md`}); link.click(); setTimeout(()=>URL.revokeObjectURL(url),0); toast('Markdown downloaded'); }
 
+    $('open-page').addEventListener('click',()=>{try{const url=new URL($('target-url').value.trim());if(!/^https?:$/.test(url.protocol))throw new Error('Use an HTTP or HTTPS address.');const opened=window.open(url.href,'_blank','noopener,noreferrer');if(opened===null)toast('Page opened, or the popup was blocked');else toast('Interactive page opened')}catch(error){archiveReport(error?.message||String(error),true)}});
+    $('copy-serialize').addEventListener('click',()=>writeClipboard(serializeCommand,'Serialize command copied').catch(error=>archiveReport(error.message,true)));
+    $('copy-media-command').addEventListener('click',()=>writeClipboard(mediaDownloadCommand,'Media command copied').catch(error=>archiveReport(error.message,true)));
+    $('paste-capture').addEventListener('click',async()=>{try{const captured=await navigator.clipboard.readText();if(!captured.trim())throw new Error('The clipboard does not contain serialized HTML.');$('source').value=captured;$('input-meta').textContent=detectText(captured);updateInputStats(new TextEncoder().encode(captured).length);convertText();toast('Captured HTML pasted')}catch(error){archiveReport(error?.message||String(error),true)}});
+    const assets=$('assets'),assetDrop=$('asset-drop'); assetDrop.addEventListener('click',()=>assets.click()); assets.addEventListener('change',()=>addAssetFiles(assets.files));
+    ['dragenter','dragover','dragleave','drop'].forEach(name=>assetDrop.addEventListener(name,event=>{event.preventDefault();event.stopPropagation()})); assetDrop.addEventListener('dragover',()=>assetDrop.classList.add('over')); assetDrop.addEventListener('dragleave',()=>assetDrop.classList.remove('over')); assetDrop.addEventListener('drop',event=>{assetDrop.classList.remove('over');addAssetFiles(event.dataTransfer.files)});
+    $('clear-assets').addEventListener('click',()=>{state.assetFiles=[];assets.value='';archiveReport('No local media selected. Remote media will be attempted only when its server permits browser access.');toast('Local media cleared')}); $('build-archive').addEventListener('click',buildBrowserArchive);
     $('convert').addEventListener('click',()=>{setBusy(true);try{convertText()}catch(error){setBusy(false);setState(error.message,true)}}); $('clear').addEventListener('click',clearAll);
     $('copy').addEventListener('click',async()=>{if(!state.markdown)return;await navigator.clipboard.writeText(state.markdown);toast('Markdown copied')}); $('download').addEventListener('click',download);
     document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===tab));const raw=tab.dataset.tab==='raw';$('raw').hidden=!raw;$('preview').hidden=raw||!state.markdown;$('empty').hidden=!!state.markdown}));
