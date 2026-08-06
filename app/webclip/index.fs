@@ -312,7 +312,7 @@ let page =
                             ]
                             div [ _class "route-body" ] [
                                 p [ _class "route-note" ] [
-                                    str "Supply the files downloaded by route 01, or let Webclip fetch CORS-readable URLs. PNG becomes JPEG; existing JPEG is only replaced when smaller. Video, audio, SVG, AVIF, GIF, and PDF remain in their native formats."
+                                    str "Uses the serialized page in the main Source input. Webclip converts the complete page to Markdown, swaps every matched media reference for an embedded data URL, and preserves video, audio, SVG, AVIF, GIF, and PDF as native HTML media controls. Supply files downloaded by route 01, or let Webclip fetch CORS-readable URLs."
                                 ]
                                 button [ _class "asset-drop"; _id "asset-drop"; _type "button" ] [
                                     strong [] [
@@ -346,6 +346,9 @@ let page =
                                 div [ _class "route-actions" ] [
                                     button [ _class "btn primary"; _id "build-archive"; _type "button" ] [
                                         str "Build self-contained Markdown"
+                                    ]
+                                    button [ _class "btn"; _id "download-archive"; _type "button" ] [
+                                        str "Build + download .md"
                                     ]
                                     button [ _class "btn"; _id "clear-assets"; _type "button" ] [
                                         str "Clear media"
@@ -734,9 +737,9 @@ let page =
       if(asset.kind==='audio')return `<figure>\n<audio controls preload="metadata"><source src="${src}" type="${mime}"></audio>\n<figcaption>${label}</figcaption>\n</figure>`;
       return `<figure>\n<object data="${src}" type="application/pdf" width="100%" height="720"><a href="${src}">${label}</a></object>\n<figcaption>${label}</figcaption>\n</figure>`;
     }
-    async function buildBrowserArchive(){
+    async function buildBrowserArchive(downloadAfter=false){
       const html=$('source').value.trim(); if(!html||detectText(html)!=='HTML'){ archiveReport('Paste a serialized HTML document before building an archive.',true); return; }
-      const button=$('build-archive'); button.disabled=true; button.classList.add('busy'); button.textContent='Building'; setState('Archiving'); const started=performance.now();
+      const buildButton=$('build-archive'),downloadButton=$('download-archive'),button=downloadAfter?downloadButton:buildButton;buildButton.disabled=true;downloadButton.disabled=true;button.classList.add('busy');button.textContent=downloadAfter?'Building download':'Building';setState('Archiving');const started=performance.now();
       try{
         const meta=extractHtmlMeta(html),base=$('target-url').value.trim()||meta.url||document.baseURI,{doc,candidates}=archiveCandidates(html,base); const threshold=Math.max(0,Number($('min-media').value||12))*1024; const localMatched=new Set(); const embedded=[]; const failures=[]; let skipped=0,optimized=0;
         for(const candidate of candidates){
@@ -756,8 +759,8 @@ let page =
         if(appendix.length)markdown+=`\n\n## Additional captured media\n\n${appendix.join('\n\n')}`;
         const metadata=frontmatter(meta.title,base,'Webclip browser archive').split('\n'); metadata.splice(-1,0,`media_candidates: ${candidates.length}`,`embedded_assets: ${embedded.length}`,`optimized_images: ${optimized}`,`skipped_assets: ${skipped}`,`unavailable_assets: ${failures.length}`); markdown=`${metadata.join('\n')}\n\n# ${meta.title}\n\n${markdown}`;
         state.baseName=safeBase(meta.title); present(markdown,'Browser archive',performance.now()-started,new TextEncoder().encode(html).length+state.assetFiles.reduce((sum,file)=>sum+file.size,0));
-        archiveReport(`<strong>${embedded.length} embedded</strong> · ${optimized} image${optimized===1?'':'s'} optimized · ${skipped} below threshold · ${failures.length} unavailable${failures.length?' (supply their downloaded files to retry)':''}`);
-      }catch(error){setState(error?.message||String(error),true);archiveReport(error?.message||String(error),true)}finally{button.disabled=false;button.classList.remove('busy');button.textContent='Build self-contained Markdown'}
+        if(downloadAfter)download();archiveReport(`<strong>${embedded.length} embedded</strong> · full page converted · ${optimized} image${optimized===1?'':'s'} optimized · ${skipped} below threshold · ${failures.length} unavailable${failures.length?' (supply their downloaded files to retry)':''}${downloadAfter?' · Markdown downloaded':''}`);
+      }catch(error){setState(error?.message||String(error),true);archiveReport(error?.message||String(error),true)}finally{buildButton.disabled=false;downloadButton.disabled=false;button.classList.remove('busy');buildButton.textContent='Build self-contained Markdown';downloadButton.textContent='Build + download .md'}
     }
 
     function waitForAnyDoc(){
@@ -800,7 +803,7 @@ let page =
     $('paste-capture').addEventListener('click',async()=>{try{const captured=await navigator.clipboard.readText();if(!captured.trim())throw new Error('The clipboard does not contain serialized HTML.');$('source').value=captured;$('input-meta').textContent=detectText(captured);updateInputStats(new TextEncoder().encode(captured).length);convertText();toast('Captured HTML pasted')}catch(error){archiveReport(error?.message||String(error),true)}});
     const assets=$('assets'),assetDrop=$('asset-drop'); assetDrop.addEventListener('click',()=>assets.click()); assets.addEventListener('change',()=>addAssetFiles(assets.files));
     ['dragenter','dragover','dragleave','drop'].forEach(name=>assetDrop.addEventListener(name,event=>{event.preventDefault();event.stopPropagation()})); assetDrop.addEventListener('dragover',()=>assetDrop.classList.add('over')); assetDrop.addEventListener('dragleave',()=>assetDrop.classList.remove('over')); assetDrop.addEventListener('drop',event=>{assetDrop.classList.remove('over');addAssetFiles(event.dataTransfer.files)});
-    $('clear-assets').addEventListener('click',()=>{state.assetFiles=[];assets.value='';archiveReport('No local media selected. Remote media will be attempted only when its server permits browser access.');toast('Local media cleared')}); $('build-archive').addEventListener('click',buildBrowserArchive);
+    $('clear-assets').addEventListener('click',()=>{state.assetFiles=[];assets.value='';archiveReport('No local media selected. Remote media will be attempted only when its server permits browser access.');toast('Local media cleared')}); $('build-archive').addEventListener('click',()=>buildBrowserArchive(false));$('download-archive').addEventListener('click',()=>buildBrowserArchive(true));
     $('deepwiki-open-copy').addEventListener('click',()=>copyDeepWikiExporter(true));$('deepwiki-copy').addEventListener('click',()=>copyDeepWikiExporter(false));
     $('replay-frame').addEventListener('load',()=>{const frame=$('replay-frame');if(!frame.srcdoc)return;$('replay-status').classList.add('ready');$('replay-status').querySelector('span').textContent='Interactive replay ready';$('capture-replay').disabled=false;$('export-replay').disabled=false});
     $('load-replay').addEventListener('click',loadReplay);$('clear-replay').addEventListener('click',clearReplay);$('capture-replay').addEventListener('click',()=>{state.replayRequest=crypto.randomUUID?.()||String(Date.now());$('replay-frame').contentWindow?.postMessage({channel:'webclip:host',type:'serialize',requestId:state.replayRequest},'*');$('replay-status').querySelector('span').textContent='Serializing current replay state…'});$('export-replay').addEventListener('click',()=>{$('replay-frame').contentWindow?.postMessage({channel:'webclip:host',type:'export-svg',scale:Math.min(6,Math.max(2,Number($('deepwiki-scale').value)||4))},'*');$('replay-status').querySelector('span').textContent='Rasterizing replay charts…'});
