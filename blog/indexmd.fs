@@ -52,25 +52,22 @@ title: null
   <div class="wrapper">
     <div class="section-header reveal">
       <h2>Get sHEL</h2>
-      <p>This project is still under development. Placeholder block.</p>
+      <p>Choose the interactive workstation installer for your host.</p>
     </div>
     <div class="install-block reveal">
       <div class="install-tabs">
-        <button class="tab-btn active" data-tab="macos">macOS</button>
-        <button class="tab-btn" data-tab="linux">Linux</button>
+        <button class="tab-btn active" data-tab="linux">Linux (Debian/Ubuntu)</button>
         <button class="tab-btn" data-tab="windows">Windows</button>
-        <button class="tab-btn" data-tab="cargo">Cargo</button>
-        <button class="tab-btn" data-tab="docker">Docker</button>
       </div>
       <div class="code-wrapper">
         <div class="code-block" id="install-code">
-          <span class="code-prompt">$</span>brew install shel
+          <span class="code-prompt">$</span>curl -fsSL https://shel.sh/install.sh | bash
         </div>
       </div>
     </div>
     <div style="text-align: center; margin-top: 24px;">
       <p style="color: var(--text-muted); font-size: 0.875rem;">
-        See the <a href="{{ site.docs_url }}/projects/macrohard/#installation-instructions">full installation guide</a> for more options.
+        Save the script locally to use its dry-run, project-root, or manifest options.
       </p>
     </div>
   </div>

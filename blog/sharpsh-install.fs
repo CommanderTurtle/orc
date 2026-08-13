@@ -132,6 +132,8 @@ fetch_manifest() {
     command -v curl >/dev/null 2>&1 || apt_install curl ca-certificates
     curl -fsSL "$MANIFEST_URL" -o "$MANIFEST_FILE"
   fi
+  jq -e '.schema == 1 and (.repositories | type == "object")' "$MANIFEST_FILE" >/dev/null \
+    || die "The installer manifest is not a supported sHEL schema."
 }
 repo_value() {
   jq -er --arg key "$1" --arg field "$2" '.repositories[$key][$field]' "$MANIFEST_FILE"
@@ -320,8 +322,13 @@ if selected "$kits" 3; then
 fi
 
 generate_site_config() {
-  local slug="$1" target_repo="$2" cname="$3" config_dir="$4"
+  local slug="$1" target_repo="$2" config_dir="$3"
   local module_slug
+  if ((DRY_RUN)); then
+    note "Write $config_dir/deploy-$slug.fs with the current deployment schema."
+    return
+  fi
+  mkdir -p "$config_dir"
   module_slug="$(printf '%s' "$slug" | tr -cs '[:alnum:]' '_' | sed -E 's/(^|_)([a-z])/\U\2/g')"
   cat >"$config_dir/deploy-$slug.fs" <<EOF
 module Config.Workflows.Deploy${module_slug}
@@ -333,7 +340,7 @@ let render() =
         TargetRepo = "$target_repo"
         TargetBranch = "main"
         TokenName = "GH_PAGES_TOKEN"
-        Cname = "$cname"
+        UseSharedStrings = false
     }
 EOF
 }
@@ -602,12 +609,18 @@ if selected "$kits" 1; then
 
     for config_file in "$orc_dir"/.github/config/deploy-*.fs; do
       [[ -f "$config_file" ]] || continue
-      if ! grep -qE '^[[:space:]]*Cname[[:space:]]*=' "$config_file"; then
-        if ((!DRY_RUN)); then
-          sed -i '/TokenName[[:space:]]*=/a\        Cname = ""' "$config_file"
-        else
-          note "Add an empty Cname field to $(basename "$config_file")."
+      if grep -qE '^[[:space:]]*Cname[[:space:]]*=' "$config_file" \
+          || ! grep -qE '^[[:space:]]*UseSharedStrings[[:space:]]*=' "$config_file"; then
+        if ((DRY_RUN)); then
+          note "Normalize $(basename "$config_file") to the current UseSharedStrings schema."
+          continue
         fi
+        sed -i '/^[[:space:]]*Cname[[:space:]]*=/d' "$config_file"
+        if ! grep -qE '^[[:space:]]*UseSharedStrings[[:space:]]*=' "$config_file"; then
+          sed -i '/TokenName[[:space:]]*=/a\        UseSharedStrings = false' "$config_file"
+        fi
+        grep -qE '^[[:space:]]*UseSharedStrings[[:space:]]*=' "$config_file" \
+          || die "Could not normalize $(basename "$config_file") to the current deployment schema."
       fi
     done
   fi
@@ -655,11 +668,10 @@ if selected "$kits" 1; then
       slug="$(prompt 'Orc destination folder slug' "$suggested_slug")"
       [[ "$slug" =~ ^[a-z0-9][a-z0-9_-]*$ ]] || die "Use lowercase letters, digits, underscore, or dash for folder slugs."
       target_repo="$(prompt 'GitHub Pages target repository name' "$slug")"
-      cname="$(prompt 'CNAME (blank for github.io default)' '')"
       destination="$orc_dir/$slug"
       import_orc_site "$input_path" "$destination" "$profile" "$generator_project" "$tools_dir"
       sites+=("$slug")
-      generate_site_config "$slug" "$target_repo" "$cname" "$orc_dir/.github/config"
+      generate_site_config "$slug" "$target_repo" "$orc_dir/.github/config"
       if confirm "Rename generated F# modules from Tools/modulefix proposals?" y; then
         rename_orc_modules "$orc_dir" "$destination" "$tools_dir"
       fi
@@ -780,7 +792,7 @@ EOF
 
     wrap_scaffold "$generator_project" "$scaffold" "$destination"
     rm -rf "$scaffold"
-    generate_site_config "$slug" "$target_repo" "$cname" "$orc_dir/.github/config"
+    generate_site_config "$slug" "$target_repo" "$orc_dir/.github/config"
   done
 
   if ((!DRY_RUN)); then
@@ -800,16 +812,18 @@ PY
     note "Generate defaultSiteFolders and deployment configs for: ${sites[*]}"
   fi
 
-  ports=()
-  for ((i=0; i<${#sites[@]}; i++)); do ports+=("$((4000 + i*111))"); done
-  port_csv="$(IFS=,; echo "${ports[*]-}")"
+  preview_sites=()
+  for ((i=0; i<${#sites[@]}; i++)); do
+    preview_sites+=("${sites[$i]}=$((4000 + i*111))")
+  done
+  preview_site_csv="$(IFS=,; echo "${preview_sites[*]-}")"
   note "Required repository secrets: GH_PAGES_TOKEN and SHARPENDABOT_TOKEN."
   note "Review: $orc_dir/.github/config/deploy-*.fs"
   note "Also review: $orc_dir/.github/config/shared/deploy-common.fs"
   note "Automation entrypoint: $orc_dir/.github/workflows/sharpendabot.yml"
-  if [[ -n "$port_csv" ]]; then
-    note "Preview ports: $port_csv"
-    [[ ",${extras// /}," == *,preview,* ]] && note "Preview: \"${preview_dir:-$PROJECTS_ROOT/preview}/target/release/orc-preview\" --repo \"$orc_dir\" --output \"$PROJECTS_ROOT/orc-preview\" --ports \"$port_csv\""
+  if [[ -n "$preview_site_csv" ]]; then
+    note "Preview sites: $preview_site_csv"
+    [[ ",${extras// /}," == *,preview,* ]] && note "Preview: \"${preview_dir:-$PROJECTS_ROOT/preview}/target/release/orc-preview\" --repo \"$orc_dir\" --output \"$PROJECTS_ROOT/orc-preview\" --sites \"$preview_site_csv\""
   else
     note "No deployment sites are configured yet."
   fi

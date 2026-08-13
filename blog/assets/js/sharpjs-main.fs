@@ -136,11 +136,8 @@ let file = """// ============================================================
 
   if (installTabs.length > 0 && installCodeBlock) {
     var installCommands = {
-      'macos': { html: '<span class="code-prompt">$</span>brew install shel', plain: 'brew install shel' },
-      'linux': { html: '<span class="code-prompt">$</span>curl -fsSL https://shel.sh/install.sh | sh', plain: 'curl -fsSL https://shel.sh/install.sh | sh' },
-      'cargo': { html: '<span class="code-prompt">$</span>cargo install shel-cli', plain: 'cargo install shel-cli' },
-      'windows': { html: '<span class="code-prompt">></span>winget install shel', plain: 'winget install shel' },
-      'docker': { html: '<span class="code-prompt">$</span>docker pull shel/shel-cli', plain: 'docker pull shel/shel-cli' }
+      'linux': { html: '<span class="code-prompt">$</span>curl -fsSL https://shel.sh/install.sh | bash', plain: 'curl -fsSL https://shel.sh/install.sh | bash' },
+      'windows': { html: '<span class="code-prompt">PS&gt;</span>irm https://shel.sh/install.ps1 | iex', plain: 'irm https://shel.sh/install.ps1 | iex' }
     };
 
     if (installCodeWrapper) {
@@ -151,9 +148,9 @@ let file = """// ============================================================
 
       btn.addEventListener('click', function() {
         var activeTab = document.querySelector('.tab-btn.active');
-        var tabName = activeTab ? activeTab.dataset.tab : 'macos';
+        var tabName = activeTab ? activeTab.dataset.tab : 'linux';
         var cmd = installCommands[tabName];
-        var text = cmd ? cmd.plain : 'brew install shel';
+        var text = cmd ? cmd.plain : 'curl -fsSL https://shel.sh/install.sh | bash';
         navigator.clipboard.writeText(text).then(function() {
           btn.classList.add('copied');
           btn.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3.5 3.5L13 5"/></svg>';

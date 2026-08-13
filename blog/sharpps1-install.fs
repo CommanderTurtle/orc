@@ -76,10 +76,15 @@ function Ensure-WingetPackage {
     if (-not $DryRun) { Refresh-Path }
 }
 function Get-Manifest {
-    if (Test-Path -LiteralPath $Manifest) {
-        return Get-Content -Raw -LiteralPath $Manifest | ConvertFrom-Json
+    $result = if (Test-Path -LiteralPath $Manifest) {
+        Get-Content -Raw -LiteralPath $Manifest | ConvertFrom-Json
+    } else {
+        Invoke-RestMethod -Uri $Manifest
     }
-    return Invoke-RestMethod -Uri $Manifest
+    if ($result.schema -ne 1 -or $null -eq $result.repositories) {
+        throw "The installer manifest is not a supported sHEL schema."
+    }
+    return $result
 }
 function Get-Repo([string]$Key) {
     return $script:SuiteManifest.repositories.$Key
@@ -208,7 +213,7 @@ function Write-Utf8NoBom([string]$Path, [string]$Content) {
     if ($parent) { New-Item -ItemType Directory -Force -Path $parent | Out-Null }
     [IO.File]::WriteAllText($Path, $Content, [Text.UTF8Encoding]::new($false))
 }
-function New-DeployConfig([string]$OrcDir, [string]$Slug, [string]$TargetRepo, [string]$Cname) {
+function New-DeployConfig([string]$OrcDir, [string]$Slug, [string]$TargetRepo) {
     $module = (($Slug -split "[^A-Za-z0-9]+" | ForEach-Object {
         if ($_) { $_.Substring(0,1).ToUpperInvariant() + $_.Substring(1) }
     }) -join "")
@@ -223,10 +228,36 @@ let render() =
         TargetRepo = "$TargetRepo"
         TargetBranch = "main"
         TokenName = "GH_PAGES_TOKEN"
-        Cname = "$Cname"
+        UseSharedStrings = false
     }
 "@
     Write-Utf8NoBom (Join-Path $OrcDir ".github\config\deploy-$Slug.fs") $body
+}
+function Repair-DeployConfig([string]$Path) {
+    $source = Get-Content -Raw -LiteralPath $Path
+    $newline = if ($source.Contains("`r`n")) { "`r`n" } else { "`n" }
+    $updated = [regex]::Replace(
+        $source,
+        '(?m)^[ \t]*Cname[ \t]*=.*(?:\r?\n)?',
+        ''
+    )
+    if ($updated -notmatch '(?m)^\s*UseSharedStrings\s*=') {
+        $updated = [regex]::Replace(
+            $updated,
+            '(?m)^(\s*TokenName\s*=.*)$',
+            ('$1' + $newline + '        UseSharedStrings = false'),
+            1
+        )
+    }
+    if ($updated -notmatch '(?m)^\s*UseSharedStrings\s*=') {
+        throw "Could not normalize $([IO.Path]::GetFileName($Path)) to the current deployment schema."
+    }
+    if ($updated -eq $source) { return }
+    if ($DryRun) {
+        Write-Note "Normalize $([IO.Path]::GetFileName($Path)) to the current UseSharedStrings schema."
+        return
+    }
+    Write-Utf8NoBom $Path $updated
 }
 function Convert-ScaffoldToOrc([string]$GeneratorProject, [string]$Scaffold, [string]$Destination) {
     if (-not $DryRun) { New-Item -ItemType Directory -Force -Path $Destination | Out-Null }
@@ -582,20 +613,7 @@ if (Test-Selection $kits "1") {
             if ($sourceMatch.Success -and -not $sites.Contains($sourceMatch.Groups[1].Value)) {
                 $sites.Add($sourceMatch.Groups[1].Value)
             }
-            if ($configSource -notmatch '(?m)^\s*Cname\s*=') {
-                if ($DryRun) {
-                    Write-Note "Add an empty Cname field to $($deployFile.Name)."
-                }
-                else {
-                    $configSource = [regex]::Replace(
-                        $configSource,
-                        '(?m)^(\s*TokenName\s*=.*)$',
-                        '$1' + "`n        Cname = `"`"",
-                        1
-                    )
-                    Write-Utf8NoBom $deployFile.FullName $configSource
-                }
-            }
+            Repair-DeployConfig $deployFile.FullName
         }
     }
 
@@ -649,11 +667,10 @@ if (Test-Selection $kits "1") {
                 throw "Use lowercase letters, digits, underscore, or dash for folder slugs."
             }
             $targetRepo = Read-Default "GitHub Pages target repository name" $slug
-            $cname = Read-Default "CNAME (blank for github.io default)" ""
             $destination = Join-Path $orcDir $slug
             Invoke-OrcSiteImport $inputPath $destination $profile $generatorProject $tools
             if (-not $sites.Contains($slug)) { $sites.Add($slug) }
-            New-DeployConfig $orcDir $slug $targetRepo $cname
+            New-DeployConfig $orcDir $slug $targetRepo
             if (Confirm-Choice "Rename generated F# modules from Tools/modulefix proposals?" $true) {
                 Rename-OrcModules $orcDir $destination $tools
             }
@@ -782,7 +799,7 @@ if (Test-Selection $kits "1") {
         }
         Convert-ScaffoldToOrc $generatorProject $scaffold $destination
         if (-not $DryRun -and (Test-Path $scaffold)) { Remove-Item -LiteralPath $scaffold -Recurse -Force }
-        New-DeployConfig $orcDir $slug $targetRepo $cname
+        New-DeployConfig $orcDir $slug $targetRepo
     }
 
     if (-not $DryRun) {
@@ -799,18 +816,18 @@ if (Test-Selection $kits "1") {
         Write-Note "Generate defaultSiteFolders and deployment configs for: $($sites -join ', ')"
     }
 
-    $ports = if ($sites.Count -gt 0) {
-        0..($sites.Count - 1) | ForEach-Object { 4000 + ($_ * 111) }
+    $previewSites = if ($sites.Count -gt 0) {
+        0..($sites.Count - 1) | ForEach-Object { "$($sites[$_])=$(4000 + ($_ * 111))" }
     } else { @() }
-    $portCsv = $ports -join ","
+    $previewSiteCsv = $previewSites -join ","
     Write-Note "Required repository secrets: GH_PAGES_TOKEN and SHARPENDABOT_TOKEN."
     Write-Note "Review: $orcDir\.github\config\deploy-*.fs"
     Write-Note "Also review: $orcDir\.github\config\shared\deploy-common.fs"
     Write-Note "Automation entrypoint: $orcDir\.github\workflows\sharpendabot.yml"
-    if ($portCsv) {
-        Write-Note "Preview ports: $portCsv"
+    if ($previewSiteCsv) {
+        Write-Note "Preview sites: $previewSiteCsv"
         if (Test-Selection $extras "preview") {
-            Write-Note "Preview: $preview\target\release\orc-preview.exe --repo `"$orcDir`" --output `"$ProjectsRoot\orc-preview`" --ports `"$portCsv`""
+            Write-Note "Preview: $preview\target\release\orc-preview.exe --repo `"$orcDir`" --output `"$ProjectsRoot\orc-preview`" --sites `"$previewSiteCsv`""
         }
     }
     else {
