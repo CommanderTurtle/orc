@@ -30,6 +30,7 @@
     <Compile Include="DomRepresentation.fs" />
     <Compile Include="HtmlToGiraffe.fs" />
     <Compile Include="Verification.fs" />
+    <Compile Include="SharedStringCatalog.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,8 @@
 // Usage:
 //   dotnet fsi GenerateConfig.fsx all
 //   dotnet fsi GenerateConfig.fsx render-site docs .rendered/docs --clean
+//   dotnet fsi GenerateConfig.fsx render-site app .rendered/app --shared --shared-file=app/strings/sharedstrings.fs
+//   dotnet fsi GenerateConfig.fsx render-changes docs .rendered/docs changes.txt
 //   dotnet fsi GenerateConfig.fsx render-all .rendered --clean
 //   dotnet fsi GenerateConfig.fsx render-workflows .rendered/workflows --clean
 //   dotnet fsi GenerateConfig.fsx local-cycle .rendered/local-cycle --clean
@@ -31,6 +33,13 @@ let repoRoot = Directory.GetCurrentDirectory()
 let fullPath (path: string) =
     if Path.IsPathRooted(path) then Path.GetFullPath(path)
     else Path.GetFullPath(Path.Combine(repoRoot, path))
+
+let isPathInside (root: string) (path: string) =
+    let rel = Path.GetRelativePath(root, path)
+    not (Path.IsPathRooted(rel))
+    && not (rel.Equals("..", StringComparison.Ordinal))
+    && not (rel.StartsWith(".." + string Path.DirectorySeparatorChar, StringComparison.Ordinal))
+    && not (rel.StartsWith(".." + string Path.AltDirectorySeparatorChar, StringComparison.Ordinal))
 
 let quotePath (path: string) = path.Replace("\\", "\\\\").Replace("\"", "\\\"")
 
@@ -220,7 +229,7 @@ let generateAll() =
 let ignoredDirectories =
     set [
         ".git"; ".github"; ".venv"; ".sass-cache"; ".jekyll-cache"; ".cache"
-        ".deploy"; "bin"; "obj"; "node_modules"; "site"; "_site"; "dist"; "public"; "output"
+        ".deploy"; "bin"; "obj"; "target"; "node_modules"; "site"; "_site"; "dist"; "public"; "output"
     ]
 
 let ignoredLiteralFiles =
@@ -346,7 +355,12 @@ let injectPrelude (sourceText: string) =
         String.concat newline (before @ prelude @ after)
 
 let stageFsFile (stageRoot: string) (sourceRoot: string) (sourcePath: string) =
-    let rel = relativeTo sourceRoot sourcePath
+    let sourcePath = Path.GetFullPath(sourcePath)
+    let rel =
+        if isPathInside sourceRoot sourcePath then
+            relativeTo sourceRoot sourcePath
+        else
+            Path.Combine("__external", Path.GetFileName(sourcePath))
     let stagedPath = Path.Combine(stageRoot, rel)
     let text = File.ReadAllText(sourcePath)
     writeFileEnsuringDirectory stagedPath (injectPrelude text)
@@ -480,7 +494,32 @@ let renderFsFilesBatch (sourceRoot: string) (helpers: string list) (targets: (st
         finally
             if Directory.Exists(stageRoot) then Directory.Delete(stageRoot, true)
 
-let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) =
+let withSharedStringPrelude (sharedFile: string option) operation =
+    match sharedFile with
+    | None -> operation()
+    | Some path ->
+        let full = fullPath path
+        if not (File.Exists(full)) then
+            failwithf "Shared-string catalog not found: %s" full
+        let previous = Environment.GetEnvironmentVariable("SHARED_FSHARP_OPENS")
+        let existing = previous |> Option.ofObj |> Option.defaultValue ""
+        let opens =
+            existing
+            |> splitLines
+            |> List.map (fun line -> line.Trim())
+            |> List.filter (String.IsNullOrWhiteSpace >> not)
+        let updated =
+            if opens |> List.exists (fun line -> line.Equals("SharedStrings", StringComparison.OrdinalIgnoreCase) || line.Equals("open SharedStrings", StringComparison.OrdinalIgnoreCase)) then
+                existing
+            elif String.IsNullOrWhiteSpace(existing) then
+                "SharedStrings"
+            else
+                existing + Environment.NewLine + "SharedStrings"
+        Environment.SetEnvironmentVariable("SHARED_FSHARP_OPENS", updated)
+        try operation()
+        finally Environment.SetEnvironmentVariable("SHARED_FSHARP_OPENS", previous)
+
+let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) (sharedFile: string option) =
     let sourceRoot = fullPath sourceFolder
     let outputRoot = fullPath outputFolder
 
@@ -504,8 +543,13 @@ let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) =
     let fsFiles = files |> List.filter (fun path -> Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase))
 
     let helperFiles =
-        fsFiles
-        |> List.filter (fun path -> renderTargetForFsFile path |> Option.isNone)
+        [
+            yield! fsFiles |> List.filter (fun path -> renderTargetForFsFile path |> Option.isNone)
+            match sharedFile with
+            | Some path -> yield fullPath path
+            | None -> ()
+        ]
+        |> List.distinct
 
     let mutable copied = 0
     let renderTargets = ResizeArray<string * string>()
@@ -525,7 +569,9 @@ let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) =
                 copyFileEnsuringDirectory file dest
                 copied <- copied + 1
 
-    let rendered = renderFsFilesBatch sourceRoot helperFiles (renderTargets |> Seq.toList)
+    let rendered =
+        withSharedStringPrelude sharedFile (fun () ->
+            renderFsFilesBatch sourceRoot helperFiles (renderTargets |> Seq.toList))
 
     for fs in Directory.GetFiles(outputRoot, "*.fs", SearchOption.AllDirectories) do
         File.Delete(fs)
@@ -537,13 +583,205 @@ let renderSite (sourceFolder: string) (outputFolder: string) (clean: bool) =
     printfn "  rendered: %d F# file(s)" rendered
     printfn "  copied:   %d literal file(s)" copied
 
+type ReactorChange =
+    | Updated of string
+    | Deleted of string
+    | RebuildAll
+
+let outputPathForSource (sourceRoot: string) (outputRoot: string) (sourcePath: string) =
+    let rel = relativeTo sourceRoot sourcePath
+    let directDest = Path.Combine(outputRoot, rel)
+
+    if Path.GetExtension(sourcePath).Equals(".fs", StringComparison.OrdinalIgnoreCase) then
+        renderTargetForFsFile sourcePath
+        |> Option.map (fun targetName -> Path.Combine(Path.GetDirectoryName(directDest), targetName))
+    else
+        Some directDest
+
+let deleteReactorOutput (outputRoot: string) (path: string) =
+    let full = Path.GetFullPath(path)
+    if not (isPathInside outputRoot full) then
+        failwithf "Refusing to delete reactor output outside %s: %s" outputRoot full
+
+    if File.Exists(full) then
+        File.Delete(full)
+        printfn "  deleted:  %s" (relativeTo outputRoot full)
+
+let publishFileAtomically (stagedPath: string) (destPath: string) =
+    let destDir = Path.GetDirectoryName(destPath)
+    if not (String.IsNullOrWhiteSpace destDir) then
+        Directory.CreateDirectory(destDir) |> ignore
+
+    let tempName =
+        "." + Path.GetFileName(destPath) + ".orc-reactor-" + Guid.NewGuid().ToString("N") + ".tmp"
+    let tempPath = Path.Combine(destDir, tempName)
+
+    try
+        File.Copy(stagedPath, tempPath, true)
+        File.Move(tempPath, destPath, true)
+    finally
+        if File.Exists(tempPath) then
+            File.Delete(tempPath)
+
+let readReactorChanges (changeFile: string) =
+    File.ReadAllLines(fullPath changeFile)
+    |> Array.toList
+    |> List.choose (fun line ->
+        if String.IsNullOrWhiteSpace line then
+            None
+        else
+            let pieces = line.Split([| '\t' |], 2, StringSplitOptions.None)
+            match pieces.[0].Trim().ToUpperInvariant(), pieces |> Array.tryItem 1 with
+            | "A", _ -> Some RebuildAll
+            | "U", Some path -> Some (Updated (Path.GetFullPath(path)))
+            | "D", Some path -> Some (Deleted (Path.GetFullPath(path)))
+            | kind, _ -> failwithf "Invalid reactor change line (%s): %s" kind line)
+
+let renderChanges (sourceFolder: string) (outputFolder: string) (changeFile: string) (sharedFile: string option) =
+    let sourceRoot = fullPath sourceFolder
+    let outputRoot = fullPath outputFolder
+
+    if not (Directory.Exists(sourceRoot)) then
+        failwithf "Source folder not found: %s" sourceRoot
+
+    Directory.CreateDirectory(outputRoot) |> ignore
+
+    let changes = readReactorChanges changeFile
+    let forceAll = changes |> List.exists ((=) RebuildAll)
+
+    let changedPaths =
+        changes
+        |> List.choose (function Updated path | Deleted path -> Some path | RebuildAll -> None)
+
+    for path in changedPaths do
+        if not (isPathInside sourceRoot path) then
+            failwithf "Reactor change is outside the watched source root: %s" path
+
+    let files =
+        Directory.GetFiles(sourceRoot, "*", SearchOption.AllDirectories)
+        |> Array.filter (fun path ->
+            not (isInsideIgnoredDirectory sourceRoot path)
+            && not (isPathInside outputRoot path))
+        |> Array.toList
+
+    let fsFiles =
+        files
+        |> List.filter (fun path -> Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase))
+
+    let helperFiles =
+        [
+            yield! fsFiles |> List.filter (fun path -> renderTargetForFsFile path |> Option.isNone)
+            match sharedFile with
+            | Some path -> yield fullPath path
+            | None -> ()
+        ]
+        |> List.distinct
+
+    let renderTargets =
+        fsFiles
+        |> List.choose (fun sourcePath ->
+            outputPathForSource sourceRoot outputRoot sourcePath
+            |> Option.map (fun destPath -> sourcePath, destPath))
+
+    let updatedPaths =
+        changes
+        |> List.choose (function Updated path when File.Exists(path) -> Some path | _ -> None)
+
+    let deletedPaths =
+        changes
+        |> List.choose (function Deleted path -> Some path | _ -> None)
+
+    for deletedPath in deletedPaths do
+        let name = Path.GetFileName(deletedPath)
+        if not (ignoredLiteralFiles.Contains(name)) then
+            outputPathForSource sourceRoot outputRoot deletedPath
+            |> Option.iter (deleteReactorOutput outputRoot)
+
+    let deletedHelper =
+        deletedPaths
+        |> List.exists (fun path ->
+            Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase)
+            && renderTargetForFsFile path |> Option.isNone)
+
+    let changedHelpers =
+        updatedPaths
+        |> List.filter (fun path ->
+            Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase)
+            && renderTargetForFsFile path |> Option.isNone)
+
+    let targetWasUpdated (sourcePath: string) =
+        updatedPaths
+        |> List.exists (fun path -> path.Equals(sourcePath, StringComparison.OrdinalIgnoreCase))
+
+    let targetDependsOnChangedHelper (sourcePath: string) =
+        if List.isEmpty changedHelpers then
+            false
+        else
+            let sourceText = File.ReadAllText(sourcePath)
+            changedHelpers |> List.exists (helperIsReferencedBy (injectPrelude sourceText))
+
+    let selectedTargets =
+        if forceAll || deletedHelper then
+            renderTargets
+        else
+            renderTargets
+            |> List.filter (fun (sourcePath, _) ->
+                targetWasUpdated sourcePath || targetDependsOnChangedHelper sourcePath)
+        |> List.distinctBy (fun (sourcePath, _) -> sourcePath.ToUpperInvariant())
+
+    let literalUpdates =
+        if forceAll then
+            files
+            |> List.filter (fun path ->
+                not (Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase))
+                && not (ignoredLiteralFiles.Contains(Path.GetFileName(path))))
+        else
+            updatedPaths
+            |> List.filter (fun path ->
+                not (isInsideIgnoredDirectory sourceRoot path)
+                && not (Path.GetExtension(path).Equals(".fs", StringComparison.OrdinalIgnoreCase))
+                && not (ignoredLiteralFiles.Contains(Path.GetFileName(path))))
+        |> List.distinctBy (fun path -> path.ToUpperInvariant())
+
+    for sourcePath in literalUpdates do
+        let destPath = Path.Combine(outputRoot, relativeTo sourceRoot sourcePath)
+        publishFileAtomically sourcePath destPath
+        printfn "  copied:   %s" (relativeTo sourceRoot sourcePath)
+
+    let mutable rendered = 0
+    if not (List.isEmpty selectedTargets) then
+        let stageRoot =
+            Path.Combine(Path.GetTempPath(), "orc-reactor-output-" + Guid.NewGuid().ToString("N"))
+        try
+            let stagedTargets =
+                selectedTargets
+                |> List.map (fun (sourcePath, destPath) ->
+                    let rel = relativeTo outputRoot destPath
+                    sourcePath, Path.Combine(stageRoot, rel))
+
+            rendered <-
+                withSharedStringPrelude sharedFile (fun () ->
+                    renderFsFilesBatch sourceRoot helperFiles stagedTargets)
+
+            for ((_, destPath), (_, stagedPath)) in List.zip selectedTargets stagedTargets do
+                publishFileAtomically stagedPath destPath
+                printfn "  rendered: %s" (relativeTo outputRoot destPath)
+        finally
+            if Directory.Exists(stageRoot) then
+                Directory.Delete(stageRoot, true)
+
+    printfn "Reactor batch complete"
+    printfn "  rendered: %d F# file(s)" rendered
+    printfn "  copied:   %d literal file(s)" literalUpdates.Length
+    printfn "  deleted:  %d source path(s) reconciled" deletedPaths.Length
+
 let defaultSiteFolders =
     [ "docs"; "blog"; "vite"; "app"; "pages"; "lab"; "net" ]
 
 let renderAll (outputRoot: string) (clean: bool) =
     for folder in defaultSiteFolders do
         if Directory.Exists(fullPath folder) then
-            renderSite folder (Path.Combine(outputRoot, folder)) clean
+            renderSite folder (Path.Combine(outputRoot, folder)) clean None
 
 // =============================================================================
 // Local Sharpendabot / deploy-cycle simulation
@@ -742,7 +980,7 @@ let localCycle (outputFolder: string) (clean: bool) =
             if Directory.Exists(fullPath site) then
                 let renderedRoot = Path.Combine(stageRoot, site, "output")
                 let renderSw = Stopwatch.StartNew()
-                renderSite site renderedRoot false
+                renderSite site renderedRoot false None
                 renderSw.Stop()
 
                 let buildKind, publishRoot, buildSeconds = detectAndBuildSite site renderedRoot logsDir
@@ -872,8 +1110,61 @@ let args =
 let hasFlag flag =
     args |> Array.exists (fun arg -> arg.Equals(flag, StringComparison.OrdinalIgnoreCase))
 
+let valueOptions =
+    set [ "--shared-file"; "--sharedstringspointer"; "--shared-strings-pointer" ]
+
+let tryOptionValue (names: string list) =
+    let normalized = names |> List.map (fun name -> name.ToLowerInvariant()) |> Set.ofList
+
+    let rec find index =
+        if index >= args.Length then
+            None
+        else
+            let arg = args.[index]
+            let equals = arg.IndexOf('=')
+            if equals > 0 then
+                let name = arg.Substring(0, equals).ToLowerInvariant()
+                if normalized.Contains(name) then Some (arg.Substring(equals + 1)) else find (index + 1)
+            elif normalized.Contains(arg.ToLowerInvariant()) then
+                if index + 1 >= args.Length || args.[index + 1].StartsWith("--") then
+                    failwithf "Option %s requires a value" arg
+                Some args.[index + 1]
+            else
+                find (index + 1)
+
+    find 0
+
 let withoutFlags =
-    args |> Array.filter (fun arg -> not (arg.StartsWith("--")))
+    let positional = ResizeArray<string>()
+    let mutable index = 0
+    while index < args.Length do
+        let arg = args.[index]
+        if arg.StartsWith("--") then
+            let optionName =
+                match arg.IndexOf('=') with
+                | equals when equals > 0 -> arg.Substring(0, equals).ToLowerInvariant()
+                | _ -> arg.ToLowerInvariant()
+            if valueOptions.Contains(optionName) && not (arg.Contains('=')) then
+                index <- index + 1
+        else
+            positional.Add(arg)
+        index <- index + 1
+    positional.ToArray()
+
+let sharedFileOption =
+    tryOptionValue [ "--shared-file"; "--sharedstringspointer"; "--shared-strings-pointer" ]
+
+let sharedStringsRequested =
+    hasFlag "--shared"
+    || hasFlag "--sharedstrings"
+    || sharedFileOption.IsSome
+
+let sharedFileFor sourceFolder =
+    match sharedFileOption with
+    | Some path -> Some (fullPath path)
+    | None when sharedStringsRequested ->
+        Some (Path.Combine(fullPath sourceFolder, "strings", "sharedstrings.fs"))
+    | None -> None
 
 match withoutFlags |> Array.tryHead with
 | Some "all" | None -> generateAll()
@@ -884,8 +1175,12 @@ match withoutFlags |> Array.tryHead with
 | Some "sync" -> syncAllYml()
 | Some "render-site" ->
     if withoutFlags.Length < 3 then
-        failwith "Usage: dotnet fsi GenerateConfig.fsx render-site <source-folder> <output-folder> [--clean]"
-    renderSite withoutFlags.[1] withoutFlags.[2] (hasFlag "--clean")
+        failwith "Usage: dotnet fsi GenerateConfig.fsx render-site <source-folder> <output-folder> [--clean] [--shared] [--shared-file=<catalog.fs>]"
+    renderSite withoutFlags.[1] withoutFlags.[2] (hasFlag "--clean") (sharedFileFor withoutFlags.[1])
+| Some "render-changes" ->
+    if withoutFlags.Length < 4 then
+        failwith "Usage: dotnet fsi GenerateConfig.fsx render-changes <source-folder> <output-folder> <changes-file> [--shared] [--shared-file=<catalog.fs>]"
+    renderChanges withoutFlags.[1] withoutFlags.[2] withoutFlags.[3] (sharedFileFor withoutFlags.[1])
 | Some "render-all" ->
     let outRoot =
         if withoutFlags.Length >= 2 then withoutFlags.[1]
@@ -908,7 +1203,8 @@ match withoutFlags |> Array.tryHead with
     printfn "  dotnet fsi GenerateConfig.fsx all"
     printfn "  dotnet fsi GenerateConfig.fsx main|docs|app|blog"
     printfn "  dotnet fsi GenerateConfig.fsx sync"
-    printfn "  dotnet fsi GenerateConfig.fsx render-site <source-folder> <output-folder> [--clean]"
+    printfn "  dotnet fsi GenerateConfig.fsx render-site <source-folder> <output-folder> [--clean] [--shared] [--shared-file=<catalog.fs>]"
+    printfn "  dotnet fsi GenerateConfig.fsx render-changes <source-folder> <output-folder> <changes-file> [--shared] [--shared-file=<catalog.fs>]"
     printfn "  dotnet fsi GenerateConfig.fsx render-all [output-root] [--clean]"
     printfn "  dotnet fsi GenerateConfig.fsx render-workflows [output-root] [--clean]"
     printfn "  dotnet fsi GenerateConfig.fsx local-cycle [output-root] [--clean]"

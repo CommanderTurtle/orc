@@ -101,8 +101,22 @@ Then add them to this repo's settings as secrets with the same name.
 # Perform a bundle:
 dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "input" "output"
 
-# Test a render:
-dotnet fsi GenerateConfig.fsx render-site "input" "output" --clean
+# Bundle and reconcile inline Base64 against an existing shared-string catalog.
+# The same flags work with wrap-file; known hashes are reused and only new assets append.
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "input" "output" `
+    --shared --shared-file="C:\path\to\site\strings\sharedstrings.fs"
+
+# Inspect the catalog, or add one asset without opening the large F# file.
+dotnet run --project .\src\generator\Generator.fsproj -- shared-list "output" --shared-file="C:\path\to\site\strings\sharedstrings.fs"
+dotnet run --project .\src\generator\Generator.fsproj -- shared-asset "output" "C:\path\to\asset.png" --shared-file="C:\path\to\site\strings\sharedstrings.fs" --name=HeroLogo
+
+# Test a render. Point at the same catalog when wrapped sources contain SharedStrings references:
+dotnet fsi GenerateConfig.fsx render-site "input" "output" --clean `
+    --shared-file="C:\path\to\site\strings\sharedstrings.fs"
+
+# Incremental renderers use the same canonical runtime and catalog pointer:
+dotnet fsi GenerateConfig.fsx render-changes "input" "output" "changes.txt" `
+    --shared-file="C:\path\to\site\strings\sharedstrings.fs"
 
 <# ###### #>
 # Optionally run before bundling a dir (prevent DSL/giraffe on edge cases like jinja html / codegolf files):

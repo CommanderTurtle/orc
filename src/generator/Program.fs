@@ -22,6 +22,8 @@ module Program =
         AnsiConsole.MarkupLine("  [green]batch[/] <input-dir> <output>  Batch convert HTML files")
         AnsiConsole.MarkupLine("  [green]wrap-file[/] <input> <output>  Wrap one text/static file as sharp* F#")
         AnsiConsole.MarkupLine("  [green]wrap-batch[/] <input-dir> <output-dir>  Wrap a folder tree as sharp* F#")
+        AnsiConsole.MarkupLine("  [green]shared-asset[/] <site-dir> <asset>  Add one binary to a shared-string catalog")
+        AnsiConsole.MarkupLine("  [green]shared-list[/] <site-dir>          List catalog metadata without payloads")
         AnsiConsole.MarkupLine("  [green]wrap-site[/] <input-dir> <output-dir>  Re-import a rendered site tree as F# source")
         AnsiConsole.MarkupLine("  [green]verify[/]                      Verify conversion integrity")
         AnsiConsole.MarkupLine("  [green]help[/]                        Show this help message")
@@ -31,6 +33,12 @@ module Program =
         AnsiConsole.MarkupLine("  [green]--dsl[/]                       Use proper Giraffe DSL (default)")
         AnsiConsole.MarkupLine("  [green]--literal[/]                   Use triple-quoted literal mode")
         AnsiConsole.MarkupLine("  [green]--lines[/]                     Use line-by-line variable mode")
+        AnsiConsole.WriteLine()
+        AnsiConsole.MarkupLine("[yellow]Shared-string options for wrap-file/wrap-batch:[/]")
+        AnsiConsole.MarkupLine("  [green]--shared[/]                    Extract inline Base64 after wrapping")
+        AnsiConsole.MarkupLine("  [green]--shared-file=<path>[/]        Reuse and append the pointed sharedstrings.fs")
+        AnsiConsole.MarkupLine("  [green]--name=<binding>[/]            Binding name for shared-asset")
+        AnsiConsole.MarkupLine("  [green]--mime=<type/subtype>[/]       MIME override for shared-asset")
         AnsiConsole.WriteLine()
 
     let printVersion () =
@@ -211,6 +219,56 @@ module Program =
         ensureParentDirectory outputPath
         File.Copy(inputPath, outputPath, true)
 
+    let tryOptionValue (names: string list) (args: string[]) =
+        names
+        |> List.tryPick (fun name ->
+            let prefix = name + "="
+            args
+            |> Array.tryFindIndex (fun arg -> arg.Equals(name, StringComparison.OrdinalIgnoreCase))
+            |> Option.bind (fun index ->
+                if index + 1 < args.Length && not (args.[index + 1].StartsWith("--")) then
+                    Some args.[index + 1]
+                else
+                    None)
+            |> Option.orElseWith (fun () ->
+                args
+                |> Array.tryPick (fun arg ->
+                    if arg.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) then
+                        Some(arg.Substring(prefix.Length))
+                    else
+                        None)))
+
+    let hasAnyFlag (names: string list) (args: string[]) =
+        names
+        |> List.exists (fun name ->
+            args
+            |> Array.exists (fun arg ->
+                arg.Equals(name, StringComparison.OrdinalIgnoreCase)
+                || arg.StartsWith(name + "=", StringComparison.OrdinalIgnoreCase)))
+
+    let sharedCatalogOption (args: string[]) =
+        tryOptionValue
+            [ "--shared-file"; "--sharedstringspointer"; "--shared-strings-pointer" ]
+            args
+
+    let sharedStringsEnabled (args: string[]) =
+        hasAnyFlag
+            [ "--shared"; "--sharedstrings"; "--generate-sharedstrings" ]
+            args
+        || Option.isSome (sharedCatalogOption args)
+
+    let reconcileSharedStrings (scanRoot: string) (args: string[]) =
+        if sharedStringsEnabled args then
+            let result = SharedStringCatalog.reconcile scanRoot (sharedCatalogOption args)
+            AnsiConsole.MarkupLine("[green]Shared strings reconciled.[/]")
+            AnsiConsole.WriteLine(sprintf "  catalog:   %s" result.CatalogPath)
+            AnsiConsole.WriteLine(sprintf "  wrappers:  %d" result.WrappersChanged)
+            AnsiConsole.WriteLine(sprintf "  references:%d" result.ReferencesRewritten)
+            AnsiConsole.WriteLine(sprintf "  added:     %d" result.AssetsAdded)
+            AnsiConsole.WriteLine(sprintf "  total:     %d" result.AssetsTotal)
+            if result.SkippedPayloads > 0 then
+                AnsiConsole.WriteLine(sprintf "  skipped:   %d" result.SkippedPayloads)
+
     let handleWrapFile (args: string[]) =
         if args.Length < 3 then
             AnsiConsole.MarkupLine("[red]Error:[/] Input and output required")
@@ -231,16 +289,20 @@ module Program =
                     if ext = ".html" || ext = ".htm" then
                         convertHtmlToDslModule inputPath outputPath moduleName
                         AnsiConsole.MarkupLine(sprintf "[green]Success:[/] Converted HTML to [blue]%s[/]" outputPath)
-                        0
                     else
                         match wrapperFileNameFor inputPath with
                         | Some _ when writeTextWrapper inputPath outputPath moduleName ->
                             AnsiConsole.MarkupLine(sprintf "[green]Success:[/] Wrapped file to [blue]%s[/]" outputPath)
-                            0
                         | _ ->
                             copyLiteralFile inputPath outputPath
                             AnsiConsole.MarkupLine(sprintf "[yellow]Copied literal:[/] %s" outputPath)
-                            0
+
+                    let scanRoot =
+                        let directory = Path.GetDirectoryName(Path.GetFullPath(outputPath))
+                        if String.IsNullOrWhiteSpace(directory) then Directory.GetCurrentDirectory()
+                        else directory
+                    reconcileSharedStrings scanRoot args
+                    0
                 with ex ->
                     AnsiConsole.MarkupLine(sprintf "[red]Error:[/] %s" ex.Message)
                     1
@@ -298,11 +360,63 @@ module Program =
                                 copyLiteralFile inputPath (Path.Combine(outputDir, rel))
                                 copied <- copied + 1
 
+                    reconcileSharedStrings outputDir args
                     AnsiConsole.MarkupLine(sprintf "[green]Success:[/] Wrapped [blue]%d[/], converted HTML [blue]%d[/], copied literal [blue]%d[/]" wrapped htmlConverted copied)
                     0
                 with ex ->
                     AnsiConsole.MarkupLine(sprintf "[red]Error:[/] %s" ex.Message)
                     1
+
+    let handleSharedAsset (args: string[]) =
+        if args.Length < 3 then
+            AnsiConsole.MarkupLine("[red]Error:[/] Site directory and asset file required")
+            1
+        else
+            try
+                let siteRoot = args.[1]
+                let assetPath = args.[2]
+                let name = tryOptionValue [ "--name" ] args
+                let mime = tryOptionValue [ "--mime" ] args
+                let registered =
+                    SharedStringCatalog.registerAsset
+                        siteRoot
+                        (sharedCatalogOption args)
+                        assetPath
+                        name
+                        mime
+                let state = if registered.WasAdded then "added" else "reused"
+                AnsiConsole.MarkupLine(sprintf "[green]Shared asset %s.[/]" state)
+                AnsiConsole.WriteLine(sprintf "  catalog:   %s" registered.CatalogPath)
+                AnsiConsole.WriteLine(sprintf "  id:        %03d" registered.Info.Id)
+                AnsiConsole.WriteLine(sprintf "  reference: %s" registered.Info.Reference)
+                AnsiConsole.WriteLine(sprintf "  bytes:     %d" registered.Info.Bytes)
+                AnsiConsole.WriteLine(sprintf "  sha256:    %s" registered.Info.Sha256)
+                AnsiConsole.WriteLine(sprintf "  attribute: %s" registered.AttributeExpression)
+                AnsiConsole.WriteLine(sprintf "  raw text:  %s" registered.RawTextExpression)
+                0
+            with ex ->
+                AnsiConsole.MarkupLine(sprintf "[red]Error:[/] %s" ex.Message)
+                1
+
+    let handleSharedList (args: string[]) =
+        if args.Length < 2 then
+            AnsiConsole.MarkupLine("[red]Error:[/] Site directory required")
+            1
+        else
+            try
+                let catalog = sharedCatalogOption args
+                let catalogPath =
+                    catalog
+                    |> Option.defaultValue "strings/sharedstrings.fs"
+                AnsiConsole.WriteLine(sprintf "Catalog: %s" catalogPath)
+                for asset in SharedStringCatalog.listAssets args.[1] catalog do
+                    AnsiConsole.WriteLine(
+                        sprintf "%03d  %-32s  %10d bytes  %s" asset.Id asset.Reference asset.Bytes asset.Sha256
+                    )
+                0
+            with ex ->
+                AnsiConsole.MarkupLine(sprintf "[red]Error:[/] %s" ex.Message)
+                1
 
     let knownSiteOutputName (fileName: string) =
         match fileName.ToLowerInvariant() with
@@ -481,6 +595,8 @@ module Program =
                 | "batch" | "b" -> handleBatch args
                 | "wrap-file" | "wrap" -> handleWrapFile args
                 | "wrap-batch" | "wrap-dir" -> handleWrapBatch args
+                | "shared-asset" | "shared-add" -> handleSharedAsset args
+                | "shared-list" -> handleSharedList args
                 | "wrap-site" | "site-wrap" -> handleWrapSite args
                 | "verify" | "v" -> handleVerify args
                 | "help" | "h" | "--help" | "-h" -> printHelp(); 0
