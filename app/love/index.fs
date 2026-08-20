@@ -795,23 +795,25 @@ let page =
                             ]
                         ]
                     ]
-                    rawText ("""<!--  ======== TASKBAR ========  -->""")
-                    div [ _class "taskbar" ] [
-                        button [ _class "start-btn"; _id "start-btn" ] [
-                            span [] [
-                                str "🪟"
-                            ]
-                            str "start"
-                        ]
-                        button [ _class "taskbar-window-btn"; _id "taskbar-letter-btn"; attr "style" "display:none;"; attr "onclick" "toggleLetter()" ] [
-                            str "💌 Love Letter"
-                        ]
-                        div [ _class "taskbar-clock"; _id "taskbar-clock" ] [
-                            str "12:00 AM"
-                        ]
+                ]
+            ]
+            rawText ("""<!--  ======== TASKBAR ========  -->""")
+            div [ _class "taskbar" ] [
+                button [ _class "start-btn"; _id "start-btn" ] [
+                    span [] [
+                        str "🪟"
                     ]
-                    script [] [
-                            rawText ("""// =========================================================
+                    str "start"
+                ]
+                button [ _class "taskbar-window-btn"; _id "taskbar-letter-btn"; attr "style" "display:none;"; attr "onclick" "toggleLetter()" ] [
+                    str "💌 Love Letter"
+                ]
+                div [ _class "taskbar-clock"; _id "taskbar-clock" ] [
+                    str "12:00 AM"
+                ]
+            ]
+            script [] [
+                rawText ("""// =========================================================
 //  CONFIGURATION — inject from LangChain output
 // =========================================================
 const LETTER_DATA = {
@@ -1194,8 +1196,6 @@ function updateClock() {
   const mm = m.toString().padStart(2, '0');
   document.getElementById('taskbar-clock').textContent = `${hh}:${mm} ${ampm}`;
 }""")
-                    ]
-                ]
             ]
         ]
     ]
