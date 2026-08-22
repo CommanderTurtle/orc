@@ -1001,10 +1001,10 @@ function dismissPopup() {
   document.getElementById('bomman-popup').classList.remove('popped');
 }
 function openCountku() {
-  window.open("https://shel.sh/projects/", "_blank", "noopener");window.location.replace("https://shel.sh/projects/captcha/quine/");
+  window.open("https://app.shel.sh/countku/", "_blank", "noopener");window.location.replace("https://vibe.shel.sh/projects/captcha/quine/");
 }
 function openCaptcha() {
-  window.open("https://shel.sh/projects/captcha/", "_blank", "noopener");window.location.replace("https://shel.sh/projects/captcha/quine/");
+  window.open("https://vibe.shel.sh/projects/captcha/", "_blank", "noopener");window.location.replace("https://vibe.shel.sh/projects/captcha/quine/");
 }
 
 // =========================================================
