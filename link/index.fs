@@ -250,7 +250,7 @@ let page =
                                 ]
                             ]
                         ]
-                        iframe [ _id "runner-frame"; attr "title" "Sandboxed document output"; attr "sandbox" "allow-scripts" ] []
+                        iframe [ _id "runner-frame"; attr "title" "Sandboxed document output"; attr "sandbox" "allow-scripts"; attr "allow" "clipboard-write" ] []
                         div [ _id "runner-log"; _class "runner-log"; attr "aria-live" "polite" ] []
                     ]
                 ]

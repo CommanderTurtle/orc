@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.IndexJson
+﻿module ConvertedFiles.Radio.Themes.IndexJson
 
 let file = """{
   "schemaVersion": 1,

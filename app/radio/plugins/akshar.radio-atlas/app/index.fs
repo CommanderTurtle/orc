@@ -8,12 +8,12 @@ let page =
             meta [ attr "charset" "utf-8" ]
             meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1" ]
             meta [ attr "name" "color-scheme"; attr "content" "dark" ]
-            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://all.api.radio-browser.info https://*.api.radio-browser.info; media-src https: http:; img-src 'self' data: https:; object-src 'none'; base-uri 'none'; form-action 'none'" ]
+            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' data: https://all.api.radio-browser.info https://*.api.radio-browser.info; media-src https: http:; img-src 'self' data: https:; object-src 'none'; base-uri 'none'; form-action 'none'" ]
             meta [ attr "name" "description"; attr "content" "A static, browser-native port of Radio Atlas for Omarchy." ]
             title [] [
                 str "Radio Atlas"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/page-1-BKuWIuLD.js" ] [ rawText ("""""") ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/page-1-BZW0iRNF.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/radio/assets/style-BdwIugra.css" ]
         ]
         body [] [
