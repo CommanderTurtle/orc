@@ -1,0 +1,32 @@
+﻿module ConvertedFiles.Themes.TokyoNightJson
+
+let file = """{
+  "schemaVersion": 1,
+  "id": "tokyo-night",
+  "name": "Tokyo Night",
+  "mode": "dark",
+  "source": "basecamp/omarchy themes/tokyo-night/colors.toml",
+  "colors": {
+    "accent": "#7aa2f7",
+    "selection": "#292e42",
+    "muted": "#414868",
+    "background": "#1a1b26",
+    "dark_background": "#13141c",
+    "darker_background": "#0e0e14",
+    "lighter_background": "#24283b",
+    "foreground": "#a9b1d6",
+    "dark_foreground": "#565f89",
+    "light_foreground": "#b4bee6",
+    "bright_foreground": "#c0caf5",
+    "urgent": "#f7768e",
+    "red": "#f7768e",
+    "yellow": "#e0af68",
+    "green": "#9ece6a",
+    "cyan": "#449dab",
+    "blue": "#7aa2f7",
+    "magenta": "#ad8ee6"
+  }
+}
+"""
+
+let render() = file
