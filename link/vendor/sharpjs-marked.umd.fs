@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Vendor.MarkedUmdJs
+﻿module ConvertedFiles.Link.Vendor.MarkedUmdJs
 
 let file = """/**
  * marked v18.0.11 - a markdown parser

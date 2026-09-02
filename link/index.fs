@@ -9,7 +9,7 @@ let page =
             meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1" ]
             meta [ attr "name" "color-scheme"; attr "content" "dark light" ]
             meta [ attr "name" "theme-color"; attr "content" "#111512" ]
-            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; connect-src https: http:; img-src 'self' data: blob: https: http:; media-src data: blob: https: http:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; frame-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'none'" ]
+            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; connect-src https: http:; img-src 'self' data: blob: https: http:; media-src data: blob: https: http:; font-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http:; worker-src 'self' blob: https: http:; frame-src 'self' data: blob: https: http:; object-src 'none'; base-uri 'self' https: http:; form-action 'none'" ]
             meta [ attr "name" "description"; attr "content" "Lossless text and code carried entirely in a link." ]
             title [] [
                 str "ln.kr · text in the link"
@@ -34,10 +34,16 @@ let page =
                     str "(a.shel.sh project)"
                 ]
                 span [ _class "header-rule"; attr "aria-hidden" "true" ] []
-                p [] [
+                p [ _id "site-mode-label" ] [
                     str "text in the link"
                 ]
+                button [ _id "link-mode-toggle"; _class "header-button mode-toggle"; _type "button"; attr "aria-pressed" "false" ] [
+                    str "Link"
+                ]
                 div [ _class "header-actions" ] [
+                    a [ _class "header-link"; _href "https://github.com/CommanderTurtle/ln.kr"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                        str "GitHub ↗"
+                    ]
                     button [ _id "about-open"; _class "header-button"; _type "button"; attr "aria-haspopup" "dialog" ] [
                         str "About"
                     ]
@@ -79,6 +85,13 @@ let page =
                                     option [ attr "value" "text" ] [
                                         str "Plain text"
                                     ]
+                                ]
+                            ]
+                            label [ _class "toggle" ] [
+                                input [ _type "checkbox"; _id "setting-structural"; attr "autocomplete" "off" ]
+                                span [ _class "toggle-track"; attr "aria-hidden" "true" ] []
+                                span [] [
+                                    str "Structural v2"
                                 ]
                             ]
                             label [ _class "toggle" ] [
@@ -140,6 +153,109 @@ let page =
                             ]
                         ]
                     ]
+                ]
+                section [ _id "link-composer"; _class "composer link-composer"; attr "hidden" "" ] [
+                    form [ _id "link-composer-form"; _class "editor-card" ] [
+                        div [ _class "editor-bar" ] [
+                            label [ attr "for" "link-source-input" ] [
+                                str "Link"
+                            ]
+                            span [] [
+                                str "Original ha.mr URL codec · encoded locally"
+                            ]
+                        ]
+                        input [ _id "link-source-input"; _class "url-input"; _type "url"; attr "inputmode" "url"; attr "placeholder" "https://example.com/path/to/resource.webp"; attr "spellcheck" "false"; attr "autocomplete" "url" ]
+                        div [ _class "controls" ] [
+                            label [ _class "toggle" ] [
+                                input [ _type "checkbox"; _id "link-setting-emoji"; attr "autocomplete" "off" ]
+                                span [ _class "toggle-track"; attr "aria-hidden" "true" ] []
+                                span [] [
+                                    str "Emoji alphabet"
+                                ]
+                            ]
+                            label [ _class "toggle" ] [
+                                input [ _type "checkbox"; _id "link-setting-qr"; attr "autocomplete" "off" ]
+                                span [ _class "toggle-track"; attr "aria-hidden" "true" ] []
+                                span [] [
+                                    str "Build QR"
+                                ]
+                            ]
+                            label [ _id "link-qr-correct-container"; _class "select-control qr-level"; attr "hidden" "" ] [
+                                span [] [
+                                    str "QR correction"
+                                ]
+                                input [ _id "link-qr-correct"; _type "range"; attr "min" "0"; attr "max" "3"; attr "step" "1"; attr "value" "1"; attr "autocomplete" "off" ]
+                                output [ _id "link-qr-correct-label"; attr "for" "link-qr-correct" ] [
+                                    str "M"
+                                ]
+                            ]
+                            button [ _id "create-link-link"; _class "primary"; _type "submit" ] [
+                                str "Compress link"
+                            ]
+                        ]
+                    ]
+                    section [ _id "url-result"; _class "result-card"; attr "aria-live" "polite"; attr "hidden" "" ] [
+                        a [ _id "guarded-link-output"; _class "url-output"; attr "target" "_blank"; attr "rel" "noopener" ] []
+                        p [ _id "url-result-meta"; _class "result-meta" ] []
+                        div [ _class "result-actions" ] [
+                            button [ _id "copy-guarded-link"; _class "primary"; _type "button" ] [
+                                str "Copy link"
+                            ]
+                            button [ _id "copy-resolved-link"; _type "button" ] [
+                                str "Copy direct"
+                            ]
+                            button [ _id "copy-source-link"; _type "button" ] [
+                                str "Copy source"
+                            ]
+                            button [ _id "copy-live-source-link"; _type "button" ] [
+                                str "Copy live"
+                            ]
+                            button [ _id "copy-image-link"; _type "button"; attr "hidden" "" ] [
+                                str "Copy image"
+                            ]
+                        ]
+                        p [ _id "link-query-warning"; _class "warning"; attr "hidden" "" ] [
+                            str "Links with several query parameters can compress less efficiently."
+                        ]
+                        figure [ _id "link-qr-wrap"; _class "qr-wrap"; attr "hidden" "" ] [
+                            canvas [ _id "link-qrcode" ] []
+                            figcaption [] [
+                                str "QR uses ha.mr’s alphanumeric URL alphabet and the selected correction level."
+                            ]
+                        ]
+                    ]
+                ]
+                section [ _id "link-gate"; _class "link-gate"; attr "hidden" "" ] [
+                    div [ _class "linkage-card" ] [
+                        h1 [] [
+                            str "Redirecting to"
+                        ]
+                        a [ _id "link-gate-target"; _class "link-target"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] []
+                        div [ _class "result-actions" ] [
+                            a [ _id "link-gate-proceed"; _class "button primary" ] [
+                                str "Yes, redirect me →"
+                            ]
+                        ]
+                    ]
+                ]
+                section [ _id "link-resolved"; _class "link-resolved"; attr "hidden" "" ] [
+                    div [ _class "linkage-bar" ] [
+                        div [] [
+                            span [ _id "link-resolved-label"; _class "eyebrow" ] [
+                                str "Linkage · #lr:"
+                            ]
+                            span [ _id "link-resolved-target"; _class "resolved-target" ] []
+                        ]
+                        div [ _class "result-actions" ] [
+                            button [ _id "link-resolved-copy"; _type "button" ] [
+                                str "Copy direct"
+                            ]
+                            a [ _id "link-resolved-open"; _class "button"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                                str "Open directly ↗"
+                            ]
+                        ]
+                    ]
+                    iframe [ _id "link-resolved-frame"; attr "title" "Resolved link source" ] []
                 ]
                 section [ _id "viewer"; _class "viewer"; attr "hidden" "" ] [
                     details [ _class "viewer-details" ] [
@@ -285,7 +401,7 @@ let page =
             ]
             footer [] [
                 span [] [
-                    str "ln.kr keeps payloads in the fragment—nothing is uploaded."
+                    str "Document payloads stay in fragments—there is no paste database."
                 ]
                 span [] [
                     str "Codec lineage:"
