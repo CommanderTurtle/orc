@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.MaterialFileIcons.Icons.PawnSvg
+﻿module Make.MaterialFileIcons.Icons.PawnSvg
 
 let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#ef6c00" d="M6 28h20v2H6zm8-18h4l4 14H10z"/><path fill="#ef6c00" d="M10 12h12v2H10z"/><circle cx="16" cy="7" r="4" fill="#ef6c00"/></svg>"""
 

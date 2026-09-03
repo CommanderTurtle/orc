@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.MiasmaJson
+﻿module Radio.Themes.MiasmaJson
 
 let file = """{
   "schemaVersion": 1,

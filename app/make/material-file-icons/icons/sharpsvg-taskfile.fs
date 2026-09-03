@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.MaterialFileIcons.Icons.TaskfileSvg
+﻿module Make.MaterialFileIcons.Icons.TaskfileSvg
 
 let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#4db6ac" d="M4 9v14l12 6V15z"/><path fill="#b2dfdb" d="M16 3 4 9l12 6 12-6z"/><path fill="#80cbc4" d="M16 15v14l12-6V9z"/></svg>"""
 

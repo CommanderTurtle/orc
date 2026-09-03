@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Plugins.AksharRadioAtlas.Source.ManifestJson
+﻿module Radio.Plugins.AksharRadioAtlas.Source.ManifestJson
 
 let file = """{
   "schemaVersion": 1,

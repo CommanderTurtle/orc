@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.TokyoNightJson
+﻿module Radio.Themes.TokyoNightJson
 
 let file = """{
   "schemaVersion": 1,

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.NordJson
+﻿module Radio.Themes.NordJson
 
 let file = """{
   "schemaVersion": 1,

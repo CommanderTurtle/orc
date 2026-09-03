@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.GruvboxJson
+﻿module Radio.Themes.GruvboxJson
 
 let file = """{
   "schemaVersion": 1,

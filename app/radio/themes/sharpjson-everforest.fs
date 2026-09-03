@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.EverforestJson
+﻿module Radio.Themes.EverforestJson
 
 let file = """{
   "schemaVersion": 1,

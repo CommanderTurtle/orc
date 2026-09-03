@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Js.TurbowarpScaffolding.ScaffoldingFullJsLICENSETxt
+﻿module Make.Js.TurbowarpScaffolding.ScaffoldingFullJsLICENSETxt
 
 let file = """/*!
  * @license twgl.js 4.4.0 Copyright (c) 2015, Gregg Tavares All Rights Reserved.

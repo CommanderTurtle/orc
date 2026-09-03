@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.LumonJson
+﻿module Radio.Themes.LumonJson
 
 let file = """{
   "schemaVersion": 1,

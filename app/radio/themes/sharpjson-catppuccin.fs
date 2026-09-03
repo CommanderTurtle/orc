@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.CatppuccinJson
+﻿module Radio.Themes.CatppuccinJson
 
 let file = """{
   "schemaVersion": 1,

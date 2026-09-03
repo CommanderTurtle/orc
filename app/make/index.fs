@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Make.IndexHtml
+﻿module Make.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -22,8 +22,8 @@ let page =
             meta [ attr "name" "og:image"; attr "content" "https://app.shel.sh/make/favicon.ico" ]
             meta [ attr "name" "theme-color"; attr "content" "#1C77FF" ]
             meta [ attr "name" "og:type"; attr "content" "website" ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/make/assets/index-BFVtgGZ2.js" ] [ rawText ("""""") ]
-            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/make/assets/index-DoSM4UHs.css" ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/make/assets/index-BqH2Q1mb.js" ] [ rawText ("""""") ]
+            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/make/assets/index-BwFcyud9.css" ]
         ]
         body [] []
     ]

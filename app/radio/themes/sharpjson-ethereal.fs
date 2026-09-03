@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.EtherealJson
+﻿module Radio.Themes.EtherealJson
 
 let file = """{
   "schemaVersion": 1,

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Js.PdfWorkerMjs
+﻿module Make.Js.PdfWorkerMjs
 
 let file = """/**
  * @licstart The following is the entire license notice for the

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.HackermanJson
+﻿module Radio.Themes.HackermanJson
 
 let file = """{
   "schemaVersion": 1,

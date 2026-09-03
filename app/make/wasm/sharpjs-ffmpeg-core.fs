@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Wasm.FfmpegCoreJs
+﻿module Make.Wasm.FfmpegCoreJs
 
 let file = """
 var createFFmpegCore = (() => {

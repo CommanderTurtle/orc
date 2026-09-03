@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.KanagawaJson
+﻿module Radio.Themes.KanagawaJson
 
 let file = """{
   "schemaVersion": 1,

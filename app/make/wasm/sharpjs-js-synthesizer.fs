@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Wasm.JsSynthesizerJs
+﻿module Make.Wasm.JsSynthesizerJs
 
 let file = """/*!
 js-synthesizer version 1.13.0

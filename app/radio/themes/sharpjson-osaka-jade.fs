@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Themes.OsakaJadeJson
+﻿module Radio.Themes.OsakaJadeJson
 
 let file = """{
   "schemaVersion": 1,

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Plugins.AksharRadioAtlas.App.IndexHtml
+﻿module Radio.Plugins.AksharRadioAtlas.App.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -13,7 +13,7 @@ let page =
             title [] [
                 str "Radio Atlas"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/page-1-zvDm21MK.js" ] [ rawText ("""""") ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/page-1-DhYuRcmN.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/radio/assets/style-BdwIugra.css" ]
         ]
         body [] [

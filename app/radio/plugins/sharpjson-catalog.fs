@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Radio.Plugins.CatalogJson
+﻿module Radio.Plugins.CatalogJson
 
 let file = """{
   "schemaVersion": 1,

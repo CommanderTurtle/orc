@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.MaterialFileIcons.Icons.QuokkaSvg
+﻿module Make.MaterialFileIcons.Icons.QuokkaSvg
 
 let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="#ff6d00" d="M8 2v6H2v6h12V2z" paint-order="fill markers stroke"/></svg>"""
 

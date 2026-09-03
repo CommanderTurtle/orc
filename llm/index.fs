@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.LLM.IndexHtml
+﻿module LLM.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -264,7 +264,25 @@ let page =
                             str "Connection help"
                         ]
                         p [] [
-                            str "This static page explicitly labels requests as loopback or private-LAN traffic. Approve the browser's local-network prompt if it appears; a page served from localhost normally will not need to show one."
+                            str "Connect directly fetches"
+                            code [] [
+                                str "/v1/models"
+                            ]
+                            str "with the destination labeled"
+                            code [] [
+                                str "loopback"
+                            ]
+                            str "or"
+                            code [] [
+                                str "local"
+                            ]
+                            str ". On a public HTTPS page, that is the browser's permission trigger. A page already served from localhost normally does not need a prompt."
+                        ]
+                        p [] [
+                            code [] [
+                                str "ERR_BLOCKED_BY_CLIENT"
+                            ]
+                            str "means the request stopped inside the browser. Allow Local network access in this site's permissions and check content-blocking extensions. Modern Chromium can relax HTTPS-to-HTTP local mixed-content blocking after permission is granted; browsers without that support require an HTTPS endpoint or the locally served page."
                         ]
                         p [ _id "connection-detail" ] [
                             str "No request has been made."

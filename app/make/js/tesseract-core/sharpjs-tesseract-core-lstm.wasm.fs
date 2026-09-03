@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Js.TesseractCore.TesseractCoreLstmWasmJs
+﻿module Make.Js.TesseractCore.TesseractCoreLstmWasmJs
 
 let file = """var TesseractCore=(()=>{var _scriptName=typeof document!="undefined"?document.currentScript?.src:undefined;return async function(moduleArg={}){var moduleRtn;var e=moduleArg,aa="object"==typeof window,ba="undefined"!=typeof WorkerGlobalScope,ca="object"==typeof process&&process.versions?.node&&"renderer"!=process.type,da="./this.program",ea=(a,b)=>{throw b;};"undefined"!=typeof __filename?_scriptName=__filename:ba&&(_scriptName=self.location.href);var fa,ha;
 if(ca){var fs=require("fs");ha=a=>{a=ia(a)?new URL(a):a;return fs.readFileSync(a)};fa=async a=>{a=ia(a)?new URL(a):a;return fs.readFileSync(a,void 0)};1<process.argv.length&&(da=process.argv[1].replace(/\\/g,"/"));process.argv.slice(2);ea=(a,b)=>{process.exitCode=a;throw b;}}else if(aa||ba){try{new URL(".",_scriptName)}catch{}ba&&(ha=a=>{var b=new XMLHttpRequest;b.open("GET",a,!1);b.responseType="arraybuffer";b.send(null);return new Uint8Array(b.response)});fa=async a=>{if(ia(a))return new Promise((c,
