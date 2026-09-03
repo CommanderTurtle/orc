@@ -13,7 +13,7 @@ let page =
             title [] [
                 str "Omarchy Web Apps"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/index-CiazABQn.js" ] [ rawText ("""""") ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/radio/assets/index-Dwrfc347.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/radio/assets/style-BdwIugra.css" ]
         ]
         body [] [
