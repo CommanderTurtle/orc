@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "BFkCry3oQ9w=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alienuser\\Desktop\\orc\\src\\html2giraffe\\Html2Giraffe.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alienuser\\.nuget\\packages\\anglesharp\\1.1.0\\anglesharp.1.1.0.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\fsharp.core\\10.1.400\\fsharp.core.10.1.400.nupkg.sha512",
+    "C:\\Users\\alienuser\\.nuget\\packages\\giraffe.viewengine\\1.4.0\\giraffe.viewengine.1.4.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'AngleSharp' 1.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-pgww-w46g-26qg",
+      "projectPath": "C:\\Users\\alienuser\\Desktop\\orc\\src\\html2giraffe\\Html2Giraffe.fsproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\alienuser\\Desktop\\orc\\src\\html2giraffe\\Html2Giraffe.fsproj",
+      "libraryId": "AngleSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

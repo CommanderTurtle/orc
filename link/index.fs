@@ -255,7 +255,7 @@ let page =
                             ]
                         ]
                     ]
-                    iframe [ _id "link-resolved-frame"; attr "title" "Resolved link source" ] []
+                    iframe [ _id "link-resolved-frame"; attr "title" "Resolved link source"; attr "sandbox" "allow-scripts" ] []
                 ]
                 section [ _id "viewer"; _class "viewer"; attr "hidden" "" ] [
                     details [ _class "viewer-details" ] [
