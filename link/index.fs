@@ -180,6 +180,25 @@ let page =
                                     str "Build QR"
                                 ]
                             ]
+                            label [ _class "select-control" ] [
+                                span [] [
+                                    str "Source as"
+                                ]
+                                select [ _id "link-source-format"; attr "autocomplete" "off" ] [
+                                    option [ attr "value" "auto" ] [
+                                        str "Auto detect"
+                                    ]
+                                    option [ attr "value" "markdown" ] [
+                                        str "Markdown"
+                                    ]
+                                    option [ attr "value" "javascript" ] [
+                                        str "JavaScript"
+                                    ]
+                                    option [ attr "value" "html" ] [
+                                        str "HTML"
+                                    ]
+                                ]
+                            ]
                             label [ _id "link-qr-correct-container"; _class "select-control qr-level"; attr "hidden" "" ] [
                                 span [] [
                                     str "QR correction"
@@ -255,7 +274,7 @@ let page =
                             ]
                         ]
                     ]
-                    iframe [ _id "link-resolved-frame"; attr "title" "Resolved link source"; attr "sandbox" "allow-scripts" ] []
+                    iframe [ _id "link-resolved-frame"; attr "title" "Resolved link source" ] []
                 ]
                 section [ _id "viewer"; _class "viewer"; attr "hidden" "" ] [
                     details [ _class "viewer-details" ] [
