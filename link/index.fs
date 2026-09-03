@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Link.IndexHtml
+﻿module Link.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -87,11 +87,27 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "toggle" ] [
-                                input [ _type "checkbox"; _id "setting-structural"; attr "autocomplete" "off" ]
-                                span [ _class "toggle-track"; attr "aria-hidden" "true" ] []
-                                span [] [
-                                    str "Structural v2"
+                            fieldset [ _class "codec-control" ] [
+                                legend [] [
+                                    str "Encoder"
+                                ]
+                                div [ _class "codec-switch" ] [
+                                    input [ _type "radio"; attr "name" "codec-version"; _id "codec-v1"; attr "value" "v1"; attr "autocomplete" "off"; attr "checked" "" ]
+                                    label [ attr "for" "codec-v1" ] [
+                                        str "v1"
+                                    ]
+                                    input [ _type "radio"; attr "name" "codec-version"; _id "codec-v2"; attr "value" "v2"; attr "autocomplete" "off" ]
+                                    label [ attr "for" "codec-v2" ] [
+                                        str "v2"
+                                    ]
+                                    input [ _type "radio"; attr "name" "codec-version"; _id "codec-v3"; attr "value" "v3"; attr "autocomplete" "off" ]
+                                    label [ attr "for" "codec-v3" ] [
+                                        str "v3"
+                                    ]
+                                    input [ _type "radio"; attr "name" "codec-version"; _id "codec-v4"; attr "value" "v4"; attr "autocomplete" "off" ]
+                                    label [ attr "for" "codec-v4"; attr "title" "Sometimes, opting for traditional DEFLATE works when token entropy is too high." ] [
+                                        str "v4"
+                                    ]
                                 ]
                             ]
                             label [ _class "toggle" ] [

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Link.N404Html
+﻿module Link.N404Html
 
 open Giraffe.ViewEngine
 
