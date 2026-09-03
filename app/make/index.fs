@@ -22,7 +22,7 @@ let page =
             meta [ attr "name" "og:image"; attr "content" "https://app.shel.sh/make/favicon.ico" ]
             meta [ attr "name" "theme-color"; attr "content" "#1C77FF" ]
             meta [ attr "name" "og:type"; attr "content" "website" ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/make/assets/index-BQOtnZJB.js" ] [ rawText ("""""") ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/make/assets/index-DAb_w1qF.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/make/assets/index-Cnu282j6.css" ]
         ]
         body [] []
