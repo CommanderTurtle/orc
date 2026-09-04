@@ -12,7 +12,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © Html2Giraffe 2026")>]
 [<assembly: System.Reflection.AssemblyDescriptionAttribute("CLI tool for converting HTML to F# Giraffe.ViewEngine DSL.")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44df5e00e260f340c5ee1fea9f3f0d3a742a0dac")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7ad2c9bfa24212caccec552daef20048e0c82e0")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Html2Giraffe")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Generator")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

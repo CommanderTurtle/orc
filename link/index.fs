@@ -14,6 +14,7 @@ let page =
             title [] [
                 str "ln.kr · text in the link"
             ]
+            link [ attr "rel" "icon"; _href "/assets/favicon.svg"; _type "image/svg+xml" ]
             script [ _type "module"; attr "crossorigin" ""; _src "/assets/index.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/assets/index.css" ]
         ]
@@ -256,6 +257,9 @@ let page =
                             ]
                             button [ _id "copy-framed-link"; _type "button" ] [
                                 str "Copy in-frame"
+                            ]
+                            button [ _id "copy-super-link"; _type "button"; attr "hidden" "" ] [
+                                str "Copy superlink"
                             ]
                             button [ _id "copy-image-link"; _type "button"; attr "hidden" "" ] [
                                 str "Copy image"
