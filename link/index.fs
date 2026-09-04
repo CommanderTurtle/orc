@@ -87,11 +87,11 @@ let page =
                                     ]
                                 ]
                             ]
-                            fieldset [ _class "codec-control" ] [
+                            fieldset [ _id "codec-control"; _class "codec-control" ] [
                                 legend [] [
                                     str "Encoder"
                                 ]
-                                div [ _class "codec-switch" ] [
+                                div [ _class "codec-dial" ] [
                                     input [ _type "radio"; attr "name" "codec-version"; _id "codec-v1"; attr "value" "v1"; attr "autocomplete" "off"; attr "checked" "" ]
                                     label [ attr "for" "codec-v1" ] [
                                         str "v1"
@@ -104,10 +104,19 @@ let page =
                                     label [ attr "for" "codec-v3" ] [
                                         str "v3"
                                     ]
-                                    input [ _type "radio"; attr "name" "codec-version"; _id "codec-v4"; attr "value" "v4"; attr "autocomplete" "off" ]
-                                    label [ attr "for" "codec-v4"; attr "title" "Sometimes, opting for traditional DEFLATE works when token entropy is too high." ] [
-                                        str "v4"
+                                    span [ _class "codec-dial-thumb"; attr "aria-hidden" "true" ] []
+                                ]
+                            ]
+                            div [ _class "deflate-control" ] [
+                                label [ _class "toggle" ] [
+                                    input [ _type "checkbox"; _id "setting-deflate"; attr "autocomplete" "off"; attr "aria-describedby" "deflate-tooltip" ]
+                                    span [ _class "toggle-track"; attr "aria-hidden" "true" ] []
+                                    span [] [
+                                        str "DEFLATE v4"
                                     ]
+                                ]
+                                span [ _id "deflate-tooltip"; _class "control-tooltip"; attr "role" "tooltip" ] [
+                                    str "Sometimes traditional DEFLATE works better when token entropy is too high."
                                 ]
                             ]
                             label [ _class "toggle" ] [
@@ -245,8 +254,17 @@ let page =
                             button [ _id "copy-live-source-link"; _type "button" ] [
                                 str "Copy live"
                             ]
+                            button [ _id "copy-framed-link"; _type "button" ] [
+                                str "Copy in-frame"
+                            ]
                             button [ _id "copy-image-link"; _type "button"; attr "hidden" "" ] [
                                 str "Copy image"
+                            ]
+                            button [ _id "copy-media-link"; _type "button"; attr "hidden" "" ] [
+                                str "Copy media"
+                            ]
+                            button [ _id "copy-pdf-link"; _type "button"; attr "hidden" "" ] [
+                                str "Copy PDF"
                             ]
                         ]
                         p [ _id "link-query-warning"; _class "warning"; attr "hidden" "" ] [
@@ -283,10 +301,19 @@ let page =
                         ]
                         div [ _class "result-actions" ] [
                             button [ _id "link-resolved-copy"; _type "button" ] [
-                                str "Copy direct"
+                                str "Copy source"
+                            ]
+                            button [ _id "link-resolved-download"; _type "button" ] [
+                                str "Download"
+                            ]
+                            button [ _id "link-resolved-expand"; _type "button"; attr "aria-expanded" "false" ] [
+                                str "Expand frame"
                             ]
                             a [ _id "link-resolved-open"; _class "button"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
                                 str "Open directly ↗"
+                            ]
+                            button [ _id "link-resolved-close"; _class "runner-close"; _type "button"; attr "aria-label" "Close expanded frame"; attr "hidden" "" ] [
+                                str "×"
                             ]
                         ]
                     ]
