@@ -69,6 +69,12 @@ let page =
                         ]
                     ]
                     nav [ _class "toplinks" ] [
+                        a [ _href "https://a.shel.sh/"; _target "_blank"; _rel "noopener noreferrer" ] [
+                            str "ln.kr"
+                        ]
+                        a [ _href "https://app.shel.sh/make/"; _target "_blank"; _rel "noopener noreferrer" ] [
+                            str "mk.it"
+                        ]
                         a [ _href "https://github.com/firecrawl/anydoc" ] [
                             str "AnyDoc"
                         ]

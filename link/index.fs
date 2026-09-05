@@ -9,7 +9,7 @@ let page =
             meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1" ]
             meta [ attr "name" "color-scheme"; attr "content" "dark light" ]
             meta [ attr "name" "theme-color"; attr "content" "#111512" ]
-            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; connect-src https: http:; img-src 'self' data: blob: https: http:; media-src data: blob: https: http:; font-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http:; worker-src 'self' blob: https: http:; frame-src 'self' data: blob: https: http:; object-src 'none'; base-uri 'self' https: http:; form-action 'none'" ]
+            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'self'; connect-src data: https: http:; img-src 'self' data: blob: https: http:; media-src data: blob: https: http:; font-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' data: https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:; worker-src 'self' blob: https: http:; frame-src 'self' data: blob: https: http:; object-src 'none'; base-uri 'self' https: http:; form-action 'none'" ]
             meta [ attr "name" "description"; attr "content" "Lossless text and code carried entirely in a link." ]
             title [] [
                 str "ln.kr · text in the link"
@@ -40,6 +40,9 @@ let page =
                 ]
                 button [ _id "link-mode-toggle"; _class "header-button mode-toggle"; _type "button"; attr "aria-pressed" "false" ] [
                     str "Link"
+                ]
+                a [ _class "header-button"; _href "https://app.shel.sh/make"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                    str "/make/"
                 ]
                 div [ _class "header-actions" ] [
                     a [ _class "header-link"; _href "https://github.com/CommanderTurtle/ln.kr"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
@@ -375,6 +378,9 @@ let page =
                         button [ _id "copy-rich"; _type "button" ] [
                             str "Copy rich"
                         ]
+                        button [ _id "hoist-make"; _type "button"; attr "title" "Open this exact text as a file in mk.it" ] [
+                            str "Hoist to Make"
+                        ]
                         button [ _id "copy-jsfuck"; _type "button" ] [
                             str "Copy JSFuck"
                         ]
@@ -398,13 +404,16 @@ let page =
                         ]
                     ]
                     div [ _class "document-shell" ] [
-                        div [ _class "tabs"; attr "role" "tablist"; attr "aria-label" "Document view" ] [
-                            button [ _id "tab-rendered"; attr "role" "tab"; attr "aria-selected" "true"; _type "button" ] [
-                                str "Rendered"
+                        div [ _class "document-head" ] [
+                            div [ _class "tabs"; attr "role" "tablist"; attr "aria-label" "Document view" ] [
+                                button [ _id "tab-rendered"; attr "role" "tab"; attr "aria-selected" "true"; _type "button" ] [
+                                    str "Rendered"
+                                ]
+                                button [ _id "tab-source"; attr "role" "tab"; attr "aria-selected" "false"; _type "button" ] [
+                                    str "Exact source"
+                                ]
                             ]
-                            button [ _id "tab-source"; attr "role" "tab"; attr "aria-selected" "false"; _type "button" ] [
-                                str "Exact source"
-                            ]
+                            div [ _id "preview-appearance"; _class "appearance-slot"; attr "hidden" "" ] []
                         ]
                         article [ _id "preview"; _class "preview" ] []
                         pre [ _id "source-view"; _class "source-view"; attr "hidden" "" ] []
@@ -421,6 +430,7 @@ let page =
                                 ]
                             ]
                             div [ _class "runner-actions" ] [
+                                div [ _id "runner-appearance"; _class "appearance-slot"; attr "hidden" "" ] []
                                 button [ _id "expand-run"; _type "button"; attr "aria-expanded" "false" ] [
                                     str "Expand viewer"
                                 ]
