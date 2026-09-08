@@ -577,11 +577,23 @@ let page =
                     ]
                     div [ _id "compaction-controls" ] [
                         div [ _class "context-actions" ] [
-                            button [ _id "compact-soft"; _type "button" ] [
-                                str "Soft · index Firecrawl"
+                            span [ _class "context-action" ] [
+                                button [ _id "compact-soft"; _type "button" ] [
+                                    str "Soft · index Firecrawl"
+                                ]
+                                label [ _class "context-auto"; attr "title" "On the first context-limit error, run this Soft action and Continue." ] [
+                                    input [ _id "auto-compact-soft"; _type "checkbox" ]
+                                    str "Auto"
+                                ]
                             ]
-                            button [ _id "compact-context-reads"; _type "button" ] [
-                                str "Soft · collapse context reads"
+                            span [ _class "context-action" ] [
+                                button [ _id "compact-context-reads"; _type "button" ] [
+                                    str "Soft · collapse context reads"
+                                ]
+                                label [ _class "context-auto"; attr "title" "On the first context-limit error, run this Soft action and Continue." ] [
+                                    input [ _id "auto-compact-context-reads"; _type "checkbox" ]
+                                    str "Auto"
+                                ]
                             ]
                             button [ _id "compact-normal"; _class "primary"; _type "button" ] [
                                 str "Normal · summarize selected"
