@@ -94,7 +94,7 @@ body.dio-page-home.dio-camera-dragging .md-main { cursor: grabbing; }
   height: 1.65rem;
 }
 
-.md-container { background: transparent; }
+.md-container { z-index: auto; background: transparent; }
 
 .md-main__inner { margin-top: 1rem; }
 
