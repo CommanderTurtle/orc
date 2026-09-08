@@ -45,6 +45,9 @@ let page =
                 button [ _id "open-workspace"; _type "button"; attr "hidden" "" ] [
                     str "Workspace"
                 ]
+                button [ _id "open-navigator"; _type "button"; attr "hidden" "" ] [
+                    str "Timeline"
+                ]
                 button [ _id "context-meter"; _class "context-meter"; _type "button"; attr "title" "View context and compaction"; attr "aria-label" "View context and compaction"; attr "hidden" "" ] [
                     span [ _id "context-ring"; _class "context-ring" ] [
                         span [ _id "context-percent" ] [
@@ -224,21 +227,21 @@ let page =
                             str "Feature matrix"
                         ]
                         p [ _class "hint" ] [
-                            str "Every enhancement is opt-in. With all boxes clear, requests and interaction match the last baseline release."
+                            str "Every enhancement is opt-in. Drag across boxes to paint a choice; Shift-click selects every feature in the same group. With all boxes clear, requests and interaction match the last baseline release."
                         ]
                         div [ _class "feature-matrix" ] [
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
                                 input [ _id "feature-stream-recovery"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
                                         str "Interrupted-response recovery"
                                     ]
                                     small [] [
-                                        str "Recognize missing terminal signals or output limits and offer Continue."
+                                        str "Recognize missing terminal signals or output limits and offer Continue on the latest assistant turn."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
                                 input [ _id "feature-auto-max-tokens"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -253,7 +256,7 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
                                 input [ _id "feature-rich-markdown"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -264,29 +267,29 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
                                 input [ _id "feature-parallel-sessions"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
                                         str "Parallel chats"
                                     ]
                                     small [] [
-                                        str "Switch or create chats while other sessions continue generating."
+                                        str "Switch or create chats while other sessions continue generating, with no per-token session-list repaint."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
                                 input [ _id "feature-markdown-actions"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
-                                        str "Markdown copy + link"
+                                        str "Complete Markdown export"
                                     ]
                                     small [] [
-                                        str "Show whole-chat copy and a.shel.sh link actions."
+                                        str "Copy, download, or open a rich transcript containing every original turn, reasoning block, tool call, and compaction record."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
                                 input [ _id "feature-vision-retry"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -297,18 +300,18 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
                                 input [ _id "feature-stable-scroll"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
                                         str "Stable streaming scroll"
                                     ]
                                     small [] [
-                                        str "Follow only near the bottom and preserve open reasoning plus nested scroll positions."
+                                        str "Follow only near the bottom; preserve the reasoning node, disclosure, and nested scroll position."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "context" ] [
                                 input [ _id "feature-context-meter"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -319,18 +322,33 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "context" ] [
                                 input [ _id "feature-compaction"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
-                                        str "Lossless context controls"
+                                        str "Composable context controls"
                                     ]
                                     small [] [
-                                        str "Soft Firecrawl indexing and selected Normal summaries with restorable originals."
+                                        str "Stack lossless Soft collapses and selected Normal summaries without reopening earlier groups."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
+                                input [ _id "feature-image-reads"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Scraped image reads"
+                                    ]
+                                    small [] [
+                                        str "Expose source-bound"
+                                        code [] [
+                                            str "view_image"
+                                        ]
+                                        str "for images discovered in earlier Firecrawl results."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
                                 input [ _id "read-tools-enabled"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -341,29 +359,29 @@ let page =
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
                                 input [ _id "write-tools-enabled"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
-                                        str "Hashline write tools"
+                                        str "Document write tools"
                                     ]
                                     small [] [
-                                        str "Revisioned document and instructions PUT after a required current read."
+                                        str "Store a formal response ending in DONE directly, or make precise hashline edits after reading."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
                                 input [ _id "todo-tools-enabled"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
                                         str "TODO tool"
                                     ]
                                     small [] [
-                                        str "Expose the visible, per-chat checklist to the model and user."
+                                        str "Expose the per-chat checklist, including one-click cleanup that keeps the latest item."
                                     ]
                                 ]
                             ]
-                            label [ _class "feature-row" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "editing" ] [
                                 input [ _id "feature-undo-delete"; _type "checkbox" ]
                                 span [] [
                                     strong [] [
@@ -374,13 +392,35 @@ let page =
                                     ]
                                 ]
                             ]
+                            label [ _class "feature-row"; attr "data-feature-group" "editing" ] [
+                                input [ _id "feature-turn-controls"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Advanced turn controls"
+                                    ]
+                                    small [] [
+                                        str "Copy/edit reasoning and edit or remove individual malformed tool requests without deleting their assistant turn."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-transcript-navigator"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Timeline + search"
+                                    ]
+                                    small [] [
+                                        str "Open a color-coded jump bar and fuzzy transcript search; quote a phrase for exact matching."
+                                    ]
+                                ]
+                            ]
                         ]
                         div [ _class "matrix-actions" ] [
                             button [ _id "feature-enable-all"; _type "button" ] [
                                 str "Enable all"
                             ]
                             button [ _id "feature-disable-all"; _type "button" ] [
-                                str "Disable all"
+                                str "Clear all"
                             ]
                         ]
                     ]
@@ -486,10 +526,10 @@ let page =
             ]
             dialog [ _id "edit-dialog" ] [
                 form [ attr "method" "dialog"; _class "dialog-card" ] [
-                    h2 [] [
+                    h2 [ _id "edit-dialog-title" ] [
                         str "Edit transcript message"
                     ]
-                    p [ _class "hint" ] [
+                    p [ _id "edit-dialog-hint"; _class "hint" ] [
                         str "The edited text becomes the exact context sent on future turns."
                     ]
                     tag "textarea" [ _id "edit-content"; attr "rows" "14" ] []
@@ -528,10 +568,20 @@ let page =
                     ]
                     p [ _id "context-detail"; _class "hint" ] []
                     div [ _id "context-timeline"; _class "context-timeline"; attr "aria-label" "Conversation timeline" ] []
+                    section [ _id "transcript-search-section"; _class "transcript-search"; attr "hidden" "" ] [
+                        label [ attr "for" "transcript-search" ] [
+                            str "Search this transcript"
+                        ]
+                        input [ _id "transcript-search"; _type "search"; attr "placeholder" "Fuzzy words, or “an exact phrase”"; attr "autocomplete" "off" ]
+                        div [ _id "transcript-search-results"; _class "transcript-search-results"; attr "aria-live" "polite" ] []
+                    ]
                     div [ _id "compaction-controls" ] [
                         div [ _class "context-actions" ] [
                             button [ _id "compact-soft"; _type "button" ] [
                                 str "Soft · index Firecrawl"
+                            ]
+                            button [ _id "compact-context-reads"; _type "button" ] [
+                                str "Soft · collapse context reads"
                             ]
                             button [ _id "compact-normal"; _class "primary"; _type "button" ] [
                                 str "Normal · summarize selected"
@@ -551,6 +601,12 @@ let page =
                             button [ _id "select-older-context"; _type "button" ] [
                                 str "Select older"
                             ]
+                            button [ _id "clear-context-selection"; _type "button" ] [
+                                str "Clear selection"
+                            ]
+                        ]
+                        p [ _class "hint" ] [
+                            str "Drag across boxes to paint a selection. Shift-click selects every available entry of the same role or tool type."
                         ]
                         div [ _id "compaction-messages"; _class "compaction-list" ] []
                         div [ _id "active-compaction"; _class "active-compaction" ] []
@@ -578,8 +634,13 @@ let page =
                         ]
                     ]
                     section [ _id "todo-workspace-section"; _class "workspace-section" ] [
-                        h3 [] [
-                            str "TODO"
+                        div [ _class "workspace-section-heading" ] [
+                            h3 [] [
+                                str "TODO"
+                            ]
+                            button [ _id "clear-todos-except-recent"; _type "button" ] [
+                                str "Clear all but recent"
+                            ]
                         ]
                         div [ _id "todo-list"; _class "todo-list" ] []
                         div [ _class "workspace-add-row" ] [
