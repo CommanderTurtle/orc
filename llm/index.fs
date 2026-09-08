@@ -33,6 +33,25 @@ let page =
                 button [ _id "export-markdown"; _type "button" ] [
                     str "Markdown"
                 ]
+                button [ _id "copy-markdown"; _class "icon-button"; _type "button"; attr "title" "Copy conversation Markdown"; attr "aria-label" "Copy conversation Markdown"; attr "hidden" "" ] [
+                    str "⧉"
+                ]
+                button [ _id "share-markdown"; _class "icon-button"; _type "button"; attr "title" "Open conversation Markdown in a.shel.sh"; attr "aria-label" "Open conversation Markdown in a.shel.sh"; attr "hidden" "" ] [
+                    str "↗"
+                ]
+                button [ _id "undo"; _class "icon-button"; _type "button"; attr "title" "Undo last deleted turn"; attr "aria-label" "Undo last deleted turn"; attr "disabled" ""; attr "hidden" "" ] [
+                    str "↶"
+                ]
+                button [ _id "open-workspace"; _type "button"; attr "hidden" "" ] [
+                    str "Workspace"
+                ]
+                button [ _id "context-meter"; _class "context-meter"; _type "button"; attr "title" "View context and compaction"; attr "aria-label" "View context and compaction"; attr "hidden" "" ] [
+                    span [ _id "context-ring"; _class "context-ring" ] [
+                        span [ _id "context-percent" ] [
+                            str "0%"
+                        ]
+                    ]
+                ]
                 button [ _id "print-chat"; _type "button" ] [
                     str "Save PDF"
                 ]
@@ -157,6 +176,10 @@ let page =
                                 str "Max tokens"
                             ]
                             input [ _id "max-tokens"; _type "number"; attr "min" "1"; attr "step" "1"; attr "value" "8192" ]
+                            label [ _id "context-window-label"; attr "for" "context-window"; attr "hidden" "" ] [
+                                str "Context window"
+                            ]
+                            input [ _id "context-window"; _type "number"; attr "min" "1"; attr "step" "1"; attr "value" "131072"; attr "hidden" "" ]
                             label [ attr "for" "seed" ] [
                                 str "Seed"
                             ]
@@ -193,6 +216,171 @@ let page =
                             str "Pass"
                             code [] [
                                 str "enable_thinking"
+                            ]
+                        ]
+                    ]
+                    details [ _id "feature-matrix" ] [
+                        summary [] [
+                            str "Feature matrix"
+                        ]
+                        p [ _class "hint" ] [
+                            str "Every enhancement is opt-in. With all boxes clear, requests and interaction match the last baseline release."
+                        ]
+                        div [ _class "feature-matrix" ] [
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-stream-recovery"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Interrupted-response recovery"
+                                    ]
+                                    small [] [
+                                        str "Recognize missing terminal signals or output limits and offer Continue."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-auto-max-tokens"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Server-decided output allowance"
+                                    ]
+                                    small [] [
+                                        str "Omit"
+                                        code [] [
+                                            str "max_tokens"
+                                        ]
+                                        str "; disabling restores the 8192 baseline."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-rich-markdown"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Rich Markdown"
+                                    ]
+                                    small [] [
+                                        str "Syntax highlighting, Mermaid, math, task lists, and inline diagnostics."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-parallel-sessions"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Parallel chats"
+                                    ]
+                                    small [] [
+                                        str "Switch or create chats while other sessions continue generating."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-markdown-actions"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Markdown copy + link"
+                                    ]
+                                    small [] [
+                                        str "Show whole-chat copy and a.shel.sh link actions."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-vision-retry"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Vision resize recovery"
+                                    ]
+                                    small [] [
+                                        str "Retry dimension ValueErrors in-browser, reducing the longest side by 128px each time."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-stable-scroll"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Stable streaming scroll"
+                                    ]
+                                    small [] [
+                                        str "Follow only near the bottom and preserve open reasoning plus nested scroll positions."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-context-meter"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Context meter"
+                                    ]
+                                    small [] [
+                                        str "Show per-chat token estimates and the circular context gauge."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-compaction"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Lossless context controls"
+                                    ]
+                                    small [] [
+                                        str "Soft Firecrawl indexing and selected Normal summaries with restorable originals."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "read-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Browser read tools"
+                                    ]
+                                    small [] [
+                                        str "Let the model reopen exact context, reasoning, instructions, and documents."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "write-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Hashline write tools"
+                                    ]
+                                    small [] [
+                                        str "Revisioned document and instructions PUT after a required current read."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "todo-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "TODO tool"
+                                    ]
+                                    small [] [
+                                        str "Expose the visible, per-chat checklist to the model and user."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row" ] [
+                                input [ _id "feature-undo-delete"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Undo deleted turns"
+                                    ]
+                                    small [] [
+                                        str "Keep a short browser-local undo stack for transcript deletions."
+                                    ]
+                                ]
+                            ]
+                        ]
+                        div [ _class "matrix-actions" ] [
+                            button [ _id "feature-enable-all"; _type "button" ] [
+                                str "Enable all"
+                            ]
+                            button [ _id "feature-disable-all"; _type "button" ] [
+                                str "Disable all"
                             ]
                         ]
                     ]
@@ -329,6 +517,107 @@ let page =
                         button [ _class "primary"; attr "value" "allow" ] [
                             str "Allow"
                         ]
+                    ]
+                ]
+            ]
+            dialog [ _id "context-dialog"; _class "wide-dialog" ] [
+                div [ _class "dialog-card" ] [
+                    h2 [] [
+                        str "Context"
+                    ]
+                    p [ _id "context-detail"; _class "hint" ] []
+                    div [ _id "context-timeline"; _class "context-timeline"; attr "aria-label" "Conversation timeline" ] []
+                    div [ _id "compaction-controls" ] [
+                        div [ _class "context-actions" ] [
+                            button [ _id "compact-soft"; _type "button" ] [
+                                str "Soft · index Firecrawl"
+                            ]
+                            button [ _id "compact-normal"; _class "primary"; _type "button" ] [
+                                str "Normal · summarize selected"
+                            ]
+                            button [ _id "restore-context"; _type "button" ] [
+                                str "Restore originals"
+                            ]
+                        ]
+                        label [ attr "for" "compaction-prompt" ] [
+                            str "Stateless summarizer prompt"
+                        ]
+                        tag "textarea" [ _id "compaction-prompt"; attr "rows" "5" ] []
+                        div [ _class "panel-heading compact-heading" ] [
+                            h3 [] [
+                                str "Select exact entries for Normal compaction"
+                            ]
+                            button [ _id "select-older-context"; _type "button" ] [
+                                str "Select older"
+                            ]
+                        ]
+                        div [ _id "compaction-messages"; _class "compaction-list" ] []
+                        div [ _id "active-compaction"; _class "active-compaction" ] []
+                    ]
+                    div [ _class "dialog-actions" ] [
+                        button [ _id "close-context"; _type "button" ] [
+                            str "Close"
+                        ]
+                    ]
+                ]
+            ]
+            dialog [ _id "workspace-dialog"; _class "wide-dialog" ] [
+                div [ _class "dialog-card" ] [
+                    div [ _class "dialog-title-row" ] [
+                        div [] [
+                            h2 [] [
+                                str "Browser workspace"
+                            ]
+                            p [ _class "hint" ] [
+                                str "TODOs, instructions, documents, and every revision live only in this saved chat."
+                            ]
+                        ]
+                        button [ _id "close-workspace"; _type "button"; attr "aria-label" "Close workspace" ] [
+                            str "×"
+                        ]
+                    ]
+                    section [ _id "todo-workspace-section"; _class "workspace-section" ] [
+                        h3 [] [
+                            str "TODO"
+                        ]
+                        div [ _id "todo-list"; _class "todo-list" ] []
+                        div [ _class "workspace-add-row" ] [
+                            input [ _id "todo-input"; _type "text"; attr "placeholder" "Add a task" ]
+                            button [ _id "add-todo"; _type "button" ] [
+                                str "Add"
+                            ]
+                        ]
+                    ]
+                    section [ _id "document-workspace-section"; _class "workspace-section" ] [
+                        div [ _class "document-toolbar" ] [
+                            select [ _id "document-select"; attr "aria-label" "Document" ] []
+                            button [ _id "new-document"; _type "button" ] [
+                                str "New"
+                            ]
+                            button [ _id "open-instructions"; _type "button" ] [
+                                str "Instructions"
+                            ]
+                            select [ _id "document-revision"; attr "aria-label" "Revision" ] []
+                        ]
+                        div [ _class "document-fields" ] [
+                            input [ _id "document-name"; _type "text"; attr "placeholder" "document.md" ]
+                            input [ _id "document-language"; _type "text"; attr "placeholder" "markdown" ]
+                        ]
+                        tag "textarea" [ _id "document-content"; _class "document-editor"; attr "rows" "16"; attr "spellcheck" "false"; attr "placeholder" "A model can create a document with put_document, or you can write one here." ] []
+                        div [ _class "document-actions" ] [
+                            span [ _id "document-diagnostics"; _class "hint" ] []
+                            span [ _class "topbar-spacer" ] []
+                            button [ _id "save-document"; _class "primary"; _type "button" ] [
+                                str "Save revision"
+                            ]
+                        ]
+                        details [ _id "document-diff-details" ] [
+                            summary [] [
+                                str "Revision diff"
+                            ]
+                            div [ _id "document-diff"; _class "diff-view" ] []
+                        ]
+                        div [ _id "document-preview"; _class "document-preview message-body" ] []
                     ]
                 ]
             ]
