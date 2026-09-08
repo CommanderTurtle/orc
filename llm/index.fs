@@ -509,6 +509,7 @@ let page =
                         str "Allow local tool call?"
                     ]
                     p [ _id "tool-dialog-name"; _class "tool-call-name" ] []
+                    div [ _id "tool-dialog-context"; _class "tool-approval-context"; attr "hidden" "" ] []
                     pre [ _id "tool-dialog-arguments" ] []
                     div [ _class "dialog-actions" ] [
                         button [ attr "value" "deny" ] [
