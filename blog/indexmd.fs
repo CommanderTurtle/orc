@@ -85,11 +85,11 @@ title: null
         <div class="stat-label">Contributors</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">8</div>
+        <div class="stat-number">26</div>
         <div class="stat-label">GitHub Stars</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">433+</div>
+        <div class="stat-number">605+</div>
         <div class="stat-label">Downloads<p>(on hf.co)</p></div>
       </div>
       <div class="stat-item">
