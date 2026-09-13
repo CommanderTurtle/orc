@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.LayoutScss
+﻿module Bl0g.Sass.Minima.LayoutScss
 
 let file = """/**
  * Site header

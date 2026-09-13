@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.ConfigYml
+﻿module Bl0g.ConfigYml
 
 let file = """# Welcome to Jekyll!
 #
@@ -80,15 +80,15 @@ nav_pages:
   - community.md
   - contact.md
 
-# Pagination
-paginate: 10
-paginate_path: "/blog/page/:num/"
 
 # Collections
 collections:
   posts:
     output: true
     permalink: /blog/:year-:month-:day-:title/
+  events:
+    output: true
+    permalink: /events/:name/
 
 # Defaults
 defaults:
@@ -98,6 +98,11 @@ defaults:
     values:
       layout: "post"
       author: "sHEL Team"
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "post"
   - scope:
       path: ""
       type: "pages"

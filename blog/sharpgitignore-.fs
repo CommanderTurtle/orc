@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Gitignore
+﻿module Bl0g.Gitignore
 
 let file = """_site
 .sass-cache

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.Skins.AutoScss
+﻿module Bl0g.Sass.Minima.Skins.AutoScss
 
 let file = """@charset "utf-8";
 

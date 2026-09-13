@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Layouts.BaseRaw
+﻿module Bl0g.Layouts.BaseRaw
 
 let file = """<!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">

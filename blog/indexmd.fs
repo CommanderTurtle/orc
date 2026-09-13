@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.IndexMd
+﻿module Bl0g.IndexMd
 
 let file = """---
 layout: home
@@ -68,6 +68,9 @@ title: null
     <div style="text-align: center; margin-top: 24px;">
       <p style="color: var(--text-muted); font-size: 0.875rem;">
         Save the script locally to use its dry-run, project-root, or manifest options.
+      </p>
+      <p style="color: var(--text-muted); font-size: 0.875rem;">
+        Linux AI stack only: <code>curl -fsSL https://shel.sh/install-ai.sh | bash</code>
       </p>
     </div>
   </div>

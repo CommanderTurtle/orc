@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.GoogleAnalyticsRaw
+﻿module Bl0g.Includes.GoogleAnalyticsRaw
 
 let file = """<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>

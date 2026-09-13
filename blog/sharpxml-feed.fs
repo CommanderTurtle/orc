@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.FeedXml
+﻿module Bl0g.FeedXml
 
 let file = """---
 layout: null

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.Skins.SolarizedLightScss
+﻿module Bl0g.Sass.Minima.Skins.SolarizedLightScss
 
 let file = """@charset "utf-8";
 

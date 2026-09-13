@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.FooterRaw
+﻿module Bl0g.Includes.FooterRaw
 
 let file = """<footer class="site-footer h-card">
   <data class="u-url" value="{{ '/' | relative_url }}"></data>

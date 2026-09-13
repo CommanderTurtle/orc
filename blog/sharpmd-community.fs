@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.CommunityMd
+﻿module Bl0g.CommunityMd
 
 let file = """---
 layout: page

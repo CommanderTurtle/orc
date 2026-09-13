@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.CustomStylesScss
+﻿module Bl0g.Sass.Minima.CustomStylesScss
 
 let file = """// ============================================================
 // sHEL Custom Styles — vllm.ai-inspired
@@ -1539,14 +1539,12 @@ code {
 
 // Event type colors
 $event-types: (
-  "meetup": #3b82f6,
-  "office-hours": #22c55e,
-  "release": #eab308,
-  "news": #a855f7,
-  "conference": #f97316,
-  "sig-meeting": #06b6d4,
-  "workshop": #ec4899,
-  "virtual": #6366f1
+  "tooling": #3b82f6,
+  "site": #22c55e,
+  "research": #a855f7,
+  "launch": #eab308,
+  "personal": #ec4899,
+  "conference": #f97316
 );
 
 @each $name, $color in $event-types {

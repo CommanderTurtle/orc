@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Layouts.PageRaw
+﻿module Bl0g.Layouts.PageRaw
 
 let file = """---
 layout: base

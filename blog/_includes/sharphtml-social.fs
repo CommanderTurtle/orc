@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.SocialRaw
+﻿module Bl0g.Includes.SocialRaw
 
 let file = """<div class="social-links">
 {%- for entry in site.minima.social_links -%}

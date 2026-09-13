@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.HeadRaw
+﻿module Bl0g.Includes.HeadRaw
 
 let file = """<head>
   <meta charset="utf-8">

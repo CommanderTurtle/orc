@@ -1,4 +1,4 @@
-﻿module LLM.IndexHtml
+﻿module Link.IndexHtml
 
 open Giraffe.ViewEngine
 

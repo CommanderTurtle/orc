@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.CustomHeadRaw
+﻿module Bl0g.Includes.CustomHeadRaw
 
 let file = """{% comment %}
   Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:

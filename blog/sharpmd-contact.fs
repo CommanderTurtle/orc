@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.ContactMd
+﻿module Bl0g.ContactMd
 
 let file = """---
 layout: page

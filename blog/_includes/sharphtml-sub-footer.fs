@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.SubFooterRaw
+﻿module Bl0g.Includes.SubFooterRaw
 
 let file = """{% comment %}
   Use this to insert markup before the closing body tag.

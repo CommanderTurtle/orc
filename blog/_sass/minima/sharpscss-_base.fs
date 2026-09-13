@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.BaseScss
+﻿module Bl0g.Sass.Minima.BaseScss
 
 let file = """html {
   font-size: $base-font-size;

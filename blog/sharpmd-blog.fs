@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.BlogMd
+﻿module Bl0g.BlogMd
 
 let file = """---
 layout: page

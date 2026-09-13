@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.CommentsRaw
+﻿module Bl0g.Includes.CommentsRaw
 
 let file = """{% if site.disqus.shortname -%}
   <div id="disqus_thread"></div>

@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.CustomVariablesScss
+﻿module Bl0g.Sass.Minima.CustomVariablesScss
 
 let file = """// ============================================================
 // sHEL Color Scheme: Vibrant Deep Dark + sHEL Green Accent

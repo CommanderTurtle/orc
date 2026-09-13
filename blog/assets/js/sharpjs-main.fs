@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Assets.Js.MainJs
+﻿module Bl0g.Assets.Js.MainJs
 
 let file = """// ============================================================
 // sHEL Site JavaScript

@@ -1,4 +1,4 @@
-module ConvertedFiles.InstallManifestJson
+module Bl0g.InstallManifestJson
 
 let file = """{
   "schema": 1,
@@ -36,6 +36,58 @@ let file = """{
     },
     "sandwich": {
       "url": "https://github.com/CommanderTurtle/sandwich.git",
+      "branch": "main"
+    },
+    "mmTools": {
+      "url": "https://github.com/CommanderTurtle/mm-tools.git",
+      "branch": "main"
+    },
+    "localflame": {
+      "url": "https://github.com/CommanderTurtle/localflame.git",
+      "branch": "master"
+    },
+    "ninfer": {
+      "url": "https://github.com/Neroued/ninfer.git",
+      "branch": "master"
+    },
+    "camofoxMcp": {
+      "url": "https://github.com/CommanderTurtle/archive--camofox-mcp.git",
+      "branch": "main"
+    },
+    "camofoxBrowser": {
+      "url": "https://github.com/CommanderTurtle/archive--camofox-browser.git",
+      "branch": "master"
+    },
+    "firecrawl": {
+      "url": "https://github.com/firecrawl/firecrawl.git",
+      "branch": "main"
+    },
+    "contextMode": {
+      "url": "https://github.com/CommanderTurtle/context-mode.git",
+      "branch": "main"
+    },
+    "hermesWorkspace": {
+      "url": "https://github.com/CommanderTurtle/archive--hermes-workspace.git",
+      "branch": "main"
+    },
+    "leetcoder": {
+      "url": "https://github.com/CommanderTurtle/leetcoder.git",
+      "branch": "main"
+    },
+    "librarian": {
+      "url": "https://github.com/CommanderTurtle/librarian.git",
+      "branch": "main"
+    },
+    "persephone": {
+      "url": "https://github.com/CommanderTurtle/persephone.git",
+      "branch": "main"
+    },
+    "retrieval": {
+      "url": "https://github.com/CommanderTurtle/retrieval.git",
+      "branch": "main"
+    },
+    "codebaseMemory": {
+      "url": "https://github.com/DeusData/codebase-memory-mcp.git",
       "branch": "main"
     },
     "minima": {

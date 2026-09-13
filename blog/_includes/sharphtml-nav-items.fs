@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Includes.NavItemsRaw
+﻿module Bl0g.Includes.NavItemsRaw
 
 let file = """<div class="nav-items">
   {%- for path in include.paths -%}

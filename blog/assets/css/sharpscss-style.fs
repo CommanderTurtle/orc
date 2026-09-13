@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Assets.Css.StyleScss
+﻿module Bl0g.Assets.Css.StyleScss
 
 let file = """---
 # Only the main Sass file needs front matter (the dashes are enough)

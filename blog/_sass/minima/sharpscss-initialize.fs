@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Sass.Minima.InitializeScss
+﻿module Bl0g.Sass.Minima.InitializeScss
 
 let file = """@charset "utf-8";
 

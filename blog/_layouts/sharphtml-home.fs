@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Layouts.HomeRaw
+﻿module Bl0g.Layouts.HomeRaw
 
 let file = """---
 layout: base

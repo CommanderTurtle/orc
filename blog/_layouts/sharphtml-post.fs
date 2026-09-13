@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.Layouts.PostRaw
+﻿module Bl0g.Layouts.PostRaw
 
 let file = """---
 layout: base
@@ -30,7 +30,7 @@ layout: base
         {% if page.tags %}
           <div class="blog-tags" style="margin-top: 12px;">
             {% for tag in page.tags %}
-              <a href="{{ '/blog/tags/' | append: tag | relative_url }}" class="tag">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+              <span class="tag">{{ tag }}</span>{% unless forloop.last %} {% endunless %}
             {% endfor %}
           </div>
         {% endif %}
