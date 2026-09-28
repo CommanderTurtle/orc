@@ -1,5 +1,0 @@
-﻿module Comfy.Assets.TextPromptEnhanceBayijqgsJsMap
-
-let file = """{"version":3,"file":"text-prompt-enhance-Bayijqgs.js","names":[],"sources":[],"mappings":""}"""
-
-let render() = file

@@ -1,5 +1,0 @@
-﻿module Comfy.Assets.ComfyLogoSingleDybKI4YQJsMap
-
-let file = """{"version":3,"file":"comfy-logo-single-DybKI4YQ.js","names":[],"sources":["../../../../../../../../assets/images/comfy-logo-single.svg"],"sourcesContent":["export default \"__VITE_PUBLIC_ASSET__1ac87927__\""],"mappings":"AAAA,IAAA,EAAe,GAAA,IAAA,IAAA,+BAAA,YAAA,GAAA,CAAA,CAAA"}"""
-
-let render() = file

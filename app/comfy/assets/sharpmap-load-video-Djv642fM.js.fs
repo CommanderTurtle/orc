@@ -1,5 +1,0 @@
-﻿module Comfy.Assets.LoadVideoDjv642fMJsMap
-
-let file = """{"version":3,"file":"load-video-Djv642fM.js","names":[],"sources":[],"mappings":""}"""
-
-let render() = file

@@ -1,6 +1,0 @@
-﻿module Comfy.Assets.SubscriptionRequiredDialogContentBrcmEkkYCss
-
-let file = """.legacy-dialog[data-v-547080e4] .bg-comfy-menu-secondary{background-color:#0000}.legacy-dialog[data-v-547080e4] .p-button{color:#fff}
-"""
-
-let render() = file

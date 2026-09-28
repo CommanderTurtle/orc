@@ -1,5 +1,0 @@
-﻿module Comfy.Assets.IndexCKO20XHWJsMap
-
-let file = """{"version":3,"mappings":";4zBAQA,YAAM,OAAO","names":[],"ignoreList":[],"sources":["../../src/bootstrap.ts"],"sourcesContent":["if (__DISTRIBUTION__ === 'cloud') {\n  const { initDatadogRum } = await import('@/platform/telemetry/initDatadogRum')\n  const { flushErrorReports } = await import('@/platform/telemetry/reportError')\n  void initDatadogRum()\n    .then(flushErrorReports)\n    .catch(() => {})\n}\n\nawait import('./main')\n\nexport {}\n"],"file":"index-CKO20XHW.js"}"""
-
-let render() = file

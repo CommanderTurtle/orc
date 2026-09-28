@@ -1,8 +1,0 @@
-﻿module Comfy.Extensions.Core.Load3d.RecordingManagerJs
-
-let file = """// Shim for extensions/core/load3d/RecordingManager.ts
-console.warn('[ComfyUI Notice] "extensions/core/load3d/RecordingManager.js" is an internal module, not part of the public API. Future updates may break this import.');
-export const RecordingManager = window.comfyAPI.RecordingManager.RecordingManager;
-"""
-
-let render() = file
