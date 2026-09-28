@@ -1,4 +1,4 @@
-﻿module make.Assets.FfmpegCore67a48f11645f8543Js
+﻿module Make.Assets.FfmpegCore67a48f11645f8543Js
 
 let file = """
 var createFFmpegCore = (() => {

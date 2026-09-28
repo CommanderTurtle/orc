@@ -1,4 +1,4 @@
-﻿module make.Assets.JsSynthesizerC7fac6ea6641c9b3Js
+﻿module Make.Assets.JsSynthesizerC7fac6ea6641c9b3Js
 
 let file = """/*!
 js-synthesizer version 1.13.0
