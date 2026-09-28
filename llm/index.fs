@@ -1,4 +1,4 @@
-﻿module Link.IndexHtml
+﻿module LLM.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -33,7 +33,7 @@ let page =
                 button [ _id "export-markdown"; _type "button" ] [
                     str "Markdown"
                 ]
-                button [ _id "copy-markdown"; _class "icon-button"; _type "button"; attr "title" "Copy conversation Markdown"; attr "aria-label" "Copy conversation Markdown"; attr "hidden" "" ] [
+                button [ _id "copy-markdown"; _class "icon-button"; _type "button"; attr "title" "Copy conversation Markdown · Ctrl+click to omit Firecrawl sections after section 1 (context reads stay complete)"; attr "aria-label" "Copy conversation Markdown; Ctrl+click for collapsed Firecrawl sections"; attr "hidden" "" ] [
                     str "⧉"
                 ]
                 button [ _id "share-markdown"; _class "icon-button"; _type "button"; attr "title" "Open conversation Markdown in a.shel.sh"; attr "aria-label" "Open conversation Markdown in a.shel.sh"; attr "hidden" "" ] [
@@ -238,6 +238,28 @@ let page =
                                     ]
                                     small [] [
                                         str "Recognize missing terminal signals or output limits and offer Continue on the latest assistant turn."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-auto-continue"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Autocontinue"
+                                    ]
+                                    small [] [
+                                        str "Resume output limits or missing final answers through Continue. Stops on repeated empty/identical output, manual Stop, or three automatic retries."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-advanced-lint"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Advanced linting"
+                                    ]
+                                    small [] [
+                                        str "Add local syntax parsers for 36 languages, including F# and C++. Model-assisted code actions edit individual blocks; these are not project-wide, type-checked refactors."
                                     ]
                                 ]
                             ]
@@ -521,6 +543,9 @@ let page =
                             str "Local-first:"
                         ]
                         str "chats and attachments are stored in this browser's IndexedDB. Importing state never contacts a service."
+                        a [ _href "https://github.com/CommanderTurtle/llm"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                            str "Source"
+                        ]
                     ]
                 ]
             ]
@@ -606,23 +631,33 @@ let page =
                             str "Stateless summarizer prompt"
                         ]
                         tag "textarea" [ _id "compaction-prompt"; attr "rows" "5" ] []
-                        div [ _class "panel-heading compact-heading" ] [
-                            h3 [] [
-                                str "Select exact entries for Normal compaction"
-                            ]
-                            button [ _id "select-older-context"; _type "button" ] [
-                                str "Select older"
-                            ]
-                            button [ _id "clear-context-selection"; _type "button" ] [
-                                str "Clear selection"
-                            ]
-                        ]
-                        p [ _class "hint" ] [
-                            str "Drag across boxes to paint a selection. Shift-click selects every available entry of the same role or tool type."
-                        ]
-                        div [ _id "compaction-messages"; _class "compaction-list" ] []
-                        div [ _id "active-compaction"; _class "active-compaction" ] []
                     ]
+                    div [ _class "panel-heading compact-heading" ] [
+                        h3 [] [
+                            str "Select exact entries"
+                        ]
+                        button [ _id "delete-selected-context"; _class "danger icon-action"; _type "button"; attr "title" "delete selected"; attr "aria-label" "delete selected" ] [
+                            tag "svg" [ attr "viewBox" "0 0 24 24"; attr "aria-hidden" "true" ] [
+                                voidTag "path" [ attr "d" "M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7" ]
+                            ]
+                        ]
+                        button [ _id "compact-selected-context"; _class "icon-action"; _type "button"; attr "title" "soft compact selected"; attr "aria-label" "soft compact selected" ] [
+                            tag "svg" [ attr "viewBox" "0 0 24 24"; attr "aria-hidden" "true" ] [
+                                voidTag "path" [ attr "d" "M4 3v5h16V3M4 21v-5h16v5M8 4l4 4 4-4M8 20l4-4 4 4M4 12h16" ]
+                            ]
+                        ]
+                        button [ _id "select-older-context"; _type "button" ] [
+                            str "Select older"
+                        ]
+                        button [ _id "clear-context-selection"; _type "button" ] [
+                            str "Clear selection"
+                        ]
+                    ]
+                    p [ _class "hint" ] [
+                        str "Drag across boxes to paint a selection. Shift-click selects every available entry of the same role or tool type."
+                    ]
+                    div [ _id "compaction-messages"; _class "compaction-list" ] []
+                    div [ _id "active-compaction"; _class "active-compaction" ] []
                     div [ _class "dialog-actions" ] [
                         button [ _id "close-context"; _type "button" ] [
                             str "Close"

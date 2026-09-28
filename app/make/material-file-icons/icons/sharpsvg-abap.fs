@@ -1,5 +1,0 @@
-﻿module Make.MaterialFileIcons.Icons.AbapSvg
-
-let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#0288d1" d="M2 10v12h14l14-12"/></svg>"""
-
-let render() = file
