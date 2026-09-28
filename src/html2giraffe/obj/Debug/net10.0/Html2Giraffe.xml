@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Html2Giraffe</name></assembly>
+<members>
+<member name="T:Html2Giraffe.Ast.HtmlDocument">
+ <summary>
+ Represents an HTML document.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Ast.ElementNode">
+ <summary>
+ Represents an HTML element.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Ast.HtmlNode">
+ <summary>
+ Represents any HTML node.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Ast.TextNode">
+ <summary>
+ Represents a text node.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Ast.Attribute">
+ <summary>
+ Represents an HTML attribute.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.document(Microsoft.FSharp.Collections.FSharpList{Html2Giraffe.Ast.HtmlNode})">
+ <summary>
+ Creates a document with children.
+ </summary>
+</member>
+<member name="P:Html2Giraffe.Ast.emptyDocument">
+ <summary>
+ Creates an empty document.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.boolAttr(System.String)">
+ <summary>
+ Creates a boolean attribute.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.attr(System.String,System.String)">
+ <summary>
+ Creates an attribute.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.voidElement(System.String,Microsoft.FSharp.Collections.FSharpList{Html2Giraffe.Ast.Attribute})">
+ <summary>
+ Creates a void element.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.elementWithChildren(System.String,Microsoft.FSharp.Collections.FSharpList{Html2Giraffe.Ast.Attribute},Microsoft.FSharp.Collections.FSharpList{Html2Giraffe.Ast.HtmlNode})">
+ <summary>
+ Creates an element with children.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.elementWithAttrs(System.String,Microsoft.FSharp.Collections.FSharpList{Html2Giraffe.Ast.Attribute})">
+ <summary>
+ Creates an element with attributes.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.element(System.String)">
+ <summary>
+ Creates an element.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.rawText(System.String)">
+ <summary>
+ Creates a raw text node.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Ast.text(System.String)">
+ <summary>
+ Creates a text node.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Ast">
+ <summary>
+ Abstract Syntax Tree (AST) types for HTML representation.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.convertFileWithModule(System.String,System.String,System.String,System.String,System.String)">
+ <summary>
+ Converts HTML file to F# file with custom module name.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.convertFile(System.String,System.String)">
+ <summary>
+ Converts HTML file to F# file.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.renderHtml(Html2Giraffe.Ast.HtmlDocument)">
+ <summary>
+ Renders AST back to HTML.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.getAst(System.String)">
+ <summary>
+ Gets the AST representation of HTML.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.validateRoundtrip(System.String)">
+ <summary>
+ Performs roundtrip validation on HTML.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.htmlToFsharpModule(System.String,System.String,System.String,System.String)">
+ <summary>
+ Converts HTML to F# module.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.htmlFileToFsharp(System.String)">
+ <summary>
+ Converts HTML file to F# code.
+ </summary>
+</member>
+<member name="M:Html2Giraffe.Library.htmlToFsharp(System.String)">
+ <summary>
+ Converts HTML string to F# code.
+ </summary>
+</member>
+<member name="T:Html2Giraffe.Library">
+ <summary>
+ Public API for Html2Giraffe library.
+ </summary>
+</member>
+</members>
+</doc>

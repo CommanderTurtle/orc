@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="Generator">
+    <resource name="FSharpSignatureData.Generator" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedData.Generator" action="remove"></resource>
+    <resource name="FSharpSignatureDataB.Generator" action="remove"></resource>
+    <resource name="FSharpSignatureCompressedDataB.Generator" action="remove"></resource>
+    <resource name="FSharpOptimizationData.Generator" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedData.Generator" action="remove"></resource>
+    <resource name="FSharpOptimizationDataB.Generator" action="remove"></resource>
+    <resource name="FSharpOptimizationCompressedDataB.Generator" action="remove"></resource>
+    <resource name="FSharpOptimizationInfo.Generator" action="remove"></resource>
+    <resource name="FSharpSignatureInfo.Generator" action="remove"></resource>
+  </assembly>
+</linker>

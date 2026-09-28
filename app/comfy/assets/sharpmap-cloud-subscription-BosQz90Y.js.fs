@@ -1,0 +1,5 @@
+﻿module Comfy.Assets.CloudSubscriptionBosQz90YJsMap
+
+let file = """{"version":3,"file":"cloud-subscription-BosQz90Y.js","names":[],"sources":["../../../../../../../../assets/images/cloud-subscription.webm"],"sourcesContent":["export default \"__VITE_PUBLIC_ASSET__b4a125b1__\""],"mappings":"AAAA,IAAA,EAAe,GAAA,IAAA,IAAA,iCAAA,YAAA,GAAA,CAAA,CAAA"}"""
+
+let render() = file

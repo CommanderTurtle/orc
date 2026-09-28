@@ -1,0 +1,6 @@
+﻿module Comfy.Assets.WidgetGalleriaHoQeyQWECss
+
+let file = """[data-v-d1100a6b] .p-galleria-thumbnails{overflow:hidden}[data-v-d1100a6b] .p-galleria-thumbnail-item{flex-shrink:0}[data-v-d1100a6b] .p-galleria-thumbnail{overflow:hidden}
+"""
+
+let render() = file

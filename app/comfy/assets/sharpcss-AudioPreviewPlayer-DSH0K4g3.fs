@@ -1,0 +1,6 @@
+﻿module Comfy.Assets.AudioPreviewPlayerDSH0K4g3Css
+
+let file = """.audio-player-menu[data-v-73763219]{--p-tieredmenu-item-focus-background:#ffffff1a;--p-tieredmenu-item-active-background:#ffffff1a}
+"""
+
+let render() = file

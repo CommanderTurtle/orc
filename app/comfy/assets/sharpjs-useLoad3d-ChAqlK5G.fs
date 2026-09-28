@@ -1,0 +1,5 @@
+﻿module Comfy.Assets.UseLoad3dChAqlK5GJs
+
+let file = """import{a as e,i as t,n,o as r,r as i,t as a}from"./useLoad3d-DokTlau_.js";export{a as getLoad3dOutputCache,n as isLoad3dSceneDirty,i as markLoad3dSceneDirty,t as nodeToLoad3dMap,e as setLoad3dOutputCache,r as useLoad3d};"""
+
+let render() = file

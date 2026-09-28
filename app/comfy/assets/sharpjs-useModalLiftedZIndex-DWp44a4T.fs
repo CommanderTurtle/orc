@@ -1,0 +1,5 @@
+﻿module Comfy.Assets.UseModalLiftedZIndexDWp44a4TJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe.js";import{F as e}from"./vendor-vue-core-DwKKv_Jy.js";import{at as t}from"./vendor-primevue-tGYRAMXD.js";var n=1700;function useModalLiftedZIndex(r){return e(()=>{if(!r.value)return;let e=t.getCurrent(`modal`);return e>=n?{zIndex:e+1}:void 0})}export{useModalLiftedZIndex as t};"""
+
+let render() = file

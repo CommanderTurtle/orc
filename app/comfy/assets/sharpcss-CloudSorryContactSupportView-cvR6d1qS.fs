@@ -1,0 +1,6 @@
+﻿module Comfy.Assets.CloudSorryContactSupportViewCvR6d1qSCss
+
+let file = """.cloud-sorry-contact-support[data-v-c3fa108d]{justify-content:center;align-items:center;height:100vh;font-family:monospace;font-size:1.5rem;display:flex}
+"""
+
+let render() = file

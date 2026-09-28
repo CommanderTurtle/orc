@@ -1,0 +1,6 @@
+﻿module Comfy.Assets.UseTerminalTabsDO51e253Css
+
+let file = """[data-v-b1b65723] .p-terminal .xterm{overflow:hidden}[data-v-b1b65723] .p-terminal .xterm-screen{background-color:var(--color-neutral-900);overflow:hidden}[data-v-eeb0228f] .p-terminal .xterm{overflow-x:auto}[data-v-eeb0228f] .p-terminal .xterm-screen{overflow-y:hidden}[data-v-49782f06] .p-terminal .xterm{overflow-x:auto}[data-v-49782f06] .p-terminal .xterm-screen{overflow-y:hidden}
+"""
+
+let render() = file
