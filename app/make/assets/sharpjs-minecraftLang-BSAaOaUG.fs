@@ -1,0 +1,6 @@
+﻿module Make.Assets.MinecraftLangBSAaOaUGJs
+
+let file = """import{n as e}from"./CommonFormats-bmLAkhpe.js";var t=class{name=`minecraftLang`;supportedFormats;ready=!1;offload=!0;async init(){this.supportedFormats=[e.JSON.builder(`json`).markLossless(!0).allowFrom(!0).allowTo(!0),{name:`Minecraft Language Localization File`,format:`minecraft-lang`,extension:`lang`,mime:`text/plain`,from:!0,to:!0,internal:`minecraft-lang`,lossless:!0}],this.ready=!0}async doConvert(e,t,n){let r=[];for(let i of e){let e=new TextDecoder().decode(i.bytes),a;if(t.format===`json`&&n.format===`minecraft-lang`){let t=JSON.parse(e);if(typeof t!=`object`||Array.isArray(t))throw TypeError(`JSON must be a flat object`);a=Object.entries(t).map(([e,t])=>typeof t==`object`?`${e}=${JSON.stringify(t)}`:`${e}=${t}`).join(`
+`)}else if(t.format===`minecraft-lang`&&n.format===`json`){let t={},n=e.split(/\r?\n/);for(let e of n){if(!e.trim()||e.startsWith(`#`))continue;let n=e.indexOf(`=`);if(n===-1)continue;let r=e.slice(0,n).trim();t[r]=e.slice(n+1).trim()}a=JSON.stringify(t,null,2)}else throw TypeError(`Unsupported conversion direction: ${t.internal} -> ${n.internal}`);r.push({name:i.name.split(`.`).slice(0,-1).join(`.`),bytes:new TextEncoder().encode(a)})}return r}};export{t as default};"""
+
+let render() = file

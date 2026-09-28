@@ -1,0 +1,5 @@
+﻿module Make.Assets.SvgToBlobDnCxy479Js
+
+let file = """import{n as e}from"./CommonFormats-bmLAkhpe.js";import{r as t}from"./errors-DEotwJ0n.js";var n=class{name=`svgToBlob`;supportedFormats=[e.PNG.supported(`png`,!1,!0),e.JPEG.supported(`jpeg`,!1,!0),e.WEBP.supported(`webp`,!1,!0),e.SVG.supported(`svg`,!0,!1)];ready=!1;offload=!1;#e;#t;async init(){this.ready=!0,this.#e=new OffscreenCanvas(1,1),this.#t=this.#e.getContext(`2d`)||void 0}async doConvert(e,n,r){if(!this.#e||!this.#t)throw new t(`Handler not initialized.`);let i=[];for(let t of e){let e=`data:${n.mime};base64,${btoa(t.bytes.reduce((e,t)=>e+String.fromCharCode(t),``))}`,a=new Image;await new Promise((t,n)=>{a.addEventListener(`load`,t),a.addEventListener(`error`,n),a.src=e}),this.#e.width=a.naturalWidth,this.#e.height=a.naturalHeight,this.#t.drawImage(a,0,0);let o=await this.#e.convertToBlob({type:r.mime}),s=new Uint8Array(await o.arrayBuffer()),c=t.name.split(`.`).slice(0,-1).join(`.`)+`.`+r.extension;i.push({bytes:s,name:c})}return i}};export{n as default};"""
+
+let render() = file

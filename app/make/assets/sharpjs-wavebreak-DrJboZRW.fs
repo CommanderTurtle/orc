@@ -1,0 +1,5 @@
+﻿module Make.Assets.WavebreakDrJboZRWJs
+
+let file = """import{n as e,t}from"./CommonFormats-bmLAkhpe.js";var n=class{name=`wavebreak`;supportedFormats=[e.WAV.builder(`wav`).allowTo().markLossless(),{name:`PCM signed 16-bit little-endian`,format:`s16le`,extension:`s16le`,mime:`audio/s16le`,from:!0,to:!1,internal:`s16le`,category:t.AUDIO,lossless:!0}];ready=!1;offload=!0;async init(){this.ready=!0}async doConvert(e,t,n,r,i){let a=[],o=e=>new Uint8Array(new Uint32Array([e]).buffer);for(let t of e){if(t.bytes.byteLength>4294967040){i?.log(`data too large. maximum size 4,294,967,040 bytes.`,`error`);continue}t.bytes.byteLength>2147483392&&i?.log(`data very large. successful conversion cannot be guaranteed.`,`warn`);let e=2*Math.floor(t.bytes.byteLength/2),n=new Uint8Array([82,73,70,70,...o(e+36),87,65,86,69]),r=new Uint8Array([102,109,116,32,16,0,0,0,1,0,1,0,68,172,0,0,136,88,1,0,2,0,16,0]),s=new Uint8Array([100,97,116,97,...o(e)]),c=new Uint8Array(e+44);c.set(n,0),c.set(r,12),c.set(s,36),c.set(t.bytes.subarray(0,e),44),a.push({name:t.name.split(`.`).slice(0,-1).join(`.`)+`.wav`,bytes:c})}return a}};export{n as default};"""
+
+let render() = file

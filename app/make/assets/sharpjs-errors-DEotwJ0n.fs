@@ -1,0 +1,5 @@
+﻿module Make.Assets.ErrorsDEotwJ0nJs
+
+let file = """var e=class extends Error{constructor(e){super(e),this.name=`BadMagicError`}},t=class extends Error{constructor(e){super(e),this.name=`EOFError`}},n=class extends Error{constructor(e){super(e),this.name=`InitializationError`}};export{t as n,n as r,e as t};"""
+
+let render() = file

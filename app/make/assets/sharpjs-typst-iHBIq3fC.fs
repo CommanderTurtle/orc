@@ -1,0 +1,5 @@
+﻿module Make.Assets.TypstIHBIq3fCJs
+
+let file = """import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c,u as l}from"./typst-BiX9d_Fd.js";export{c as TYPST_ASSET_MANIFEST_END,i as TYPST_ASSET_MANIFEST_START,o as TYPST_PAGEBREAK_MARKER,n as bundleTypstAssets,e as collectTypstAssetFiles,r as default,a as normalizeTypstAssetPaths,s as postprocessTypstFromPandoc,t as preprocessHtmlForTypst,l as unpackTypstAssets};"""
+
+let render() = file
