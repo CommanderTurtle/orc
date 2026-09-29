@@ -1,4 +1,4 @@
-﻿module Link.N404Html
+﻿module LnKr.N404Html
 
 open Giraffe.ViewEngine
 
