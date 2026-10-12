@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "WCp8SzXW/UI=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/orc/orc/src/generator/Generator.fsproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/anglesharp/1.1.0/anglesharp.1.1.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/fsharp.core/10.1.401/fsharp.core.10.1.401.nupkg.sha512",
+    "/home/runner/.nuget/packages/giraffe.viewengine/1.4.0/giraffe.viewengine.1.4.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/htmlagilitypack/1.11.57/htmlagilitypack.1.11.57.nupkg.sha512",
+    "/home/runner/.nuget/packages/spectre.console/0.48.0/spectre.console.0.48.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'AngleSharp' 1.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-pgww-w46g-26qg",
+      "projectPath": "/home/runner/work/orc/orc/src/generator/Generator.fsproj",
+      "warningLevel": 1,
+      "filePath": "/home/runner/work/orc/orc/src/generator/Generator.fsproj",
+      "libraryId": "AngleSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
