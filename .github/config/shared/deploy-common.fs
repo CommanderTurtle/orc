@@ -51,7 +51,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Determine mode
         id: mode
@@ -129,17 +129,17 @@ jobs:
             exit 1
           fi
 
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@v6
         if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         with:
           dotnet-version: '10.0.x'
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
         with:
           python-version: '3.x'
 
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v10
         if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
 
       - uses: oven-sh/setup-bun@v2
