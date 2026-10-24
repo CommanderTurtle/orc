@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.StatusBadgeCgZLDcoCC0DeDmJoJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{Ct as e,N as t,Q as n,b as r,h as i,it as a}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{L as o}from"./vendor-other-DMCJdr63-rGllg5-G.js";import{t as s}from"./src-BT8lhl7V-Dsr2S2CD.js";var c=o({base:`inline-flex items-center justify-center rounded-full`,variants:{severity:{default:`bg-primary-background text-base-foreground`,secondary:`bg-secondary-background text-base-foreground`,warn:`bg-warning-background text-base-background`,danger:`bg-destructive-background text-white`,contrast:`bg-base-foreground text-base-background`},variant:{label:`h-3.5 px-1 text-3xs font-semibold uppercase`,dot:`size-2`,circle:`size-3.5 text-3xs font-semibold`}},defaultVariants:{severity:`default`,variant:`label`}}),l=t({__name:`StatusBadge`,props:{label:{},severity:{default:`default`},variant:{},class:{}},setup(t){let o=i(()=>s(c({severity:t.severity,variant:t.variant??(t.label==null?`dot`:`label`)}),t.class));return(i,s)=>(a(),r(`span`,{class:n(o.value)},e(t.label),3))}});export{l as t};"""
+
+let render() = file

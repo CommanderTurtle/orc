@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.TextareaBzl6iZXJXeHgf4rUJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,N as t,Pt as n,Q as r,Rt as i,Wt as a,Y as o,b as s,it as c,n as l}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t as u}from"./src-BT8lhl7V-Dsr2S2CD.js";var d=t({__name:`Textarea`,props:o({class:{type:[Boolean,null,String,Object,Array]}},{modelValue:{},modelModifiers:{}}),emits:[`update:modelValue`],setup(t,{expose:o}){let d=n(t,`modelValue`),f=i(`textareaEl`);return o({focus:()=>f.value?.focus()}),(n,i)=>a((c(),s(`textarea`,{ref_key:`textareaEl`,ref:f,"onUpdate:modelValue":i[0]||=e=>d.value=e,class:r(e(u)(`flex min-h-16 w-full scrollbar-gutter-stable rounded-lg border-none bg-secondary-background px-3 py-2 text-sm text-base-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-border-default focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-1 aria-invalid:ring-destructive-background`,t.class))},null,2)),[[l,d.value]])}});export{d as t};"""
+
+let render() = file

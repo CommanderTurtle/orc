@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.MediaTextTopI4vzfhOB2qBKdA0Js
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{Ct as e,N as t,_ as n,b as r,h as i,it as a}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t as o}from"./useTextFileContent-EYroxhFp-DPwg7PDb.js";var s={class:`relative size-full overflow-hidden rounded-sm`},c={class:`size-full bg-modal-card-placeholder-background transition-transform duration-300 group-hover:scale-105 group-data-[selected=true]:scale-105`},l={key:0,class:`m-0 size-full overflow-hidden p-2 text-left text-xs/4 wrap-break-word whitespace-pre-wrap text-base-foreground`},u={key:1,class:`flex size-full items-center justify-center`},d=1e3,f=t({__name:`MediaTextTop`,props:{asset:{}},setup(t){let{textContent:f}=o(()=>({url:t.asset.preview_url||t.asset.src})),p=i(()=>f.value.slice(0,d));return(t,i)=>(a(),r(`div`,s,[n(`div`,c,[p.value?(a(),r(`p`,l,e(p.value),1)):(a(),r(`div`,u,[...i[0]||=[n(`i`,{class:`icon-[lucide--text] text-3xl text-base-foreground`},null,-1)]]))])]))}});export{f as default};"""
+
+let render() = file

@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.UseUpstreamValueCTZjfAVDwMdTYJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{h as e}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{i as t}from"./nodeDefStore-B8cjfdeD-CJqS0EUr.js";import{t as n}from"./executionErrorStore-AFzyih5Y-BuCsP0h7.js";function r(r,i){let a=n(),o=t();return e(()=>{let e=r();if(!e)return;let t=a.rootGraphId;if(t)return i(o.getNodeWidgets(t,e.nodeId),e.outputName)})}function i(e){return(t,n)=>{if(n){let r=t.find(e=>e.name===n);if(r&&e(r.value))return r.value}let r=t.map(e=>e.value).filter(e);return r.length===1?r[0]:void 0}}function a(e){if(typeof e!=`object`||!e)return!1;let t=e;return typeof t.x==`number`&&typeof t.y==`number`&&typeof t.width==`number`&&typeof t.height==`number`}function o(){let e=i(a);return(t,n)=>{let r=e(t,n);if(r)return r;let i=e=>{let n=t.find(t=>t.name===e);return typeof n?.value==`number`?n.value:void 0},a=i(`x`),o=i(`y`),s=i(`width`),c=i(`height`);if(a!==void 0&&o!==void 0&&s!==void 0&&c!==void 0)return{x:a,y:o,width:s,height:c}}}export{i as n,r,o as t};"""
+
+let render() = file

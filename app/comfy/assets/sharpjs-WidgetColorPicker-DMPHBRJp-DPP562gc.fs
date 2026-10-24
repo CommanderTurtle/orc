@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.WidgetColorPickerDMPHBRJpDPP562gcJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,N as t,Pt as n,Ut as r,Y as i,it as a,lt as o,u as s,v as c,zt as l}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{n as u,o as d,s as f,v as p}from"./colorUtil-u0cSu7zP-BKaruaZf.js";import{t as m}from"./ColorPicker-avnyvKDr-aMJCmFo3.js";import{t as h}from"./WidgetLayoutField-DEoC-sk6-B38Zn3yY.js";var g=t({__name:`WidgetColorPicker`,props:i({widget:{}},{modelValue:{required:!0},modelModifiers:{}}),emits:[`update:modelValue`],setup(t){let i=n(t,`modelValue`),g=t.widget.options?.format===`int`||f(t.widget.options?.format)?t.widget.options.format:`hex`;function _(e){return g===`int`?typeof e==`number`?d(e):`#000000`:p(e||`#000000`,g)}let v=o(_(i.value));l(i,e=>{v.value=_(e)});function y(e){v.value=e,i.value=g===`int`?u(e):e}return(n,i)=>(a(),c(h,{widget:t.widget},{default:r(()=>[s(m,{modelValue:v.value,"onUpdate:modelValue":[i[0]||=e=>v.value=e,y],alpha:e(g)!==`int`},null,8,[`modelValue`,`alpha`])]),_:1},8,[`widget`]))}});export{g as default};"""
+
+let render() = file

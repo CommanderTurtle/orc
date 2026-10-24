@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.DateTimeUtilBFRhtmlWDIMfFXFCJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";var e=/\.(\d+)(?=Z|[+-]\d{2}:?\d{2}|$)/;function t(t){if(!t)return null;let n=t.replace(e,(e,t)=>`.${t.slice(0,3).padEnd(3,`0`)}`),r=new Date(n);return Number.isNaN(r.getTime())?null:r}var n=e=>{let t=new Date(e);return`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,`0`)}-${String(t.getDate()).padStart(2,`0`)}`},r=e=>{let t=new Date(e),n=new Date;return t.getFullYear()===n.getFullYear()&&t.getMonth()===n.getMonth()&&t.getDate()===n.getDate()},i=e=>{let t=new Date(e),n=new Date,r=new Date(n.getFullYear(),n.getMonth(),n.getDate()-1);return t.getFullYear()===r.getFullYear()&&t.getMonth()===r.getMonth()&&t.getDate()===r.getDate()},a=(e,t)=>{let n=new Date(e);return new Intl.DateTimeFormat(t,{month:`short`,day:`numeric`}).format(n)},o=(e,t,n)=>{let r=new Date(e),{hourCycle:i}=new Intl.DateTimeFormat(n,{hour:`numeric`}).resolvedOptions();return new Intl.DateTimeFormat(t,{hour:`numeric`,minute:`2-digit`,second:`2-digit`,hourCycle:i}).format(r)};export{i as a,r as i,o as n,t as o,a as r,n as t};"""
+
+let render() = file

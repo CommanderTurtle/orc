@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.UseExternalLinkC1YP0IU6CgNY6eikJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{h as e}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t}from"./i18n-D6QG9v-J-FWl07wji.js";import"./envUtil-DPBXy0gR-DuSv5uc8.js";function n(){let n=e(()=>t.global.locale.value),r=e(()=>n.value===`zh`||n.value===`zh-TW`),i=e(()=>null);return{buildDocsUrl:(e,t={})=>{let{includeLocale:n=!1,platform:a=!1}=t,o=`https://docs.comfy.org`;n&&r.value&&(o+=`/zh`);let s=e.startsWith(`/`)?e:`/${e}`;return o+=s,a&&i.value&&(o=o.endsWith(`/`)?o:`${o}/`,o+=i.value),o},staticUrls:{discord:`https://discord.com/invite/comfyorg`,github:`https://github.com/Comfy-Org/ComfyUI`,githubIssues:`https://github.com/Comfy-Org/ComfyUI/issues`,githubFrontend:`https://github.com/Comfy-Org/ComfyUI_frontend`,githubElectron:`https://github.com/Comfy-Org/electron`,forum:`https://forum.comfy.org/`,comfyOrg:`https://comfy.org/`,status:`https://status.comfy.org/`},docsPaths:{partnerNodesPricing:`/tutorials/partner-nodes/pricing`}}}export{n as t};"""
+
+let render() = file

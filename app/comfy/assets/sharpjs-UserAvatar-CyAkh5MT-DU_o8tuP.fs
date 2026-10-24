@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.UserAvatarCyAkh5MTDUO8tuPJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,N as t,Q as n,b as r,h as i,it as a,lt as o,zt as s}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t as c}from"./src-BT8lhl7V-Dsr2S2CD.js";var l=[`src`,`alt`,`aria-label`],u=[`aria-label`],d=t({__name:`UserAvatar`,props:{photoUrl:{},ariaLabel:{},iconClass:{default:`size-4`},size:{default:`normal`}},setup(t){let d=o(!1),f=()=>{d.value=!0},p=i(()=>t.photoUrl&&!d.value);return s(()=>t.photoUrl,()=>{d.value=!1}),(i,o)=>(a(),r(`span`,{class:n(e(c)(`inline-flex aspect-square items-center justify-center overflow-hidden rounded-full bg-interface-panel-selected-surface`,t.size===`large`?`size-12`:`size-8`))},[p.value?(a(),r(`img`,{key:0,src:t.photoUrl??void 0,alt:t.ariaLabel??i.$t(`auth.login.userAvatar`),"aria-label":t.ariaLabel??i.$t(`auth.login.userAvatar`),class:`size-full object-cover`,onError:f},null,40,l)):(a(),r(`i`,{key:1,"data-testid":`avatar-icon`,"aria-label":t.ariaLabel??i.$t(`auth.login.userAvatar`),class:n(e(c)(`icon-[lucide--user]`,t.iconClass))},null,10,u))],2))}});export{d as t};"""
+
+let render() = file

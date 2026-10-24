@@ -1,0 +1,6 @@
+﻿module ComfyUI.Assets.InviteLinksQpBD1lyFnOnX43Js
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{o as e}from"./reportError-Dqldkhr0-DPGQORZI.js";import{tt as t}from"./apiKeyAuthStore-BK5iKaP0-DzwBOk3-.js";function n(e){let n=new URL(window.location.origin);return n.searchParams.set(t.INVITE,e),n.toString()}function r(e){return e.length===1?e[0].url:e.map(({email:e,url:t})=>`${e}\t${t}`).join(`
+`)}async function i(t){try{return await navigator.clipboard.writeText(t),!0}catch{let n=document.createElement(`textarea`);n.value=t,n.style.position=`fixed`,n.style.opacity=`0`,document.body.appendChild(n);try{n.select();let t=document.execCommand(`copy`);return t||e(Error(`execCommand copy reported failure`),{errorType:`error_copying_invite_link`,surface:`workspace`}),t}catch(t){return e(t,{errorType:`error_copying_invite_link`,surface:`workspace`}),!1}finally{n.remove()}}}export{i as n,r,n as t};"""
+
+let render() = file

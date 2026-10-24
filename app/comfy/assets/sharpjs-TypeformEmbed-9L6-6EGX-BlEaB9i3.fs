@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.TypeformEmbed9L66EGXBlEaB9i3Js
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,Ct as t,N as n,Q as r,Rt as i,b as a,it as o}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{r as s}from"./vendor-i18n-D0rAmGhT-Dg6vqr98.js";import{n as c}from"./useTypeformEmbed-C46oxorf-CFDBPB3u.js";var l={key:0,class:`flex h-full items-center text-sm text-destructive-background`},u=[`data-tf-widget`,`data-tf-hidden`,`data-tf-redirect-target`,`data-tf-auto-resize`],d=n({__name:`TypeformEmbed`,props:{typeformId:{},hiddenFields:{},autoResize:{type:Boolean,default:!1},redirectTarget:{}},setup(n){let{t:d}=s(),f=i(`typeformRef`),{typeformError:p,isValidTypeformId:m}=c(f,()=>n.typeformId);return(i,s)=>e(p)||!e(m)?(o(),a(`div`,l,t(e(d)(`typeform.loadError`)),1)):(o(),a(`div`,{key:1,ref_key:`typeformRef`,ref:f,"data-testid":`typeform-embed`,"data-tf-widget":n.typeformId,"data-tf-hidden":n.hiddenFields,"data-tf-redirect-target":n.redirectTarget,"data-tf-auto-resize":n.autoResize||void 0,class:r(n.autoResize?`w-full`:`size-full`)},null,10,u))}});export{d as t};"""
+
+let render() = file

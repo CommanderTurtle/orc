@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.WidgetDynamicGroupRowCZ8yQwUIDvv93bHKJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,Ct as t,N as n,Ut as r,_ as i,b as a,it as o,u as s}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t as c}from"./Button-BXQ0rlkG-CIWom5KZ.js";import{r as l}from"./vendor-i18n-D0rAmGhT-Dg6vqr98.js";var u={class:`flex items-center gap-2`},d={class:`text-xs text-muted-foreground`},f=n({__name:`WidgetDynamicGroupRow`,props:{widget:{}},emits:[`removed`],setup(n,{emit:f}){let{t:p}=l(),m=f;function h(){let e=n.widget.name;n.widget.callback?.(void 0),m(`removed`,e)}return(l,f)=>(o(),a(`div`,u,[f[1]||=i(`span`,{class:`h-px flex-1 bg-border-default`},null,-1),i(`span`,d,t(n.widget.label),1),s(c,{variant:`textonly`,size:`icon`,class:`size-6`,disabled:n.widget.options?.disabled,"aria-label":e(p)(`dynamicGroup.remove`,{row:n.widget.label}),onClick:h},{default:r(()=>[...f[0]||=[i(`i`,{class:`icon-[lucide--x] size-4`},null,-1)]]),_:1},8,[`disabled`,`aria-label`])]))}});export{f as default};"""
+
+let render() = file
