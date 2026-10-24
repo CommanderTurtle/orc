@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.SrcBT8lhl7VJs
+
+let file = """import"./rolldown-runtime-CM1DJQSe.js";import{$t as e,Qt as t}from"./vendor-other-DMCJdr63.js";var n=t({extend:{classGroups:{"font-size":[`text-xxs`,`text-xxxs`],"max-h":[{"max-h":[`none`]}]}}});function cn(...t){return n(e(t))}export{cn as t};"""
+
+let render() = file

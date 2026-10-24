@@ -1,4 +1,4 @@
-﻿module LnKr.Vendor.HighlightMinJs
+﻿module ConvertedFiles.Vendor.HighlightMinJs
 
 let file = System.String.Join("\"\"\"", [|
     """/*!

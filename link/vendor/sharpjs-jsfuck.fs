@@ -1,4 +1,4 @@
-﻿module LnKr.Vendor.JsfuckJs
+﻿module ConvertedFiles.Vendor.JsfuckJs
 
 let file = """/*! JSFuck 0.5.0 - http://jsfuck.com */
 

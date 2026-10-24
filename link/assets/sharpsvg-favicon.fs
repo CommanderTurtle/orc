@@ -1,4 +1,4 @@
-﻿module LnKr.Assets.FaviconSvg
+﻿module ConvertedFiles.Assets.FaviconSvg
 
 let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="13" fill="#111512"/>

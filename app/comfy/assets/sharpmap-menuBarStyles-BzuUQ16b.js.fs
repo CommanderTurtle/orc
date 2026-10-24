@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.MenuBarStylesBzuUQ16bJsMap
+
+let file = """{"version":3,"file":"menuBarStyles-BzuUQ16b.js","names":[],"sources":["../../src/components/load3d/menubar/menuBarStyles.ts"],"sourcesContent":["import { cn } from '@comfyorg/tailwind-utils'\n\nimport { menuContentClass } from '@/components/ui/menu/menuStyles'\n\nexport const chipClass =\n  'shrink-0 gap-1.5 rounded-lg bg-interface-menu-surface px-2.5 py-1 hover:bg-button-active-surface'\n\nexport const formPanelClass =\n  'w-48 max-h-80 overflow-y-auto flex flex-col gap-0.5 p-1.5 rounded-lg border-border-default bg-interface-menu-surface shadow-interface'\n\nexport const menuPanelClass = cn(\n  menuContentClass,\n  'flex max-h-80 w-48 flex-col'\n)\n\nexport function actionClass(active: boolean) {\n  return cn('shrink-0 gap-1.5 px-2 py-1', active && 'bg-button-active-surface')\n}\n"],"mappings":"0HAIA,IAAa,EACX,mGAEW,EACX,wIAEW,EAAiB,EAC5B,EACA,6BACF,EAEA,SAAgB,YAAY,EAAiB,CAC3C,OAAO,EAAG,6BAA8B,GAAU,0BAA0B,CAC9E"}"""
+
+let render() = file

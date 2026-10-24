@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.LayerEditorDialogCJHPm90JsMap
+
+let file = """{"version":3,"mappings":";0IAIA,IAAa,EAA2B,YAEpC,OAAO,0VACX,EAEa,EAA0B,YAEnC,OAAO,mGACX,EAEa,EAAyB,CACpC,MAAO,GACP,KAAM,OACN,YAAa,GACb,UAAW,GACX,SAAU,GACV,gBAAiB,GACjB,4BAA6B,EAC/B","names":[],"ignoreList":[],"sources":["../../src/renderer/extensions/layerEditor/composables/layerEditorDialog.ts"],"sourcesContent":["import { defineAsyncComponent } from 'vue'\n\nimport type { DialogComponentProps } from '@/stores/dialogStore'\n\nexport const LayerEditorDialogContent = defineAsyncComponent(\n  () =>\n    import('@/renderer/extensions/layerEditor/components/LayerEditorContent.vue')\n)\n\nexport const LayerEditorDialogHeader = defineAsyncComponent(\n  () =>\n    import('@/renderer/extensions/layerEditor/components/dialog/TopBarHeader.vue')\n)\n\nexport const layerEditorDialogProps = {\n  flush: true,\n  size: 'full',\n  maximizable: false,\n  maximized: true,\n  closable: true,\n  showCloseButton: false,\n  dismissOnPointerDownOutside: false\n} satisfies DialogComponentProps\n"],"file":"layerEditorDialog-CJH_Pm90.js"}"""
+
+let render() = file

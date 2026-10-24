@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.UseDocumentDarkThemeBFreCHicJsMap
+
+let file = """{"version":3,"file":"useDocumentDarkTheme-BFreCHic.js","names":[],"sources":["../../src/platform/cloud/onboarding/composables/useDocumentDarkTheme.ts"],"sourcesContent":["import { onBeforeUnmount, onMounted } from 'vue'\n\nconst DARK_THEME_CLASS = 'dark-theme'\n\n/**\n * Puts the dark theme on the document root while the calling layout is\n * mounted, so dialogs and toasts teleported to `body` match the dark page.\n */\nexport function useDocumentDarkTheme(): void {\n  let added = false\n  onMounted(() => {\n    const { classList } = document.documentElement\n    added = !classList.contains(DARK_THEME_CLASS)\n    classList.add(DARK_THEME_CLASS)\n  })\n  onBeforeUnmount(() => {\n    if (added) document.documentElement.classList.remove(DARK_THEME_CLASS)\n  })\n}\n"],"mappings":"kGAEA,IAAM,EAAmB,aAMzB,SAAgB,sBAA6B,CAC3C,IAAI,EAAQ,GACZ,MAAgB,CACd,GAAM,CAAE,aAAc,SAAS,gBAC/B,EAAQ,CAAC,EAAU,SAAS,CAAgB,EAC5C,EAAU,IAAI,CAAgB,CAChC,CAAC,EACD,MAAsB,CAChB,GAAO,SAAS,gBAAgB,UAAU,OAAO,CAAgB,CACvE,CAAC,CACH"}"""
+
+let render() = file

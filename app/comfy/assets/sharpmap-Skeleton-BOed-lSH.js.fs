@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.SkeletonBOedLSHJsMap
+
+let file = """{"version":3,"file":"Skeleton-BOed-lSH.js","names":[],"sources":["../../src/components/ui/skeleton/Skeleton.vue","../../src/components/ui/skeleton/Skeleton.vue"],"sourcesContent":["<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\n\nimport { cn } from '@comfyorg/tailwind-utils'\n\nconst { class: className } = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"skeleton\"\n    :class=\"cn('animate-pulse rounded-md bg-secondary-background', className)\"\n  />\n</template>\n","<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\n\nimport { cn } from '@comfyorg/tailwind-utils'\n\nconst { class: className } = defineProps<{\n  class?: HTMLAttributes['class']\n}>()\n</script>\n\n<template>\n  <div\n    data-slot=\"skeleton\"\n    :class=\"cn('animate-pulse rounded-md bg-secondary-background', className)\"\n  />\n</template>\n"],"mappings":"wQAWE,EAAA,EAAA,EAGE,MAAA,CAFA,YAAU,WACT,MAAK,EAAE,EAAA,CAAA,CAAE,CAAA,mDAAqD,EAAA,KAAS,CAAA"}"""
+
+let render() = file

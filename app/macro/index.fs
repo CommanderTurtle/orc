@@ -1,4 +1,4 @@
-﻿module App.Macro
+﻿module macro.IndexHtml
 
 open Giraffe.ViewEngine
 
@@ -10,8 +10,8 @@ let page =
             title [] [
                 str "Macrohard Visual Assembly"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/macro/assets/index-LyU7yEna.js" ] [ rawText ("""""") ]
-            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/macro/assets/index-Cllx_LW0.css" ]
+            script [ _type "module"; attr "crossorigin" ""; _src "./assets/index-DTSksQBV.js" ] [ rawText ("""""") ]
+            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "./assets/index-UAR6OwA7.css" ]
         ]
         body [] [
             div [ _id "root" ] []

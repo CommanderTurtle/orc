@@ -1,0 +1,5 @@
+﻿module ComfyUI.Assets.BflDI3QsKJsMap
+
+let file = """{"version":3,"file":"bfl-DI3Qs-k-.js","names":[],"sources":[],"mappings":""}"""
+
+let render() = file
