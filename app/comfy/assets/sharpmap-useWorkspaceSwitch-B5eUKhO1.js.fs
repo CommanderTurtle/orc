@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.UseWorkspaceSwitchB5eUKhO1JsMap
-
-let file = """{"version":3,"file":"useWorkspaceSwitch-B5eUKhO1.js","names":[],"sources":["../../src/platform/workspace/composables/useWorkspaceSwitch.ts"],"sourcesContent":["import { storeToRefs } from 'pinia'\n\nimport { useTeamWorkspaceStore } from '@/platform/workspace/stores/teamWorkspaceStore'\n\nexport function useWorkspaceSwitch() {\n  const workspaceStore = useTeamWorkspaceStore()\n  const { activeWorkspace } = storeToRefs(workspaceStore)\n\n  async function switchWorkspace(workspaceId: string): Promise<boolean> {\n    if (activeWorkspace.value?.id === workspaceId) {\n      return true\n    }\n\n    try {\n      await workspaceStore.switchWorkspace(workspaceId)\n      return true\n    } catch {\n      return false\n    }\n  }\n\n  return {\n    switchWorkspace\n  }\n}\n"],"mappings":"2IAIA,SAAgB,oBAAqB,CACnC,IAAM,EAAiB,EAAsB,EACvC,CAAE,mBAAoB,EAAY,CAAc,EAEtD,eAAe,gBAAgB,EAAuC,CACpE,GAAI,EAAgB,OAAO,KAAO,EAChC,MAAO,GAGT,GAAI,CAEF,OADA,MAAM,EAAe,gBAAgB,CAAW,EACzC,EACT,MAAQ,CACN,MAAO,EACT,CACF,CAEA,MAAO,CACL,eACF,CACF"}"""
-
-let render() = file

@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.LightInfoCSttHpIcJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe.js";import{$ as e}from"./executionErrorStore-AFzyih5Y.js";e().registerExtension({name:`Comfy.CreateLightInfo`,nodeCreated(e){if(e.constructor.comfyClass!==`CreateLightInfo`)return;let[t,n]=e.size;e.setSize([Math.max(t,360),Math.max(n,580)])}});"""
-
-let render() = file

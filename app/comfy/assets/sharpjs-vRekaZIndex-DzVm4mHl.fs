@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.VRekaZIndexDzVm4mHlJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe.js";import{a as e}from"./vendor-primevue-Cl_Qxjsd.js";var t=`modal`,n=1700,r=9999,i={mounted(r){e.set(t,r,n)},updated(r,{value:i,oldValue:a}){i!==a&&(e.clear(r),e.set(t,r,n))},beforeUnmount(t){e.clear(t)}};export{i,t as n,r,n as t};"""
-
-let render() = file

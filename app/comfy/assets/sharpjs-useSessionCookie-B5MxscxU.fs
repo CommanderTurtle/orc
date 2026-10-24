@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.UseSessionCookieB5MxscxUJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe.js";import"./zod.gen-DRhI0u9g.js";import"./api-Cwoz8_OZ.js";import"./reportError-Dqldkhr0.js";import"./apiKeyAuthStore-BK5iKaP0.js";import"./useFeatureFlags-BSa5Y3eR.js";var SessionRevokedError=class extends Error{};Promise.resolve();var useSessionCookie=()=>{let ensureSessionCookie=async()=>{},createSession=async()=>{},sessionRequiresSso=async()=>!1,createSessionOrThrow=async()=>{},deleteSession=async()=>{};return{createSession,createSessionOrThrow,sessionRequiresSso,ensureSessionCookie,deleteSession}};export{useSessionCookie as n,SessionRevokedError as t};"""
-
-let render() = file

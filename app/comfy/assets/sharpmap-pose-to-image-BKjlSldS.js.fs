@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.PoseToImageBKjlSldSJsMap
-
-let file = """{"version":3,"file":"pose-to-image-BKjlSldS.js","names":[],"sources":[],"mappings":""}"""
-
-let render() = file
