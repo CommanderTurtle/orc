@@ -139,7 +139,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v7
         if: steps.mode.outputs.mode != 'SetBaseline' && steps.mode.outputs.mode != 'disable-actions' && steps.mode.outputs.mode != 'enable-actions'
 
       - uses: oven-sh/setup-bun@v2

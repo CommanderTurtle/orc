@@ -46,7 +46,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v10
+        uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.UV_VERSION }}
 
