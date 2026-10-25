@@ -7,11 +7,11 @@ let page =
         head [] [
             meta [ attr "charset" "utf-8" ]
             meta [ attr "name" "viewport"; attr "content" "width=device-width,initial-scale=1" ]
-            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'none'; script-src 'self' 'sha256-9rvkjBNedcD5OGiWD0PqFbnToLoHh56wW28AErr5wss='; style-src 'self' data:; frame-src 'self'; base-uri 'none'; form-action 'none'; img-src data:; font-src data:; connect-src data:" ]
+            meta [ attr "http-equiv" "Content-Security-Policy"; attr "content" "default-src 'none'; script-src 'self' 'sha256-qM9Sxun2v2NYQAnTqD5HkeosCwBPI4WvnV/fhRAqSlM='; style-src 'self' data:; frame-src 'self'; base-uri 'none'; form-action 'none'; img-src data:; font-src data:; connect-src data:" ]
             title [] [
                 str "comfystatic · links"
             ]
-            link [ attr "rel" "stylesheet"; _href "data:text/css;base64,OnJvb3QgeyBjb2xvci1zY2hlbWU6IGRhcmsgbGlnaHQ7IGZvbnQ6IDE0cHggc3lzdGVtLXVpLHNhbnMtc2VyaWY7IGJhY2tncm91bmQ6ICMxODE4MTg7IGNvbG9yOiAjZGVkZWRlOyB9CiogeyBib3gtc2l6aW5nOiBib3JkZXItYm94OyB9CmJvZHkgeyBtYXJnaW46IDA7IH0KbWFpbiB7IG1heC13aWR0aDogODUwcHg7IG1hcmdpbjogMTB2aCBhdXRvOyBwYWRkaW5nOiAyNHB4OyB9CmhlYWRlciB7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBiYXNlbGluZTsgZ2FwOiAxMnB4OyBtYXJnaW4tYm90dG9tOiAzMnB4OyB9CmhlYWRlciBhIHsgZm9udC1zaXplOiAyMnB4OyBmb250LXdlaWdodDogNjUwOyBsZXR0ZXItc3BhY2luZzogLS41cHg7IH0KaGVhZGVyIHNwYW4geyBvcGFjaXR5OiAuNTU7IH0KbGFiZWwgeyBkaXNwbGF5OiBibG9jazsgbWFyZ2luLWJvdHRvbTogOXB4OyB9CnRleHRhcmVhIHsgd2lkdGg6IDEwMCU7IG1pbi1oZWlnaHQ6IDE2MHB4OyByZXNpemU6IHZlcnRpY2FsOyBwYWRkaW5nOiAxMnB4OyBiYWNrZ3JvdW5kOiAjMTExOyBib3JkZXI6IDFweCBzb2xpZCAjNDQ0OyBib3JkZXItcmFkaXVzOiA2cHg7IGNvbG9yOiBpbmhlcml0OyBmb250OiAxM3B4IHVpLW1vbm9zcGFjZSxtb25vc3BhY2U7IG92ZXJmbG93LXdyYXA6IGFueXdoZXJlOyB9CiN2aWV3ZXItdXJsIHsgbWluLWhlaWdodDogMTAwcHg7IH0KLnJvdyB7IGRpc3BsYXk6IGZsZXg7IGZsZXgtd3JhcDogd3JhcDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAxMHB4OyBtYXJnaW4tdG9wOiAxNHB4OyB9CmJ1dHRvbixzZWxlY3QsLnJvdyBhLC5maWxlIHsgcGFkZGluZzogOXB4IDEzcHg7IGJvcmRlcjogMXB4IHNvbGlkICM1NTU7IGJvcmRlci1yYWRpdXM6IDVweDsgYmFja2dyb3VuZDogIzI3MjcyNzsgY29sb3I6IGluaGVyaXQ7IGZvbnQ6IGluaGVyaXQ7IGN1cnNvcjogcG9pbnRlcjsgbWFyZ2luOiAwOyB9CmJ1dHRvbjpob3Zlciwucm93IGE6aG92ZXIsLmZpbGU6aG92ZXIgeyBib3JkZXItY29sb3I6ICM5OTk7IH0KYnV0dG9uOmRpc2FibGVkIHsgb3BhY2l0eTogLjU7IGN1cnNvcjogd2FpdDsgfQphIHsgY29sb3I6IGluaGVyaXQ7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsgfQouZmlsZSBpbnB1dCB7IGRpc3BsYXk6IG5vbmU7IH0KI3N0YXR1cyB7IG1pbi1oZWlnaHQ6IDIwcHg7IGNvbG9yOiAjYWFhOyBvdmVyZmxvdy13cmFwOiBhbnl3aGVyZTsgfQojc3RhdHVzW2RhdGEtZXJyb3JdIHsgY29sb3I6ICNmZmEyOWU7IH0KW2hpZGRlbl0geyBkaXNwbGF5OiBub25lICFpbXBvcnRhbnQ7IH0KQG1lZGlhKHByZWZlcnMtY29sb3Itc2NoZW1lOmxpZ2h0KSB7IDpyb290IHsgYmFja2dyb3VuZDogI2ZhZmFmYTsgY29sb3I6ICMyMjI7IH0gdGV4dGFyZWEgeyBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXItY29sb3I6ICNiYmI7IH0gYnV0dG9uLHNlbGVjdCwucm93IGEsLmZpbGUgeyBiYWNrZ3JvdW5kOiAjZWVlOyBib3JkZXItY29sb3I6ICNhYWE7IH0gfQo=#comfystatic%2Fshare-page.css" ]
+            link [ attr "rel" "stylesheet"; _href "data:text/css;base64,OnJvb3QgeyBjb2xvci1zY2hlbWU6IGRhcmsgbGlnaHQ7IGZvbnQ6IDE0cHggc3lzdGVtLXVpLHNhbnMtc2VyaWY7IGJhY2tncm91bmQ6ICMxODE4MTg7IGNvbG9yOiAjZGVkZWRlOyB9CiogeyBib3gtc2l6aW5nOiBib3JkZXItYm94OyB9CmJvZHkgeyBtYXJnaW46IDA7IH0KbWFpbiB7IG1heC13aWR0aDogODUwcHg7IG1hcmdpbjogMTB2aCBhdXRvOyBwYWRkaW5nOiAyNHB4OyB9CmhlYWRlciB7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBiYXNlbGluZTsgZ2FwOiAxMnB4OyBtYXJnaW4tYm90dG9tOiAzMnB4OyB9CmhlYWRlciBhIHsgZm9udC1zaXplOiAyMnB4OyBmb250LXdlaWdodDogNjUwOyBsZXR0ZXItc3BhY2luZzogLS41cHg7IH0KaGVhZGVyIHNwYW4geyBvcGFjaXR5OiAuNTU7IH0KbGFiZWwgeyBkaXNwbGF5OiBibG9jazsgbWFyZ2luLWJvdHRvbTogOXB4OyB9CnRleHRhcmVhIHsgd2lkdGg6IDEwMCU7IG1pbi1oZWlnaHQ6IDE2MHB4OyByZXNpemU6IHZlcnRpY2FsOyBwYWRkaW5nOiAxMnB4OyBiYWNrZ3JvdW5kOiAjMTExOyBib3JkZXI6IDFweCBzb2xpZCAjNDQ0OyBib3JkZXItcmFkaXVzOiA2cHg7IGNvbG9yOiBpbmhlcml0OyBmb250OiAxM3B4IHVpLW1vbm9zcGFjZSxtb25vc3BhY2U7IG92ZXJmbG93LXdyYXA6IGFueXdoZXJlOyB9CiN2aWV3ZXItdXJsIHsgbWluLWhlaWdodDogMTAwcHg7IH0KLnJvdyB7IGRpc3BsYXk6IGZsZXg7IGZsZXgtd3JhcDogd3JhcDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiAxMHB4OyBtYXJnaW4tdG9wOiAxNHB4OyB9CmJ1dHRvbixzZWxlY3QsLnJvdyBhLC5maWxlIHsgcGFkZGluZzogOXB4IDEzcHg7IGJvcmRlcjogMXB4IHNvbGlkICM1NTU7IGJvcmRlci1yYWRpdXM6IDVweDsgYmFja2dyb3VuZDogIzI3MjcyNzsgY29sb3I6IGluaGVyaXQ7IGZvbnQ6IGluaGVyaXQ7IGN1cnNvcjogcG9pbnRlcjsgbWFyZ2luOiAwOyB9CmJ1dHRvbjpob3Zlciwucm93IGE6aG92ZXIsLmZpbGU6aG92ZXIgeyBib3JkZXItY29sb3I6ICM5OTk7IH0KYnV0dG9uOmRpc2FibGVkIHsgb3BhY2l0eTogLjU7IGN1cnNvcjogd2FpdDsgfQphIHsgY29sb3I6IGluaGVyaXQ7IHRleHQtZGVjb3JhdGlvbjogbm9uZTsgfQouZmlsZSBpbnB1dCB7IGRpc3BsYXk6IG5vbmU7IH0KI3N0YXR1cyB7IG1pbi1oZWlnaHQ6IDIwcHg7IGNvbG9yOiAjYWFhOyBvdmVyZmxvdy13cmFwOiBhbnl3aGVyZTsgfQojc3RhdHVzW2RhdGEtZXJyb3JdIHsgY29sb3I6ICNmZmEyOWU7IH0KW2hpZGRlbl0geyBkaXNwbGF5OiBub25lICFpbXBvcnRhbnQ7IH0KQG1lZGlhKHByZWZlcnMtY29sb3Itc2NoZW1lOmxpZ2h0KSB7IDpyb290IHsgYmFja2dyb3VuZDogI2ZhZmFmYTsgY29sb3I6ICMyMjI7IH0gdGV4dGFyZWEgeyBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXItY29sb3I6ICNiYmI7IH0gYnV0dG9uLHNlbGVjdCwucm93IGEsLmZpbGUgeyBiYWNrZ3JvdW5kOiAjZWVlOyBib3JkZXItY29sb3I6ICNhYWE7IH0gfQo=#src%2Fapp%2Fcomfystatic%2Fshare-page.css" ]
             script [ _type "module" ] [
                     rawText ("""// \0vitality-assets
 var e = {}, t = {}, n = new URL("/comfy/", location.href), r = {};
@@ -72,5626 +72,5620 @@ function i(e, t, n, r = {}) {
 		};
 	}
 }
-i(t, e, n.href, r);
-// src/app/src/link-client.ts
-function a(e, t, n) {
-	return new Promise((r, i) => {
-		let a = document.createElement("iframe"), o = crypto.randomUUID();
-		a.hidden = !0, a.title = "Workflow link importer", a.setAttribute("sandbox", "allow-scripts allow-same-origin"), a.referrerPolicy = "no-referrer", a.src = new URL("comfystatic/link-import.html", t).href;
-		let s = (e, t) => {
-			clearTimeout(f), clearTimeout(p), window.removeEventListener("message", u), n?.removeEventListener("abort", d), a.remove(), e ? i(e) : r(t);
-		}, c = !1, l = () => {
-			c || (c = !0, clearTimeout(p), a.contentWindow?.postMessage({
-				type: "comfystatic:resolve-link",
-				id: o,
-				input: e
-			}, location.origin));
-		}, u = (e) => {
-			e.source === a.contentWindow && e.origin === location.origin && (e.data?.type === "comfystatic:link-ready" ? l() : e.data?.type === "comfystatic:link-result" && e.data.id === o && (e.data.error ? s(Error(e.data.error)) : e.data.result?.bytes instanceof Uint8Array && typeof e.data.result.fragment == "string" ? s(void 0, e.data.result) : s(Error("Invalid workflow-link response."))));
-		}, d = () => s(new DOMException("Workflow import cancelled.", "AbortError")), f = setTimeout(() => s(Error("Workflow link timed out.")), 35e3), p = setTimeout(() => s(Error("Workflow importer did not start. Deploy the complete dist, including comfystatic/link-import.html and its scripts.")), 1e4);
-		a.onerror = () => s(Error("Could not load the static workflow importer.")), window.addEventListener("message", u), n?.addEventListener("abort", d, { once: !0 }), n?.aborted ? d() : document.body.append(a);
+// src/embedded/comfystatic/share-page.js
+i(t, e, n.href, r), (() => {
+	function e(e, t, n) {
+		return new Promise((r, i) => {
+			let a = document.createElement("iframe"), o = crypto.randomUUID();
+			a.hidden = !0, a.title = "Workflow link importer", a.setAttribute("sandbox", "allow-scripts allow-same-origin"), a.referrerPolicy = "no-referrer", a.src = new URL(new URL("comfystatic/link-import.html", globalThis.__vitalityEmbedded.root).href, t).href;
+			let s = (e, t) => {
+				clearTimeout(f), clearTimeout(p), window.removeEventListener("message", u), n?.removeEventListener("abort", d), a.remove(), e ? i(e) : r(t);
+			}, c = !1, l = () => {
+				c || (c = !0, clearTimeout(p), a.contentWindow?.postMessage({
+					type: "comfystatic:resolve-link",
+					id: o,
+					input: e
+				}, location.origin));
+			}, u = (e) => {
+				e.source === a.contentWindow && e.origin === location.origin && (e.data?.type === "comfystatic:link-ready" ? l() : e.data?.type === "comfystatic:link-result" && e.data.id === o && (e.data.error ? s(Error(e.data.error)) : e.data.result?.bytes instanceof Uint8Array && typeof e.data.result.fragment == "string" ? s(void 0, e.data.result) : s(Error("Invalid workflow-link response."))));
+			}, d = () => s(new DOMException("Workflow import cancelled.", "AbortError")), f = setTimeout(() => s(Error("Workflow link timed out.")), 35e3), p = setTimeout(() => s(Error("Workflow importer did not start. Deploy the complete dist, including comfystatic/link-import.html and its scripts.")), 1e4);
+			a.onerror = () => s(Error("Could not load the static workflow importer.")), window.addEventListener("message", u), n?.addEventListener("abort", d, { once: !0 }), n?.aborted ? d() : document.body.append(a);
+		});
+	}
+	"!#$&'()*+,-./0123456789:;=?~@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz".split(""), "$*+-./:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	var t = {
+		us: "0000000",
+		market: "0000001000",
+		xyz: "0000001001",
+		lt: "0000001010000",
+		ae: "0000001010001",
+		tt: "0000001010010",
+		top: "0000001010011",
+		hr: "000000101010",
+		biz: "000000101011",
+		es: "0000001011",
+		wtf: "00000011",
+		ceo: "000001000000000000",
+		cbre: "000001000000000001",
+		cfa: "000001000000000010",
+		cern: "000001000000000011",
+		catholic: "000001000000000100",
+		catering: "000001000000000101",
+		cbn: "000001000000000110",
+		cba: "000001000000000111",
+		chase: "000001000000001000",
+		charity: "000001000000001001",
+		chintai: "000001000000001010",
+		cheap: "000001000000001011",
+		cg: "000001000000001100",
+		cfd: "000001000000001101",
+		channel: "000001000000001110",
+		chanel: "000001000000001111",
+		canon: "000001000000010000",
+		cam: "000001000000010001",
+		capitalone: "000001000000010010",
+		capetown: "000001000000010011",
+		cal: "000001000000010100",
+		cab: "000001000000010101",
+		calvinklein: "000001000000010110",
+		call: "000001000000010111",
+		cars: "000001000000011000",
+		careers: "000001000000011001",
+		casino: "000001000000011010",
+		case: "000001000000011011",
+		caravan: "000001000000011100",
+		car: "000001000000011101",
+		career: "000001000000011110",
+		care: "000001000000011111",
+		comsec: "000001000000100000",
+		compare: "000001000000100001",
+		construction: "000001000000100010",
+		condos: "000001000000100011",
+		college: "000001000000100100",
+		coffee: "000001000000100101",
+		commbank: "000001000000100110",
+		cologne: "000001000000100111",
+		country: "000001000000101000",
+		corsica: "000001000000101001",
+		coupons: "000001000000101010",
+		coupon: "000001000000101011",
+		contact: "000001000000101100",
+		consulting: "000001000000101101",
+		cooking: "000001000000101110",
+		contractors: "000001000000101111",
+		citadel: "000001000000110000",
+		cisco: "000001000000110001",
+		citic: "000001000000110010",
+		citi: "000001000000110011",
+		chrome: "000001000000110100",
+		christmas: "000001000000110101",
+		circle: "000001000000110110",
+		cipriani: "000001000000110111",
+		clothing: "000001000000111000",
+		clinique: "000001000000111001",
+		coach: "000001000000111010",
+		clubmed: "000001000000111011",
+		claims: "000001000000111100",
+		ck: "000001000000111101",
+		clinic: "000001000000111110",
+		cleaning: "000001000000111111",
+		bcn: "000001000001000000",
+		bcg: "000001000001000001",
+		beauty: "000001000001000010",
+		beats: "000001000001000011",
+		bbc: "000001000001000100",
+		bb: "000001000001000101",
+		bbva: "000001000001000110",
+		bbt: "000001000001000111",
+		bible: "000001000001001000",
+		bharti: "000001000001001001",
+		bio: "000001000001001010",
+		bing: "000001000001001011",
+		bestbuy: "000001000001001100",
+		best: "000001000001001101",
+		bf: "000001000001001110",
+		bet: "000001000001001111",
+		azure: "000001000001010000",
+		axa: "000001000001010001",
+		banamex: "000001000001010010",
+		baidu: "000001000001010011",
+		aw: "000001000001010100",
+		autos: "000001000001010101",
+		ax: "000001000001010110",
+		aws: "000001000001010111",
+		baseball: "000001000001011000",
+		bargains: "000001000001011001",
+		bayern: "000001000001011010",
+		bauhaus: "000001000001011011",
+		barclaycard: "000001000001011100",
+		barcelona: "000001000001011101",
+		barefoot: "000001000001011110",
+		barclays: "000001000001011111",
+		box: "000001000001100000",
+		boutique: "000001000001100001",
+		bridgestone: "000001000001100010",
+		bradesco: "000001000001100011",
+		bosch: "000001000001100100",
+		booking: "000001000001100101",
+		boston: "000001000001100110",
+		bostik: "000001000001100111",
+		buy: "000001000001101000",
+		bt: "000001000001101001",
+		bzh: "000001000001101010",
+		bv: "000001000001101011",
+		broker: "000001000001101100",
+		broadway: "000001000001101101",
+		brussels: "000001000001101110",
+		brother: "000001000001101111",
+		bm: "000001000001110000",
+		bloomberg: "000001000001110001",
+		bmw: "000001000001110010",
+		bms: "000001000001110011",
+		black: "000001000001110100",
+		bj: "000001000001110101",
+		blockbuster: "000001000001110110",
+		blackfriday: "000001000001110111",
+		bond: "000001000001111000",
+		bom: "000001000001111001",
+		book: "000001000001111010",
+		boo: "000001000001111011",
+		boats: "000001000001111100",
+		bnpparibas: "000001000001111101",
+		bofa: "000001000001111110",
+		boehringer: "000001000001111111",
+		financial: "000001000010000000",
+		final: "000001000010000001",
+		firestone: "000001000010000010",
+		fire: "000001000010000011",
+		fidelity: "000001000010000100",
+		ferrero: "000001000010000101",
+		film: "000001000010000110",
+		fido: "000001000010000111",
+		flickr: "000001000010001000",
+		fj: "000001000010001001",
+		flir: "000001000010001010",
+		flights: "000001000010001011",
+		fish: "000001000010001100",
+		firmdale: "000001000010001101",
+		fit: "000001000010001110",
+		fishing: "000001000010001111",
+		fairwinds: "000001000010010000",
+		fage: "000001000010010001",
+		family: "000001000010010010",
+		faith: "000001000010010011",
+		eurovision: "000001000010010100",
+		et: "000001000010010101",
+		extraspace: "000001000010010110",
+		express: "000001000010010111",
+		fedex: "000001000010011000",
+		fast: "000001000010011001",
+		ferrari: "000001000010011010",
+		feedback: "000001000010011011",
+		fans: "000001000010011100",
+		fan: "000001000010011101",
+		fashion: "000001000010011110",
+		farmers: "000001000010011111",
+		gap: "000001000010100000",
+		gallup: "000001000010100001",
+		gb: "000001000010100010",
+		gay: "000001000010100011",
+		furniture: "000001000010100100",
+		fujitsu: "000001000010100101",
+		gallo: "000001000010100110",
+		gal: "000001000010100111",
+		gf: "000001000010101000",
+		george: "000001000010101001",
+		gift: "000001000010101010",
+		ggee: "000001000010101011",
+		gdn: "000001000010101100",
+		gbiz: "000001000010101101",
+		genting: "000001000010101110",
+		gea: "000001000010101111",
+		football: "000001000010110000",
+		food: "000001000010110001",
+		forex: "000001000010110010",
+		ford: "000001000010110011",
+		flowers: "000001000010110100",
+		florist: "000001000010110101",
+		foo: "000001000010110110",
+		fly: "000001000010110111",
+		frogans: "000001000010111000",
+		fresenius: "000001000010111001",
+		ftr: "000001000010111010",
+		frontier: "000001000010111011",
+		forum: "000001000010111100",
+		forsale: "000001000010111101",
+		free: "000001000010111110",
+		fox: "000001000010111111",
+		dealer: "000001000011000000",
+		deal: "000001000011000001",
+		delivery: "000001000011000010",
+		degree: "000001000011000011",
+		day: "000001000011000100",
+		datsun: "000001000011000101",
+		dds: "000001000011000110",
+		dclk: "000001000011000111",
+		dentist: "000001000011001000",
+		dental: "000001000011001001",
+		dhl: "000001000011001010",
+		desi: "000001000011001011",
+		deloitte: "000001000011001100",
+		dell: "000001000011001101",
+		democrat: "000001000011001110",
+		delta: "000001000011001111",
+		crown: "000001000011010000",
+		creditunion: "000001000011010001",
+		cruise: "000001000011010010",
+		crs: "000001000011010011",
+		cpa: "000001000011010100",
+		courses: "000001000011010101",
+		creditcard: "000001000011010110",
+		credit: "000001000011010111",
+		dad: "000001000011011000",
+		cyou: "000001000011011001",
+		date: "000001000011011010",
+		data: "000001000011011011",
+		cuisinella: "000001000011011100",
+		cruises: "000001000011011101",
+		cw: "000001000011011110",
+		cv: "000001000011011111",
+		edeka: "000001000011100000",
+		eat: "000001000011100001",
+		emerck: "000001000011100010",
+		education: "000001000011100011",
+		durban: "000001000011100100",
+		dupont: "000001000011100101",
+		dvr: "000001000011100110",
+		dvag: "000001000011100111",
+		ericsson: "000001000011101000",
+		er: "000001000011101001",
+		esq: "000001000011101010",
+		erni: "000001000011101011",
+		engineer: "000001000011101100",
+		energy: "000001000011101101",
+		epson: "000001000011101110",
+		enterprises: "000001000011101111",
+		discount: "000001000011110000",
+		directory: "000001000011110001",
+		dish: "000001000011110010",
+		discover: "000001000011110011",
+		diet: "000001000011110100",
+		diamonds: "000001000011110101",
+		direct: "000001000011110110",
+		digital: "000001000011110111",
+		dot: "000001000011111000",
+		doctor: "000001000011111001",
+		dubai: "000001000011111010",
+		dtv: "000001000011111011",
+		dm: "000001000011111100",
+		diy: "000001000011111101",
+		docs: "000001000011111110",
+		dnp: "000001000011111111",
+		fail: "0000010001000000",
+		exposed: "0000010001000001",
+		ge: "0000010001000010",
+		finance: "0000010001000011",
+		city: "0000010001000100",
+		bo: "0000010001000101",
+		domains: "0000010001000110",
+		company: "0000010001000111",
+		jo: "0000010001001000",
+		ist: "0000010001001001",
+		mo: "0000010001001010",
+		kp: "0000010001001011",
+		graphics: "0000010001001100",
+		global: "0000010001001101",
+		institute: "0000010001001110",
+		ht: "0000010001001111",
+		life: "00000100010100",
+		by: "00000100010101",
+		th: "00000100010110",
+		news: "00000100010111",
+		airbus: "000001000110000000",
+		aig: "000001000110000001",
+		airtel: "000001000110000010",
+		airforce: "000001000110000011",
+		aetna: "000001000110000100",
+		aeg: "000001000110000101",
+		agakhan: "000001000110000110",
+		afl: "000001000110000111",
+		ally: "000001000110001000",
+		allstate: "000001000110001001",
+		alstom: "000001000110001010",
+		alsace: "000001000110001011",
+		alibaba: "000001000110001100",
+		akdn: "000001000110001101",
+		allfinanz: "000001000110001110",
+		alipay: "000001000110001111",
+		abc: "000001000110010000",
+		abbvie: "000001000110010001",
+		abogado: "000001000110010010",
+		able: "000001000110010011",
+		aarp: "000001000110010100",
+		aaa: "000001000110010101",
+		abbott: "000001000110010110",
+		abb: "000001000110010111",
+		actor: "000001000110011000",
+		aco: "000001000110011001",
+		adult: "000001000110011010",
+		ads: "000001000110011011",
+		accenture: "000001000110011100",
+		abudhabi: "000001000110011101",
+		accountants: "000001000110011110",
+		accountant: "000001000110011111",
+		arte: "000001000110100000",
+		arpa: "000001000110100001",
+		associates: "000001000110100010",
+		asda: "000001000110100011",
+		aramco: "000001000110100100",
+		arab: "000001000110100101",
+		army: "000001000110100110",
+		archi: "000001000110100111",
+		auspost: "000001000110101000",
+		audible: "000001000110101001",
+		auto: "000001000110101010",
+		author: "000001000110101011",
+		attorney: "000001000110101100",
+		athleta: "000001000110101101",
+		audi: "000001000110101110",
+		auction: "000001000110101111",
+		amica: "000001000110110000",
+		amfam: "000001000110110001",
+		analytics: "000001000110110010",
+		amsterdam: "000001000110110011",
+		americanexpress: "000001000110110100",
+		amazon: "000001000110110101",
+		amex: "000001000110110110",
+		americanfamily: "000001000110110111",
+		apartments: "000001000110111000",
+		aol: "000001000110111001",
+		aquarelle: "000001000110111010",
+		aq: "000001000110111011",
+		anquan: "000001000110111100",
+		android: "000001000110111101",
+		ao: "000001000110111110",
+		anz: "000001000110111111",
+		pink: "0000010001110000",
+		pictures: "0000010001110001",
+		scot: "0000010001110010",
+		science: "0000010001110011",
+		museum: "0000010001110100",
+		money: "0000010001110101",
+		photos: "0000010001110110",
+		np: "0000010001110111",
+		travel: "0000010001111000",
+		training: "0000010001111001",
+		vu: "0000010001111010",
+		tube: "0000010001111011",
+		sm: "0000010001111100",
+		show: "0000010001111101",
+		theater: "0000010001111110",
+		supply: "0000010001111111",
+		sandvik: "000001001000000000",
+		samsung: "000001001000000001",
+		sanofi: "000001001000000010",
+		sandvikcoromant: "000001001000000011",
+		sale: "000001001000000100",
+		sakura: "000001001000000101",
+		samsclub: "000001001000000110",
+		salon: "000001001000000111",
+		sbi: "000001001000001000",
+		saxo: "000001001000001001",
+		scb: "000001001000001010",
+		sbs: "000001001000001011",
+		sarl: "000001001000001100",
+		sap: "000001001000001101",
+		save: "000001001000001110",
+		sas: "000001001000001111",
+		rodeo: "000001001000010000",
+		rio: "000001001000010001",
+		room: "000001001000010010",
+		rogers: "000001001000010011",
+		richardli: "000001001000010100",
+		rich: "000001001000010101",
+		ril: "000001001000010110",
+		ricoh: "000001001000010111",
+		saarland: "000001001000011000",
+		ryukyu: "000001001000011001",
+		safety: "000001001000011010",
+		safe: "000001001000011011",
+		ruhr: "000001001000011100",
+		rsvp: "000001001000011101",
+		rwe: "000001001000011110",
+		rw: "000001001000011111",
+		shiksha: "000001001000100000",
+		shia: "000001001000100001",
+		shopping: "000001001000100010",
+		shoes: "000001001000100011",
+		shangrila: "000001001000100100",
+		sfr: "000001001000100101",
+		shell: "000001001000100110",
+		sharp: "000001001000100111",
+		skin: "000001001000101000",
+		ski: "000001001000101001",
+		skype: "000001001000101010",
+		sky: "000001001000101011",
+		sina: "000001001000101100",
+		shouji: "000001001000101101",
+		sj: "000001001000101110",
+		singles: "000001001000101111",
+		sd: "000001001000110000",
+		schwarz: "000001001000110001",
+		seat: "000001001000110010",
+		search: "000001001000110011",
+		schmidt: "000001001000110100",
+		schaeffler: "000001001000110101",
+		schule: "000001001000110110",
+		scholarships: "000001001000110111",
+		seven: "000001001000111000",
+		sener: "000001001000111001",
+		sex: "000001001000111010",
+		sew: "000001001000111011",
+		security: "000001001000111100",
+		secure: "000001001000111101",
+		select: "000001001000111110",
+		seek: "000001001000111111",
+		play: "000001001001000000",
+		pioneer: "000001001001000001",
+		plumbing: "000001001001000010",
+		playstation: "000001001001000011",
+		pid: "000001001001000100",
+		pictet: "000001001001000101",
+		ping: "000001001001000110",
+		pin: "000001001001000111",
+		praxi: "000001001001001000",
+		post: "000001001001001001",
+		prod: "000001001001001010",
+		prime: "000001001001001011",
+		pohl: "000001001001001100",
+		pnc: "000001001001001101",
+		porn: "000001001001001110",
+		politie: "000001001001001111",
+		pars: "000001001001010000",
+		paris: "000001001001010001",
+		parts: "000001001001010010",
+		partners: "000001001001010011",
+		ott: "000001001001010100",
+		otsuka: "000001001001010101",
+		panasonic: "000001001001010110",
+		page: "000001001001010111",
+		philips: "000001001001011000",
+		phd: "000001001001011001",
+		physio: "000001001001011010",
+		phone: "000001001001011011",
+		pccw: "000001001001011100",
+		pay: "000001001001011101",
+		pg: "000001001001011110",
+		pfizer: "000001001001011111",
+		reisen: "000001001001100000",
+		reise: "000001001001100001",
+		reliance: "000001001001100010",
+		reit: "000001001001100011",
+		recipes: "000001001001100100",
+		realty: "000001001001100101",
+		rehab: "000001001001100110",
+		redumbrella: "000001001001100111",
+		rest: "000001001001101000",
+		republican: "000001001001101001",
+		rexroth: "000001001001101010",
+		restaurant: "000001001001101011",
+		rent: "000001001001101100",
+		ren: "000001001001101101",
+		repair: "000001001001101110",
+		rentals: "000001001001101111",
+		pru: "000001001001110000",
+		protection: "000001001001110001",
+		pwc: "000001001001110010",
+		prudential: "000001001001110011",
+		progressive: "000001001001110100",
+		prof: "000001001001110101",
+		property: "000001001001110110",
+		promo: "000001001001110111",
+		read: "000001001001111000",
+		radio: "000001001001111001",
+		realtor: "000001001001111010",
+		realestate: "000001001001111011",
+		quebec: "000001001001111100",
+		qpon: "000001001001111101",
+		racing: "000001001001111110",
+		quest: "000001001001111111",
+		verisign: "000001001010000000",
+		ventures: "000001001010000001",
+		vet: "000001001010000010",
+		versicherung: "000001001010000011",
+		ups: "000001001010000100",
+		uol: "000001001010000101",
+		vana: "000001001010000110",
+		vacations: "000001001010000111",
+		vin: "000001001010001000",
+		villas: "000001001010001001",
+		visa: "000001001010001010",
+		virgin: "000001001010001011",
+		viajes: "000001001010001100",
+		vi: "000001001010001101",
+		viking: "000001001010001110",
+		vig: "000001001010001111",
+		travelers: "000001001010010000",
+		trading: "000001001010010001",
+		trv: "000001001010010010",
+		travelersinsurance: "000001001010010011",
+		town: "000001001010010100",
+		tours: "000001001010010101",
+		toys: "000001001010010110",
+		toyota: "000001001010010111",
+		ubs: "000001001010011000",
+		ubank: "000001001010011001",
+		university: "000001001010011010",
+		unicom: "000001001010011011",
+		tunes: "000001001010011100",
+		tui: "000001001010011101",
+		tvs: "000001001010011110",
+		tushu: "000001001010011111",
+		whoswho: "000001001010100000",
+		wf: "000001001010100001",
+		windows: "000001001010100010",
+		williamhill: "000001001010100011",
+		wedding: "000001001010100100",
+		wed: "000001001010100101",
+		weir: "000001001010100110",
+		weibo: "000001001010100111",
+		wtc: "000001001010101000",
+		wow: "000001001010101001",
+		xerox: "000001001010101010",
+		xbox: "000001001010101011",
+		winners: "000001001010101100",
+		wine: "000001001010101101",
+		woodside: "000001001010101110",
+		wme: "000001001010101111",
+		voting: "000001001010110000",
+		volvo: "000001001010110001",
+		voyage: "000001001010110010",
+		voto: "000001001010110011",
+		vivo: "000001001010110100",
+		viva: "000001001010110101",
+		vodka: "000001001010110110",
+		vlaanderen: "000001001010110111",
+		weather: "000001001010111000",
+		watches: "000001001010111001",
+		weber: "000001001010111010",
+		weatherchannel: "000001001010111011",
+		walter: "000001001010111100",
+		walmart: "000001001010111101",
+		wanggou: "000001001010111110",
+		wang: "000001001010111111",
+		stockholm: "000001001011000000",
+		stcgroup: "000001001011000001",
+		study: "000001001011000010",
+		storage: "000001001011000011",
+		statebank: "000001001011000100",
+		star: "000001001011000101",
+		stc: "000001001011000110",
+		statefarm: "000001001011000111",
+		swatch: "000001001011001000",
+		sv: "000001001011001001",
+		sydney: "000001001011001010",
+		swiss: "000001001011001011",
+		surf: "000001001011001100",
+		sucks: "000001001011001101",
+		suzuki: "000001001011001110",
+		surgery: "000001001011001111",
+		softbank: "000001001011010000",
+		soccer: "000001001011010001",
+		song: "000001001011010010",
+		sohu: "000001001011010011",
+		sling: "000001001011010100",
+		sl: "000001001011010101",
+		smile: "000001001011010110",
+		smart: "000001001011010111",
+		ss: "000001001011011000",
+		srl: "000001001011011001",
+		staples: "000001001011011010",
+		stada: "000001001011011011",
+		spa: "000001001011011100",
+		soy: "000001001011011101",
+		spot: "000001001011011110",
+		sport: "000001001011011111",
+		tienda: "000001001011100000",
+		tiaa: "000001001011100001",
+		tirol: "000001001011100010",
+		tires: "000001001011100011",
+		tg: "000001001011100100",
+		teva: "000001001011100101",
+		theatre: "000001001011100110",
+		thd: "000001001011100111",
+		toray: "000001001011101000",
+		tmall: "000001001011101001",
+		total: "000001001011101010",
+		toshiba: "000001001011101011",
+		tjmaxx: "000001001011101100",
+		tj: "000001001011101101",
+		tkmaxx: "000001001011101110",
+		tjx: "000001001011101111",
+		target: "000001001011110000",
+		taobao: "000001001011110001",
+		tatar: "000001001011110010",
+		tatamotors: "000001001011110011",
+		tab: "000001001011110100",
+		sz: "000001001011110101",
+		talk: "000001001011110110",
+		taipei: "000001001011110111",
+		tel: "000001001011111000",
+		tdk: "000001001011111001",
+		tennis: "000001001011111010",
+		temasek: "000001001011111011",
+		taxi: "000001001011111100",
+		tattoo: "000001001011111101",
+		td: "000001001011111110",
+		tci: "000001001011111111",
+		jll: "000001001100000000",
+		jio: "000001001100000001",
+		jmp: "000001001100000010",
+		jm: "000001001100000011",
+		jeep: "000001001100000100",
+		jcb: "000001001100000101",
+		jewelry: "000001001100000110",
+		jetzt: "000001001100000111",
+		jprs: "000001001100001000",
+		jpmorgan: "000001001100001001",
+		juniper: "000001001100001010",
+		juegos: "000001001100001011",
+		joburg: "000001001100001100",
+		jnj: "000001001100001101",
+		joy: "000001001100001110",
+		jot: "000001001100001111",
+		insure: "000001001100010000",
+		insurance: "000001001100010001",
+		investments: "000001001100010010",
+		intuit: "000001001100010011",
+		inc: "000001001100010100",
+		immobilien: "000001001100010101",
+		infiniti: "000001001100010110",
+		industries: "000001001100010111",
+		itv: "000001001100011000",
+		itau: "000001001100011001",
+		java: "000001001100011010",
+		jaguar: "000001001100011011",
+		irish: "000001001100011100",
+		ipiranga: "000001001100011101",
+		istanbul: "000001001100011110",
+		ismaili: "000001001100011111",
+		kuokgroup: "000001001100100000",
+		kred: "000001001100100001",
+		kyoto: "000001001100100010",
+		ky: "000001001100100011",
+		kpmg: "000001001100100100",
+		kosher: "000001001100100101",
+		krd: "000001001100100110",
+		kpn: "000001001100100111",
+		lasalle: "000001001100101000",
+		lanxess: "000001001100101001",
+		latino: "000001001100101010",
+		lat: "000001001100101011",
+		lamborghini: "000001001100101100",
+		lacaixa: "000001001100101101",
+		landrover: "000001001100101110",
+		lamer: "000001001100101111",
+		kg: "000001001100110000",
+		kfh: "000001001100110001",
+		kids: "000001001100110010",
+		kia: "000001001100110011",
+		kddi: "000001001100110100",
+		kaufen: "000001001100110101",
+		kerryproperties: "000001001100110110",
+		kerryhotels: "000001001100110111",
+		kn: "000001001100111000",
+		km: "000001001100111001",
+		komatsu: "000001001100111010",
+		koeln: "000001001100111011",
+		kindle: "000001001100111100",
+		kim: "000001001100111101",
+		kiwi: "000001001100111110",
+		kitchen: "000001001100111111",
+		gu: "000001001101000000",
+		grocery: "000001001101000001",
+		guge: "000001001101000010",
+		gucci: "000001001101000011",
+		gratis: "000001001101000100",
+		grainger: "000001001101000101",
+		gripe: "000001001101000110",
+		green: "000001001101000111",
+		hdfc: "000001001101001000",
+		hbo: "000001001101001001",
+		healthcare: "000001001101001010",
+		hdfcbank: "000001001101001011",
+		gw: "000001001101001100",
+		guitars: "000001001101001101",
+		hangout: "000001001101001110",
+		hair: "000001001101001111",
+		gmbh: "000001001101010000",
+		gmail: "000001001101010001",
+		gmx: "000001001101010010",
+		gmo: "000001001101010011",
+		giving: "000001001101010100",
+		gifts: "000001001101010101",
+		globo: "000001001101010110",
+		glass: "000001001101010111",
+		goog: "000001001101011000",
+		goodyear: "000001001101011001",
+		got: "000001001101011010",
+		gop: "000001001101011011",
+		godaddy: "000001001101011100",
+		gn: "000001001101011101",
+		golf: "000001001101011110",
+		goldpoint: "000001001101011111",
+		hyatt: "000001001101100000",
+		hughes: "000001001101100001",
+		ibm: "000001001101100010",
+		hyundai: "000001001101100011",
+		hotmail: "000001001101100100",
+		hotels: "000001001101100101",
+		hsbc: "000001001101100110",
+		house: "000001001101100111",
+		imamat: "000001001101101000",
+		ikano: "000001001101101001",
+		immo: "000001001101101010",
+		imdb: "000001001101101011",
+		ice: "000001001101101100",
+		icbc: "000001001101101101",
+		ifm: "000001001101101110",
+		ieee: "000001001101101111",
+		hiv: "000001001101110000",
+		hitachi: "000001001101110001",
+		holiday: "000001001101110010",
+		hkt: "000001001101110011",
+		here: "000001001101110100",
+		helsinki: "000001001101110101",
+		hisamitsu: "000001001101110110",
+		hermes: "000001001101110111",
+		hospital: "000001001101111000",
+		honda: "000001001101111001",
+		hot: "000001001101111010",
+		hosting: "000001001101111011",
+		homegoods: "000001001101111100",
+		homedepot: "000001001101111101",
+		homesense: "000001001101111110",
+		homes: "000001001101111111",
+		nab: "000001001110000000",
+		mz: "000001001110000001",
+		navy: "000001001110000010",
+		nagoya: "000001001110000011",
+		mtn: "000001001110000100",
+		msd: "000001001110000101",
+		music: "000001001110000110",
+		mtr: "000001001110000111",
+		next: "000001001110001000",
+		neustar: "000001001110001001",
+		nexus: "000001001110001010",
+		nextdirect: "000001001110001011",
+		nec: "000001001110001100",
+		nba: "000001001110001101",
+		netflix: "000001001110001110",
+		netbank: "000001001110001111",
+		moi: "000001001110010000",
+		moda: "000001001110010001",
+		monster: "000001001110010010",
+		mom: "000001001110010011",
+		mm: "000001001110010100",
+		mls: "000001001110010101",
+		mobile: "000001001110010110",
+		mma: "000001001110010111",
+		mov: "000001001110011000",
+		motorcycles: "000001001110011001",
+		mr: "000001001110011010",
+		mq: "000001001110011011",
+		mortgage: "000001001110011100",
+		mormon: "000001001110011101",
+		moto: "000001001110011110",
+		moscow: "000001001110011111",
+		ollo: "000001001110100000",
+		olayangroup: "000001001110100001",
+		omega: "000001001110100010",
+		om: "000001001110100011",
+		office: "000001001110100100",
+		observer: "000001001110100101",
+		olayan: "000001001110100110",
+		okinawa: "000001001110100111",
+		organic: "000001001110101000",
+		orange: "000001001110101001",
+		osaka: "000001001110101010",
+		origins: "000001001110101011",
+		ooo: "000001001110101100",
+		ong: "000001001110101101",
+		oracle: "000001001110101110",
+		open: "000001001110101111",
+		nikon: "000001001110110000",
+		nike: "000001001110110001",
+		nissay: "000001001110110010",
+		nissan: "000001001110110011",
+		ngo: "000001001110110100",
+		nfl: "000001001110110101",
+		nico: "000001001110110110",
+		nhk: "000001001110110111",
+		nra: "000001001110111000",
+		nowtv: "000001001110111001",
+		obi: "000001001110111010",
+		ntt: "000001001110111011",
+		norton: "000001001110111100",
+		nokia: "000001001110111101",
+		nowruz: "000001001110111110",
+		now: "000001001110111111",
+		loans: "000001001111000000",
+		loan: "000001001111000001",
+		locus: "000001001111000010",
+		locker: "000001001111000011",
+		living: "000001001111000100",
+		lincoln: "000001001111000101",
+		llp: "000001001111000110",
+		llc: "000001001111000111",
+		ltd: "000001001111001000",
+		ls: "000001001111001001",
+		lundbeck: "000001001111001010",
+		ltda: "000001001111001011",
+		lotto: "000001001111001100",
+		lotte: "000001001111001101",
+		lplfinancial: "000001001111001110",
+		lpl: "000001001111001111",
+		lefrak: "000001001111010000",
+		leclerc: "000001001111010001",
+		lexus: "000001001111010010",
+		lego: "000001001111010011",
+		lawyer: "000001001111010100",
+		latrobe: "000001001111010101",
+		lease: "000001001111010110",
+		lds: "000001001111010111",
+		lilly: "000001001111011000",
+		lighting: "000001001111011001",
+		limo: "000001001111011010",
+		limited: "000001001111011011",
+		lidl: "000001001111011100",
+		lgbt: "000001001111011101",
+		lifestyle: "000001001111011110",
+		lifeinsurance: "000001001111011111",
+		menu: "000001001111100000",
+		memorial: "000001001111100001",
+		merckmsd: "000001001111100010",
+		merck: "000001001111100011",
+		med: "000001001111100100",
+		mckinsey: "000001001111100101",
+		meme: "000001001111100110",
+		meet: "000001001111100111",
+		mit: "000001001111101000",
+		mint: "000001001111101001",
+		mlb: "000001001111101010",
+		mitsubishi: "000001001111101011",
+		miami: "000001001111101100",
+		mh: "000001001111101101",
+		mini: "000001001111101110",
+		microsoft: "000001001111101111",
+		makeup: "000001001111110000",
+		maison: "000001001111110001",
+		management: "000001001111110010",
+		man: "000001001111110011",
+		luxury: "000001001111110100",
+		luxe: "000001001111110101",
+		maif: "000001001111110110",
+		madrid: "000001001111110111",
+		mattel: "000001001111111000",
+		marshalls: "000001001111111001",
+		mc: "000001001111111010",
+		mba: "000001001111111011",
+		map: "000001001111111100",
+		mango: "000001001111111101",
+		marriott: "000001001111111110",
+		markets: "000001001111111111",
+		bw: "00000101000000000",
+		buzz: "00000101000000001",
+		casa: "00000101000000010",
+		camera: "00000101000000011",
+		bot: "00000101000000100",
+		bh: "00000101000000101",
+		builders: "00000101000000110",
+		bs: "00000101000000111",
+		cool: "00000101000001000",
+		computer: "00000101000001001",
+		dog: "00000101000001010",
+		dating: "00000101000001011",
+		church: "00000101000001100",
+		cd: "00000101000001101",
+		click: "00000101000001110",
+		ci: "00000101000001111",
+		win: "000001010000100",
+		sa: "000001010000101",
+		bank: "00000101000011000",
+		baby: "00000101000011001",
+		berlin: "00000101000011010",
+		basketball: "00000101000011011",
+		works: "000001010000111",
+		iq: "00000101000100000",
+		ing: "00000101000100001",
+		kh: "00000101000100010",
+		je: "00000101000100011",
+		hm: "00000101000100100",
+		hiphop: "00000101000100101",
+		horse: "00000101000100110",
+		holdings: "00000101000100111",
+		melbourne: "00000101000101000",
+		marketing: "00000101000101001",
+		monash: "00000101000101010",
+		men: "00000101000101011",
+		kz: "00000101000101100",
+		kw: "00000101000101101",
+		lr: "00000101000101110",
+		like: "00000101000101111",
+		eus: "00000101000110000",
+		estate: "00000101000110001",
+		gallery: "00000101000110010",
+		fk: "00000101000110011",
+		dz: "00000101000110100",
+		drive: "00000101000110101",
+		equipment: "00000101000110110",
+		eco: "00000101000110111",
+		group: "00000101000111000",
+		gp: "00000101000111001",
+		health: "00000101000111010",
+		hamburg: "00000101000111011",
+		gh: "00000101000111100",
+		garden: "00000101000111101",
+		gold: "00000101000111110",
+		gi: "00000101000111111",
+		trade: "0000010100100",
+		cloud: "0000010100101",
+		lk: "000001010011000",
+		host: "000001010011001",
+		press: "000001010011010",
+		pr: "000001010011011",
+		cafe: "000001010011100",
+		ba: "000001010011101",
+		eg: "000001010011110",
+		earth: "000001010011111",
+		"xn--lgbbat1ad8j": "000001010100000000",
+		"xn--l1acc": "000001010100000001",
+		"xn--mgba3a3ejt": "000001010100000010",
+		"xn--mgb9awbf": "000001010100000011",
+		"xn--kprw13d": "000001010100000100",
+		"xn--kcrx77d1x4a": "000001010100000101",
+		"xn--kput3i": "000001010100000110",
+		"xn--kpry57d": "000001010100000111",
+		"xn--mgbai9azgqp6j": "000001010100001000",
+		"xn--mgbah1a3hjkrd": "000001010100001001",
+		"xn--mgbbh1a": "000001010100001010",
+		"xn--mgbayh7gpa": "000001010100001011",
+		"xn--mgba7c0bbn0a": "000001010100001100",
+		"xn--mgba3a4f16a": "000001010100001101",
+		"xn--mgbab2bd": "000001010100001110",
+		"xn--mgbaam7a8h": "000001010100001111",
+		"xn--h2brj9c": "000001010100010000",
+		"xn--h2breg3eve": "000001010100010001",
+		"xn--hxt814e": "000001010100010010",
+		"xn--h2brj9c8c": "000001010100010011",
+		"xn--gckr3f0f": "000001010100010100",
+		"xn--g2xx48c": "000001010100010101",
+		"xn--gk3at1e": "000001010100010110",
+		"xn--gecrj9c": "000001010100010111",
+		"xn--j6w193g": "000001010100011000",
+		"xn--j1amh": "000001010100011001",
+		"xn--jvr189m": "000001010100011010",
+		"xn--jlq480n2rg": "000001010100011011",
+		"xn--imr513n": "000001010100011100",
+		"xn--i1b6b1a6a2e": "000001010100011101",
+		"xn--j1aef": "000001010100011110",
+		"xn--io0a7i": "000001010100011111",
+		"xn--o3cw4h": "000001010100100000",
+		"xn--nyqy26a": "000001010100100001",
+		"xn--otu796d": "000001010100100010",
+		"xn--ogbpf8fl": "000001010100100011",
+		"xn--node": "000001010100100100",
+		"xn--ngbrx": "000001010100100101",
+		"xn--nqv7fs00ema": "000001010100100110",
+		"xn--nqv7f": "000001010100100111",
+		"xn--qcka1pmc": "000001010100101000",
+		"xn--q9jyb4c": "000001010100101001",
+		"xn--qxam": "000001010100101010",
+		"xn--qxa6a": "000001010100101011",
+		"xn--pgbs0dh": "000001010100101100",
+		"xn--p1acf": "000001010100101101",
+		"xn--q7ce6a": "000001010100101110",
+		"xn--pssy2u": "000001010100101111",
+		"xn--mgbgu82a": "000001010100110000",
+		"xn--mgberp4a5d4ar": "000001010100110001",
+		"xn--mgbpl2fh": "000001010100110010",
+		"xn--mgbi4ecexp": "000001010100110011",
+		"xn--mgbc0a9azcg": "000001010100110100",
+		"xn--mgbbh1a71e": "000001010100110101",
+		"xn--mgbcpq6gpa1a": "000001010100110110",
+		"xn--mgbca7dzdo": "000001010100110111",
+		"xn--mxtq1m": "000001010100111000",
+		"xn--mk1bu44c": "000001010100111001",
+		"xn--ngbe9e0a": "000001010100111010",
+		"xn--ngbc5azd": "000001010100111011",
+		"xn--mgbtx2b": "000001010100111100",
+		"xn--mgbt3dhd": "000001010100111101",
+		"xn--mix891f": "000001010100111110",
+		"xn--mgbx4cd0ab": "000001010100111111",
+		"xn--5su34j936bgsg": "000001010101000000",
+		"xn--55qx5d": "000001010101000001",
+		"xn--6frz82g": "000001010101000010",
+		"xn--5tzm5g": "000001010101000011",
+		"xn--4gbrim": "000001010101000100",
+		"xn--4dbrk0ce": "000001010101000101",
+		"xn--55qw42g": "000001010101000110",
+		"xn--54b7fta0cc": "000001010101000111",
+		"xn--80aswg": "000001010101001000",
+		"xn--80asehdb": "000001010101001001",
+		"xn--90a3ac": "000001010101001010",
+		"xn--8y0a063a": "000001010101001011",
+		"xn--80adxhks": "000001010101001100",
+		"xn--6qq986b3xl": "000001010101001101",
+		"xn--80aqecdr1a": "000001010101001110",
+		"xn--80ao21a": "000001010101001111",
+		"xn--2scrj9c": "000001010101010000",
+		"xn--1qqw23a": "000001010101010001",
+		"xn--3bst00m": "000001010101010010",
+		"xn--30rr7y": "000001010101010011",
+		xin: "000001010101010100",
+		xihuan: "000001010101010101",
+		"xn--1ck2e1b": "000001010101010110",
+		"xn--11b4c3d": "000001010101010111",
+		"xn--45br5cyl": "000001010101011000",
+		"xn--42c2d9a": "000001010101011001",
+		"xn--45q11c": "000001010101011010",
+		"xn--45brj9c": "000001010101011011",
+		"xn--3e0b707e": "000001010101011100",
+		"xn--3ds443g": "000001010101011101",
+		"xn--3pxu8k": "000001010101011110",
+		"xn--3hcrj9c": "000001010101011111",
+		"xn--fct429k": "000001010101100000",
+		"xn--efvy88h": "000001010101100001",
+		"xn--fiq228c5hs": "000001010101100010",
+		"xn--fhbei": "000001010101100011",
+		"xn--d1alf": "000001010101100100",
+		"xn--d1acj3b": "000001010101100101",
+		"xn--eckvdtc9d": "000001010101100110",
+		"xn--e1a4c": "000001010101100111",
+		"xn--fpcrj9c3d": "000001010101101000",
+		"xn--flw351e": "000001010101101001",
+		"xn--fzys8d69uvgm": "000001010101101010",
+		"xn--fzc2c9e2c": "000001010101101011",
+		"xn--fiqs8s": "000001010101101100",
+		"xn--fiq64b": "000001010101101101",
+		"xn--fjq720a": "000001010101101110",
+		"xn--fiqz9s": "000001010101101111",
+		"xn--b4w605ferd": "000001010101110000",
+		"xn--9krt00a": "000001010101110001",
+		"xn--c1avg": "000001010101110010",
+		"xn--bck1b9a5dre4c": "000001010101110011",
+		"xn--90ais": "000001010101110100",
+		"xn--90ae": "000001010101110101",
+		"xn--9et52u": "000001010101110110",
+		"xn--9dbq2a": "000001010101110111",
+		"xn--czr694b": "000001010101111000",
+		"xn--clchc0ea0b2g2a9gcd": "000001010101111001",
+		"xn--czru2d": "000001010101111010",
+		"xn--czrs0t": "000001010101111011",
+		"xn--cck2b3b": "000001010101111100",
+		"xn--c2br7g": "000001010101111101",
+		"xn--cg4bki": "000001010101111110",
+		"xn--cckwcxetd": "000001010101111111",
+		silk: "00000101011000000",
+		school: "00000101011000001",
+		software: "00000101011000010",
+		sncf: "00000101011000011",
+		qa: "00000101011000100",
+		productions: "00000101011000101",
+		sb: "00000101011000110",
+		reviews: "00000101011000111",
+		tickets: "00000101011001000",
+		supplies: "00000101011001001",
+		tn: "00000101011001010",
+		tm: "00000101011001011",
+		sony: "00000101011001100",
+		solar: "00000101011001101",
+		style: "00000101011001110",
+		sr: "00000101011001111",
+		new: "00000101011010000",
+		nc: "00000101011010001",
+		ni: "00000101011010010",
+		nf: "00000101011010011",
+		mv: "00000101011010100",
+		movie: "00000101011010101",
+		na: "00000101011010110",
+		mw: "00000101011010111",
+		photo: "00000101011011000",
+		pharmacy: "00000101011011001",
+		poker: "00000101011011010",
+		photography: "00000101011011011",
+		pa: "00000101011011100",
+		nrw: "00000101011011101",
+		pf: "00000101011011110",
+		pet: "00000101011011111",
+		"xn--yfro4i67o": "000001010111000000",
+		"xn--y9a3aq": "000001010111000001",
+		"xn--zfr164b": "000001010111000010",
+		"xn--ygbi2ammx": "000001010111000011",
+		"xn--xhq521b": "000001010111000100",
+		"xn--wgbl6a": "000001010111000101",
+		"xn--xkc2dl3a5ee0h": "000001010111000110",
+		"xn--xkc2al3hye2a": "000001010111000111",
+		yodobashi: "000001010111001000",
+		ye: "000001010111001001",
+		yokohama: "000001010111001010",
+		yoga: "000001010111001011",
+		yahoo: "000001010111001100",
+		yachts: "000001010111001101",
+		yandex: "000001010111001110",
+		yamaxun: "000001010111001111",
+		"xn--t60b56a": "000001010111010000",
+		"xn--ses554g": "000001010111010001",
+		"xn--tiq49xqyj": "000001010111010010",
+		"xn--tckwe": "000001010111010011",
+		"xn--rovu88b": "000001010111010100",
+		"xn--rhqv96g": "000001010111010101",
+		"xn--s9brj9c": "000001010111010110",
+		"xn--rvc1e0am3e": "000001010111010111",
+		"xn--w4r85el8fhu5dnra": "000001010111011000",
+		"xn--vuq861b": "000001010111011001",
+		"xn--wgbh1c": "000001010111011010",
+		"xn--w4rs40l": "000001010111011011",
+		"xn--vermgensberater-ctb": "000001010111011100",
+		"xn--unup4y": "000001010111011101",
+		"xn--vhquv": "000001010111011110",
+		"xn--vermgensberatung-pwb": "000001010111011111",
+		uz: "00000101011110000",
+		uno: "00000101011110001",
+		vision: "00000101011110010",
+		vanguard: "00000101011110011",
+		trust: "00000101011110100",
+		tokyo: "00000101011110101",
+		ug: "00000101011110110",
+		tz: "00000101011110111",
+		zero: "000001010111110000",
+		zara: "000001010111110001",
+		zuerich: "000001010111110010",
+		zm: "000001010111110011",
+		youtube: "000001010111110100",
+		you: "000001010111110101",
+		zappos: "000001010111110110",
+		yun: "000001010111110111",
+		wien: "00000101011111100",
+		webcam: "00000101011111101",
+		"": "000001010111111100",
+		zw: "000001010111111101",
+		yt: "00000101011111111",
+		dk: "000001011",
+		gl: "00000110",
+		cc: "0000011100",
+		la: "000001110100",
+		space: "000001110101",
+		ag: "00000111011000",
+		uy: "00000111011001",
+		stream: "0000011101101",
+		im: "000001110111",
+		ie: "0000011110",
+		sk: "0000011111000",
+		dance: "00000111110010",
+		cr: "00000111110011",
+		ee: "000001111101",
+		pub: "00000111111000",
+		pe: "00000111111001",
+		work: "0000011111101",
+		ninja: "0000011111110",
+		id: "0000011111111",
+		au: "0000100",
+		to: "0000101000",
+		ua: "0000101001",
+		fr: "000010101",
+		nl: "000010110",
+		mg: "0000101110",
+		int: "00001011110",
+		app: "0000101111100",
+		cx: "00001011111010",
+		bid: "00001011111011",
+		af: "0000101111110000",
+		ad: "00001011111100010",
+		zip: "00001011111100011",
+		ve: "000010111111001",
+		xxx: "00001011111101",
+		jobs: "000010111111100",
+		asia: "000010111111101",
+		run: "000010111111110",
+		nyc: "000010111111111",
+		tv: "0000110",
+		sh: "00001110",
+		media: "00001111000000",
+		ec: "00001111000001",
+		vg: "00001111000010",
+		tk: "00001111000011",
+		ai: "0000111100010",
+		tr: "0000111100011",
+		at: "00001111001",
+		club: "00001111010",
+		ph: "000011110110",
+		al: "000011110111000",
+		cy: "0000111101110010",
+		cm: "0000111101110011",
+		icu: "00001111011101",
+		ac: "00001111011110",
+		mk: "000011110111110",
+		exchange: "000011110111111",
+		nz: "000011111",
+		it: "00010",
+		me: "0001100",
+		ch: "0001101000",
+		ws: "000110100100",
+		rocks: "000110100101",
+		va: "0001101001100",
+		lu: "0001101001101",
+		pn: "000110100111000",
+		pm: "000110100111001",
+		store: "000110100111010",
+		red: "000110100111011",
+		gd: "0001101001111",
+		se: "000110101",
+		moe: "0001101100",
+		wiki: "0001101101",
+		lc: "0001101110000000",
+		ke: "0001101110000001",
+		md: "0001101110000010",
+		ma: "0001101110000011",
+		fitness: "0001101110000100",
+		email: "0001101110000101",
+		how: "0001101110000110",
+		games: "0001101110000111",
+		social: "0001101110001000",
+		rip: "0001101110001001",
+		vc: "0001101110001010",
+		solutions: "0001101110001011",
+		ne: "0001101110001100",
+		mt: "0001101110001101",
+		py: "0001101110001110",
+		ovh: "0001101110001111",
+		review: "00011011100100",
+		gy: "00011011100101",
+		ir: "0001101110011",
+		mil: "00011011101",
+		fun: "0001101111000",
+		rs: "0001101111001",
+		sc: "000110111101",
+		cf: "000110111110",
+		sg: "000110111111",
+		is: "0001110",
+		ru: "0001111",
+		be: "0010",
+		net: "0011",
+		info: "010000",
+		jp: "0100010",
+		hu: "010001100000",
+		fyi: "01000110000100",
+		gq: "010001100001010",
+		download: "010001100001011",
+		audio: "0100011000011000",
+		band: "01000110000110010",
+		as: "01000110000110011",
+		watch: "010001100001101",
+		pizza: "01000110000111",
+		place: "010001100010000",
+		land: "010001100010001",
+		sn: "010001100010010",
+		shop: "010001100010011",
+		nu: "0100011000101",
+		gr: "010001100011",
+		kr: "01000110010",
+		ro: "01000110011",
+		"xn--p1ai": "010001101",
+		party: "01000111000000",
+		gle: "01000111000001",
+		online: "0100011100001",
+		li: "0100011100010",
+		si: "0100011100011",
+		pt: "01000111001",
+		cn: "01000111010",
+		my: "0100011101100",
+		tech: "01000111011010",
+		name: "01000111011011",
+		tw: "010001110111",
+		su: "010001111",
+		co: "0100100",
+		ms: "010010100",
+		fo: "01001010100",
+		law: "01001010101000000",
+		ki: "01001010101000001",
+		love: "01001010101000010",
+		legal: "01001010101000011",
+		hn: "01001010101000100",
+		gt: "01001010101000101",
+		international: "01001010101000110",
+		hockey: "01001010101000111",
+		support: "01001010101001000",
+		services: "01001010101001001",
+		systems: "01001010101001010",
+		sy: "01001010101001011",
+		onl: "01001010101001100",
+		nr: "01001010101001101",
+		rugby: "01001010101001110",
+		properties: "01001010101001111",
+		engineering: "01001010101010000",
+		dev: "01001010101010001",
+		foundation: "01001010101010010",
+		expert: "01001010101010011",
+		center: "01001010101010100",
+		capital: "01001010101010101",
+		cymru: "01001010101010110",
+		cu: "01001010101010111",
+		gives: "01001010101011000",
+		gent: "01001010101011001",
+		google: "01001010101011010",
+		gm: "01001010101011011",
+		fund: "01001010101011100",
+		frl: "01001010101011101",
+		game: "01001010101011110",
+		futbol: "01001010101011111",
+		bn: "0100101010110000",
+		az: "0100101010110001",
+		deals: "0100101010110010",
+		community: "0100101010110011",
+		zone: "01001010101101",
+		vip: "0100101010111000",
+		team: "0100101010111001",
+		vegas: "01001010101110100",
+		tax: "01001010101110101",
+		wales: "01001010101110110",
+		vote: "01001010101110111",
+		london: "0100101010111100",
+		events: "0100101010111101",
+		ps: "0100101010111110",
+		mu: "0100101010111111",
+		pk: "0100101011000",
+		ga: "0100101011001",
+		world: "010010101101000",
+		ng: "010010101101001",
+		build: "01001010110101000",
+		blue: "01001010110101001",
+		camp: "01001010110101010",
+		business: "01001010110101011",
+		bd: "01001010110101100",
+		bar: "01001010110101101",
+		bingo: "01001010110101110",
+		bi: "01001010110101111",
+		tf: "0100101011011",
+		pl: "01001010111",
+		za: "010010110000",
+		so: "010010110001",
+		pw: "010010110010",
+		pro: "010010110011",
+		ar: "01001011010",
+		ml: "010010110110",
+		am: "010010110111",
+		today: "0100101110",
+		lv: "01001011110000",
+		coop: "010010111100010",
+		video: "010010111100011",
+		tl: "01001011110010",
+		mp: "010010111100110",
+		mobi: "010010111100111",
+		haus: "010010111101",
+		network: "0100101111100",
+		tc: "010010111110100",
+		plus: "010010111110101",
+		website: "01001011111011",
+		mx: "010010111111",
+		gov: "010011",
+		uk: "010100",
+		edu: "0101010",
+		gg: "0101011",
+		in: "0101100000",
+		br: "0101100001",
+		fm: "010110001",
+		de: "01011001",
+		eu: "010110100",
+		re: "010110101000",
+		sx: "01011010100100",
+		lol: "010110101001010",
+		bike: "0101101010010110",
+		aero: "0101101010010111",
+		hk: "0101101010011",
+		vn: "0101101010100",
+		sexy: "01011010101010",
+		agency: "01011010101011000",
+		apple: "010110101010110010",
+		africa: "010110101010110011",
+		tips: "0101101010101101",
+		tools: "010110101010111",
+		cat: "0101101010110",
+		chat: "0101101010111000",
+		cards: "0101101010111001",
+		cricket: "0101101010111010",
+		codes: "0101101010111011",
+		blog: "01011010101111",
+		fi: "01011010110",
+		pics: "0101101011100000",
+		ink: "0101101011100001",
+		studio: "0101101011100010",
+		report: "0101101011100011",
+		dj: "0101101011100100",
+		design: "0101101011100101",
+		help: "0101101011100110",
+		farm: "0101101011100111",
+		bg: "01011010111010",
+		do: "010110101110110",
+		academy: "0101101011101110",
+		beer: "01011010111011110",
+		art: "01011010111011111",
+		guide: "0101101011110",
+		site: "01011010111110",
+		one: "01011010111111",
+		ly: "010110110",
+		cz: "010110111000",
+		st: "0101101110010",
+		cl: "01011011100110",
+		gs: "010110111001110",
+		bz: "010110111001111",
+		no: "01011011101",
+		live: "010110111100",
+		link: "010110111101",
+		cash: "010110111110",
+		lb: "010110111111000",
+		guru: "010110111111001",
+		technology: "010110111111010",
+		mn: "010110111111011",
+		il: "0101101111111",
+		ca: "0101110",
+		io: "0101111",
+		org: "011",
+		com: "1"
+	}, n = {
+		"cydia.saurik": "000000000000",
+		"images.wikia": "000000000001",
+		juicedb: "000000000010",
+		imgflip: "000000000011",
+		globalresearch: "0000000001000",
+		csmonitor: "00000000010010",
+		"bmw.com": "00000000010011",
+		"images.app.goo": "000000000101",
+		"docs.microsoft": "000000000110",
+		"500px": "000000000111",
+		radd: "0000000010",
+		boardgamegeek: "0000000011",
+		autosedlo: "0000000100",
+		redditinvestigator: "00000001010",
+		sciencedirect: "00000001011",
+		downtown: "00000001100",
+		"yugioh.wikia": "00000001101",
+		"express.co": "0000000111000",
+		"shop.nordstrom": "0000000111001",
+		"battlelog.battlefield": "0000000111010",
+		asus: "0000000111011",
+		foodnetwork: "0000000111100",
+		sfgate: "0000000111101",
+		"developer.mozilla": "0000000111110",
+		"9gag": "0000000111111",
+		weeklysift: "0000001000000",
+		rbeertrade: "0000001000001",
+		"podcasts.apple": "000000100001",
+		bitcoin: "0000001000100",
+		"247sports": "0000001000101",
+		zkillboard: "0000001000110",
+		"i2.wp": "0000001000111",
+		"amazon.co": "0000001001",
+		latimes: "00000010100",
+		"botrank.pastimes": "000000101010",
+		"a.video.nfl": "000000101011",
+		craigslist: "000000101100",
+		ontheissues: "0000001011010",
+		fimfiction: "0000001011011",
+		"reddit.zendesk": "00000010111",
+		edhrec: "00000011",
+		slate: "00000100000",
+		salon: "000001000010",
+		seriouseats: "000001000011",
+		goodreads: "0000010001",
+		artstation: "0000010010",
+		"bbc.co": "0000010011",
+		adl: "00000101000000",
+		atf: "00000101000001",
+		"play.esea": "00000101000010",
+		mugenmonkey: "00000101000011",
+		w3schools: "00000101000100",
+		radiolab: "00000101000101",
+		harborfreight: "00000101000110",
+		pitchfork: "00000101000111",
+		"media-cache-ak0.pinimg": "00000101001000",
+		"terraria.gamepedia": "00000101001001",
+		"ftw.usatoday": "00000101001010",
+		"forums.robertsspaceindustries": "00000101001011",
+		"statcan.gc": "00000101001100",
+		wabbitwiki: "00000101001101",
+		"encrypted-tbn2.gstatic": "00000101001110",
+		indianexpress: "00000101001111",
+		examiner: "00000101010000",
+		vatican: "00000101010001",
+		techdirt: "00000101010010",
+		wnd: "00000101010011",
+		investigationbooks: "000001010101",
+		marvel: "00000101011000",
+		baltimoresun: "00000101011001",
+		"huffingtonpost.co": "00000101011010",
+		torontosun: "00000101011011",
+		ea: "00000101011100",
+		"theaustralian.com": "00000101011101",
+		raspberrypi: "00000101011110",
+		"travel.state": "00000101011111",
+		lcfgeorgia: "00000101100000",
+		kauffman: "00000101100001",
+		"usff.navy": "00000101100010",
+		"newsroom.latam.paypal-corp": "00000101100011",
+		yearup: "00000101100100",
+		cvent: "00000101100101",
+		accenture: "00000101100110",
+		switchboardta: "00000101100111",
+		"doyok.kinja": "0000010110100",
+		renews24: "0000010110101",
+		yugipedia: "0000010110110",
+		"r.go1dfish": "0000010110111",
+		americanexpress: "00000101110000",
+		"m.newegg": "00000101110001",
+		feelthebern: "00000101110010",
+		"alg.cubing": "00000101110011",
+		corsair: "00000101110100",
+		"content.time": "00000101110101",
+		winlivestream: "00000101110110",
+		"m.fanfiction": "00000101110111",
+		p2016: "00000101111000",
+		masterypoints: "00000101111001",
+		liquipedia: "00000101111010",
+		"help.steampowered": "00000101111011",
+		"m.spankbang": "00000101111100",
+		"p0ody-files": "00000101111101",
+		"pm1.narvii": "00000101111110",
+		watchnfllivetv: "00000101111111",
+		"37.media.tumblr": "0000011000000",
+		"services.runescape": "0000011000001",
+		voat: "0000011000010",
+		shopify: "0000011000011",
+		"i.minus": "00000110001",
+		mangaupdates: "0000011001",
+		"drive.google": "000001101",
+		businessinsider: "0000011100",
+		freebase: "000001110100",
+		"images-na.ssl-images-amazon": "000001110101",
+		"docs.python": "0000011101100",
+		worldofwarcraft: "00000111011010",
+		disposerx: "00000111011011",
+		"cdn.sesamestreetincommunities": "000001110111",
+		"edition.cnn": "000001111000",
+		"wiki.teamfortress": "000001111001",
+		swappa: "000001111010",
+		"basketball-reference": "000001111011",
+		dailymotion: "00000111110",
+		researchgate: "000001111110",
+		washingtontimes: "000001111111",
+		twitter: "00001",
+		reddit: "00010",
+		doi: "0001100000",
+		"commons.wikimedia": "0001100001",
+		sbnation: "0001100010000",
+		nba: "0001100010001",
+		"ec.europa": "0001100010010",
+		yourlogicalfallacyis: "0001100010011",
+		explosm: "0001100010100",
+		dailykos: "0001100010101",
+		theoatmeal: "0001100010110",
+		epa: "0001100010111",
+		disasterphilanthropy: "0001100011000",
+		deltasigmatheta: "0001100011001",
+		"goto.walmart": "000110001101",
+		corgiorgy: "0001100011100",
+		mythicspoiler: "0001100011101",
+		"connect.ala": "0001100011110",
+		"dynamics.microsoft": "0001100011111",
+		"docs.google": "00011001",
+		pixiv: "00011010",
+		subtletv: "0001101100",
+		"m.reddit": "000110110100",
+		"img.pandawhale": "000110110101",
+		mozilla: "000110110110",
+		pewforum: "0001101101110",
+		quran: "0001101101111",
+		combodeck: "000110111",
+		un: "000111000",
+		"ca.pcpartpicker": "000111001",
+		addtoany: "00011101",
+		nerdwallet: "00011110000000",
+		myfonts: "00011110000001",
+		crutchfield: "00011110000010",
+		cisco: "00011110000011",
+		state: "00011110000100",
+		windowsphone: "00011110000101",
+		psnprofiles: "00011110000110",
+		dwarffortresswiki: "00011110000111",
+		femradebates: "00011110001000",
+		shevibe: "00011110001001",
+		foxsports: "00011110001010",
+		hqhdtv: "00011110001011",
+		talkingpointsmemo: "00011110001100",
+		technologyreview: "00011110001101",
+		kansascity: "00011110001110",
+		"g1.globo": "00011110001111",
+		"pediatrics.aappublications": "00011110010000",
+		twitlonger: "00011110010001",
+		pcworld: "00011110010010",
+		"ru.wikipedia": "00011110010011",
+		"help.ubuntu": "00011110010100",
+		southparkstudios: "00011110010101",
+		military: "00011110010110",
+		taxfoundation: "00011110010111",
+		ustream: "00011110011000",
+		chron: "00011110011001",
+		midwayusa: "00011110011010",
+		android: "00011110011011",
+		costco: "00011110011100",
+		slashfilm: "00011110011101",
+		hindustantimes: "00011110011110",
+		mixcloud: "00011110011111",
+		yahoo: "0001111010000",
+		challonge: "0001111010001",
+		"pics.me": "0001111010010",
+		checkrepost: "0001111010011",
+		"leagueoflegends.wikia": "0001111010100",
+		crunchyroll: "0001111010101",
+		"minecraft.gamepedia": "0001111010110",
+		"m.soundcloud": "0001111010111",
+		stevenaverycase: "00011110110000",
+		getyarn: "00011110110001",
+		ruadick: "00011110110010",
+		"db.fowtcg": "00011110110011",
+		fullhdtvstream: "00011110110100",
+		"news.vice": "00011110110101",
+		loadfst: "00011110110110",
+		chewy: "00011110110111",
+		plos: "0001111011100",
+		"cse.google": "0001111011101",
+		"4k-livefifa": "00011110111100",
+		axios: "00011110111101",
+		"sell.amazon": "00011110111110",
+		grow: "00011110111111",
+		muzemerch: "000111110",
+		neopets: "000111111000",
+		webmd: "000111111001",
+		outline: "000111111010",
+		"atomiks.github": "000111111011",
+		"newsroom.paypal-corp": "00011111110",
+		"bulbapedia.bulbagarden": "000111111110",
+		scribd: "000111111111",
+		youtube: "001",
+		"hearthstone.gamepedia": "0100000000",
+		"i.giphy": "010000000100",
+		robertsspaceindustries: "010000000101",
+		"online.wsj": "0100000001100",
+		ssa: "01000000011010",
+		childrenandfamiliesfirstnc: "01000000011011",
+		lichess: "010000000111",
+		perscholas: "010000001",
+		archiveofourown: "01000001000",
+		"music.apple": "01000001001",
+		thefitness: "01000001010",
+		"68.media.tumblr": "010000010110",
+		"space.hatena.ne": "010000010111",
+		"forums.spacebattles": "0100000110000",
+		esrb: "0100000110001",
+		"c1.staticflickr": "0100000110010",
+		"static1.e621": "0100000110011",
+		jstor: "0100000110100",
+		spiegel: "0100000110101",
+		marketwatch: "0100000110110",
+		serebii: "0100000110111",
+		"news.mongabay": "010000011100",
+		"78.media.tumblr": "010000011101",
+		"b5bznmg.tula": "0100000111100",
+		"my.mixtape": "0100000111101",
+		oceandecade: "0100000111110",
+		morejpeg: "0100000111111",
+		npr: "0100001000",
+		"i.ytimg": "0100001001",
+		ebay: "010000101",
+		tomshardware: "010000110000",
+		goodwillfinds: "010000110001",
+		redditsearch: "01000011001",
+		reverb: "010000110100",
+		gov: "010000110101",
+		pathofexile: "01000011011",
+		"gist.github": "01000011100",
+		newyorker: "010000111010",
+		census: "0100001110110",
+		alternet: "0100001110111",
+		ibb: "01000011110",
+		gelbooru: "01000011111",
+		magiccards: "0100010",
+		walmart: "0100011000",
+		dell: "0100011001000",
+		lolking: "0100011001001",
+		suicidepreventionlifeline: "0100011001010",
+		charitywatch: "0100011001011",
+		"support.steampowered": "0100011001100",
+		guru3d: "0100011001101",
+		"skyrim.nexusmods": "0100011001110",
+		vndb: "0100011001111",
+		avclub: "01000110100000",
+		"ocw.mit": "01000110100001",
+		mlb: "01000110100010",
+		"windows.microsoft": "01000110100011",
+		fcc: "01000110100100",
+		minecraftwiki: "01000110100101",
+		"finalfantasy.wikia": "01000110100110",
+		mtv: "01000110100111",
+		"forums.na.leagueoflegends": "01000110101000",
+		crowdrise: "01000110101001",
+		"forums.xbox": "01000110101010",
+		"cloud-4.steampowered": "01000110101011",
+		"wiki.guildwars": "01000110101100",
+		dafont: "01000110101101",
+		mechanicalkeyboards: "01000110101110",
+		fullfact: "01000110101111",
+		"static.comicvine": "010001101100",
+		rationalwiki: "010001101101",
+		"marketplace.xbox": "01000110111000",
+		"listen.grooveshark": "01000110111001",
+		"assets.nydailynews": "01000110111010",
+		nooooooooooooooo: "01000110111011",
+		"stuff.co": "01000110111100",
+		businessweek: "01000110111101",
+		teamfortress: "01000110111110",
+		skepticsannotatedbible: "01000110111111",
+		therabody: "0100011100000",
+		magaimg: "0100011100001",
+		medseaalliance: "01000111000100",
+		packard: "01000111000101",
+		lnkd: "01000111000110",
+		banquemondiale: "01000111000111",
+		"magic.wizards": "0100011100100",
+		memedad: "0100011100101",
+		botsbyliam: "0100011100110",
+		"chan.sankakucomplex": "0100011100111",
+		"m.popkey": "01000111010000",
+		novelupdates: "01000111010001",
+		oculus: "01000111010010",
+		"sos.ca": "01000111010011",
+		fragrantica: "01000111010100",
+		"health.harvard": "01000111010101",
+		movie24k: "01000111010110",
+		wanna: "01000111010111",
+		"loderunner.github": "01000111011000",
+		"amp.reddit": "01000111011001",
+		kaporcenter: "01000111011010",
+		calicocat: "01000111011011",
+		"pcmrbot.eegras": "01000111011100",
+		"i.makeagif": "01000111011101",
+		"science.sciencemag": "01000111011110",
+		thebalance: "01000111011111",
+		"guardian.co": "010001111000",
+		bitcointalk: "010001111001",
+		furaffinity: "01000111101",
+		livescience: "010001111100",
+		ft: "0100011111010",
+		myspace: "0100011111011",
+		"new.reddit": "01000111111",
+		"dailymail.co": "0100100000",
+		modojo: "0100100001000",
+		washington: "0100100001001",
+		prnt: "0100100001010",
+		"projects.fivethirtyeight": "0100100001011",
+		spreadingsantorum: "0100100001100",
+		allrecipes: "0100100001101",
+		tehurn: "0100100001110",
+		myfitnesspal: "0100100001111",
+		uptogether: "010010001000",
+		spankbang: "010010001001",
+		"community.looker": "0100100010100",
+		acceptbitcoin: "0100100010101",
+		torrentfreak: "01001000101100",
+		"impactchallenge.withgoogle": "01001000101101",
+		"inspiredleaders.downtown": "0100100010111",
+		investopedia: "010010001100",
+		"i.imgflip": "010010001101",
+		futhead: "01001000111",
+		"m.youtube": "01001001",
+		nationalgeographic: "010010100000",
+		gifsound: "010010100001",
+		prntscr: "01001010001",
+		"corporate.walmart": "0100101001",
+		nature: "01001010100",
+		cato: "01001010101000",
+		ajc: "01001010101001",
+		food: "01001010101010",
+		billboard: "01001010101011",
+		snoopsnoo: "010010101011",
+		reason: "0100101011000",
+		"en.wikiquote": "0100101011001",
+		lifehacker: "0100101011010",
+		rawstory: "0100101011011",
+		d20pfsrd: "01001010111",
+		"pohudeniya-bistro": "0100101100000",
+		"awoiaf.westeros": "0100101100001",
+		"thumbs.gfycat": "0100101100010",
+		shtrs: "0100101100011",
+		dol: "0100101100100",
+		jcrew: "0100101100101",
+		nhl: "0100101100110",
+		bricklink: "0100101100111",
+		"oqmweghb.sochi": "01001011010000",
+		dbz: "01001011010001",
+		"fred.stlouisfed": "01001011010010",
+		theothersreport: "01001011010011",
+		citylab: "01001011010100",
+		"fat.gfycat": "01001011010101",
+		georgiymore: "01001011010110",
+		"nurl.cafe24": "01001011010111",
+		"r6fix.ubi": "0100101101100",
+		"en.oxforddictionaries": "0100101101101",
+		mirrorbot: "01001011011100",
+		timee: "01001011011101",
+		"workspace.google": "0100101101111",
+		starcitygames: "01001011100000",
+		memecrunch: "01001011100001",
+		"news.nationalpost": "01001011100010",
+		archives: "01001011100011",
+		"news.google": "01001011100100",
+		"head-fi": "01001011100101",
+		nejm: "01001011100110",
+		cpsc: "01001011100111",
+		padherder: "01001011101000",
+		academia: "01001011101001",
+		"sensualhumiliation.tumblr": "01001011101010",
+		letterboxd: "01001011101011",
+		roblox: "01001011101100",
+		grantland: "01001011101101",
+		"standard.co": "01001011101110",
+		"japantimes.co": "01001011101111",
+		theanarchistlibrary: "010010111100",
+		"secure.actblue": "010010111101",
+		"yutubi.kinja": "010010111110",
+		vocaroo: "010010111111",
+		fivethirtyeight: "010011000000",
+		tmz: "0100110000010",
+		whitehouse: "0100110000011",
+		eventbrite: "010011000010",
+		chicagotribune: "010011000011",
+		yourbrainonporn: "0100110001000",
+		gifrific: "0100110001001",
+		hearthstonetopdecks: "0100110001010",
+		"mega.co": "0100110001011",
+		haaretz: "0100110001100",
+		foreignpolicy: "0100110001101",
+		paizo: "0100110001110",
+		"lh3.googleusercontent": "0100110001111",
+		mtg: "010011001",
+		goo: "010011010",
+		xkcdref: "010011011000",
+		"hydra-media.cursecdn": "010011011001",
+		"xn--80aaqbi4ajie6m": "0100110110100",
+		"kak-pohudet-za": "0100110110101",
+		"farm4.static.flickr": "01001101101100",
+		"shop-links": "01001101101101",
+		"search.app.goo": "0100110110111",
+		"media.tumblr": "01001101110",
+		"snew.github": "01001101111",
+		metacritic: "01001110000",
+		gallup: "010011100010",
+		breitbart: "010011100011",
+		fanfiction: "0100111001",
+		"security.googleblog": "0100111010",
+		"scholar.google": "0100111011",
+		"dota2.gamepedia": "01001111000",
+		mangapanda: "01001111001000",
+		tumblr: "01001111001001",
+		newrepublic: "01001111001010",
+		"what-if.xkcd": "01001111001011",
+		gifsoup: "01001111001100",
+		"cdn.bulbagarden": "01001111001101",
+		independent: "01001111001110",
+		voanews: "01001111001111",
+		fao: "0100111101",
+		"img1.wikia.nocookie": "0100111110000",
+		"m.huffpost": "0100111110001",
+		undercurrentnews: "0100111110010",
+		dlinkes: "0100111110011",
+		"sports.yahoo": "0100111110100",
+		vanityfair: "0100111110101",
+		"warframe.wikia": "0100111110110",
+		bbb: "0100111110111",
+		vgy: "01001111110000",
+		fitbit: "01001111110001",
+		smitegame: "01001111110010",
+		syriancivilwararchive: "01001111110011",
+		xnxx: "01001111110100",
+		budgetbytes: "01001111110101",
+		gbatemp: "01001111110110",
+		taggedtanakh: "01001111110111",
+		onlyfans: "01001111111000",
+		ceoworks: "01001111111001",
+		weddit: "01001111111010",
+		milkbet: "01001111111011",
+		mcmcse: "01001111111100",
+		"45.media.tumblr": "01001111111101",
+		"m.intl.taobao": "01001111111110",
+		"gpu.userbenchmark": "01001111111111",
+		"en.wikipedia": "0101",
+		"de.pcpartpicker": "01100000000",
+		"t-nation": "01100000001000",
+		denverpost: "01100000001001",
+		"ebay.com": "01100000001010",
+		khanacademy: "01100000001011",
+		"img.animebracket": "011000000011",
+		louroe: "01100000010",
+		economist: "011000000110",
+		arxiv: "011000000111",
+		changetip: "011000001000",
+		stripe: "011000001001",
+		"item.taobao": "01100000101",
+		"dictionary.reference": "011000001100",
+		behance: "0110000011010",
+		microcenter: "0110000011011",
+		blackrock: "0110000011100",
+		livehdtv: "0110000011101",
+		sesamestreet: "01100000111100",
+		"mailback-msft.tes-amm": "01100000111101",
+		earthday: "0110000011111",
+		"web.archive": "01100001",
+		"link.springer": "0110001000000",
+		smithsonianmag: "0110001000001",
+		"i0.wp": "0110001000010",
+		fasttech: "0110001000011",
+		upwardlyglobal: "01100010001",
+		redditblog: "0110001001",
+		"resi.ze-robot": "01100010100",
+		politifact: "01100010101",
+		pcgamer: "0110001011000",
+		plannedparenthood: "01100010110010",
+		esquire: "01100010110011",
+		nationalreview: "0110001011010",
+		eurogamer: "0110001011011",
+		spire: "01100010111",
+		worldbank: "01100011000",
+		fastcompany: "01100011001000",
+		"i.telegraph.co": "01100011001001",
+		abload: "01100011001010",
+		"science.howstuffworks": "01100011001011",
+		ehow: "01100011001100",
+		thinkgeek: "01100011001101",
+		escapistmagazine: "01100011001110",
+		"images2.wikia.nocookie": "01100011001111",
+		"lists.linuxfoundation": "0110001101000",
+		sprint: "0110001101001",
+		"togiliatiliati.togliatti": "0110001101010",
+		eroshare: "0110001101011",
+		tripadvisor: "0110001101100",
+		"cdn.memegenerator": "0110001101101",
+		"applynow.chase": "0110001101110",
+		indianapolis500live: "0110001101111",
+		"taobaotools.github": "01100011100000",
+		"reddit.app": "01100011100001",
+		"blog.kaporcenter": "01100011100010",
+		"developers.googleblog": "01100011100011",
+		etonline: "01100011100100",
+		"img2-ak.lst": "01100011100101",
+		"lifeline.org": "01100011100110",
+		"steamcdn-a.akamaihd": "01100011100111",
+		mangadex: "0110001110100",
+		reddittext: "0110001110101",
+		overdeck: "01100011101100",
+		"about.flipboard": "01100011101101",
+		"news.microsoft": "0110001110111",
+		"people-press": "01100011110000",
+		fool: "01100011110001",
+		mlive: "01100011110010",
+		"nl.wikipedia": "01100011110011",
+		"pt.wikipedia": "01100011110100",
+		"nutritiondata.self": "01100011110101",
+		"farm8.staticflickr": "01100011110110",
+		curse: "01100011110111",
+		"officialtvstream.com": "01100011111000",
+		"motherboard.vice": "01100011111001",
+		"zippy.gfycat": "01100011111010",
+		"1drv": "01100011111011",
+		dallasnews: "01100011111100",
+		"hsph.harvard": "01100011111101",
+		cell: "01100011111110",
+		"answers.microsoft": "01100011111111",
+		"s-media-cache-ak0.pinimg": "0110010000",
+		aliexpress: "011001000100",
+		gamespot: "0110010001010",
+		"msnbc.msn": "01100100010110",
+		"ja-jp.facebook": "01100100010111",
+		"developers.google": "01100100011",
+		tappedout: "01100100100",
+		"3.bp.blogspot": "01100100101",
+		tinyurl: "011001001100",
+		"news.com": "0110010011010",
+		"ecx.images-amazon": "0110010011011",
+		"25.media.tumblr": "01100100111",
+		bmw: "0110010100000",
+		"aqnugtr.nov": "0110010100001",
+		coursera: "011001010001",
+		"powerlisting.wikia": "0110010100100",
+		"mlb.mlb": "0110010100101",
+		bato: "0110010100110",
+		brookings: "0110010100111",
+		"us.battle": "0110010101",
+		opensecrets: "0110010110000",
+		gizmodo: "0110010110001",
+		instapaper: "0110010110010",
+		"metro.co": "0110010110011",
+		liveleak: "011001011010",
+		dictionary: "011001011011",
+		"smile.amazon": "01100101110",
+		foxnews: "01100101111",
+		"addons.mozilla": "0110011000",
+		"merriam-webster": "01100110010",
+		scientificamerican: "011001100110",
+		"wh40k.lexicanum": "0110011001110",
+		kotaku: "0110011001111",
+		anilist: "011001101",
+		"media.giphy": "011001110",
+		"scholar.google.co": "01100111100",
+		espncricinfo: "01100111101000",
+		"en.reddit": "01100111101001",
+		planetminecraft: "01100111101010",
+		theblaze: "01100111101011",
+		boston: "01100111101100",
+		"aws.amazon": "01100111101101",
+		"climate.nasa": "01100111101110",
+		ipcc: "01100111101111",
+		"hi-in.facebook": "01100111110000",
+		"de-de.facebook": "01100111110001",
+		c4ads: "0110011111001",
+		"ar-ar.facebook": "01100111110100",
+		"zh-cn.facebook": "01100111110101",
+		"ko-kr.facebook": "01100111110110",
+		"pt-br.facebook": "01100111110111",
+		"pay.reddit": "0110011111100",
+		uesp: "0110011111101",
+		boostwit: "0110011111110",
+		mapbox: "0110011111111",
+		vklvl: "01101000000000",
+		"memory-alpha.wikia": "01101000000001",
+		hutdb: "01101000000010",
+		"ucr.fbi": "01101000000011",
+		archivesofnethys: "01101000000100",
+		pandacoinpnd: "01101000000101",
+		bethesda: "01101000000110",
+		"api.imgur": "01101000000111",
+		huridocs: "01101000001000",
+		greenbiz: "01101000001001",
+		coastguardnews: "01101000001010",
+		walmartsustainabilityhub: "01101000001011",
+		nicsgalleries: "01101000001100",
+		"exvius.gamepedia": "01101000001101",
+		bootyr4r: "01101000001110",
+		democracy: "01101000001111",
+		"metal-archives": "01101000010000",
+		"marvel.wikia": "01101000010001",
+		theweek: "01101000010010",
+		walgreens: "01101000010011",
+		"blogs.scientificamerican": "01101000010100",
+		makeagif: "01101000010101",
+		samsung: "01101000010110",
+		setlist: "01101000010111",
+		"a.pomf": "01101000011000",
+		"us.reddit": "01101000011001",
+		"forums.smitegame": "01101000011010",
+		"minecraft.curseforge": "01101000011011",
+		miamiherald: "01101000011100",
+		ssbwiki: "01101000011101",
+		"socialclub.rockstargames": "01101000011110",
+		"es.pcpartpicker": "01101000011111",
+		"66.media.tumblr": "011010001000",
+		"art.hearthstonejson": "011010001001",
+		"pathofexile.gamepedia": "011010001010",
+		"i1.kym-cdn": "011010001011",
+		"support.apple": "0110100011",
+		forbes: "0110100100",
+		"news.bbc.co": "011010010100",
+		xboxdvr: "0110100101010",
+		cbssports: "0110100101011",
+		whatimade: "0110100101100",
+		nicodb: "0110100101101",
+		seattlefoundation: "0110100101110",
+		bcg: "0110100101111",
+		microsoft: "011010011",
+		steamcommunity: "0110101",
+		"uk.pcpartpicker": "011011000",
+		"onlinelibrary.wiley": "011011001000",
+		rei: "0110110010010",
+		blogcdn: "01101100100110",
+		"blogs.wsj": "01101100100111",
+		wowhead: "01101100101",
+		"books.google": "01101100110",
+		kiwiirc: "011011001110",
+		wikileaks: "011011001111",
+		"24.media.tumblr": "01101101000",
+		"xn--e1agvr0b.xn--j1aef": "01101101001",
+		last: "0110110101",
+		cc: "01101101100000",
+		csgolounge: "01101101100001",
+		"forums.ubi": "01101101100010",
+		g2a: "01101101100011",
+		"encrypted-tbn3.gstatic": "01101101100100",
+		"games-workshop": "01101101100101",
+		"legislation.gov": "01101101100110",
+		digitaltrends: "01101101100111",
+		doctorofcredit: "01101101101000",
+		"es-la.facebook": "01101101101001",
+		rocketr: "01101101101010",
+		mediabiasfactcheck: "01101101101011",
+		"en-americas-support.nintendo": "01101101101100",
+		"wow.gamepedia": "01101101101101",
+		oddshot: "01101101101110",
+		drivethrurpg: "01101101101111",
+		trello: "0110110111",
+		statista: "0110111000000",
+		"na.leagueoflegends": "0110111000001",
+		congress: "0110111000010",
+		"petitions.whitehouse": "0110111000011",
+		fbi: "0110111000100",
+		hulu: "0110111000101",
+		"i.ebayimg": "0110111000110",
+		techcrunch: "0110111000111",
+		"kroger-stage.preprodhawkcommerce": "0110111001000",
+		greenislandmj: "0110111001001",
+		rawg: "01101110010100",
+		"teamrv-mvp.sos.texas": "01101110010101",
+		tent: "01101110010110",
+		lew: "01101110010111",
+		fuwa: "0110111001100",
+		genius: "0110111001101",
+		aka: "0110111001110",
+		"sukipuki.msk": "0110111001111",
+		cbsnews: "01101110100",
+		"it-it.facebook": "01101110101000",
+		thisamericanlife: "01101110101001",
+		inquisitr: "01101110101010",
+		jsfiddle: "01101110101011",
+		erowid: "0110111010110",
+		gutenberg: "01101110101110",
+		"fr-fr.facebook": "01101110101111",
+		etsy: "0110111011",
+		heatware: "01101111000",
+		"vignette3.wikia.nocookie": "011011110010",
+		"33.media.tumblr": "011011110011",
+		reactiongifs: "01101111010",
+		"google.co": "01101111011",
+		twitch: "011011111",
+		"gatherer.wizards": "011100",
+		hummingbird: "011101000000",
+		isthereanydeal: "0111010000010",
+		"img2.wikia.nocookie": "0111010000011",
+		"accounts.google": "01110100001",
+		abimon: "01110100010",
+		thehill: "01110100011",
+		"penzaza.penza": "0111010010000",
+		watchonlinelivetv: "0111010010001",
+		npafc: "0111010010010",
+		"static-3.studiobebop": "0111010010011",
+		"corporate.target": "01110100101",
+		"supermariomakerbookmark.nintendo": "011101001100",
+		"vignette1.wikia.nocookie": "011101001101",
+		universalscammerlist: "011101001110",
+		"www1.folha.uol.com": "011101001111",
+		"open.spotify": "01110101",
+		linkedin: "0111011",
+		"store.steampowered": "011110000",
+		"wiki.archlinux": "0111100010000",
+		uscg: "01111000100010",
+		jpost: "01111000100011",
+		anandtech: "011110001001",
+		bestbuy: "011110001010",
+		engadget: "0111100010110",
+		mises: "0111100010111",
+		knowyourmeme: "01111000110",
+		time: "01111000111",
+		washingtonpost: "011110010",
+		"ml.reddit": "01111001100000",
+		globalb2bcontacts: "01111001100001",
+		chromeenterprise: "01111001100010",
+		suicideprevention: "01111001100011",
+		"firebase.google": "01111001100100",
+		awin1: "01111001100101",
+		"data.tumblr": "01111001100110",
+		epicgames: "01111001100111",
+		harmonybuet: "0111100110100",
+		songrium: "0111100110101",
+		"fitness.apple": "01111001101100",
+		"tm-tracking": "01111001101101",
+		"docs.github": "0111100110111",
+		nolo: "01111001110000",
+		"media.wizards": "01111001110001",
+		fertilityfriend: "01111001110010",
+		"nz.pcpartpicker": "01111001110011",
+		geekhack: "01111001110100",
+		"images3.wikia.nocookie": "01111001110101",
+		eonline: "01111001110110",
+		jordanthebrobot: "01111001110111",
+		winsipedia: "01111001111000",
+		appsto: "01111001111001",
+		"karelialia.karelia": "01111001111010",
+		berniesanders: "01111001111011",
+		muthead: "01111001111100",
+		libgen: "01111001111101",
+		chain: "01111001111110",
+		"stats.nba": "01111001111111",
+		"na.op": "011110100000",
+		buzzfeed: "011110100001",
+		"market.android": "01111010001000",
+		airbnb: "01111010001001",
+		fav: "01111010001010",
+		oxforddictionaries: "01111010001011",
+		gamasutra: "01111010001100",
+		popularmechanics: "01111010001101",
+		livestrong: "01111010001110",
+		cnsnews: "01111010001111",
+		stitcher: "0111101001000",
+		aljazeera: "0111101001001",
+		"4kmoviehub": "0111101001010",
+		"36.media.tumblr": "0111101001011",
+		"starwars.wikia": "011110100110",
+		"goto.target": "011110100111",
+		blog: "011110101000",
+		bungie: "011110101001",
+		"eu.battle": "011110101010",
+		"msdn.microsoft": "0111101010110",
+		justice: "0111101010111",
+		gyazo: "0111101011",
+		huffingtonpost: "0111101100",
+		itcosmetics: "011110110100",
+		"i3.kym-cdn": "011110110101",
+		"mirror.co": "0111101101100",
+		techpowerup: "0111101101101",
+		"activity.mobilelegends": "0111101101110",
+		"b.1339": "0111101101111",
+		amzn: "011110111000",
+		"marine-conservation": "011110111001",
+		"vignette.wikia.nocookie": "01111011101",
+		"s.metjm": "011110111100",
+		"support.microsoft": "011110111101",
+		nicovideo: "01111011111",
+		instagram: "0111110",
+		"i0.kym-cdn": "01111110000",
+		"g.redditmedia": "011111100010",
+		"hq.porygon": "011111100011",
+		"cloud.google": "0111111001",
+		ujyaaloonline: "01111110100000",
+		href: "01111110100001",
+		"ulta.ztk5": "01111110100010",
+		waltonfamilyfoundation: "01111110100011",
+		"journals.sagepub": "01111110100100",
+		dailywire: "01111110100101",
+		otranscribe: "01111110100110",
+		macys: "01111110100111",
+		"images4-b.ravelrycache": "0111111010100",
+		"timesofindia.indiatimes": "0111111010101",
+		"optc-db.github": "0111111010110",
+		tradingview: "0111111010111",
+		heritage: "01111110110000",
+		"profootballtalk.nbcsports": "01111110110001",
+		techspot: "01111110110010",
+		kohls: "01111110110011",
+		bash: "01111110110100",
+		wikipedia: "01111110110101",
+		"hyperboleandahalf.blogspot": "01111110110110",
+		surveymonkey: "01111110110111",
+		bjs: "01111110111000",
+		"static.giantbomb": "01111110111001",
+		"cpu.userbenchmark": "01111110111010",
+		northantrim: "01111110111011",
+		"i.huffpost": "01111110111100",
+		zeit: "01111110111101",
+		massdrop: "01111110111110",
+		society6: "01111110111111",
+		soundcloud: "01111111",
+		"plus.google": "10000000000",
+		rottentomatoes: "10000000001",
+		ew: "100000000100",
+		theonion: "100000000101",
+		lds: "1000000001100",
+		"groups.google": "10000000011010",
+		oemdtc: "10000000011011",
+		howl: "100000000111",
+		steamrep: "1000000010000",
+		sec: "1000000010001",
+		unesco: "1000000010010",
+		sanger: "1000000010011",
+		shouters: "10000000101",
+		"fiddle.jshell": "100000001100",
+		nydailynews: "100000001101",
+		donaldjtrump: "1000000011100",
+		nicozon: "1000000011101",
+		nordstrom: "1000000011110",
+		tidal: "1000000011111",
+		xvideos: "10000001000",
+		ala: "100000010010",
+		nypost: "100000010011",
+		"dl.dropbox": "1000000101000",
+		politicalcompass: "10000001010010",
+		boingboing: "10000001010011",
+		narffl: "100000010101",
+		"azure.microsoft": "10000001011",
+		timeanddate: "1000000110",
+		nationalpost: "10000001110000",
+		cancer: "10000001110001",
+		att: "10000001110010",
+		indiegala: "10000001110011",
+		"secure.wikimedia": "10000001110100",
+		gnu: "10000001110101",
+		house: "10000001110110",
+		mediamatters: "10000001110111",
+		"reddit.applebyte": "10000001111000",
+		"cards.eternalwarcry": "10000001111001",
+		"l.facebook": "10000001111010",
+		mailmygov: "10000001111011",
+		huffpost: "10000001111100",
+		onlinemarketplace24: "10000001111101",
+		livepc2tv: "10000001111110",
+		documentcloud: "10000001111111",
+		theguardian: "100000100",
+		explainxkcd: "100000101000",
+		nfl: "100000101001",
+		scrolller: "100000101010",
+		"vignette2.wikia.nocookie": "100000101011",
+		qkme: "1000001011000",
+		bhphotovideo: "1000001011001",
+		kaporcapital: "10000010110100",
+		"my.hupu": "10000010110101",
+		overclock: "1000001011011",
+		saucenao: "10000010111",
+		vimeo: "1000001100",
+		nbcnews: "10000011010",
+		washingtonexaminer: "1000001101100",
+		"murmurmansk.murmansk": "1000001101101",
+		"i.dailymail.co": "100000110111",
+		pastebin: "100000111",
+		amazon: "100001",
+		redd: "1000100",
+		cnn: "1000101000",
+		"movies.netflix": "100010100100",
+		duckduckgo: "1000101001010",
+		minus: "1000101001011",
+		"images.brickset": "10001010011",
+		"4.bp.blogspot": "10001010100",
+		"pohudet-na-kg": "100010101010",
+		"money.cnn": "100010101011",
+		watch24: "1000101011000",
+		"forum.kerbalspaceprogram": "1000101011001",
+		swarfarm: "1000101011010",
+		gph: "1000101011011",
+		"clips.twitch": "10001010111",
+		giphy: "10001011000",
+		pnas: "1000101100100",
+		cia: "10001011001010",
+		okcupid: "10001011001011",
+		ceddit: "100010110011",
+		"sslim.kinja": "10001011010000",
+		"docs.unity3d": "10001011010001",
+		"ps.w": "10001011010010",
+		livslinien: "10001011010011",
+		"dictionary.cambridge": "10001011010100",
+		vocadb: "10001011010101",
+		livestreamhdtv: "10001011010110",
+		slatestarcodex: "10001011010111",
+		erome: "1000101101100",
+		"adsabs.harvard": "1000101101101",
+		"uk.linkedin": "1000101101110",
+		airtable: "1000101101111",
+		newgrounds: "10001011100000",
+		"i1.ytimg": "10001011100001",
+		mercurynews: "10001011100010",
+		bible: "10001011100011",
+		redditloans: "100010111001",
+		xbox: "10001011101000",
+		pokecheck: "10001011101001",
+		scmp: "10001011101010",
+		sweetwater: "10001011101011",
+		popsci: "10001011101100",
+		bodybuilding: "10001011101101",
+		"forum.paradoxplaza": "10001011101110",
+		slickdeals: "10001011101111",
+		kitsu: "1000101111",
+		"apps.apple": "100011",
+		imgur: "1001",
+		github: "10100",
+		notebookcheck: "1010100000000",
+		katespade: "1010100000001",
+		"xn--80adiba3abddchue7e4b": "101010000001",
+		"go.microsoft": "101010000010",
+		discogs: "101010000011",
+		"webcache.googleusercontent": "1010100001000",
+		"articles.latimes": "1010100001001",
+		ipsnews: "1010100001010",
+		ikea: "1010100001011",
+		adf: "10101000011",
+		nicofinder: "1010100010000",
+		"media2.giphy": "1010100010001",
+		decronym: "1010100010010",
+		"i.redditmedia": "1010100010011",
+		"cdn.shopify": "1010100010100",
+		postimg: "1010100010101",
+		omfgdogs: "1010100010110",
+		polygon: "1010100010111",
+		"law.cornell": "101010001100",
+		ted: "101010001101",
+		usatoday: "10101000111",
+		cbc: "10101001000",
+		"abcnews.go": "10101001001",
+		redbubble: "1010100101000",
+		"baseball-reference": "1010100101001",
+		nhentai: "1010100101010",
+		globalnews: "1010100101011",
+		"goodbot-badbot.herokuapp": "10101001011",
+		tesla: "101010011000000",
+		"pics.onsizzle": "101010011000001",
+		gwentdb: "101010011000010",
+		"developer.microsoft": "101010011000011",
+		wtop: "101010011000100",
+		dreadnoughtforums: "101010011000101",
+		"media.gettyimages": "101010011000110",
+		"qwakamakaflo.in": "101010011000111",
+		richardphotolab: "101010011001000",
+		"dyn.keepa": "101010011001001",
+		nereusprogram: "101010011001010",
+		dotdashmeredith: "101010011001011",
+		"cdn.vox-cdn": "101010011001100",
+		"fi.google": "101010011001101",
+		"i.postimg": "101010011001110",
+		unitedstreams4all: "101010011001111",
+		newsmax: "101010011010000",
+		watchnflgame: "101010011010001",
+		"en.m.wiktionary": "101010011010010",
+		"support.plex": "101010011010011",
+		feedingamerica: "101010011010100",
+		fitbamob: "101010011010101",
+		"trends-and-virals": "101010011010110",
+		"business.financialpost": "101010011010111",
+		msi: "101010011011000",
+		sageadvice: "101010011011001",
+		geoguessr: "101010011011010",
+		"e-liquid-recipes": "101010011011011",
+		"cloud-4.steamusercontent": "101010011011100",
+		"uproxx.files.wordpress": "101010011011101",
+		waitbutwhy: "101010011011110",
+		arcgames: "101010011011111",
+		eternalwarcry: "10101001110000",
+		"forums.playbattlegrounds": "10101001110001",
+		"b1.hoopchina.com": "10101001110010",
+		"music.youtube": "10101001110011",
+		"49.media.tumblr": "10101001110100",
+		"lanacion.com": "10101001110101",
+		"files.catbox": "10101001110110",
+		"ehjmilredditop.in": "10101001110111",
+		"events.withgoogle": "101010011110000",
+		oceanographicmagazine: "101010011110001",
+		adcouncil: "10101001111001",
+		fortunesociety: "101010011110100",
+		jbl: "101010011110101",
+		latinospro: "101010011110110",
+		thelastmile: "101010011110111",
+		resourcewatch: "10101001111100",
+		therosienetwork: "10101001111101",
+		"cs.mak.ac": "10101001111110",
+		"blog.code": "10101001111111",
+		ftc: "101010100000000",
+		"picasaweb.google": "101010100000001",
+		makeuseof: "101010100000010",
+		techradar: "101010100000011",
+		indeed: "101010100000100",
+		epicurious: "101010100000101",
+		malwarebytes: "101010100000110",
+		philpapers: "101010100000111",
+		"sanders.senate": "101010100001000",
+		businesswire: "101010100001001",
+		mariowiki: "101010100001010",
+		"simple.wikipedia": "101010100001011",
+		camelcamelcamel: "101010100001100",
+		"nlm.nih": "101010100001101",
+		gigabyte: "101010100001110",
+		"articles.chicagotribune": "101010100001111",
+		"pislinkuredditza.in": "1010101000100",
+		sli: "1010101000101",
+		collegehumor: "101010100011000",
+		scienceblogs: "101010100011001",
+		"dx.doi": "101010100011010",
+		damninteresting: "101010100011011",
+		presstv: "101010100011100",
+		lewrockwell: "101010100011101",
+		slideshare: "101010100011110",
+		cirp: "101010100011111",
+		sketchtoy: "101010100100000",
+		backcountry: "101010100100001",
+		"99percentinvisible": "101010100100010",
+		health: "101010100100011",
+		giantitp: "101010100100100",
+		chess: "101010100100101",
+		hhs: "101010100100110",
+		endclothing: "101010100100111",
+		kijiji: "101010100101000",
+		profootballfocus: "101010100101001",
+		"images6.fanpop": "101010100101010",
+		theroot: "101010100101011",
+		lemonde: "101010100101100",
+		moridb: "101010100101101",
+		canadiancouchpotato: "101010100101110",
+		androidauthority: "101010100101111",
+		privateinternetaccess: "101010100110000",
+		gao: "101010100110001",
+		easports: "101010100110010",
+		codecademy: "101010100110011",
+		"static.tumblr": "101010100110100",
+		"onepiece.wikia": "101010100110101",
+		"fc03.deviantart": "101010100110110",
+		dnaindia: "101010100110111",
+		votetexas: "101010100111000",
+		freakonomics: "101010100111001",
+		asos: "101010100111010",
+		jacobinmag: "101010100111011",
+		pjmedia: "101010100111100",
+		loc: "101010100111101",
+		"iopscience.iop": "101010100111110",
+		"borderlands.wikia": "101010100111111",
+		thefreedictionary: "10101010100000",
+		"img.photobucket": "10101010100001",
+		redtube: "10101010100010",
+		grooveshark: "10101010100011",
+		thingiverse: "101010101001",
+		familysearch: "10101010101000",
+		"media-cache-ec0.pinimg": "10101010101001",
+		samaritans: "10101010101010",
+		matthieugrieger: "10101010101011",
+		"docs.oracle": "10101010101100",
+		beeradvocate: "10101010101101",
+		eia: "10101010101110",
+		neogaf: "10101010101111",
+		puu: "1010101011",
+		minderoo: "101010110000",
+		"xn--b1actsqfc5b.xn--j1aef": "101010110001",
+		"i.gyazo": "10101011001",
+		"store.playstation": "101010110100",
+		fantasypros: "1010101101010",
+		nymag: "1010101101011",
+		"video.google": "10101011011000",
+		stimson: "10101011011001",
+		"images4-e.ravelrycache": "1010101101101",
+		"google.com": "101010110111",
+		"scp-wiki": "1010101110",
+		redditenhancementsuite: "1010101111",
+		"tvvidzon.blogspot": "1010110000000",
+		netrunnerdb: "1010110000001",
+		bigkosmos: "1010110000010",
+		"video.nfl": "1010110000011",
+		seedsindia: "10101100001",
+		greasyfork: "10101100010",
+		speedtest: "1010110001100",
+		redditgifts: "10101100011010",
+		rateyourmusic: "10101100011011",
+		homedepot: "101011000111",
+		newegg: "1010110010",
+		theatlantic: "10101100110",
+		"wiki.guildwars2": "101011001110",
+		creativecommons: "1010110011110",
+		bing: "1010110011111",
+		howtogeek: "1010110100000",
+		"ebay.co": "1010110100001",
+		moviehunterz: "1010110100010",
+		"giant.gfycat": "1010110100011",
+		"click.linksynergy": "10101101001",
+		gameinformer: "10101101010000",
+		"elderscrolls.wikia": "10101101010001",
+		motorola: "10101101010010",
+		random: "10101101010011",
+		usa: "10101101010100",
+		oregonlive: "10101101010101",
+		readability: "10101101010110",
+		irishtimes: "10101101010111",
+		"jobs.target": "10101101011000",
+		capitalone: "10101101011001",
+		learnbitcoin: "10101101011010",
+		veryfetch: "10101101011011",
+		porygon: "10101101011100",
+		ctvnews: "10101101011101",
+		shters: "10101101011110",
+		scriptogr: "10101101011111",
+		"support.google": "1010110110",
+		thedailybeast: "101011011100",
+		netflix: "1010110111010",
+		livestreamfails: "1010110111011",
+		countle: "10101101111",
+		gfycat: "10101110",
+		medium: "101011110",
+		megalodon: "101011111",
+		usblackchambers: "101100000000",
+		zerohedge: "1011000000010",
+		motherjones: "1011000000011",
+		tiktok: "10110000001",
+		apple: "10110000010",
+		opendota: "101100000110",
+		theverge: "101100000111",
+		"upload.wikimedia": "101100001",
+		notehub: "1011000100000",
+		"media0.giphy": "1011000100001",
+		"i.magaimg": "1011000100010",
+		"r34.tsumino": "1011000100011",
+		"imgs.xkcd": "101100010010",
+		e621: "101100010011",
+		nexusmods: "1011000101",
+		dotabuff: "1011000110",
+		psychologytoday: "101100011100",
+		"espn.go": "101100011101",
+		t: "10110001111",
+		"m.imgur": "101100100",
+		snopes: "10110010100",
+		ff2ebook: "10110010101",
+		hearthpwn: "10110010110",
+		brickset: "10110010111",
+		"2.bp.blogspot": "10110011000",
+		patheos: "10110011001000",
+		venturebeat: "10110011001001",
+		"data.whicdn": "10110011001010",
+		tinypic: "10110011001011",
+		zdnet: "10110011001100",
+		"penny-arcade": "10110011001101",
+		thenation: "10110011001110",
+		tampabay: "10110011001111",
+		bugguide: "10110011010",
+		ravelry: "10110011011",
+		thediplomat: "101100111000000",
+		maggardrazors: "101100111000001",
+		"keto-calculator.ankerl": "101100111000010",
+		vg247: "101100111000011",
+		datpiff: "101100111000100",
+		"farm9.staticflickr": "101100111000101",
+		thenextweb: "101100111000110",
+		logicalincrements: "101100111000111",
+		"support.rockstargames": "101100111001000",
+		"thetimes.co": "101100111001001",
+		"doc.rust-lang": "101100111001010",
+		"t-mobile": "101100111001011",
+		"youllot.nation2": "101100111001100",
+		teespring: "101100111001101",
+		"i.4cdn": "101100111001110",
+		"support.activision": "101100111001111",
+		musiciansfriend: "101100111010000",
+		"gta.wikia": "101100111010001",
+		eeoc: "101100111010010",
+		"euw.leagueoflegends": "101100111010011",
+		"lh5.googleusercontent": "101100111010100",
+		artofmanliness: "101100111010101",
+		washingtonsblog: "101100111010110",
+		portforward: "101100111010111",
+		digikey: "101100111011000",
+		scarleteen: "101100111011001",
+		"productforums.google": "101100111011010",
+		cbs: "101100111011011",
+		allenedmonds: "101100111011100",
+		pewglobal: "101100111011101",
+		charitynavigator: "101100111011110",
+		themarysue: "101100111011111",
+		vertigobutik: "101100111100000",
+		cubers: "101100111100001",
+		"event.mobilelegends": "101100111100010",
+		"i.ibb": "101100111100011",
+		"e-hentai": "101100111100100",
+		"gttp.votinginfoproject": "101100111100101",
+		buzzfeednews: "101100111100110",
+		imgtc: "101100111100111",
+		"community.c2cglobal": "101100111101000",
+		allaboutcookies: "101100111101001",
+		"getsupport.apple": "101100111101010",
+		naacpimageawards: "101100111101011",
+		pahilopost: "101100111101100",
+		"gamepedia.cursecdn": "101100111101101",
+		"applieddigitalskills.withgoogle": "101100111101110",
+		jerkofftocelebs: "101100111101111",
+		vslive: "101100111110000",
+		accessories4less: "101100111110001",
+		"wowwiki.wikia": "101100111110010",
+		apkmirror: "101100111110011",
+		"account.oneplus": "101100111110100",
+		abc7news: "101100111110101",
+		webtoons: "101100111110110",
+		ohchr: "101100111110111",
+		patch: "101100111111000",
+		priberam: "101100111111001",
+		sandiegouniontribune: "101100111111010",
+		"heqreditmonis.in": "101100111111011",
+		nowwatchtvlive: "101100111111100",
+		"modlog.github": "101100111111101",
+		sciencealert: "101100111111110",
+		"go.berniesanders": "101100111111111",
+		phish: "1011010000000",
+		"m.xkcd": "1011010000001",
+		"bzgnnbab.bzgnnbab": "1011010000010",
+		"euw.op": "1011010000011",
+		"pro-football-reference": "1011010000100",
+		xhamster: "1011010000101",
+		glassdoor: "1011010000110",
+		dailycaller: "1011010000111",
+		sciencebasedmedicine: "101101000100000",
+		bankrate: "101101000100001",
+		"browse.deviantart": "101101000100010",
+		launchpad: "101101000100011",
+		"dmv.ca": "101101000100100",
+		norml: "101101000100101",
+		gothamist: "101101000100110",
+		"sales.starcitygames": "101101000100111",
+		cbpp: "101101000101000",
+		autoblog: "101101000101001",
+		"fc08.deviantart": "101101000101010",
+		oglaf: "101101000101011",
+		"tardis.wikia": "101101000101100",
+		payscale: "101101000101101",
+		"inception.davepedu": "101101000101110",
+		"27.media.tumblr": "101101000101111",
+		thinkwithgoogle: "1011010001100",
+		"photos.app.goo": "1011010001101",
+		"26.media.tumblr": "101101000111000",
+		"tools.ietf": "101101000111001",
+		thestranger: "101101000111010",
+		"store.apple": "101101000111011",
+		sourcewatch: "101101000111100",
+		"farm3.static.flickr": "101101000111101",
+		stltoday: "101101000111110",
+		"forum.bodybuilding": "101101000111111",
+		camwhores: "10110100100000",
+		matchstats: "10110100100001",
+		jv: "10110100100010",
+		swgoh: "10110100100011",
+		ifixit: "10110100100100",
+		"c-span": "10110100100101",
+		hdmoviejunction: "10110100100110",
+		steamdb: "10110100100111",
+		"register.uso": "101101001010000",
+		"developers.home.google": "101101001010001",
+		"customers.microsoft": "10110100101001",
+		storytoys: "101101001010100",
+		fastdemocracy: "101101001010101",
+		"documentation.spire": "101101001010110",
+		iotc: "101101001010111",
+		"mba.ac": "10110100101100",
+		"services.google": "10110100101101",
+		earthshotprize: "10110100101110",
+		bavc: "10110100101111",
+		"1.bp.blogspot": "10110100110",
+		kickstarter: "101101001110",
+		newsweek: "101101001111",
+		globalfishingwatch: "1011010100",
+		"uso.zoom": "101101010100",
+		"shop.aclu": "101101010101",
+		"code.google": "101101010110",
+		"media.tenor": "1011010101110",
+		deckbox: "1011010101111",
+		cdc: "10110101100",
+		ywca: "10110101101",
+		"translate.google": "1011010111",
+		bls: "1011011000000",
+		uniqlo: "10110110000010",
+		gamefaqs: "10110110000011",
+		vera: "101101100001",
+		politico: "10110110001",
+		pbs: "101101100100",
+		"maps.google": "101101100101",
+		justinpaulin: "101101100110",
+		gitlab: "101101100111",
+		removeddit: "10110110100",
+		zappos: "10110110101000",
+		accesstoinsight: "10110110101001",
+		skepticalscience: "10110110101010",
+		donorschoose: "10110110101011",
+		ssshorts: "101101101011",
+		strava: "10110110110000",
+		"cdn.meme": "10110110110001",
+		wikiwand: "10110110110010",
+		"c2.staticflickr": "10110110110011",
+		"assets.sbnation": "10110110110100",
+		"papers.ssrn": "10110110110101",
+		indiegogo: "10110110110110",
+		extremetech: "10110110110111",
+		prf: "10110110111000",
+		"news.gallup": "10110110111001",
+		channel4: "101101101110100",
+		"cdn.donorschoose": "101101101110101",
+		refugees: "10110110111011",
+		smash: "10110110111100",
+		getpocket: "10110110111101",
+		"img.buzzfeed": "10110110111110",
+		"xn--e1akfklne0d.xn--j1aef": "10110110111111",
+		imdb: "10110111",
+		youtu: "10111",
+		"blog.mozilla": "1100000000000",
+		"smbc-comics": "1100000000001",
+		vulpix: "1100000000010",
+		"dl.dropboxusercontent": "1100000000011",
+		sephora: "110000000010",
+		"31.media.tumblr": "110000000011",
+		"itunes.apple": "1100000001",
+		para: "1100000010",
+		hsreplay: "11000000110",
+		wikihow: "110000001110",
+		"wiki.teamliquid": "1100000011110",
+		teamliquid: "1100000011111",
+		"forum.xda-developers": "11000001000",
+		"services.parliament": "1100000100100",
+		weknowmemes: "1100000100101",
+		getindiebill: "1100000100110",
+		"hentai-foundry": "1100000100111",
+		steamkiwi: "11000001010",
+		"lastfm-img2.akamaized": "11000001011",
+		"en.wiktionary": "110000011000",
+		fangraphs: "1100000110010",
+		flic: "1100000110011",
+		"41.media.tumblr": "110000011010",
+		"38.media.tumblr": "110000011011",
+		bit: "1100000111",
+		discord: "11000010",
+		nytimes: "110000110",
+		dndbeyond: "110000111000000",
+		"3ds": "110000111000001",
+		"support.discordapp": "110000111000010",
+		yourporn: "110000111000011",
+		"storage.googleapis": "110000111000100",
+		"gxb.carolgames": "110000111000101",
+		electrek: "110000111000110",
+		dbr: "110000111000111",
+		frameiteasy: "110000111001000",
+		format: "110000111001001",
+		"visualstudio.microsoft": "110000111001010",
+		mobilize: "110000111001011",
+		limraexim: "110000111001100",
+		primealpha: "110000111001101",
+		"qph.fs.quoracdn": "110000111001110",
+		registertovoteflorida: "110000111001111",
+		"dnd.wizards": "110000111010000",
+		"media4.giphy": "110000111010001",
+		indiewire: "110000111010010",
+		minyoung: "110000111010011",
+		"bendhur.tumblr": "110000111010100",
+		dermstore: "110000111010101",
+		gg: "110000111010110",
+		"southpark.cc": "110000111010111",
+		"vrsws.sos.ky": "110000111011000",
+		tdeecalculator: "110000111011001",
+		"pdfs.semanticscholar": "110000111011010",
+		emojipedia: "110000111011011",
+		"m.dhgate": "110000111011100",
+		rtings: "110000111011101",
+		"bugreport.apple": "110000111011110",
+		oneplus: "110000111011111",
+		"pc-kombo": "11000011110000",
+		"amazon.com": "11000011110001",
+		shortland: "11000011110010",
+		snapchat: "11000011110011",
+		codepen: "11000011110100",
+		hobbyking: "11000011110101",
+		dogechain: "11000011110110",
+		"worldwidetvshowsnow.blogspot": "11000011110111",
+		oceanpanel: "11000011111000",
+		loanmanager: "11000011111001",
+		wadhwaniai: "110000111110100",
+		iibuffalo: "110000111110101",
+		gub: "11000011111011",
+		herbibot: "11000011111100",
+		a: "11000011111101",
+		"external-preview.redd": "11000011111110",
+		"support.coinbase": "11000011111111",
+		propublica: "110001000000000",
+		drupal: "110001000000001",
+		jsonline: "110001000000010",
+		youporn: "110001000000011",
+		"sports.espn.go": "110001000000100",
+		eurekalert: "110001000000101",
+		infoplease: "110001000000110",
+		nybooks: "110001000000111",
+		exrx: "110001000001000",
+		io9: "110001000001001",
+		urbanoutfitters: "110001000001010",
+		oecd: "110001000001011",
+		tf2b: "110001000001100",
+		sparkfun: "110001000001101",
+		freep: "110001000001110",
+		"blogs.discovermagazine": "110001000001111",
+		"cdn.discordapp": "11000100001",
+		"help.ea": "110001000100000",
+		"mwo.smurfy-net": "110001000100001",
+		kff: "110001000100010",
+		llbean: "110001000100011",
+		dulfy: "110001000100100",
+		welt: "110001000100101",
+		"forums.warframe": "110001000100110",
+		hbr: "110001000100111",
+		mtgsalvation: "110001000101000",
+		"f-droid": "110001000101001",
+		npmjs: "110001000101010",
+		"cdn.mediacru": "110001000101011",
+		atlasobscura: "110001000101100",
+		"bigstory.ap": "110001000101101",
+		halopedia: "110001000101110",
+		ideone: "110001000101111",
+		pcgamingwiki: "110001000110000",
+		"psycnet.apa": "110001000110001",
+		phoronix: "110001000110010",
+		"images5.fanpop": "110001000110011",
+		polyvore: "110001000110100",
+		observer: "110001000110101",
+		"fc09.deviantart": "110001000110110",
+		cabelas: "110001000110111",
+		"fiber.google": "110001000111000",
+		greenmangaming: "110001000111001",
+		ndtv: "110001000111010",
+		androidpolice: "110001000111011",
+		d20srd: "110001000111100",
+		bmj: "110001000111101",
+		newstatesman: "110001000111110",
+		about: "110001000111111",
+		animenewsnetwork: "11000100100000",
+		jalopnik: "11000100100001",
+		chamorrobible: "11000100100010",
+		tradingeconomics: "11000100100011",
+		redditinc: "110001001001",
+		"i.chzbgr": "11000100101000",
+		mediaite: "11000100101001",
+		theconversation: "11000100101010",
+		gamestop: "11000100101011",
+		nbc: "11000100101100",
+		sciencemag: "11000100101101",
+		rcfp: "11000100101110",
+		deadspin: "11000100101111",
+		canada: "1100010011000",
+		space: "11000100110010",
+		mines: "11000100110011",
+		mega: "1100010011010",
+		"static.api3.studiobebop": "1100010011011",
+		wsj: "110001001110",
+		"abc.net": "110001001111",
+		"i.redd": "11000101",
+		aclu: "11000110",
+		myanimelist: "11000111",
+		thehimalayantimes: "1100100000000",
+		theintercept: "1100100000001",
+		ripsave: "1100100000010",
+		xx1: "1100100000011",
+		"de.wikipedia": "110010000010",
+		puzzledragonx: "1100100000110",
+		thelocal: "11001000001110",
+		sourceforge: "11001000001111",
+		"i.pinimg": "11001000010",
+		deviantart: "11001000011",
+		yelp: "110010001000",
+		nasa: "1100100010010",
+		"images.google": "1100100010011",
+		battle: "11001000101000",
+		ibtimes: "11001000101001",
+		"items.jellyneo": "11001000101010",
+		tandfonline: "11001000101011",
+		"sv.wikipedia": "11001000101100",
+		"answers.yahoo": "11001000101101",
+		"thumbs.dreamstime": "11001000101110",
+		mentalfloss: "11001000101111",
+		pornhub: "1100100011",
+		discordapp: "11001001",
+		"video.twimg": "11001010000000",
+		ltstyt: "11001010000001",
+		"photo.walgreens": "11001010000010",
+		meme: "11001010000011",
+		audible: "11001010000100",
+		bostonglobe: "11001010000101",
+		"media.discordapp": "11001010000110",
+		etherscan: "11001010000111",
+		rollingstone: "1100101000100",
+		"fallout.wikia": "1100101000101",
+		uso: "1100101000110",
+		today: "1100101000111",
+		mtgprice: "1100101001",
+		govtrack: "1100101010000",
+		youtubedoubler: "11001010100010",
+		weather: "110010101000110",
+		"forum.notebookreview": "110010101000111",
+		"contact.dankmemesreddit": "110010101001",
+		credo360: "11001010101",
+		"s3.amazonaws": "110010101100",
+		gog: "1100101011010",
+		"es.wikipedia": "1100101011011",
+		espn: "110010101110",
+		grailed: "110010101111",
+		"en.m.wikipedia": "11001011",
+		google: "1100110",
+		"i.reddituploads": "1100111000000",
+		"journals.plos": "1100111000001",
+		imo: "1100111000010",
+		"myaccount.google": "1100111000011",
+		swtor: "1100111000100",
+		"reddit.honestbleeps": "1100111000101",
+		"userserve-ak.last": "1100111000110",
+		"runescape.wikia": "1100111000111",
+		flickr: "1100111001",
+		"chrome.google": "1100111010",
+		futbin: "110011101100",
+		"botmetric.pythonanywhere": "1100111011010",
+		instructables: "1100111011011",
+		strawpoll: "110011101110",
+		irs: "110011101111",
+		copymethat: "11001111000000",
+		healthline: "11001111000001",
+		"preview.redd": "11001111000010",
+		stratz: "11001111000011",
+		meshcenter: "11001111000100",
+		"boards.na.leagueoflegends": "11001111000101",
+		crisistextline: "11001111000110",
+		"store.google": "11001111000111",
+		diamondcarepetfood: "110011110010000",
+		"images-wixmp-ed30a86b8c4ca887773594c2.wixmp": "110011110010001",
+		"policies.google": "110011110010010",
+		ratopati: "110011110010011",
+		classicdb: "110011110010100",
+		whoaremyrepresentatives: "110011110010101",
+		"voterlookup.elections.state.ny": "110011110010110",
+		setopati: "110011110010111",
+		skillsoft: "11001111001100",
+		"payneinstitute.mines": "11001111001101",
+		"newsroom.ca.paypal-corp": "110011110011100",
+		mpatlas: "110011110011101",
+		"newsroom.uk.paypal-corp": "110011110011110",
+		"newsroom.it.paypal-corp": "110011110011111",
+		"tv.youtube": "110011110100",
+		"m.facebook": "110011110101",
+		dw: "11001111011000",
+		"1d4chan": "11001111011001",
+		steamcharts: "11001111011010",
+		imagecomics: "11001111011011",
+		nj: "11001111011100",
+		mobygames: "11001111011101",
+		myfigurecollection: "11001111011110",
+		seattletimes: "11001111011111",
+		mtgtop8: "110011111000000",
+		smogon: "110011111000001",
+		"en.numista": "110011111000010",
+		"data.bls": "110011111000011",
+		"s3-ec.buzzfed": "110011111000100",
+		"iep.utm": "110011111000101",
+		nap: "110011111000110",
+		songkick: "110011111000111",
+		texastribune: "110011111001000",
+		"sphotos-a.xx.fbcdn": "110011111001001",
+		"imperial-library": "110011111001010",
+		"usatoday30.usatoday": "110011111001011",
+		"no.wikipedia": "110011111001100",
+		diablofans: "110011111001101",
+		"g.e-hentai": "110011111001110",
+		"forums.civfanatics": "110011111001111",
+		jewishvirtuallibrary: "110011111010000",
+		pbfcomics: "110011111010001",
+		newadvent: "110011111010010",
+		zazzle: "110011111010011",
+		vredd: "1100111110101",
+		listverse: "110011111011000",
+		"images4.wikia.nocookie": "110011111011001",
+		deathpenaltyinfo: "110011111011010",
+		nola: "110011111011011",
+		homebrewtalk: "110011111011100",
+		"en.wikisource": "110011111011101",
+		gq: "110011111011110",
+		ontario: "110011111011111",
+		"cfb.diydunce": "110011111100000",
+		pajhwok: "110011111100001",
+		"mnvotes.sos.state.mn": "110011111100010",
+		dmsguild: "110011111100011",
+		"cdn-images-1.medium": "110011111100100",
+		periscope: "110011111100101",
+		oodaloop: "110011111100110",
+		"vfdvdfvdvf.deviantart": "110011111100111",
+		"mtg.gamepedia": "110011111101000",
+		resistbot: "110011111101001",
+		"image.ibb": "110011111101010",
+		"secure-dawn-77807.herokuapp": "110011111101011",
+		jamanetwork: "110011111101100",
+		nakilon: "110011111101101",
+		unblockvideos: "110011111101110",
+		"img.bricklink": "110011111101111",
+		mrwgifs: "110011111110000",
+		"ark.intel": "110011111110001",
+		usmagazine: "110011111110010",
+		gamersnexus: "110011111110011",
+		bizjournals: "110011111110100",
+		pokemon: "110011111110101",
+		footballoutsiders: "110011111110110",
+		probuilds: "110011111110111",
+		windowscentral: "110011111111000",
+		thefederalist: "110011111111001",
+		imgrush: "110011111111010",
+		vipleague: "110011111111011",
+		virustotal: "110011111111100",
+		"warhammer40k.wikia": "110011111111101",
+		channelfireball: "110011111111110",
+		"docs.aws.amazon": "110011111111111",
+		"i.imgur": "1101",
+		facebook: "11100000",
+		"rover.ebay": "1110000100000",
+		thinkprogress: "1110000100001",
+		orcz: "1110000100010",
+		variety: "1110000100011",
+		tvtropes: "11100001001",
+		"media1.tenor": "1110000101000",
+		autistichoya: "1110000101001",
+		"support.xbox": "111000010101",
+		anidb: "111000010110",
+		"i.kinja-img": "1110000101110",
+		derpibooru: "1110000101111",
+		msnbc: "11100001100000",
+		vodlockershow: "11100001100001",
+		"ncaaf.live-tvstreaming": "11100001100010",
+		"impress.openneo": "11100001100011",
+		mspaintadventures: "11100001100100",
+		hrw: "11100001100101",
+		"screenshot.freshphase": "11100001100110",
+		"en.bitcoin": "11100001100111",
+		"empleadoestatalbot.ddns": "11100001101000",
+		"academic.oup": "11100001101001",
+		talkorigins: "111000011010100",
+		credobeauty: "111000011010101",
+		pmc: "11100001101011",
+		"pokegiveawaybot.tumblr": "11100001101100",
+		poe: "11100001101101",
+		vote: "11100001101110",
+		livechart: "11100001101111",
+		meritamerica: "111000011100",
+		"smh.com": "1110000111010",
+		"policy.medium": "1110000111011",
+		target: "11100001111",
+		sesamestreetincommunities: "11100010",
+		wordpress: "1110001100000",
+		cracked: "1110001100001",
+		g: "1110001100010",
+		minecraftforum: "1110001100011",
+		"independent.co": "11100011001",
+		locationbot: "111000110100",
+		"plato.stanford": "1110001101010",
+		votesmart: "1110001101011",
+		"turkopticon.differenceengines": "11100011011000",
+		zillow: "11100011011001",
+		replygif: "11100011011010",
+		"i.stack.imgur": "11100011011011",
+		britannica: "11100011011100",
+		memegenerator: "11100011011101",
+		apa: "11100011011110",
+		"boards.4chan": "11100011011111",
+		"developer.valvesoftware": "111000111000000",
+		townhall: "111000111000001",
+		alibaba: "111000111000010",
+		bgr: "111000111000011",
+		"images1.wikia.nocookie": "111000111000100",
+		gifbin: "111000111000101",
+		dota2wiki: "111000111000110",
+		"earthquake.usgs": "111000111000111",
+		pugetsystems: "111000111001000",
+		stathat: "111000111001001",
+		livememe: "111000111001010",
+		"m.wikihow": "111000111001011",
+		"forum-en.guildwars2": "111000111001100",
+		evga: "111000111001101",
+		france24: "111000111001110",
+		startribune: "111000111001111",
+		"m.imdb": "1110001110100",
+		"fr.wikipedia": "1110001110101",
+		youjizz: "111000111011000",
+		worldcat: "111000111011001",
+		"e-cigarette-forum": "111000111011010",
+		"fc04.deviantart": "111000111011011",
+		islamqa: "111000111011100",
+		encyclopediadramatica: "111000111011101",
+		cbo: "111000111011110",
+		ubuntu: "111000111011111",
+		adessium: "111000111100000",
+		thahakhabar: "111000111100001",
+		"learn.microsoft": "111000111100010",
+		waittfoundation: "111000111100011",
+		milkcasino: "111000111100100",
+		"richzhang.github": "111000111100101",
+		"warframe.fandom": "111000111100110",
+		"brasil.elpais": "111000111100111",
+		orcid: "111000111101000",
+		"mragasiapacific.com": "111000111101001",
+		pntra: "111000111101010",
+		"citation-needed.springer": "111000111101011",
+		"newsroom.br.paypal-corp": "111000111101100",
+		"tv.apple": "111000111101101",
+		mccormickfoundation: "111000111101110",
+		"newsroom.au.paypal-corp": "111000111101111",
+		cubetutor: "111000111110000",
+		"auto.leprosorium": "111000111110001",
+		sportsnet: "111000111110010",
+		"yt3.ggpht": "111000111110011",
+		localbitcoins: "111000111110100",
+		"icy-veins": "111000111110101",
+		"images4-d.ravelrycache": "111000111110110",
+		iflscience: "111000111110111",
+		frinkiac: "111000111111000",
+		bustle: "111000111111001",
+		"ae01.alicdn": "111000111111010",
+		"1piwup.spb": "111000111111011",
+		tagpro: "111000111111100",
+		"unfortunate-maps.jukejuice": "111000111111101",
+		firstpost: "111000111111110",
+		openload: "111000111111111",
+		pcpartpicker: "111001",
+		people: "11101",
+		sportstainment: "11110000000000",
+		"m.ebay": "11110000000001",
+		detigenii: "11110000000010",
+		because: "11110000000011",
+		"na.finalfantasyxiv": "11110000000100",
+		udemy: "11110000000101",
+		"img3.wikia.nocookie": "11110000000110",
+		edigitalplace: "11110000000111",
+		"action.aclu": "11110000001000",
+		yanginsondurmeistanbul: "11110000001001",
+		"cebc.cnrs": "11110000001010",
+		"sentinel.esa": "11110000001011",
+		oload: "11110000001100",
+		shortsss: "11110000001101",
+		onmyojiarena: "11110000001110",
+		"r-drrp.appspot": "11110000001111",
+		"w.atch": "111100000100",
+		"i.kym-cdn": "111100000101",
+		paypal: "11110000011",
+		"anime-planet": "1111000010",
+		biblegateway: "11110000110",
+		"telegraph.co": "11110000111",
+		archive: "11110001",
+		"img.scryfall": "11110010",
+		scryfall: "11110011",
+		memes: "111101000000",
+		meetup: "1111010000010",
+		thestar: "1111010000011",
+		reuters: "11110100001",
+		commondreams: "11110100010000",
+		yanglinks: "11110100010001",
+		fortune: "1111010001001",
+		mayoclinic: "1111010001010",
+		thepiratebay: "11110100010110",
+		moddb: "11110100010111",
+		livebuzztv: "111101000110",
+		"danbooru.donmai": "111101000111",
+		vshare: "11110100100000",
+		shortwww: "11110100100001",
+		"cdn11.bigcommerce": "11110100100010",
+		"steamuserimages-a.akamaihd": "11110100100011",
+		commonsensemedia: "11110100100100",
+		"pets.webmd": "11110100100101",
+		"res.cloudinary": "11110100100110",
+		"m.mlb": "11110100100111",
+		qz: "1111010010100",
+		ulta: "1111010010101",
+		goodwill: "1111010010110",
+		"images.akamai.steamusercontent": "1111010010111",
+		vox: "111101001100",
+		vice: "1111010011010",
+		wearegreenbay: "1111010011011",
+		wikidata: "111101001110",
+		"sites.google": "111101001111",
+		wolframalpha: "1111010100",
+		xkcd: "1111010101",
+		yugiohprices: "111101011000",
+		arstechnica: "111101011001",
+		mtggoldfish: "1111010110100",
+		blockchain: "1111010110101",
+		movies: "1111010110110",
+		vid: "1111010110111",
+		lmgtfy: "11110101110",
+		"au.pcpartpicker": "11110101111",
+		"i.qkme": "11110110000",
+		"news.nationalgeographic": "11110110001000",
+		"developer.apple": "11110110001001",
+		splcenter: "11110110001010",
+		wizards: "11110110001011",
+		"i.sli": "111101100011",
+		philly: "111101100100000",
+		nvidia: "111101100100001",
+		"en.memory-alpha": "111101100100010",
+		pcmag: "111101100100011",
+		hackaday: "111101100100100",
+		"dc.wikia": "111101100100101",
+		"lh4.googleusercontent": "111101100100110",
+		"xda-developers": "111101100100111",
+		bandcamp: "111101100101000",
+		tube8: "111101100101001",
+		complex: "111101100101010",
+		shroomery: "111101100101011",
+		"fc02.deviantart": "111101100101100",
+		directv: "111101100101101",
+		"farm4.staticflickr": "111101100101110",
+		"fc00.deviantart": "111101100101111",
+		shopineer: "1111011001100",
+		cnet: "1111011001101",
+		nationmaster: "111101100111000",
+		jezebel: "111101100111001",
+		drugs: "111101100111010",
+		superuser: "111101100111011",
+		hillaryclinton: "111101100111100",
+		"city-data": "111101100111101",
+		sheldonbrown: "111101100111110",
+		"en.wikibooks": "111101100111111",
+		"help.twitch": "111101101000000",
+		milb: "111101101000001",
+		niceme: "111101101000010",
+		metabattle: "111101101000011",
+		nutritionfacts: "111101101000100",
+		"chat.tripsit": "111101101000101",
+		thegatewaypundit: "111101101000110",
+		"play.spotify": "111101101000111",
+		paste4btc: "111101101001000",
+		plays: "111101101001001",
+		streamendous: "111101101001010",
+		"9gug": "111101101001011",
+		playstation: "111101101001100",
+		"uk.reuters": "111101101001101",
+		coriolis: "111101101001110",
+		offsided: "111101101001111",
+		barnesandnoble: "111101101010000",
+		rotoworld: "111101101010001",
+		"dev.dota2": "111101101010010",
+		"studentaid.ed": "111101101010011",
+		torproject: "111101101010100",
+		"in.reuters": "111101101010101",
+		rainn: "111101101010110",
+		"support.mozilla": "111101101010111",
+		sunnah: "111101101011000",
+		"forum.supercell": "111101101011001",
+		"it.pcpartpicker": "111101101011010",
+		"it.wikipedia": "111101101011011",
+		al: "111101101011100",
+		"en.cppreference": "111101101011101",
+		op: "111101101011110",
+		indiedb: "111101101011111",
+		gaugepowered: "11110110110000",
+		"media3.giphy": "11110110110001",
+		sbtl: "11110110110010",
+		clyp: "11110110110011",
+		humblebundle: "11110110110100",
+		factcheck: "11110110110101",
+		lowes: "11110110110110",
+		w3: "11110110110111",
+		"s.reddit": "111101101110000",
+		dis: "111101101110001",
+		lokaantar: "111101101110010",
+		vrddit: "111101101110011",
+		heavy: "111101101110100",
+		"support.oculus": "111101101110101",
+		steemit: "111101101110110",
+		thesilphroad: "111101101110111",
+		postkodstiftelsen: "11110110111100",
+		"piskihuiski.ivanovo": "11110110111101",
+		"newsroom.fr.paypal-corp": "111101101111100",
+		oakfnd: "111101101111101",
+		bloomingdales: "111101101111110",
+		"newsroom.apac.paypal-corp": "111101101111111",
+		theglobeandmail: "1111011100000",
+		"finance.yahoo": "1111011100001",
+		lg: "1111011100010",
+		change: "1111011100011",
+		"friendsafaribot.tumblr": "11110111001",
+		marxists: "11110111010",
+		tineye: "11110111011",
+		streamable: "111101111",
+		wired: "111110000000",
+		ign: "1111100000010",
+		realclearpolitics: "1111100000011",
+		pagesix: "1111100000100",
+		geekwire: "1111100000101",
+		shareasale: "1111100000110",
+		"vignette4.wikia.nocookie": "1111100000111",
+		vine: "1111100001000",
+		"stream1.gifsoup": "1111100001001",
+		anrdoezrs: "1111100001010",
+		biblehub: "1111100001011",
+		manyvids: "1111100001100",
+		"events.jacksonville": "1111100001101",
+		who: "1111100001110",
+		"theregister.co": "11111000011110",
+		newscientist: "11111000011111",
+		"old.reddit": "111110001",
+		cnbc: "111110010000",
+		"qsniyg.github": "1111100100010",
+		legaliq: "1111100100011",
+		pinterest: "111110010010",
+		mediafire: "111110010011",
+		ow: "11111001010000",
+		gawker: "11111001010001",
+		timesofisrael: "11111001010010",
+		"img4.wikia.nocookie": "11111001010011",
+		nhs: "11111001010100",
+		nps: "11111001010101",
+		history: "11111001010110",
+		bitbucket: "11111001010111",
+		"news.un": "11111001011000",
+		yangintupufirmasi: "11111001011001",
+		"presidencia.go": "11111001011010",
+		googlecloudcommunity: "11111001011011",
+		beedogs: "11111001011100",
+		cakedogg: "11111001011101",
+		noteb: "11111001011110",
+		grammarerrors: "11111001011111",
+		watttime: "1111100110000",
+		mercons: "1111100110001",
+		hollywoodreporter: "1111100110010",
+		thehindu: "11111001100110",
+		eff: "11111001100111",
+		dota2: "111110011010",
+		quickmeme: "111110011011",
+		"40.media.tumblr": "111110011100",
+		redditlog: "111110011101",
+		patreon: "11111001111",
+		imageshack: "111110100000000",
+		"pages.ebay": "111110100000001",
+		"naruto.wikia": "111110100000010",
+		"nintendo.co": "111110100000011",
+		libcom: "111110100000100",
+		lesswrong: "111110100000101",
+		"nzherald.co": "111110100000110",
+		giantbomb: "111110100000111",
+		spotrac: "111110100001000",
+		shapeways: "111110100001001",
+		michigan: "111110100001010",
+		iafd: "111110100001011",
+		boxofficemojo: "111110100001100",
+		numbeo: "111110100001101",
+		cinemablend: "111110100001110",
+		usccb: "111110100001111",
+		apnews: "1111101000100",
+		"encrypted-tbn0.gstatic": "1111101000101",
+		gsmarena: "111110100011000",
+		ynetnews: "111110100011001",
+		"hackage.haskell": "111110100011010",
+		"fsis.usda": "111110100011011",
+		medicalnewstoday: "111110100011100",
+		democracynow: "111110100011101",
+		example: "111110100011110",
+		counterpunch: "111110100011111",
+		bigflixmovies: "111110100100000",
+		"2kmtcentral": "111110100100001",
+		"support.sprint": "111110100100010",
+		"support.office": "111110100100011",
+		eporner: "111110100100100",
+		coinbase: "111110100100101",
+		livestreamhdtv365: "111110100100110",
+		"raw.githubusercontent": "111110100100111",
+		trythatsoap: "111110100101000",
+		"mods.factorio": "111110100101001",
+		bitchute: "111110100101010",
+		"7-eleven": "111110100101011",
+		pin: "111110100101100",
+		gilishe: "111110100101101",
+		"sci-hub": "111110100101110",
+		"shadowverse-portal": "111110100101111",
+		vk: "111110100110000",
+		banggood: "111110100110001",
+		yl: "111110100110010",
+		revzilla: "111110100110011",
+		leafly: "111110100110100",
+		screenrant: "111110100110101",
+		code: "111110100110110",
+		mlssoccer: "111110100110111",
+		"forum.warthunder": "111110100111000",
+		color: "111110100111001",
+		"img.4plebs": "111110100111010",
+		smashboards: "111110100111011",
+		"sto.gamepedia": "111110100111100",
+		obsproject: "111110100111101",
+		"sbs.com": "111110100111110",
+		cleantechnica: "111110100111111",
+		opensource: "11111010100000",
+		infobae: "11111010100001",
+		"image.prntscr": "11111010100010",
+		"67.media.tumblr": "11111010100011",
+		"cdn.awwni": "11111010100100",
+		ballotpedia: "11111010100101",
+		msn: "11111010100110",
+		"source.android": "11111010100111",
+		ffa: "111110101010000",
+		donabertarelli: "111110101010001",
+		"faq.spire": "111110101010010",
+		"newsroom.deatch.paypal-corp": "111110101010011",
+		forms: "111110101010100",
+		"repo.packix": "111110101010101",
+		"en.unesco": "111110101010110",
+		"assistant.google": "111110101010111",
+		rnintendoswitch: "11111010101100",
+		"md-akc.med.nhl": "11111010101101",
+		"help.medium": "11111010101110",
+		dupebot: "11111010101111",
+		dailydot: "11111010110000",
+		phys: "11111010110001",
+		"i1.wp": "11111010110010",
+		hiyo: "11111010110011",
+		"i2.kym-cdn": "1111101011010",
+		monoprice: "11111010110110",
+		hiringourheroes: "11111010110111",
+		"giftcards.kroger": "11111010111",
+		"mobile.twitter": "11111011000",
+		bloomberg: "11111011001",
+		hearthhead: "111110110100",
+		"mobile.nytimes": "1111101101010",
+		usnews: "1111101101011",
+		"media-hearth.cursecdn": "11111011011",
+		karmadecay: "1111101110",
+		quora: "111110111100",
+		rt: "1111101111010",
+		"developer.android": "1111101111011",
+		bbc: "11111011111",
+		"v.redd": "11111100000",
+		"technet.microsoft": "11111100001000",
+		senate: "11111100001001",
+		etymonline: "11111100001010",
+		"thesun.co": "11111100001011",
+		stackoverflow: "111111000011",
+		bogleheads: "11111100010000",
+		si: "11111100010001",
+		"data.worldbank": "11111100010010",
+		nintendo: "11111100010011",
+		bleacherreport: "11111100010100",
+		mashable: "11111100010101",
+		wayfair: "11111100010110",
+		"static.fjcdn": "11111100010111",
+		steamtrades: "11111100011000",
+		battleforthenet: "11111100011001",
+		"mediadownloads.mlb": "1111110001101",
+		"forums.frontier.co": "11111100011100",
+		coinmarketcap: "11111100011101",
+		tenor: "11111100011110",
+		"en.uesp": "11111100011111",
+		"osu.ppy": "11111100100",
+		monthlyreview: "1111110010100",
+		pewresearch: "1111110010101",
+		"news.yahoo": "11111100101100",
+		"news.cnet": "111111001011010",
+		kongregate: "111111001011011",
+		yang2020: "1111110010111",
+		hltv: "11111100110",
+		"news.ycombinator": "111111001110",
+		sciencedaily: "1111110011110",
+		nber: "11111100111110",
+		"discussions.apple": "11111100111111",
+		"play.google": "111111010",
+		dropbox: "11111101100",
+		"consumer.ftc": "11111101101000",
+		evike: "11111101101001",
+		gofundme: "11111101101010",
+		"media1.giphy": "11111101101011",
+		deadline: "11111101101100",
+		fda: "11111101101101",
+		examine: "11111101101110",
+		askubuntu: "11111101101111",
+		mediacru: "111111011100000",
+		"hockey-reference": "111111011100001",
+		geforce: "111111011100010",
+		prnewswire: "111111011100011",
+		ask: "111111011100100",
+		vulture: "111111011100101",
+		"us.asos": "111111011100110",
+		dhgate: "111111011100111",
+		"orig00.deviantart": "111111011101000",
+		"i.guim.co": "111111011101001",
+		userbenchmark: "111111011101010",
+		linkesloder: "111111011101011",
+		tvwire: "111111011101100",
+		coindesk: "111111011101101",
+		icloud: "111111011101110",
+		bitinfocharts: "111111011101111",
+		"fc06.deviantart": "111111011110000",
+		adafruit: "111111011110001",
+		"parts-express": "111111011110010",
+		funnyjunk: "111111011110011",
+		sendspace: "111111011110100",
+		"forums.steampowered": "111111011110101",
+		uscis: "111111011110110",
+		"bugzilla.mozilla": "111111011110111",
+		"theage.com": "111111011111000",
+		faa: "111111011111001",
+		supremecourt: "111111011111010",
+		"3dmark": "111111011111011",
+		cleveland: "111111011111100",
+		"cic.gc": "111111011111101",
+		mrmoneymustache: "111111011111110",
+		rockpapershotgun: "111111011111111",
+		"ncbi.nlm.nih": "111111100",
+		"pbs.twimg": "111111101",
+		"api.scryfall": "111111110",
+		"owo.bitz": "11111111100000",
+		"dl.opensubtitles": "11111111100001",
+		alkami: "11111111100010",
+		fyens: "11111111100011",
+		"static1.squarespace": "11111111100100",
+		warcraftlogs: "11111111100101",
+		"kalugaluga.kaluga": "11111111100110",
+		videopriem: "11111111100111",
+		"api.random": "111111111010000",
+		"trends.google": "111111111010001",
+		"phanes.feralhosting": "111111111010010",
+		"d1u5p3l4wpay3k.cloudfront": "111111111010011",
+		"aws.wariomissed": "111111111010100",
+		"charts.camelcamelcamel": "111111111010101",
+		"ishtar-collective": "111111111010110",
+		ourworldindata: "111111111010111",
+		blackentrepreneursday: "111111111011000",
+		glotalent: "111111111011001",
+		"libguides.ala": "111111111011010",
+		kidsbeetv: "111111111011011",
+		"blog.nationalgeographic": "111111111011100",
+		lettercount: "111111111011101",
+		"foundation.mozilla": "111111111011110",
+		ushcc: "111111111011111",
+		reddithelp: "11111111110",
+		urbandictionary: "11111111111"
+	}, r = {
+		0: "1100111000",
+		1: "1100111100",
+		2: "1100111101",
+		3: "0010011100",
+		4: "00100111101",
+		5: "11001110010",
+		6: "00100111011",
+		7: "11001110011",
+		8: "00100111010",
+		9: "00100111100",
+		l: "0000",
+		c: "0001",
+		v: "001000",
+		"-": "0010010",
+		x: "00100110",
+		q: "0010011111",
+		g: "00101",
+		n: "0011",
+		p: "01000",
+		y: "010010",
+		w: "010011",
+		i: "0101",
+		t: "0110",
+		r: "0111",
+		s: "1000",
+		d: "10010",
+		m: "10011",
+		END: "1010",
+		o: "1011",
+		u: "11000",
+		f: "110010",
+		k: "1100110",
+		z: "110011101",
+		j: "110011111",
+		a: "1101",
+		e: "1110",
+		".": "11110",
+		h: "111110",
+		b: "111111"
+	}, i = {
+		0: "011011",
+		1: "011001",
+		2: "1111000",
+		3: "1010011",
+		4: "1010010",
+		5: "1001011",
+		6: "1001010",
+		7: "1000101",
+		8: "1000110",
+		9: "0110001",
+		o: "0000",
+		"/": "0001",
+		s: "0010",
+		"&": "00110000",
+		R: "00110001",
+		"?": "0011001",
+		k: "001101",
+		d: "00111",
+		t: "0100",
+		i: "0101",
+		",": "01100000000",
+		"'": "0110000000100",
+		"]": "0110000000101",
+		"!": "011000000011",
+		":": "0110000001",
+		W: "011000001",
+		q: "01100001",
+		b: "011010",
+		a: "0111",
+		l: "10000",
+		U: "100010000",
+		L: "100010001",
+		A: "10001001",
+		".": "1000111",
+		f: "100100",
+		c: "10011",
+		"=": "1010000",
+		G: "101000100",
+		E: "101000101",
+		I: "101000110",
+		F: "101000111",
+		m: "10101",
+		"-": "10110",
+		w: "101110",
+		X: "1011110000",
+		"+": "1011110001",
+		D: "101111001",
+		Z: "1011110100",
+		"*": "10111101010000",
+		$: "1011110101000100",
+		";": "1011110101000101",
+		"@": "101111010100011",
+		"[": "1011110101001",
+		"(": "101111010101",
+		")": "10111101011",
+		P: "101111011",
+		v: "1011111",
+		e: "1100",
+		j: "11010000",
+		O: "110100010",
+		Q: "1101000110",
+		K: "1101000111",
+		y: "1101001",
+		g: "110101",
+		h: "110110",
+		u: "110111",
+		n: "11100",
+		V: "1110100000",
+		Y: "1110100001",
+		B: "111010001",
+		M: "111010010",
+		C: "111010011",
+		x: "11101010",
+		J: "1110101100",
+		"#": "1110101101",
+		S: "111010111",
+		_: "111011",
+		z: "111100100",
+		"%": "111100101",
+		T: "111100110",
+		H: "1111001110",
+		N: "1111001111",
+		p: "111101",
+		r: "11111"
+	}, a = {};
+	for (let e in t) a[t[e]] = e;
+	var o = {};
+	for (let e in n) o[n[e]] = e;
+	Object.keys(n).sort((e, t) => t.length - e.length);
+	var s = {};
+	for (let e in r) s[r[e]] = e;
+	var c = {};
+	for (let e in i) c[i[e]] = e;
+	Object.freeze({
+		"r:": "javascript",
+		"m:": "markdown",
+		"h:": "html"
 	});
-}
-"!#$&'()*+,-./0123456789:;=?~@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz".split(""), "$*+-./:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-// src/app/src/vendor/lnkr/compress.ts
-var o = {
-	us: "0000000",
-	market: "0000001000",
-	xyz: "0000001001",
-	lt: "0000001010000",
-	ae: "0000001010001",
-	tt: "0000001010010",
-	top: "0000001010011",
-	hr: "000000101010",
-	biz: "000000101011",
-	es: "0000001011",
-	wtf: "00000011",
-	ceo: "000001000000000000",
-	cbre: "000001000000000001",
-	cfa: "000001000000000010",
-	cern: "000001000000000011",
-	catholic: "000001000000000100",
-	catering: "000001000000000101",
-	cbn: "000001000000000110",
-	cba: "000001000000000111",
-	chase: "000001000000001000",
-	charity: "000001000000001001",
-	chintai: "000001000000001010",
-	cheap: "000001000000001011",
-	cg: "000001000000001100",
-	cfd: "000001000000001101",
-	channel: "000001000000001110",
-	chanel: "000001000000001111",
-	canon: "000001000000010000",
-	cam: "000001000000010001",
-	capitalone: "000001000000010010",
-	capetown: "000001000000010011",
-	cal: "000001000000010100",
-	cab: "000001000000010101",
-	calvinklein: "000001000000010110",
-	call: "000001000000010111",
-	cars: "000001000000011000",
-	careers: "000001000000011001",
-	casino: "000001000000011010",
-	case: "000001000000011011",
-	caravan: "000001000000011100",
-	car: "000001000000011101",
-	career: "000001000000011110",
-	care: "000001000000011111",
-	comsec: "000001000000100000",
-	compare: "000001000000100001",
-	construction: "000001000000100010",
-	condos: "000001000000100011",
-	college: "000001000000100100",
-	coffee: "000001000000100101",
-	commbank: "000001000000100110",
-	cologne: "000001000000100111",
-	country: "000001000000101000",
-	corsica: "000001000000101001",
-	coupons: "000001000000101010",
-	coupon: "000001000000101011",
-	contact: "000001000000101100",
-	consulting: "000001000000101101",
-	cooking: "000001000000101110",
-	contractors: "000001000000101111",
-	citadel: "000001000000110000",
-	cisco: "000001000000110001",
-	citic: "000001000000110010",
-	citi: "000001000000110011",
-	chrome: "000001000000110100",
-	christmas: "000001000000110101",
-	circle: "000001000000110110",
-	cipriani: "000001000000110111",
-	clothing: "000001000000111000",
-	clinique: "000001000000111001",
-	coach: "000001000000111010",
-	clubmed: "000001000000111011",
-	claims: "000001000000111100",
-	ck: "000001000000111101",
-	clinic: "000001000000111110",
-	cleaning: "000001000000111111",
-	bcn: "000001000001000000",
-	bcg: "000001000001000001",
-	beauty: "000001000001000010",
-	beats: "000001000001000011",
-	bbc: "000001000001000100",
-	bb: "000001000001000101",
-	bbva: "000001000001000110",
-	bbt: "000001000001000111",
-	bible: "000001000001001000",
-	bharti: "000001000001001001",
-	bio: "000001000001001010",
-	bing: "000001000001001011",
-	bestbuy: "000001000001001100",
-	best: "000001000001001101",
-	bf: "000001000001001110",
-	bet: "000001000001001111",
-	azure: "000001000001010000",
-	axa: "000001000001010001",
-	banamex: "000001000001010010",
-	baidu: "000001000001010011",
-	aw: "000001000001010100",
-	autos: "000001000001010101",
-	ax: "000001000001010110",
-	aws: "000001000001010111",
-	baseball: "000001000001011000",
-	bargains: "000001000001011001",
-	bayern: "000001000001011010",
-	bauhaus: "000001000001011011",
-	barclaycard: "000001000001011100",
-	barcelona: "000001000001011101",
-	barefoot: "000001000001011110",
-	barclays: "000001000001011111",
-	box: "000001000001100000",
-	boutique: "000001000001100001",
-	bridgestone: "000001000001100010",
-	bradesco: "000001000001100011",
-	bosch: "000001000001100100",
-	booking: "000001000001100101",
-	boston: "000001000001100110",
-	bostik: "000001000001100111",
-	buy: "000001000001101000",
-	bt: "000001000001101001",
-	bzh: "000001000001101010",
-	bv: "000001000001101011",
-	broker: "000001000001101100",
-	broadway: "000001000001101101",
-	brussels: "000001000001101110",
-	brother: "000001000001101111",
-	bm: "000001000001110000",
-	bloomberg: "000001000001110001",
-	bmw: "000001000001110010",
-	bms: "000001000001110011",
-	black: "000001000001110100",
-	bj: "000001000001110101",
-	blockbuster: "000001000001110110",
-	blackfriday: "000001000001110111",
-	bond: "000001000001111000",
-	bom: "000001000001111001",
-	book: "000001000001111010",
-	boo: "000001000001111011",
-	boats: "000001000001111100",
-	bnpparibas: "000001000001111101",
-	bofa: "000001000001111110",
-	boehringer: "000001000001111111",
-	financial: "000001000010000000",
-	final: "000001000010000001",
-	firestone: "000001000010000010",
-	fire: "000001000010000011",
-	fidelity: "000001000010000100",
-	ferrero: "000001000010000101",
-	film: "000001000010000110",
-	fido: "000001000010000111",
-	flickr: "000001000010001000",
-	fj: "000001000010001001",
-	flir: "000001000010001010",
-	flights: "000001000010001011",
-	fish: "000001000010001100",
-	firmdale: "000001000010001101",
-	fit: "000001000010001110",
-	fishing: "000001000010001111",
-	fairwinds: "000001000010010000",
-	fage: "000001000010010001",
-	family: "000001000010010010",
-	faith: "000001000010010011",
-	eurovision: "000001000010010100",
-	et: "000001000010010101",
-	extraspace: "000001000010010110",
-	express: "000001000010010111",
-	fedex: "000001000010011000",
-	fast: "000001000010011001",
-	ferrari: "000001000010011010",
-	feedback: "000001000010011011",
-	fans: "000001000010011100",
-	fan: "000001000010011101",
-	fashion: "000001000010011110",
-	farmers: "000001000010011111",
-	gap: "000001000010100000",
-	gallup: "000001000010100001",
-	gb: "000001000010100010",
-	gay: "000001000010100011",
-	furniture: "000001000010100100",
-	fujitsu: "000001000010100101",
-	gallo: "000001000010100110",
-	gal: "000001000010100111",
-	gf: "000001000010101000",
-	george: "000001000010101001",
-	gift: "000001000010101010",
-	ggee: "000001000010101011",
-	gdn: "000001000010101100",
-	gbiz: "000001000010101101",
-	genting: "000001000010101110",
-	gea: "000001000010101111",
-	football: "000001000010110000",
-	food: "000001000010110001",
-	forex: "000001000010110010",
-	ford: "000001000010110011",
-	flowers: "000001000010110100",
-	florist: "000001000010110101",
-	foo: "000001000010110110",
-	fly: "000001000010110111",
-	frogans: "000001000010111000",
-	fresenius: "000001000010111001",
-	ftr: "000001000010111010",
-	frontier: "000001000010111011",
-	forum: "000001000010111100",
-	forsale: "000001000010111101",
-	free: "000001000010111110",
-	fox: "000001000010111111",
-	dealer: "000001000011000000",
-	deal: "000001000011000001",
-	delivery: "000001000011000010",
-	degree: "000001000011000011",
-	day: "000001000011000100",
-	datsun: "000001000011000101",
-	dds: "000001000011000110",
-	dclk: "000001000011000111",
-	dentist: "000001000011001000",
-	dental: "000001000011001001",
-	dhl: "000001000011001010",
-	desi: "000001000011001011",
-	deloitte: "000001000011001100",
-	dell: "000001000011001101",
-	democrat: "000001000011001110",
-	delta: "000001000011001111",
-	crown: "000001000011010000",
-	creditunion: "000001000011010001",
-	cruise: "000001000011010010",
-	crs: "000001000011010011",
-	cpa: "000001000011010100",
-	courses: "000001000011010101",
-	creditcard: "000001000011010110",
-	credit: "000001000011010111",
-	dad: "000001000011011000",
-	cyou: "000001000011011001",
-	date: "000001000011011010",
-	data: "000001000011011011",
-	cuisinella: "000001000011011100",
-	cruises: "000001000011011101",
-	cw: "000001000011011110",
-	cv: "000001000011011111",
-	edeka: "000001000011100000",
-	eat: "000001000011100001",
-	emerck: "000001000011100010",
-	education: "000001000011100011",
-	durban: "000001000011100100",
-	dupont: "000001000011100101",
-	dvr: "000001000011100110",
-	dvag: "000001000011100111",
-	ericsson: "000001000011101000",
-	er: "000001000011101001",
-	esq: "000001000011101010",
-	erni: "000001000011101011",
-	engineer: "000001000011101100",
-	energy: "000001000011101101",
-	epson: "000001000011101110",
-	enterprises: "000001000011101111",
-	discount: "000001000011110000",
-	directory: "000001000011110001",
-	dish: "000001000011110010",
-	discover: "000001000011110011",
-	diet: "000001000011110100",
-	diamonds: "000001000011110101",
-	direct: "000001000011110110",
-	digital: "000001000011110111",
-	dot: "000001000011111000",
-	doctor: "000001000011111001",
-	dubai: "000001000011111010",
-	dtv: "000001000011111011",
-	dm: "000001000011111100",
-	diy: "000001000011111101",
-	docs: "000001000011111110",
-	dnp: "000001000011111111",
-	fail: "0000010001000000",
-	exposed: "0000010001000001",
-	ge: "0000010001000010",
-	finance: "0000010001000011",
-	city: "0000010001000100",
-	bo: "0000010001000101",
-	domains: "0000010001000110",
-	company: "0000010001000111",
-	jo: "0000010001001000",
-	ist: "0000010001001001",
-	mo: "0000010001001010",
-	kp: "0000010001001011",
-	graphics: "0000010001001100",
-	global: "0000010001001101",
-	institute: "0000010001001110",
-	ht: "0000010001001111",
-	life: "00000100010100",
-	by: "00000100010101",
-	th: "00000100010110",
-	news: "00000100010111",
-	airbus: "000001000110000000",
-	aig: "000001000110000001",
-	airtel: "000001000110000010",
-	airforce: "000001000110000011",
-	aetna: "000001000110000100",
-	aeg: "000001000110000101",
-	agakhan: "000001000110000110",
-	afl: "000001000110000111",
-	ally: "000001000110001000",
-	allstate: "000001000110001001",
-	alstom: "000001000110001010",
-	alsace: "000001000110001011",
-	alibaba: "000001000110001100",
-	akdn: "000001000110001101",
-	allfinanz: "000001000110001110",
-	alipay: "000001000110001111",
-	abc: "000001000110010000",
-	abbvie: "000001000110010001",
-	abogado: "000001000110010010",
-	able: "000001000110010011",
-	aarp: "000001000110010100",
-	aaa: "000001000110010101",
-	abbott: "000001000110010110",
-	abb: "000001000110010111",
-	actor: "000001000110011000",
-	aco: "000001000110011001",
-	adult: "000001000110011010",
-	ads: "000001000110011011",
-	accenture: "000001000110011100",
-	abudhabi: "000001000110011101",
-	accountants: "000001000110011110",
-	accountant: "000001000110011111",
-	arte: "000001000110100000",
-	arpa: "000001000110100001",
-	associates: "000001000110100010",
-	asda: "000001000110100011",
-	aramco: "000001000110100100",
-	arab: "000001000110100101",
-	army: "000001000110100110",
-	archi: "000001000110100111",
-	auspost: "000001000110101000",
-	audible: "000001000110101001",
-	auto: "000001000110101010",
-	author: "000001000110101011",
-	attorney: "000001000110101100",
-	athleta: "000001000110101101",
-	audi: "000001000110101110",
-	auction: "000001000110101111",
-	amica: "000001000110110000",
-	amfam: "000001000110110001",
-	analytics: "000001000110110010",
-	amsterdam: "000001000110110011",
-	americanexpress: "000001000110110100",
-	amazon: "000001000110110101",
-	amex: "000001000110110110",
-	americanfamily: "000001000110110111",
-	apartments: "000001000110111000",
-	aol: "000001000110111001",
-	aquarelle: "000001000110111010",
-	aq: "000001000110111011",
-	anquan: "000001000110111100",
-	android: "000001000110111101",
-	ao: "000001000110111110",
-	anz: "000001000110111111",
-	pink: "0000010001110000",
-	pictures: "0000010001110001",
-	scot: "0000010001110010",
-	science: "0000010001110011",
-	museum: "0000010001110100",
-	money: "0000010001110101",
-	photos: "0000010001110110",
-	np: "0000010001110111",
-	travel: "0000010001111000",
-	training: "0000010001111001",
-	vu: "0000010001111010",
-	tube: "0000010001111011",
-	sm: "0000010001111100",
-	show: "0000010001111101",
-	theater: "0000010001111110",
-	supply: "0000010001111111",
-	sandvik: "000001001000000000",
-	samsung: "000001001000000001",
-	sanofi: "000001001000000010",
-	sandvikcoromant: "000001001000000011",
-	sale: "000001001000000100",
-	sakura: "000001001000000101",
-	samsclub: "000001001000000110",
-	salon: "000001001000000111",
-	sbi: "000001001000001000",
-	saxo: "000001001000001001",
-	scb: "000001001000001010",
-	sbs: "000001001000001011",
-	sarl: "000001001000001100",
-	sap: "000001001000001101",
-	save: "000001001000001110",
-	sas: "000001001000001111",
-	rodeo: "000001001000010000",
-	rio: "000001001000010001",
-	room: "000001001000010010",
-	rogers: "000001001000010011",
-	richardli: "000001001000010100",
-	rich: "000001001000010101",
-	ril: "000001001000010110",
-	ricoh: "000001001000010111",
-	saarland: "000001001000011000",
-	ryukyu: "000001001000011001",
-	safety: "000001001000011010",
-	safe: "000001001000011011",
-	ruhr: "000001001000011100",
-	rsvp: "000001001000011101",
-	rwe: "000001001000011110",
-	rw: "000001001000011111",
-	shiksha: "000001001000100000",
-	shia: "000001001000100001",
-	shopping: "000001001000100010",
-	shoes: "000001001000100011",
-	shangrila: "000001001000100100",
-	sfr: "000001001000100101",
-	shell: "000001001000100110",
-	sharp: "000001001000100111",
-	skin: "000001001000101000",
-	ski: "000001001000101001",
-	skype: "000001001000101010",
-	sky: "000001001000101011",
-	sina: "000001001000101100",
-	shouji: "000001001000101101",
-	sj: "000001001000101110",
-	singles: "000001001000101111",
-	sd: "000001001000110000",
-	schwarz: "000001001000110001",
-	seat: "000001001000110010",
-	search: "000001001000110011",
-	schmidt: "000001001000110100",
-	schaeffler: "000001001000110101",
-	schule: "000001001000110110",
-	scholarships: "000001001000110111",
-	seven: "000001001000111000",
-	sener: "000001001000111001",
-	sex: "000001001000111010",
-	sew: "000001001000111011",
-	security: "000001001000111100",
-	secure: "000001001000111101",
-	select: "000001001000111110",
-	seek: "000001001000111111",
-	play: "000001001001000000",
-	pioneer: "000001001001000001",
-	plumbing: "000001001001000010",
-	playstation: "000001001001000011",
-	pid: "000001001001000100",
-	pictet: "000001001001000101",
-	ping: "000001001001000110",
-	pin: "000001001001000111",
-	praxi: "000001001001001000",
-	post: "000001001001001001",
-	prod: "000001001001001010",
-	prime: "000001001001001011",
-	pohl: "000001001001001100",
-	pnc: "000001001001001101",
-	porn: "000001001001001110",
-	politie: "000001001001001111",
-	pars: "000001001001010000",
-	paris: "000001001001010001",
-	parts: "000001001001010010",
-	partners: "000001001001010011",
-	ott: "000001001001010100",
-	otsuka: "000001001001010101",
-	panasonic: "000001001001010110",
-	page: "000001001001010111",
-	philips: "000001001001011000",
-	phd: "000001001001011001",
-	physio: "000001001001011010",
-	phone: "000001001001011011",
-	pccw: "000001001001011100",
-	pay: "000001001001011101",
-	pg: "000001001001011110",
-	pfizer: "000001001001011111",
-	reisen: "000001001001100000",
-	reise: "000001001001100001",
-	reliance: "000001001001100010",
-	reit: "000001001001100011",
-	recipes: "000001001001100100",
-	realty: "000001001001100101",
-	rehab: "000001001001100110",
-	redumbrella: "000001001001100111",
-	rest: "000001001001101000",
-	republican: "000001001001101001",
-	rexroth: "000001001001101010",
-	restaurant: "000001001001101011",
-	rent: "000001001001101100",
-	ren: "000001001001101101",
-	repair: "000001001001101110",
-	rentals: "000001001001101111",
-	pru: "000001001001110000",
-	protection: "000001001001110001",
-	pwc: "000001001001110010",
-	prudential: "000001001001110011",
-	progressive: "000001001001110100",
-	prof: "000001001001110101",
-	property: "000001001001110110",
-	promo: "000001001001110111",
-	read: "000001001001111000",
-	radio: "000001001001111001",
-	realtor: "000001001001111010",
-	realestate: "000001001001111011",
-	quebec: "000001001001111100",
-	qpon: "000001001001111101",
-	racing: "000001001001111110",
-	quest: "000001001001111111",
-	verisign: "000001001010000000",
-	ventures: "000001001010000001",
-	vet: "000001001010000010",
-	versicherung: "000001001010000011",
-	ups: "000001001010000100",
-	uol: "000001001010000101",
-	vana: "000001001010000110",
-	vacations: "000001001010000111",
-	vin: "000001001010001000",
-	villas: "000001001010001001",
-	visa: "000001001010001010",
-	virgin: "000001001010001011",
-	viajes: "000001001010001100",
-	vi: "000001001010001101",
-	viking: "000001001010001110",
-	vig: "000001001010001111",
-	travelers: "000001001010010000",
-	trading: "000001001010010001",
-	trv: "000001001010010010",
-	travelersinsurance: "000001001010010011",
-	town: "000001001010010100",
-	tours: "000001001010010101",
-	toys: "000001001010010110",
-	toyota: "000001001010010111",
-	ubs: "000001001010011000",
-	ubank: "000001001010011001",
-	university: "000001001010011010",
-	unicom: "000001001010011011",
-	tunes: "000001001010011100",
-	tui: "000001001010011101",
-	tvs: "000001001010011110",
-	tushu: "000001001010011111",
-	whoswho: "000001001010100000",
-	wf: "000001001010100001",
-	windows: "000001001010100010",
-	williamhill: "000001001010100011",
-	wedding: "000001001010100100",
-	wed: "000001001010100101",
-	weir: "000001001010100110",
-	weibo: "000001001010100111",
-	wtc: "000001001010101000",
-	wow: "000001001010101001",
-	xerox: "000001001010101010",
-	xbox: "000001001010101011",
-	winners: "000001001010101100",
-	wine: "000001001010101101",
-	woodside: "000001001010101110",
-	wme: "000001001010101111",
-	voting: "000001001010110000",
-	volvo: "000001001010110001",
-	voyage: "000001001010110010",
-	voto: "000001001010110011",
-	vivo: "000001001010110100",
-	viva: "000001001010110101",
-	vodka: "000001001010110110",
-	vlaanderen: "000001001010110111",
-	weather: "000001001010111000",
-	watches: "000001001010111001",
-	weber: "000001001010111010",
-	weatherchannel: "000001001010111011",
-	walter: "000001001010111100",
-	walmart: "000001001010111101",
-	wanggou: "000001001010111110",
-	wang: "000001001010111111",
-	stockholm: "000001001011000000",
-	stcgroup: "000001001011000001",
-	study: "000001001011000010",
-	storage: "000001001011000011",
-	statebank: "000001001011000100",
-	star: "000001001011000101",
-	stc: "000001001011000110",
-	statefarm: "000001001011000111",
-	swatch: "000001001011001000",
-	sv: "000001001011001001",
-	sydney: "000001001011001010",
-	swiss: "000001001011001011",
-	surf: "000001001011001100",
-	sucks: "000001001011001101",
-	suzuki: "000001001011001110",
-	surgery: "000001001011001111",
-	softbank: "000001001011010000",
-	soccer: "000001001011010001",
-	song: "000001001011010010",
-	sohu: "000001001011010011",
-	sling: "000001001011010100",
-	sl: "000001001011010101",
-	smile: "000001001011010110",
-	smart: "000001001011010111",
-	ss: "000001001011011000",
-	srl: "000001001011011001",
-	staples: "000001001011011010",
-	stada: "000001001011011011",
-	spa: "000001001011011100",
-	soy: "000001001011011101",
-	spot: "000001001011011110",
-	sport: "000001001011011111",
-	tienda: "000001001011100000",
-	tiaa: "000001001011100001",
-	tirol: "000001001011100010",
-	tires: "000001001011100011",
-	tg: "000001001011100100",
-	teva: "000001001011100101",
-	theatre: "000001001011100110",
-	thd: "000001001011100111",
-	toray: "000001001011101000",
-	tmall: "000001001011101001",
-	total: "000001001011101010",
-	toshiba: "000001001011101011",
-	tjmaxx: "000001001011101100",
-	tj: "000001001011101101",
-	tkmaxx: "000001001011101110",
-	tjx: "000001001011101111",
-	target: "000001001011110000",
-	taobao: "000001001011110001",
-	tatar: "000001001011110010",
-	tatamotors: "000001001011110011",
-	tab: "000001001011110100",
-	sz: "000001001011110101",
-	talk: "000001001011110110",
-	taipei: "000001001011110111",
-	tel: "000001001011111000",
-	tdk: "000001001011111001",
-	tennis: "000001001011111010",
-	temasek: "000001001011111011",
-	taxi: "000001001011111100",
-	tattoo: "000001001011111101",
-	td: "000001001011111110",
-	tci: "000001001011111111",
-	jll: "000001001100000000",
-	jio: "000001001100000001",
-	jmp: "000001001100000010",
-	jm: "000001001100000011",
-	jeep: "000001001100000100",
-	jcb: "000001001100000101",
-	jewelry: "000001001100000110",
-	jetzt: "000001001100000111",
-	jprs: "000001001100001000",
-	jpmorgan: "000001001100001001",
-	juniper: "000001001100001010",
-	juegos: "000001001100001011",
-	joburg: "000001001100001100",
-	jnj: "000001001100001101",
-	joy: "000001001100001110",
-	jot: "000001001100001111",
-	insure: "000001001100010000",
-	insurance: "000001001100010001",
-	investments: "000001001100010010",
-	intuit: "000001001100010011",
-	inc: "000001001100010100",
-	immobilien: "000001001100010101",
-	infiniti: "000001001100010110",
-	industries: "000001001100010111",
-	itv: "000001001100011000",
-	itau: "000001001100011001",
-	java: "000001001100011010",
-	jaguar: "000001001100011011",
-	irish: "000001001100011100",
-	ipiranga: "000001001100011101",
-	istanbul: "000001001100011110",
-	ismaili: "000001001100011111",
-	kuokgroup: "000001001100100000",
-	kred: "000001001100100001",
-	kyoto: "000001001100100010",
-	ky: "000001001100100011",
-	kpmg: "000001001100100100",
-	kosher: "000001001100100101",
-	krd: "000001001100100110",
-	kpn: "000001001100100111",
-	lasalle: "000001001100101000",
-	lanxess: "000001001100101001",
-	latino: "000001001100101010",
-	lat: "000001001100101011",
-	lamborghini: "000001001100101100",
-	lacaixa: "000001001100101101",
-	landrover: "000001001100101110",
-	lamer: "000001001100101111",
-	kg: "000001001100110000",
-	kfh: "000001001100110001",
-	kids: "000001001100110010",
-	kia: "000001001100110011",
-	kddi: "000001001100110100",
-	kaufen: "000001001100110101",
-	kerryproperties: "000001001100110110",
-	kerryhotels: "000001001100110111",
-	kn: "000001001100111000",
-	km: "000001001100111001",
-	komatsu: "000001001100111010",
-	koeln: "000001001100111011",
-	kindle: "000001001100111100",
-	kim: "000001001100111101",
-	kiwi: "000001001100111110",
-	kitchen: "000001001100111111",
-	gu: "000001001101000000",
-	grocery: "000001001101000001",
-	guge: "000001001101000010",
-	gucci: "000001001101000011",
-	gratis: "000001001101000100",
-	grainger: "000001001101000101",
-	gripe: "000001001101000110",
-	green: "000001001101000111",
-	hdfc: "000001001101001000",
-	hbo: "000001001101001001",
-	healthcare: "000001001101001010",
-	hdfcbank: "000001001101001011",
-	gw: "000001001101001100",
-	guitars: "000001001101001101",
-	hangout: "000001001101001110",
-	hair: "000001001101001111",
-	gmbh: "000001001101010000",
-	gmail: "000001001101010001",
-	gmx: "000001001101010010",
-	gmo: "000001001101010011",
-	giving: "000001001101010100",
-	gifts: "000001001101010101",
-	globo: "000001001101010110",
-	glass: "000001001101010111",
-	goog: "000001001101011000",
-	goodyear: "000001001101011001",
-	got: "000001001101011010",
-	gop: "000001001101011011",
-	godaddy: "000001001101011100",
-	gn: "000001001101011101",
-	golf: "000001001101011110",
-	goldpoint: "000001001101011111",
-	hyatt: "000001001101100000",
-	hughes: "000001001101100001",
-	ibm: "000001001101100010",
-	hyundai: "000001001101100011",
-	hotmail: "000001001101100100",
-	hotels: "000001001101100101",
-	hsbc: "000001001101100110",
-	house: "000001001101100111",
-	imamat: "000001001101101000",
-	ikano: "000001001101101001",
-	immo: "000001001101101010",
-	imdb: "000001001101101011",
-	ice: "000001001101101100",
-	icbc: "000001001101101101",
-	ifm: "000001001101101110",
-	ieee: "000001001101101111",
-	hiv: "000001001101110000",
-	hitachi: "000001001101110001",
-	holiday: "000001001101110010",
-	hkt: "000001001101110011",
-	here: "000001001101110100",
-	helsinki: "000001001101110101",
-	hisamitsu: "000001001101110110",
-	hermes: "000001001101110111",
-	hospital: "000001001101111000",
-	honda: "000001001101111001",
-	hot: "000001001101111010",
-	hosting: "000001001101111011",
-	homegoods: "000001001101111100",
-	homedepot: "000001001101111101",
-	homesense: "000001001101111110",
-	homes: "000001001101111111",
-	nab: "000001001110000000",
-	mz: "000001001110000001",
-	navy: "000001001110000010",
-	nagoya: "000001001110000011",
-	mtn: "000001001110000100",
-	msd: "000001001110000101",
-	music: "000001001110000110",
-	mtr: "000001001110000111",
-	next: "000001001110001000",
-	neustar: "000001001110001001",
-	nexus: "000001001110001010",
-	nextdirect: "000001001110001011",
-	nec: "000001001110001100",
-	nba: "000001001110001101",
-	netflix: "000001001110001110",
-	netbank: "000001001110001111",
-	moi: "000001001110010000",
-	moda: "000001001110010001",
-	monster: "000001001110010010",
-	mom: "000001001110010011",
-	mm: "000001001110010100",
-	mls: "000001001110010101",
-	mobile: "000001001110010110",
-	mma: "000001001110010111",
-	mov: "000001001110011000",
-	motorcycles: "000001001110011001",
-	mr: "000001001110011010",
-	mq: "000001001110011011",
-	mortgage: "000001001110011100",
-	mormon: "000001001110011101",
-	moto: "000001001110011110",
-	moscow: "000001001110011111",
-	ollo: "000001001110100000",
-	olayangroup: "000001001110100001",
-	omega: "000001001110100010",
-	om: "000001001110100011",
-	office: "000001001110100100",
-	observer: "000001001110100101",
-	olayan: "000001001110100110",
-	okinawa: "000001001110100111",
-	organic: "000001001110101000",
-	orange: "000001001110101001",
-	osaka: "000001001110101010",
-	origins: "000001001110101011",
-	ooo: "000001001110101100",
-	ong: "000001001110101101",
-	oracle: "000001001110101110",
-	open: "000001001110101111",
-	nikon: "000001001110110000",
-	nike: "000001001110110001",
-	nissay: "000001001110110010",
-	nissan: "000001001110110011",
-	ngo: "000001001110110100",
-	nfl: "000001001110110101",
-	nico: "000001001110110110",
-	nhk: "000001001110110111",
-	nra: "000001001110111000",
-	nowtv: "000001001110111001",
-	obi: "000001001110111010",
-	ntt: "000001001110111011",
-	norton: "000001001110111100",
-	nokia: "000001001110111101",
-	nowruz: "000001001110111110",
-	now: "000001001110111111",
-	loans: "000001001111000000",
-	loan: "000001001111000001",
-	locus: "000001001111000010",
-	locker: "000001001111000011",
-	living: "000001001111000100",
-	lincoln: "000001001111000101",
-	llp: "000001001111000110",
-	llc: "000001001111000111",
-	ltd: "000001001111001000",
-	ls: "000001001111001001",
-	lundbeck: "000001001111001010",
-	ltda: "000001001111001011",
-	lotto: "000001001111001100",
-	lotte: "000001001111001101",
-	lplfinancial: "000001001111001110",
-	lpl: "000001001111001111",
-	lefrak: "000001001111010000",
-	leclerc: "000001001111010001",
-	lexus: "000001001111010010",
-	lego: "000001001111010011",
-	lawyer: "000001001111010100",
-	latrobe: "000001001111010101",
-	lease: "000001001111010110",
-	lds: "000001001111010111",
-	lilly: "000001001111011000",
-	lighting: "000001001111011001",
-	limo: "000001001111011010",
-	limited: "000001001111011011",
-	lidl: "000001001111011100",
-	lgbt: "000001001111011101",
-	lifestyle: "000001001111011110",
-	lifeinsurance: "000001001111011111",
-	menu: "000001001111100000",
-	memorial: "000001001111100001",
-	merckmsd: "000001001111100010",
-	merck: "000001001111100011",
-	med: "000001001111100100",
-	mckinsey: "000001001111100101",
-	meme: "000001001111100110",
-	meet: "000001001111100111",
-	mit: "000001001111101000",
-	mint: "000001001111101001",
-	mlb: "000001001111101010",
-	mitsubishi: "000001001111101011",
-	miami: "000001001111101100",
-	mh: "000001001111101101",
-	mini: "000001001111101110",
-	microsoft: "000001001111101111",
-	makeup: "000001001111110000",
-	maison: "000001001111110001",
-	management: "000001001111110010",
-	man: "000001001111110011",
-	luxury: "000001001111110100",
-	luxe: "000001001111110101",
-	maif: "000001001111110110",
-	madrid: "000001001111110111",
-	mattel: "000001001111111000",
-	marshalls: "000001001111111001",
-	mc: "000001001111111010",
-	mba: "000001001111111011",
-	map: "000001001111111100",
-	mango: "000001001111111101",
-	marriott: "000001001111111110",
-	markets: "000001001111111111",
-	bw: "00000101000000000",
-	buzz: "00000101000000001",
-	casa: "00000101000000010",
-	camera: "00000101000000011",
-	bot: "00000101000000100",
-	bh: "00000101000000101",
-	builders: "00000101000000110",
-	bs: "00000101000000111",
-	cool: "00000101000001000",
-	computer: "00000101000001001",
-	dog: "00000101000001010",
-	dating: "00000101000001011",
-	church: "00000101000001100",
-	cd: "00000101000001101",
-	click: "00000101000001110",
-	ci: "00000101000001111",
-	win: "000001010000100",
-	sa: "000001010000101",
-	bank: "00000101000011000",
-	baby: "00000101000011001",
-	berlin: "00000101000011010",
-	basketball: "00000101000011011",
-	works: "000001010000111",
-	iq: "00000101000100000",
-	ing: "00000101000100001",
-	kh: "00000101000100010",
-	je: "00000101000100011",
-	hm: "00000101000100100",
-	hiphop: "00000101000100101",
-	horse: "00000101000100110",
-	holdings: "00000101000100111",
-	melbourne: "00000101000101000",
-	marketing: "00000101000101001",
-	monash: "00000101000101010",
-	men: "00000101000101011",
-	kz: "00000101000101100",
-	kw: "00000101000101101",
-	lr: "00000101000101110",
-	like: "00000101000101111",
-	eus: "00000101000110000",
-	estate: "00000101000110001",
-	gallery: "00000101000110010",
-	fk: "00000101000110011",
-	dz: "00000101000110100",
-	drive: "00000101000110101",
-	equipment: "00000101000110110",
-	eco: "00000101000110111",
-	group: "00000101000111000",
-	gp: "00000101000111001",
-	health: "00000101000111010",
-	hamburg: "00000101000111011",
-	gh: "00000101000111100",
-	garden: "00000101000111101",
-	gold: "00000101000111110",
-	gi: "00000101000111111",
-	trade: "0000010100100",
-	cloud: "0000010100101",
-	lk: "000001010011000",
-	host: "000001010011001",
-	press: "000001010011010",
-	pr: "000001010011011",
-	cafe: "000001010011100",
-	ba: "000001010011101",
-	eg: "000001010011110",
-	earth: "000001010011111",
-	"xn--lgbbat1ad8j": "000001010100000000",
-	"xn--l1acc": "000001010100000001",
-	"xn--mgba3a3ejt": "000001010100000010",
-	"xn--mgb9awbf": "000001010100000011",
-	"xn--kprw13d": "000001010100000100",
-	"xn--kcrx77d1x4a": "000001010100000101",
-	"xn--kput3i": "000001010100000110",
-	"xn--kpry57d": "000001010100000111",
-	"xn--mgbai9azgqp6j": "000001010100001000",
-	"xn--mgbah1a3hjkrd": "000001010100001001",
-	"xn--mgbbh1a": "000001010100001010",
-	"xn--mgbayh7gpa": "000001010100001011",
-	"xn--mgba7c0bbn0a": "000001010100001100",
-	"xn--mgba3a4f16a": "000001010100001101",
-	"xn--mgbab2bd": "000001010100001110",
-	"xn--mgbaam7a8h": "000001010100001111",
-	"xn--h2brj9c": "000001010100010000",
-	"xn--h2breg3eve": "000001010100010001",
-	"xn--hxt814e": "000001010100010010",
-	"xn--h2brj9c8c": "000001010100010011",
-	"xn--gckr3f0f": "000001010100010100",
-	"xn--g2xx48c": "000001010100010101",
-	"xn--gk3at1e": "000001010100010110",
-	"xn--gecrj9c": "000001010100010111",
-	"xn--j6w193g": "000001010100011000",
-	"xn--j1amh": "000001010100011001",
-	"xn--jvr189m": "000001010100011010",
-	"xn--jlq480n2rg": "000001010100011011",
-	"xn--imr513n": "000001010100011100",
-	"xn--i1b6b1a6a2e": "000001010100011101",
-	"xn--j1aef": "000001010100011110",
-	"xn--io0a7i": "000001010100011111",
-	"xn--o3cw4h": "000001010100100000",
-	"xn--nyqy26a": "000001010100100001",
-	"xn--otu796d": "000001010100100010",
-	"xn--ogbpf8fl": "000001010100100011",
-	"xn--node": "000001010100100100",
-	"xn--ngbrx": "000001010100100101",
-	"xn--nqv7fs00ema": "000001010100100110",
-	"xn--nqv7f": "000001010100100111",
-	"xn--qcka1pmc": "000001010100101000",
-	"xn--q9jyb4c": "000001010100101001",
-	"xn--qxam": "000001010100101010",
-	"xn--qxa6a": "000001010100101011",
-	"xn--pgbs0dh": "000001010100101100",
-	"xn--p1acf": "000001010100101101",
-	"xn--q7ce6a": "000001010100101110",
-	"xn--pssy2u": "000001010100101111",
-	"xn--mgbgu82a": "000001010100110000",
-	"xn--mgberp4a5d4ar": "000001010100110001",
-	"xn--mgbpl2fh": "000001010100110010",
-	"xn--mgbi4ecexp": "000001010100110011",
-	"xn--mgbc0a9azcg": "000001010100110100",
-	"xn--mgbbh1a71e": "000001010100110101",
-	"xn--mgbcpq6gpa1a": "000001010100110110",
-	"xn--mgbca7dzdo": "000001010100110111",
-	"xn--mxtq1m": "000001010100111000",
-	"xn--mk1bu44c": "000001010100111001",
-	"xn--ngbe9e0a": "000001010100111010",
-	"xn--ngbc5azd": "000001010100111011",
-	"xn--mgbtx2b": "000001010100111100",
-	"xn--mgbt3dhd": "000001010100111101",
-	"xn--mix891f": "000001010100111110",
-	"xn--mgbx4cd0ab": "000001010100111111",
-	"xn--5su34j936bgsg": "000001010101000000",
-	"xn--55qx5d": "000001010101000001",
-	"xn--6frz82g": "000001010101000010",
-	"xn--5tzm5g": "000001010101000011",
-	"xn--4gbrim": "000001010101000100",
-	"xn--4dbrk0ce": "000001010101000101",
-	"xn--55qw42g": "000001010101000110",
-	"xn--54b7fta0cc": "000001010101000111",
-	"xn--80aswg": "000001010101001000",
-	"xn--80asehdb": "000001010101001001",
-	"xn--90a3ac": "000001010101001010",
-	"xn--8y0a063a": "000001010101001011",
-	"xn--80adxhks": "000001010101001100",
-	"xn--6qq986b3xl": "000001010101001101",
-	"xn--80aqecdr1a": "000001010101001110",
-	"xn--80ao21a": "000001010101001111",
-	"xn--2scrj9c": "000001010101010000",
-	"xn--1qqw23a": "000001010101010001",
-	"xn--3bst00m": "000001010101010010",
-	"xn--30rr7y": "000001010101010011",
-	xin: "000001010101010100",
-	xihuan: "000001010101010101",
-	"xn--1ck2e1b": "000001010101010110",
-	"xn--11b4c3d": "000001010101010111",
-	"xn--45br5cyl": "000001010101011000",
-	"xn--42c2d9a": "000001010101011001",
-	"xn--45q11c": "000001010101011010",
-	"xn--45brj9c": "000001010101011011",
-	"xn--3e0b707e": "000001010101011100",
-	"xn--3ds443g": "000001010101011101",
-	"xn--3pxu8k": "000001010101011110",
-	"xn--3hcrj9c": "000001010101011111",
-	"xn--fct429k": "000001010101100000",
-	"xn--efvy88h": "000001010101100001",
-	"xn--fiq228c5hs": "000001010101100010",
-	"xn--fhbei": "000001010101100011",
-	"xn--d1alf": "000001010101100100",
-	"xn--d1acj3b": "000001010101100101",
-	"xn--eckvdtc9d": "000001010101100110",
-	"xn--e1a4c": "000001010101100111",
-	"xn--fpcrj9c3d": "000001010101101000",
-	"xn--flw351e": "000001010101101001",
-	"xn--fzys8d69uvgm": "000001010101101010",
-	"xn--fzc2c9e2c": "000001010101101011",
-	"xn--fiqs8s": "000001010101101100",
-	"xn--fiq64b": "000001010101101101",
-	"xn--fjq720a": "000001010101101110",
-	"xn--fiqz9s": "000001010101101111",
-	"xn--b4w605ferd": "000001010101110000",
-	"xn--9krt00a": "000001010101110001",
-	"xn--c1avg": "000001010101110010",
-	"xn--bck1b9a5dre4c": "000001010101110011",
-	"xn--90ais": "000001010101110100",
-	"xn--90ae": "000001010101110101",
-	"xn--9et52u": "000001010101110110",
-	"xn--9dbq2a": "000001010101110111",
-	"xn--czr694b": "000001010101111000",
-	"xn--clchc0ea0b2g2a9gcd": "000001010101111001",
-	"xn--czru2d": "000001010101111010",
-	"xn--czrs0t": "000001010101111011",
-	"xn--cck2b3b": "000001010101111100",
-	"xn--c2br7g": "000001010101111101",
-	"xn--cg4bki": "000001010101111110",
-	"xn--cckwcxetd": "000001010101111111",
-	silk: "00000101011000000",
-	school: "00000101011000001",
-	software: "00000101011000010",
-	sncf: "00000101011000011",
-	qa: "00000101011000100",
-	productions: "00000101011000101",
-	sb: "00000101011000110",
-	reviews: "00000101011000111",
-	tickets: "00000101011001000",
-	supplies: "00000101011001001",
-	tn: "00000101011001010",
-	tm: "00000101011001011",
-	sony: "00000101011001100",
-	solar: "00000101011001101",
-	style: "00000101011001110",
-	sr: "00000101011001111",
-	new: "00000101011010000",
-	nc: "00000101011010001",
-	ni: "00000101011010010",
-	nf: "00000101011010011",
-	mv: "00000101011010100",
-	movie: "00000101011010101",
-	na: "00000101011010110",
-	mw: "00000101011010111",
-	photo: "00000101011011000",
-	pharmacy: "00000101011011001",
-	poker: "00000101011011010",
-	photography: "00000101011011011",
-	pa: "00000101011011100",
-	nrw: "00000101011011101",
-	pf: "00000101011011110",
-	pet: "00000101011011111",
-	"xn--yfro4i67o": "000001010111000000",
-	"xn--y9a3aq": "000001010111000001",
-	"xn--zfr164b": "000001010111000010",
-	"xn--ygbi2ammx": "000001010111000011",
-	"xn--xhq521b": "000001010111000100",
-	"xn--wgbl6a": "000001010111000101",
-	"xn--xkc2dl3a5ee0h": "000001010111000110",
-	"xn--xkc2al3hye2a": "000001010111000111",
-	yodobashi: "000001010111001000",
-	ye: "000001010111001001",
-	yokohama: "000001010111001010",
-	yoga: "000001010111001011",
-	yahoo: "000001010111001100",
-	yachts: "000001010111001101",
-	yandex: "000001010111001110",
-	yamaxun: "000001010111001111",
-	"xn--t60b56a": "000001010111010000",
-	"xn--ses554g": "000001010111010001",
-	"xn--tiq49xqyj": "000001010111010010",
-	"xn--tckwe": "000001010111010011",
-	"xn--rovu88b": "000001010111010100",
-	"xn--rhqv96g": "000001010111010101",
-	"xn--s9brj9c": "000001010111010110",
-	"xn--rvc1e0am3e": "000001010111010111",
-	"xn--w4r85el8fhu5dnra": "000001010111011000",
-	"xn--vuq861b": "000001010111011001",
-	"xn--wgbh1c": "000001010111011010",
-	"xn--w4rs40l": "000001010111011011",
-	"xn--vermgensberater-ctb": "000001010111011100",
-	"xn--unup4y": "000001010111011101",
-	"xn--vhquv": "000001010111011110",
-	"xn--vermgensberatung-pwb": "000001010111011111",
-	uz: "00000101011110000",
-	uno: "00000101011110001",
-	vision: "00000101011110010",
-	vanguard: "00000101011110011",
-	trust: "00000101011110100",
-	tokyo: "00000101011110101",
-	ug: "00000101011110110",
-	tz: "00000101011110111",
-	zero: "000001010111110000",
-	zara: "000001010111110001",
-	zuerich: "000001010111110010",
-	zm: "000001010111110011",
-	youtube: "000001010111110100",
-	you: "000001010111110101",
-	zappos: "000001010111110110",
-	yun: "000001010111110111",
-	wien: "00000101011111100",
-	webcam: "00000101011111101",
-	"": "000001010111111100",
-	zw: "000001010111111101",
-	yt: "00000101011111111",
-	dk: "000001011",
-	gl: "00000110",
-	cc: "0000011100",
-	la: "000001110100",
-	space: "000001110101",
-	ag: "00000111011000",
-	uy: "00000111011001",
-	stream: "0000011101101",
-	im: "000001110111",
-	ie: "0000011110",
-	sk: "0000011111000",
-	dance: "00000111110010",
-	cr: "00000111110011",
-	ee: "000001111101",
-	pub: "00000111111000",
-	pe: "00000111111001",
-	work: "0000011111101",
-	ninja: "0000011111110",
-	id: "0000011111111",
-	au: "0000100",
-	to: "0000101000",
-	ua: "0000101001",
-	fr: "000010101",
-	nl: "000010110",
-	mg: "0000101110",
-	int: "00001011110",
-	app: "0000101111100",
-	cx: "00001011111010",
-	bid: "00001011111011",
-	af: "0000101111110000",
-	ad: "00001011111100010",
-	zip: "00001011111100011",
-	ve: "000010111111001",
-	xxx: "00001011111101",
-	jobs: "000010111111100",
-	asia: "000010111111101",
-	run: "000010111111110",
-	nyc: "000010111111111",
-	tv: "0000110",
-	sh: "00001110",
-	media: "00001111000000",
-	ec: "00001111000001",
-	vg: "00001111000010",
-	tk: "00001111000011",
-	ai: "0000111100010",
-	tr: "0000111100011",
-	at: "00001111001",
-	club: "00001111010",
-	ph: "000011110110",
-	al: "000011110111000",
-	cy: "0000111101110010",
-	cm: "0000111101110011",
-	icu: "00001111011101",
-	ac: "00001111011110",
-	mk: "000011110111110",
-	exchange: "000011110111111",
-	nz: "000011111",
-	it: "00010",
-	me: "0001100",
-	ch: "0001101000",
-	ws: "000110100100",
-	rocks: "000110100101",
-	va: "0001101001100",
-	lu: "0001101001101",
-	pn: "000110100111000",
-	pm: "000110100111001",
-	store: "000110100111010",
-	red: "000110100111011",
-	gd: "0001101001111",
-	se: "000110101",
-	moe: "0001101100",
-	wiki: "0001101101",
-	lc: "0001101110000000",
-	ke: "0001101110000001",
-	md: "0001101110000010",
-	ma: "0001101110000011",
-	fitness: "0001101110000100",
-	email: "0001101110000101",
-	how: "0001101110000110",
-	games: "0001101110000111",
-	social: "0001101110001000",
-	rip: "0001101110001001",
-	vc: "0001101110001010",
-	solutions: "0001101110001011",
-	ne: "0001101110001100",
-	mt: "0001101110001101",
-	py: "0001101110001110",
-	ovh: "0001101110001111",
-	review: "00011011100100",
-	gy: "00011011100101",
-	ir: "0001101110011",
-	mil: "00011011101",
-	fun: "0001101111000",
-	rs: "0001101111001",
-	sc: "000110111101",
-	cf: "000110111110",
-	sg: "000110111111",
-	is: "0001110",
-	ru: "0001111",
-	be: "0010",
-	net: "0011",
-	info: "010000",
-	jp: "0100010",
-	hu: "010001100000",
-	fyi: "01000110000100",
-	gq: "010001100001010",
-	download: "010001100001011",
-	audio: "0100011000011000",
-	band: "01000110000110010",
-	as: "01000110000110011",
-	watch: "010001100001101",
-	pizza: "01000110000111",
-	place: "010001100010000",
-	land: "010001100010001",
-	sn: "010001100010010",
-	shop: "010001100010011",
-	nu: "0100011000101",
-	gr: "010001100011",
-	kr: "01000110010",
-	ro: "01000110011",
-	"xn--p1ai": "010001101",
-	party: "01000111000000",
-	gle: "01000111000001",
-	online: "0100011100001",
-	li: "0100011100010",
-	si: "0100011100011",
-	pt: "01000111001",
-	cn: "01000111010",
-	my: "0100011101100",
-	tech: "01000111011010",
-	name: "01000111011011",
-	tw: "010001110111",
-	su: "010001111",
-	co: "0100100",
-	ms: "010010100",
-	fo: "01001010100",
-	law: "01001010101000000",
-	ki: "01001010101000001",
-	love: "01001010101000010",
-	legal: "01001010101000011",
-	hn: "01001010101000100",
-	gt: "01001010101000101",
-	international: "01001010101000110",
-	hockey: "01001010101000111",
-	support: "01001010101001000",
-	services: "01001010101001001",
-	systems: "01001010101001010",
-	sy: "01001010101001011",
-	onl: "01001010101001100",
-	nr: "01001010101001101",
-	rugby: "01001010101001110",
-	properties: "01001010101001111",
-	engineering: "01001010101010000",
-	dev: "01001010101010001",
-	foundation: "01001010101010010",
-	expert: "01001010101010011",
-	center: "01001010101010100",
-	capital: "01001010101010101",
-	cymru: "01001010101010110",
-	cu: "01001010101010111",
-	gives: "01001010101011000",
-	gent: "01001010101011001",
-	google: "01001010101011010",
-	gm: "01001010101011011",
-	fund: "01001010101011100",
-	frl: "01001010101011101",
-	game: "01001010101011110",
-	futbol: "01001010101011111",
-	bn: "0100101010110000",
-	az: "0100101010110001",
-	deals: "0100101010110010",
-	community: "0100101010110011",
-	zone: "01001010101101",
-	vip: "0100101010111000",
-	team: "0100101010111001",
-	vegas: "01001010101110100",
-	tax: "01001010101110101",
-	wales: "01001010101110110",
-	vote: "01001010101110111",
-	london: "0100101010111100",
-	events: "0100101010111101",
-	ps: "0100101010111110",
-	mu: "0100101010111111",
-	pk: "0100101011000",
-	ga: "0100101011001",
-	world: "010010101101000",
-	ng: "010010101101001",
-	build: "01001010110101000",
-	blue: "01001010110101001",
-	camp: "01001010110101010",
-	business: "01001010110101011",
-	bd: "01001010110101100",
-	bar: "01001010110101101",
-	bingo: "01001010110101110",
-	bi: "01001010110101111",
-	tf: "0100101011011",
-	pl: "01001010111",
-	za: "010010110000",
-	so: "010010110001",
-	pw: "010010110010",
-	pro: "010010110011",
-	ar: "01001011010",
-	ml: "010010110110",
-	am: "010010110111",
-	today: "0100101110",
-	lv: "01001011110000",
-	coop: "010010111100010",
-	video: "010010111100011",
-	tl: "01001011110010",
-	mp: "010010111100110",
-	mobi: "010010111100111",
-	haus: "010010111101",
-	network: "0100101111100",
-	tc: "010010111110100",
-	plus: "010010111110101",
-	website: "01001011111011",
-	mx: "010010111111",
-	gov: "010011",
-	uk: "010100",
-	edu: "0101010",
-	gg: "0101011",
-	in: "0101100000",
-	br: "0101100001",
-	fm: "010110001",
-	de: "01011001",
-	eu: "010110100",
-	re: "010110101000",
-	sx: "01011010100100",
-	lol: "010110101001010",
-	bike: "0101101010010110",
-	aero: "0101101010010111",
-	hk: "0101101010011",
-	vn: "0101101010100",
-	sexy: "01011010101010",
-	agency: "01011010101011000",
-	apple: "010110101010110010",
-	africa: "010110101010110011",
-	tips: "0101101010101101",
-	tools: "010110101010111",
-	cat: "0101101010110",
-	chat: "0101101010111000",
-	cards: "0101101010111001",
-	cricket: "0101101010111010",
-	codes: "0101101010111011",
-	blog: "01011010101111",
-	fi: "01011010110",
-	pics: "0101101011100000",
-	ink: "0101101011100001",
-	studio: "0101101011100010",
-	report: "0101101011100011",
-	dj: "0101101011100100",
-	design: "0101101011100101",
-	help: "0101101011100110",
-	farm: "0101101011100111",
-	bg: "01011010111010",
-	do: "010110101110110",
-	academy: "0101101011101110",
-	beer: "01011010111011110",
-	art: "01011010111011111",
-	guide: "0101101011110",
-	site: "01011010111110",
-	one: "01011010111111",
-	ly: "010110110",
-	cz: "010110111000",
-	st: "0101101110010",
-	cl: "01011011100110",
-	gs: "010110111001110",
-	bz: "010110111001111",
-	no: "01011011101",
-	live: "010110111100",
-	link: "010110111101",
-	cash: "010110111110",
-	lb: "010110111111000",
-	guru: "010110111111001",
-	technology: "010110111111010",
-	mn: "010110111111011",
-	il: "0101101111111",
-	ca: "0101110",
-	io: "0101111",
-	org: "011",
-	com: "1"
-}, s = {
-	"cydia.saurik": "000000000000",
-	"images.wikia": "000000000001",
-	juicedb: "000000000010",
-	imgflip: "000000000011",
-	globalresearch: "0000000001000",
-	csmonitor: "00000000010010",
-	"bmw.com": "00000000010011",
-	"images.app.goo": "000000000101",
-	"docs.microsoft": "000000000110",
-	"500px": "000000000111",
-	radd: "0000000010",
-	boardgamegeek: "0000000011",
-	autosedlo: "0000000100",
-	redditinvestigator: "00000001010",
-	sciencedirect: "00000001011",
-	downtown: "00000001100",
-	"yugioh.wikia": "00000001101",
-	"express.co": "0000000111000",
-	"shop.nordstrom": "0000000111001",
-	"battlelog.battlefield": "0000000111010",
-	asus: "0000000111011",
-	foodnetwork: "0000000111100",
-	sfgate: "0000000111101",
-	"developer.mozilla": "0000000111110",
-	"9gag": "0000000111111",
-	weeklysift: "0000001000000",
-	rbeertrade: "0000001000001",
-	"podcasts.apple": "000000100001",
-	bitcoin: "0000001000100",
-	"247sports": "0000001000101",
-	zkillboard: "0000001000110",
-	"i2.wp": "0000001000111",
-	"amazon.co": "0000001001",
-	latimes: "00000010100",
-	"botrank.pastimes": "000000101010",
-	"a.video.nfl": "000000101011",
-	craigslist: "000000101100",
-	ontheissues: "0000001011010",
-	fimfiction: "0000001011011",
-	"reddit.zendesk": "00000010111",
-	edhrec: "00000011",
-	slate: "00000100000",
-	salon: "000001000010",
-	seriouseats: "000001000011",
-	goodreads: "0000010001",
-	artstation: "0000010010",
-	"bbc.co": "0000010011",
-	adl: "00000101000000",
-	atf: "00000101000001",
-	"play.esea": "00000101000010",
-	mugenmonkey: "00000101000011",
-	w3schools: "00000101000100",
-	radiolab: "00000101000101",
-	harborfreight: "00000101000110",
-	pitchfork: "00000101000111",
-	"media-cache-ak0.pinimg": "00000101001000",
-	"terraria.gamepedia": "00000101001001",
-	"ftw.usatoday": "00000101001010",
-	"forums.robertsspaceindustries": "00000101001011",
-	"statcan.gc": "00000101001100",
-	wabbitwiki: "00000101001101",
-	"encrypted-tbn2.gstatic": "00000101001110",
-	indianexpress: "00000101001111",
-	examiner: "00000101010000",
-	vatican: "00000101010001",
-	techdirt: "00000101010010",
-	wnd: "00000101010011",
-	investigationbooks: "000001010101",
-	marvel: "00000101011000",
-	baltimoresun: "00000101011001",
-	"huffingtonpost.co": "00000101011010",
-	torontosun: "00000101011011",
-	ea: "00000101011100",
-	"theaustralian.com": "00000101011101",
-	raspberrypi: "00000101011110",
-	"travel.state": "00000101011111",
-	lcfgeorgia: "00000101100000",
-	kauffman: "00000101100001",
-	"usff.navy": "00000101100010",
-	"newsroom.latam.paypal-corp": "00000101100011",
-	yearup: "00000101100100",
-	cvent: "00000101100101",
-	accenture: "00000101100110",
-	switchboardta: "00000101100111",
-	"doyok.kinja": "0000010110100",
-	renews24: "0000010110101",
-	yugipedia: "0000010110110",
-	"r.go1dfish": "0000010110111",
-	americanexpress: "00000101110000",
-	"m.newegg": "00000101110001",
-	feelthebern: "00000101110010",
-	"alg.cubing": "00000101110011",
-	corsair: "00000101110100",
-	"content.time": "00000101110101",
-	winlivestream: "00000101110110",
-	"m.fanfiction": "00000101110111",
-	p2016: "00000101111000",
-	masterypoints: "00000101111001",
-	liquipedia: "00000101111010",
-	"help.steampowered": "00000101111011",
-	"m.spankbang": "00000101111100",
-	"p0ody-files": "00000101111101",
-	"pm1.narvii": "00000101111110",
-	watchnfllivetv: "00000101111111",
-	"37.media.tumblr": "0000011000000",
-	"services.runescape": "0000011000001",
-	voat: "0000011000010",
-	shopify: "0000011000011",
-	"i.minus": "00000110001",
-	mangaupdates: "0000011001",
-	"drive.google": "000001101",
-	businessinsider: "0000011100",
-	freebase: "000001110100",
-	"images-na.ssl-images-amazon": "000001110101",
-	"docs.python": "0000011101100",
-	worldofwarcraft: "00000111011010",
-	disposerx: "00000111011011",
-	"cdn.sesamestreetincommunities": "000001110111",
-	"edition.cnn": "000001111000",
-	"wiki.teamfortress": "000001111001",
-	swappa: "000001111010",
-	"basketball-reference": "000001111011",
-	dailymotion: "00000111110",
-	researchgate: "000001111110",
-	washingtontimes: "000001111111",
-	twitter: "00001",
-	reddit: "00010",
-	doi: "0001100000",
-	"commons.wikimedia": "0001100001",
-	sbnation: "0001100010000",
-	nba: "0001100010001",
-	"ec.europa": "0001100010010",
-	yourlogicalfallacyis: "0001100010011",
-	explosm: "0001100010100",
-	dailykos: "0001100010101",
-	theoatmeal: "0001100010110",
-	epa: "0001100010111",
-	disasterphilanthropy: "0001100011000",
-	deltasigmatheta: "0001100011001",
-	"goto.walmart": "000110001101",
-	corgiorgy: "0001100011100",
-	mythicspoiler: "0001100011101",
-	"connect.ala": "0001100011110",
-	"dynamics.microsoft": "0001100011111",
-	"docs.google": "00011001",
-	pixiv: "00011010",
-	subtletv: "0001101100",
-	"m.reddit": "000110110100",
-	"img.pandawhale": "000110110101",
-	mozilla: "000110110110",
-	pewforum: "0001101101110",
-	quran: "0001101101111",
-	combodeck: "000110111",
-	un: "000111000",
-	"ca.pcpartpicker": "000111001",
-	addtoany: "00011101",
-	nerdwallet: "00011110000000",
-	myfonts: "00011110000001",
-	crutchfield: "00011110000010",
-	cisco: "00011110000011",
-	state: "00011110000100",
-	windowsphone: "00011110000101",
-	psnprofiles: "00011110000110",
-	dwarffortresswiki: "00011110000111",
-	femradebates: "00011110001000",
-	shevibe: "00011110001001",
-	foxsports: "00011110001010",
-	hqhdtv: "00011110001011",
-	talkingpointsmemo: "00011110001100",
-	technologyreview: "00011110001101",
-	kansascity: "00011110001110",
-	"g1.globo": "00011110001111",
-	"pediatrics.aappublications": "00011110010000",
-	twitlonger: "00011110010001",
-	pcworld: "00011110010010",
-	"ru.wikipedia": "00011110010011",
-	"help.ubuntu": "00011110010100",
-	southparkstudios: "00011110010101",
-	military: "00011110010110",
-	taxfoundation: "00011110010111",
-	ustream: "00011110011000",
-	chron: "00011110011001",
-	midwayusa: "00011110011010",
-	android: "00011110011011",
-	costco: "00011110011100",
-	slashfilm: "00011110011101",
-	hindustantimes: "00011110011110",
-	mixcloud: "00011110011111",
-	yahoo: "0001111010000",
-	challonge: "0001111010001",
-	"pics.me": "0001111010010",
-	checkrepost: "0001111010011",
-	"leagueoflegends.wikia": "0001111010100",
-	crunchyroll: "0001111010101",
-	"minecraft.gamepedia": "0001111010110",
-	"m.soundcloud": "0001111010111",
-	stevenaverycase: "00011110110000",
-	getyarn: "00011110110001",
-	ruadick: "00011110110010",
-	"db.fowtcg": "00011110110011",
-	fullhdtvstream: "00011110110100",
-	"news.vice": "00011110110101",
-	loadfst: "00011110110110",
-	chewy: "00011110110111",
-	plos: "0001111011100",
-	"cse.google": "0001111011101",
-	"4k-livefifa": "00011110111100",
-	axios: "00011110111101",
-	"sell.amazon": "00011110111110",
-	grow: "00011110111111",
-	muzemerch: "000111110",
-	neopets: "000111111000",
-	webmd: "000111111001",
-	outline: "000111111010",
-	"atomiks.github": "000111111011",
-	"newsroom.paypal-corp": "00011111110",
-	"bulbapedia.bulbagarden": "000111111110",
-	scribd: "000111111111",
-	youtube: "001",
-	"hearthstone.gamepedia": "0100000000",
-	"i.giphy": "010000000100",
-	robertsspaceindustries: "010000000101",
-	"online.wsj": "0100000001100",
-	ssa: "01000000011010",
-	childrenandfamiliesfirstnc: "01000000011011",
-	lichess: "010000000111",
-	perscholas: "010000001",
-	archiveofourown: "01000001000",
-	"music.apple": "01000001001",
-	thefitness: "01000001010",
-	"68.media.tumblr": "010000010110",
-	"space.hatena.ne": "010000010111",
-	"forums.spacebattles": "0100000110000",
-	esrb: "0100000110001",
-	"c1.staticflickr": "0100000110010",
-	"static1.e621": "0100000110011",
-	jstor: "0100000110100",
-	spiegel: "0100000110101",
-	marketwatch: "0100000110110",
-	serebii: "0100000110111",
-	"news.mongabay": "010000011100",
-	"78.media.tumblr": "010000011101",
-	"b5bznmg.tula": "0100000111100",
-	"my.mixtape": "0100000111101",
-	oceandecade: "0100000111110",
-	morejpeg: "0100000111111",
-	npr: "0100001000",
-	"i.ytimg": "0100001001",
-	ebay: "010000101",
-	tomshardware: "010000110000",
-	goodwillfinds: "010000110001",
-	redditsearch: "01000011001",
-	reverb: "010000110100",
-	gov: "010000110101",
-	pathofexile: "01000011011",
-	"gist.github": "01000011100",
-	newyorker: "010000111010",
-	census: "0100001110110",
-	alternet: "0100001110111",
-	ibb: "01000011110",
-	gelbooru: "01000011111",
-	magiccards: "0100010",
-	walmart: "0100011000",
-	dell: "0100011001000",
-	lolking: "0100011001001",
-	suicidepreventionlifeline: "0100011001010",
-	charitywatch: "0100011001011",
-	"support.steampowered": "0100011001100",
-	guru3d: "0100011001101",
-	"skyrim.nexusmods": "0100011001110",
-	vndb: "0100011001111",
-	avclub: "01000110100000",
-	"ocw.mit": "01000110100001",
-	mlb: "01000110100010",
-	"windows.microsoft": "01000110100011",
-	fcc: "01000110100100",
-	minecraftwiki: "01000110100101",
-	"finalfantasy.wikia": "01000110100110",
-	mtv: "01000110100111",
-	"forums.na.leagueoflegends": "01000110101000",
-	crowdrise: "01000110101001",
-	"forums.xbox": "01000110101010",
-	"cloud-4.steampowered": "01000110101011",
-	"wiki.guildwars": "01000110101100",
-	dafont: "01000110101101",
-	mechanicalkeyboards: "01000110101110",
-	fullfact: "01000110101111",
-	"static.comicvine": "010001101100",
-	rationalwiki: "010001101101",
-	"marketplace.xbox": "01000110111000",
-	"listen.grooveshark": "01000110111001",
-	"assets.nydailynews": "01000110111010",
-	nooooooooooooooo: "01000110111011",
-	"stuff.co": "01000110111100",
-	businessweek: "01000110111101",
-	teamfortress: "01000110111110",
-	skepticsannotatedbible: "01000110111111",
-	therabody: "0100011100000",
-	magaimg: "0100011100001",
-	medseaalliance: "01000111000100",
-	packard: "01000111000101",
-	lnkd: "01000111000110",
-	banquemondiale: "01000111000111",
-	"magic.wizards": "0100011100100",
-	memedad: "0100011100101",
-	botsbyliam: "0100011100110",
-	"chan.sankakucomplex": "0100011100111",
-	"m.popkey": "01000111010000",
-	novelupdates: "01000111010001",
-	oculus: "01000111010010",
-	"sos.ca": "01000111010011",
-	fragrantica: "01000111010100",
-	"health.harvard": "01000111010101",
-	movie24k: "01000111010110",
-	wanna: "01000111010111",
-	"loderunner.github": "01000111011000",
-	"amp.reddit": "01000111011001",
-	kaporcenter: "01000111011010",
-	calicocat: "01000111011011",
-	"pcmrbot.eegras": "01000111011100",
-	"i.makeagif": "01000111011101",
-	"science.sciencemag": "01000111011110",
-	thebalance: "01000111011111",
-	"guardian.co": "010001111000",
-	bitcointalk: "010001111001",
-	furaffinity: "01000111101",
-	livescience: "010001111100",
-	ft: "0100011111010",
-	myspace: "0100011111011",
-	"new.reddit": "01000111111",
-	"dailymail.co": "0100100000",
-	modojo: "0100100001000",
-	washington: "0100100001001",
-	prnt: "0100100001010",
-	"projects.fivethirtyeight": "0100100001011",
-	spreadingsantorum: "0100100001100",
-	allrecipes: "0100100001101",
-	tehurn: "0100100001110",
-	myfitnesspal: "0100100001111",
-	uptogether: "010010001000",
-	spankbang: "010010001001",
-	"community.looker": "0100100010100",
-	acceptbitcoin: "0100100010101",
-	torrentfreak: "01001000101100",
-	"impactchallenge.withgoogle": "01001000101101",
-	"inspiredleaders.downtown": "0100100010111",
-	investopedia: "010010001100",
-	"i.imgflip": "010010001101",
-	futhead: "01001000111",
-	"m.youtube": "01001001",
-	nationalgeographic: "010010100000",
-	gifsound: "010010100001",
-	prntscr: "01001010001",
-	"corporate.walmart": "0100101001",
-	nature: "01001010100",
-	cato: "01001010101000",
-	ajc: "01001010101001",
-	food: "01001010101010",
-	billboard: "01001010101011",
-	snoopsnoo: "010010101011",
-	reason: "0100101011000",
-	"en.wikiquote": "0100101011001",
-	lifehacker: "0100101011010",
-	rawstory: "0100101011011",
-	d20pfsrd: "01001010111",
-	"pohudeniya-bistro": "0100101100000",
-	"awoiaf.westeros": "0100101100001",
-	"thumbs.gfycat": "0100101100010",
-	shtrs: "0100101100011",
-	dol: "0100101100100",
-	jcrew: "0100101100101",
-	nhl: "0100101100110",
-	bricklink: "0100101100111",
-	"oqmweghb.sochi": "01001011010000",
-	dbz: "01001011010001",
-	"fred.stlouisfed": "01001011010010",
-	theothersreport: "01001011010011",
-	citylab: "01001011010100",
-	"fat.gfycat": "01001011010101",
-	georgiymore: "01001011010110",
-	"nurl.cafe24": "01001011010111",
-	"r6fix.ubi": "0100101101100",
-	"en.oxforddictionaries": "0100101101101",
-	mirrorbot: "01001011011100",
-	timee: "01001011011101",
-	"workspace.google": "0100101101111",
-	starcitygames: "01001011100000",
-	memecrunch: "01001011100001",
-	"news.nationalpost": "01001011100010",
-	archives: "01001011100011",
-	"news.google": "01001011100100",
-	"head-fi": "01001011100101",
-	nejm: "01001011100110",
-	cpsc: "01001011100111",
-	padherder: "01001011101000",
-	academia: "01001011101001",
-	"sensualhumiliation.tumblr": "01001011101010",
-	letterboxd: "01001011101011",
-	roblox: "01001011101100",
-	grantland: "01001011101101",
-	"standard.co": "01001011101110",
-	"japantimes.co": "01001011101111",
-	theanarchistlibrary: "010010111100",
-	"secure.actblue": "010010111101",
-	"yutubi.kinja": "010010111110",
-	vocaroo: "010010111111",
-	fivethirtyeight: "010011000000",
-	tmz: "0100110000010",
-	whitehouse: "0100110000011",
-	eventbrite: "010011000010",
-	chicagotribune: "010011000011",
-	yourbrainonporn: "0100110001000",
-	gifrific: "0100110001001",
-	hearthstonetopdecks: "0100110001010",
-	"mega.co": "0100110001011",
-	haaretz: "0100110001100",
-	foreignpolicy: "0100110001101",
-	paizo: "0100110001110",
-	"lh3.googleusercontent": "0100110001111",
-	mtg: "010011001",
-	goo: "010011010",
-	xkcdref: "010011011000",
-	"hydra-media.cursecdn": "010011011001",
-	"xn--80aaqbi4ajie6m": "0100110110100",
-	"kak-pohudet-za": "0100110110101",
-	"farm4.static.flickr": "01001101101100",
-	"shop-links": "01001101101101",
-	"search.app.goo": "0100110110111",
-	"media.tumblr": "01001101110",
-	"snew.github": "01001101111",
-	metacritic: "01001110000",
-	gallup: "010011100010",
-	breitbart: "010011100011",
-	fanfiction: "0100111001",
-	"security.googleblog": "0100111010",
-	"scholar.google": "0100111011",
-	"dota2.gamepedia": "01001111000",
-	mangapanda: "01001111001000",
-	tumblr: "01001111001001",
-	newrepublic: "01001111001010",
-	"what-if.xkcd": "01001111001011",
-	gifsoup: "01001111001100",
-	"cdn.bulbagarden": "01001111001101",
-	independent: "01001111001110",
-	voanews: "01001111001111",
-	fao: "0100111101",
-	"img1.wikia.nocookie": "0100111110000",
-	"m.huffpost": "0100111110001",
-	undercurrentnews: "0100111110010",
-	dlinkes: "0100111110011",
-	"sports.yahoo": "0100111110100",
-	vanityfair: "0100111110101",
-	"warframe.wikia": "0100111110110",
-	bbb: "0100111110111",
-	vgy: "01001111110000",
-	fitbit: "01001111110001",
-	smitegame: "01001111110010",
-	syriancivilwararchive: "01001111110011",
-	xnxx: "01001111110100",
-	budgetbytes: "01001111110101",
-	gbatemp: "01001111110110",
-	taggedtanakh: "01001111110111",
-	onlyfans: "01001111111000",
-	ceoworks: "01001111111001",
-	weddit: "01001111111010",
-	milkbet: "01001111111011",
-	mcmcse: "01001111111100",
-	"45.media.tumblr": "01001111111101",
-	"m.intl.taobao": "01001111111110",
-	"gpu.userbenchmark": "01001111111111",
-	"en.wikipedia": "0101",
-	"de.pcpartpicker": "01100000000",
-	"t-nation": "01100000001000",
-	denverpost: "01100000001001",
-	"ebay.com": "01100000001010",
-	khanacademy: "01100000001011",
-	"img.animebracket": "011000000011",
-	louroe: "01100000010",
-	economist: "011000000110",
-	arxiv: "011000000111",
-	changetip: "011000001000",
-	stripe: "011000001001",
-	"item.taobao": "01100000101",
-	"dictionary.reference": "011000001100",
-	behance: "0110000011010",
-	microcenter: "0110000011011",
-	blackrock: "0110000011100",
-	livehdtv: "0110000011101",
-	sesamestreet: "01100000111100",
-	"mailback-msft.tes-amm": "01100000111101",
-	earthday: "0110000011111",
-	"web.archive": "01100001",
-	"link.springer": "0110001000000",
-	smithsonianmag: "0110001000001",
-	"i0.wp": "0110001000010",
-	fasttech: "0110001000011",
-	upwardlyglobal: "01100010001",
-	redditblog: "0110001001",
-	"resi.ze-robot": "01100010100",
-	politifact: "01100010101",
-	pcgamer: "0110001011000",
-	plannedparenthood: "01100010110010",
-	esquire: "01100010110011",
-	nationalreview: "0110001011010",
-	eurogamer: "0110001011011",
-	spire: "01100010111",
-	worldbank: "01100011000",
-	fastcompany: "01100011001000",
-	"i.telegraph.co": "01100011001001",
-	abload: "01100011001010",
-	"science.howstuffworks": "01100011001011",
-	ehow: "01100011001100",
-	thinkgeek: "01100011001101",
-	escapistmagazine: "01100011001110",
-	"images2.wikia.nocookie": "01100011001111",
-	"lists.linuxfoundation": "0110001101000",
-	sprint: "0110001101001",
-	"togiliatiliati.togliatti": "0110001101010",
-	eroshare: "0110001101011",
-	tripadvisor: "0110001101100",
-	"cdn.memegenerator": "0110001101101",
-	"applynow.chase": "0110001101110",
-	indianapolis500live: "0110001101111",
-	"taobaotools.github": "01100011100000",
-	"reddit.app": "01100011100001",
-	"blog.kaporcenter": "01100011100010",
-	"developers.googleblog": "01100011100011",
-	etonline: "01100011100100",
-	"img2-ak.lst": "01100011100101",
-	"lifeline.org": "01100011100110",
-	"steamcdn-a.akamaihd": "01100011100111",
-	mangadex: "0110001110100",
-	reddittext: "0110001110101",
-	overdeck: "01100011101100",
-	"about.flipboard": "01100011101101",
-	"news.microsoft": "0110001110111",
-	"people-press": "01100011110000",
-	fool: "01100011110001",
-	mlive: "01100011110010",
-	"nl.wikipedia": "01100011110011",
-	"pt.wikipedia": "01100011110100",
-	"nutritiondata.self": "01100011110101",
-	"farm8.staticflickr": "01100011110110",
-	curse: "01100011110111",
-	"officialtvstream.com": "01100011111000",
-	"motherboard.vice": "01100011111001",
-	"zippy.gfycat": "01100011111010",
-	"1drv": "01100011111011",
-	dallasnews: "01100011111100",
-	"hsph.harvard": "01100011111101",
-	cell: "01100011111110",
-	"answers.microsoft": "01100011111111",
-	"s-media-cache-ak0.pinimg": "0110010000",
-	aliexpress: "011001000100",
-	gamespot: "0110010001010",
-	"msnbc.msn": "01100100010110",
-	"ja-jp.facebook": "01100100010111",
-	"developers.google": "01100100011",
-	tappedout: "01100100100",
-	"3.bp.blogspot": "01100100101",
-	tinyurl: "011001001100",
-	"news.com": "0110010011010",
-	"ecx.images-amazon": "0110010011011",
-	"25.media.tumblr": "01100100111",
-	bmw: "0110010100000",
-	"aqnugtr.nov": "0110010100001",
-	coursera: "011001010001",
-	"powerlisting.wikia": "0110010100100",
-	"mlb.mlb": "0110010100101",
-	bato: "0110010100110",
-	brookings: "0110010100111",
-	"us.battle": "0110010101",
-	opensecrets: "0110010110000",
-	gizmodo: "0110010110001",
-	instapaper: "0110010110010",
-	"metro.co": "0110010110011",
-	liveleak: "011001011010",
-	dictionary: "011001011011",
-	"smile.amazon": "01100101110",
-	foxnews: "01100101111",
-	"addons.mozilla": "0110011000",
-	"merriam-webster": "01100110010",
-	scientificamerican: "011001100110",
-	"wh40k.lexicanum": "0110011001110",
-	kotaku: "0110011001111",
-	anilist: "011001101",
-	"media.giphy": "011001110",
-	"scholar.google.co": "01100111100",
-	espncricinfo: "01100111101000",
-	"en.reddit": "01100111101001",
-	planetminecraft: "01100111101010",
-	theblaze: "01100111101011",
-	boston: "01100111101100",
-	"aws.amazon": "01100111101101",
-	"climate.nasa": "01100111101110",
-	ipcc: "01100111101111",
-	"hi-in.facebook": "01100111110000",
-	"de-de.facebook": "01100111110001",
-	c4ads: "0110011111001",
-	"ar-ar.facebook": "01100111110100",
-	"zh-cn.facebook": "01100111110101",
-	"ko-kr.facebook": "01100111110110",
-	"pt-br.facebook": "01100111110111",
-	"pay.reddit": "0110011111100",
-	uesp: "0110011111101",
-	boostwit: "0110011111110",
-	mapbox: "0110011111111",
-	vklvl: "01101000000000",
-	"memory-alpha.wikia": "01101000000001",
-	hutdb: "01101000000010",
-	"ucr.fbi": "01101000000011",
-	archivesofnethys: "01101000000100",
-	pandacoinpnd: "01101000000101",
-	bethesda: "01101000000110",
-	"api.imgur": "01101000000111",
-	huridocs: "01101000001000",
-	greenbiz: "01101000001001",
-	coastguardnews: "01101000001010",
-	walmartsustainabilityhub: "01101000001011",
-	nicsgalleries: "01101000001100",
-	"exvius.gamepedia": "01101000001101",
-	bootyr4r: "01101000001110",
-	democracy: "01101000001111",
-	"metal-archives": "01101000010000",
-	"marvel.wikia": "01101000010001",
-	theweek: "01101000010010",
-	walgreens: "01101000010011",
-	"blogs.scientificamerican": "01101000010100",
-	makeagif: "01101000010101",
-	samsung: "01101000010110",
-	setlist: "01101000010111",
-	"a.pomf": "01101000011000",
-	"us.reddit": "01101000011001",
-	"forums.smitegame": "01101000011010",
-	"minecraft.curseforge": "01101000011011",
-	miamiherald: "01101000011100",
-	ssbwiki: "01101000011101",
-	"socialclub.rockstargames": "01101000011110",
-	"es.pcpartpicker": "01101000011111",
-	"66.media.tumblr": "011010001000",
-	"art.hearthstonejson": "011010001001",
-	"pathofexile.gamepedia": "011010001010",
-	"i1.kym-cdn": "011010001011",
-	"support.apple": "0110100011",
-	forbes: "0110100100",
-	"news.bbc.co": "011010010100",
-	xboxdvr: "0110100101010",
-	cbssports: "0110100101011",
-	whatimade: "0110100101100",
-	nicodb: "0110100101101",
-	seattlefoundation: "0110100101110",
-	bcg: "0110100101111",
-	microsoft: "011010011",
-	steamcommunity: "0110101",
-	"uk.pcpartpicker": "011011000",
-	"onlinelibrary.wiley": "011011001000",
-	rei: "0110110010010",
-	blogcdn: "01101100100110",
-	"blogs.wsj": "01101100100111",
-	wowhead: "01101100101",
-	"books.google": "01101100110",
-	kiwiirc: "011011001110",
-	wikileaks: "011011001111",
-	"24.media.tumblr": "01101101000",
-	"xn--e1agvr0b.xn--j1aef": "01101101001",
-	last: "0110110101",
-	cc: "01101101100000",
-	csgolounge: "01101101100001",
-	"forums.ubi": "01101101100010",
-	g2a: "01101101100011",
-	"encrypted-tbn3.gstatic": "01101101100100",
-	"games-workshop": "01101101100101",
-	"legislation.gov": "01101101100110",
-	digitaltrends: "01101101100111",
-	doctorofcredit: "01101101101000",
-	"es-la.facebook": "01101101101001",
-	rocketr: "01101101101010",
-	mediabiasfactcheck: "01101101101011",
-	"en-americas-support.nintendo": "01101101101100",
-	"wow.gamepedia": "01101101101101",
-	oddshot: "01101101101110",
-	drivethrurpg: "01101101101111",
-	trello: "0110110111",
-	statista: "0110111000000",
-	"na.leagueoflegends": "0110111000001",
-	congress: "0110111000010",
-	"petitions.whitehouse": "0110111000011",
-	fbi: "0110111000100",
-	hulu: "0110111000101",
-	"i.ebayimg": "0110111000110",
-	techcrunch: "0110111000111",
-	"kroger-stage.preprodhawkcommerce": "0110111001000",
-	greenislandmj: "0110111001001",
-	rawg: "01101110010100",
-	"teamrv-mvp.sos.texas": "01101110010101",
-	tent: "01101110010110",
-	lew: "01101110010111",
-	fuwa: "0110111001100",
-	genius: "0110111001101",
-	aka: "0110111001110",
-	"sukipuki.msk": "0110111001111",
-	cbsnews: "01101110100",
-	"it-it.facebook": "01101110101000",
-	thisamericanlife: "01101110101001",
-	inquisitr: "01101110101010",
-	jsfiddle: "01101110101011",
-	erowid: "0110111010110",
-	gutenberg: "01101110101110",
-	"fr-fr.facebook": "01101110101111",
-	etsy: "0110111011",
-	heatware: "01101111000",
-	"vignette3.wikia.nocookie": "011011110010",
-	"33.media.tumblr": "011011110011",
-	reactiongifs: "01101111010",
-	"google.co": "01101111011",
-	twitch: "011011111",
-	"gatherer.wizards": "011100",
-	hummingbird: "011101000000",
-	isthereanydeal: "0111010000010",
-	"img2.wikia.nocookie": "0111010000011",
-	"accounts.google": "01110100001",
-	abimon: "01110100010",
-	thehill: "01110100011",
-	"penzaza.penza": "0111010010000",
-	watchonlinelivetv: "0111010010001",
-	npafc: "0111010010010",
-	"static-3.studiobebop": "0111010010011",
-	"corporate.target": "01110100101",
-	"supermariomakerbookmark.nintendo": "011101001100",
-	"vignette1.wikia.nocookie": "011101001101",
-	universalscammerlist: "011101001110",
-	"www1.folha.uol.com": "011101001111",
-	"open.spotify": "01110101",
-	linkedin: "0111011",
-	"store.steampowered": "011110000",
-	"wiki.archlinux": "0111100010000",
-	uscg: "01111000100010",
-	jpost: "01111000100011",
-	anandtech: "011110001001",
-	bestbuy: "011110001010",
-	engadget: "0111100010110",
-	mises: "0111100010111",
-	knowyourmeme: "01111000110",
-	time: "01111000111",
-	washingtonpost: "011110010",
-	"ml.reddit": "01111001100000",
-	globalb2bcontacts: "01111001100001",
-	chromeenterprise: "01111001100010",
-	suicideprevention: "01111001100011",
-	"firebase.google": "01111001100100",
-	awin1: "01111001100101",
-	"data.tumblr": "01111001100110",
-	epicgames: "01111001100111",
-	harmonybuet: "0111100110100",
-	songrium: "0111100110101",
-	"fitness.apple": "01111001101100",
-	"tm-tracking": "01111001101101",
-	"docs.github": "0111100110111",
-	nolo: "01111001110000",
-	"media.wizards": "01111001110001",
-	fertilityfriend: "01111001110010",
-	"nz.pcpartpicker": "01111001110011",
-	geekhack: "01111001110100",
-	"images3.wikia.nocookie": "01111001110101",
-	eonline: "01111001110110",
-	jordanthebrobot: "01111001110111",
-	winsipedia: "01111001111000",
-	appsto: "01111001111001",
-	"karelialia.karelia": "01111001111010",
-	berniesanders: "01111001111011",
-	muthead: "01111001111100",
-	libgen: "01111001111101",
-	chain: "01111001111110",
-	"stats.nba": "01111001111111",
-	"na.op": "011110100000",
-	buzzfeed: "011110100001",
-	"market.android": "01111010001000",
-	airbnb: "01111010001001",
-	fav: "01111010001010",
-	oxforddictionaries: "01111010001011",
-	gamasutra: "01111010001100",
-	popularmechanics: "01111010001101",
-	livestrong: "01111010001110",
-	cnsnews: "01111010001111",
-	stitcher: "0111101001000",
-	aljazeera: "0111101001001",
-	"4kmoviehub": "0111101001010",
-	"36.media.tumblr": "0111101001011",
-	"starwars.wikia": "011110100110",
-	"goto.target": "011110100111",
-	blog: "011110101000",
-	bungie: "011110101001",
-	"eu.battle": "011110101010",
-	"msdn.microsoft": "0111101010110",
-	justice: "0111101010111",
-	gyazo: "0111101011",
-	huffingtonpost: "0111101100",
-	itcosmetics: "011110110100",
-	"i3.kym-cdn": "011110110101",
-	"mirror.co": "0111101101100",
-	techpowerup: "0111101101101",
-	"activity.mobilelegends": "0111101101110",
-	"b.1339": "0111101101111",
-	amzn: "011110111000",
-	"marine-conservation": "011110111001",
-	"vignette.wikia.nocookie": "01111011101",
-	"s.metjm": "011110111100",
-	"support.microsoft": "011110111101",
-	nicovideo: "01111011111",
-	instagram: "0111110",
-	"i0.kym-cdn": "01111110000",
-	"g.redditmedia": "011111100010",
-	"hq.porygon": "011111100011",
-	"cloud.google": "0111111001",
-	ujyaaloonline: "01111110100000",
-	href: "01111110100001",
-	"ulta.ztk5": "01111110100010",
-	waltonfamilyfoundation: "01111110100011",
-	"journals.sagepub": "01111110100100",
-	dailywire: "01111110100101",
-	otranscribe: "01111110100110",
-	macys: "01111110100111",
-	"images4-b.ravelrycache": "0111111010100",
-	"timesofindia.indiatimes": "0111111010101",
-	"optc-db.github": "0111111010110",
-	tradingview: "0111111010111",
-	heritage: "01111110110000",
-	"profootballtalk.nbcsports": "01111110110001",
-	techspot: "01111110110010",
-	kohls: "01111110110011",
-	bash: "01111110110100",
-	wikipedia: "01111110110101",
-	"hyperboleandahalf.blogspot": "01111110110110",
-	surveymonkey: "01111110110111",
-	bjs: "01111110111000",
-	"static.giantbomb": "01111110111001",
-	"cpu.userbenchmark": "01111110111010",
-	northantrim: "01111110111011",
-	"i.huffpost": "01111110111100",
-	zeit: "01111110111101",
-	massdrop: "01111110111110",
-	society6: "01111110111111",
-	soundcloud: "01111111",
-	"plus.google": "10000000000",
-	rottentomatoes: "10000000001",
-	ew: "100000000100",
-	theonion: "100000000101",
-	lds: "1000000001100",
-	"groups.google": "10000000011010",
-	oemdtc: "10000000011011",
-	howl: "100000000111",
-	steamrep: "1000000010000",
-	sec: "1000000010001",
-	unesco: "1000000010010",
-	sanger: "1000000010011",
-	shouters: "10000000101",
-	"fiddle.jshell": "100000001100",
-	nydailynews: "100000001101",
-	donaldjtrump: "1000000011100",
-	nicozon: "1000000011101",
-	nordstrom: "1000000011110",
-	tidal: "1000000011111",
-	xvideos: "10000001000",
-	ala: "100000010010",
-	nypost: "100000010011",
-	"dl.dropbox": "1000000101000",
-	politicalcompass: "10000001010010",
-	boingboing: "10000001010011",
-	narffl: "100000010101",
-	"azure.microsoft": "10000001011",
-	timeanddate: "1000000110",
-	nationalpost: "10000001110000",
-	cancer: "10000001110001",
-	att: "10000001110010",
-	indiegala: "10000001110011",
-	"secure.wikimedia": "10000001110100",
-	gnu: "10000001110101",
-	house: "10000001110110",
-	mediamatters: "10000001110111",
-	"reddit.applebyte": "10000001111000",
-	"cards.eternalwarcry": "10000001111001",
-	"l.facebook": "10000001111010",
-	mailmygov: "10000001111011",
-	huffpost: "10000001111100",
-	onlinemarketplace24: "10000001111101",
-	livepc2tv: "10000001111110",
-	documentcloud: "10000001111111",
-	theguardian: "100000100",
-	explainxkcd: "100000101000",
-	nfl: "100000101001",
-	scrolller: "100000101010",
-	"vignette2.wikia.nocookie": "100000101011",
-	qkme: "1000001011000",
-	bhphotovideo: "1000001011001",
-	kaporcapital: "10000010110100",
-	"my.hupu": "10000010110101",
-	overclock: "1000001011011",
-	saucenao: "10000010111",
-	vimeo: "1000001100",
-	nbcnews: "10000011010",
-	washingtonexaminer: "1000001101100",
-	"murmurmansk.murmansk": "1000001101101",
-	"i.dailymail.co": "100000110111",
-	pastebin: "100000111",
-	amazon: "100001",
-	redd: "1000100",
-	cnn: "1000101000",
-	"movies.netflix": "100010100100",
-	duckduckgo: "1000101001010",
-	minus: "1000101001011",
-	"images.brickset": "10001010011",
-	"4.bp.blogspot": "10001010100",
-	"pohudet-na-kg": "100010101010",
-	"money.cnn": "100010101011",
-	watch24: "1000101011000",
-	"forum.kerbalspaceprogram": "1000101011001",
-	swarfarm: "1000101011010",
-	gph: "1000101011011",
-	"clips.twitch": "10001010111",
-	giphy: "10001011000",
-	pnas: "1000101100100",
-	cia: "10001011001010",
-	okcupid: "10001011001011",
-	ceddit: "100010110011",
-	"sslim.kinja": "10001011010000",
-	"docs.unity3d": "10001011010001",
-	"ps.w": "10001011010010",
-	livslinien: "10001011010011",
-	"dictionary.cambridge": "10001011010100",
-	vocadb: "10001011010101",
-	livestreamhdtv: "10001011010110",
-	slatestarcodex: "10001011010111",
-	erome: "1000101101100",
-	"adsabs.harvard": "1000101101101",
-	"uk.linkedin": "1000101101110",
-	airtable: "1000101101111",
-	newgrounds: "10001011100000",
-	"i1.ytimg": "10001011100001",
-	mercurynews: "10001011100010",
-	bible: "10001011100011",
-	redditloans: "100010111001",
-	xbox: "10001011101000",
-	pokecheck: "10001011101001",
-	scmp: "10001011101010",
-	sweetwater: "10001011101011",
-	popsci: "10001011101100",
-	bodybuilding: "10001011101101",
-	"forum.paradoxplaza": "10001011101110",
-	slickdeals: "10001011101111",
-	kitsu: "1000101111",
-	"apps.apple": "100011",
-	imgur: "1001",
-	github: "10100",
-	notebookcheck: "1010100000000",
-	katespade: "1010100000001",
-	"xn--80adiba3abddchue7e4b": "101010000001",
-	"go.microsoft": "101010000010",
-	discogs: "101010000011",
-	"webcache.googleusercontent": "1010100001000",
-	"articles.latimes": "1010100001001",
-	ipsnews: "1010100001010",
-	ikea: "1010100001011",
-	adf: "10101000011",
-	nicofinder: "1010100010000",
-	"media2.giphy": "1010100010001",
-	decronym: "1010100010010",
-	"i.redditmedia": "1010100010011",
-	"cdn.shopify": "1010100010100",
-	postimg: "1010100010101",
-	omfgdogs: "1010100010110",
-	polygon: "1010100010111",
-	"law.cornell": "101010001100",
-	ted: "101010001101",
-	usatoday: "10101000111",
-	cbc: "10101001000",
-	"abcnews.go": "10101001001",
-	redbubble: "1010100101000",
-	"baseball-reference": "1010100101001",
-	nhentai: "1010100101010",
-	globalnews: "1010100101011",
-	"goodbot-badbot.herokuapp": "10101001011",
-	tesla: "101010011000000",
-	"pics.onsizzle": "101010011000001",
-	gwentdb: "101010011000010",
-	"developer.microsoft": "101010011000011",
-	wtop: "101010011000100",
-	dreadnoughtforums: "101010011000101",
-	"media.gettyimages": "101010011000110",
-	"qwakamakaflo.in": "101010011000111",
-	richardphotolab: "101010011001000",
-	"dyn.keepa": "101010011001001",
-	nereusprogram: "101010011001010",
-	dotdashmeredith: "101010011001011",
-	"cdn.vox-cdn": "101010011001100",
-	"fi.google": "101010011001101",
-	"i.postimg": "101010011001110",
-	unitedstreams4all: "101010011001111",
-	newsmax: "101010011010000",
-	watchnflgame: "101010011010001",
-	"en.m.wiktionary": "101010011010010",
-	"support.plex": "101010011010011",
-	feedingamerica: "101010011010100",
-	fitbamob: "101010011010101",
-	"trends-and-virals": "101010011010110",
-	"business.financialpost": "101010011010111",
-	msi: "101010011011000",
-	sageadvice: "101010011011001",
-	geoguessr: "101010011011010",
-	"e-liquid-recipes": "101010011011011",
-	"cloud-4.steamusercontent": "101010011011100",
-	"uproxx.files.wordpress": "101010011011101",
-	waitbutwhy: "101010011011110",
-	arcgames: "101010011011111",
-	eternalwarcry: "10101001110000",
-	"forums.playbattlegrounds": "10101001110001",
-	"b1.hoopchina.com": "10101001110010",
-	"music.youtube": "10101001110011",
-	"49.media.tumblr": "10101001110100",
-	"lanacion.com": "10101001110101",
-	"files.catbox": "10101001110110",
-	"ehjmilredditop.in": "10101001110111",
-	"events.withgoogle": "101010011110000",
-	oceanographicmagazine: "101010011110001",
-	adcouncil: "10101001111001",
-	fortunesociety: "101010011110100",
-	jbl: "101010011110101",
-	latinospro: "101010011110110",
-	thelastmile: "101010011110111",
-	resourcewatch: "10101001111100",
-	therosienetwork: "10101001111101",
-	"cs.mak.ac": "10101001111110",
-	"blog.code": "10101001111111",
-	ftc: "101010100000000",
-	"picasaweb.google": "101010100000001",
-	makeuseof: "101010100000010",
-	techradar: "101010100000011",
-	indeed: "101010100000100",
-	epicurious: "101010100000101",
-	malwarebytes: "101010100000110",
-	philpapers: "101010100000111",
-	"sanders.senate": "101010100001000",
-	businesswire: "101010100001001",
-	mariowiki: "101010100001010",
-	"simple.wikipedia": "101010100001011",
-	camelcamelcamel: "101010100001100",
-	"nlm.nih": "101010100001101",
-	gigabyte: "101010100001110",
-	"articles.chicagotribune": "101010100001111",
-	"pislinkuredditza.in": "1010101000100",
-	sli: "1010101000101",
-	collegehumor: "101010100011000",
-	scienceblogs: "101010100011001",
-	"dx.doi": "101010100011010",
-	damninteresting: "101010100011011",
-	presstv: "101010100011100",
-	lewrockwell: "101010100011101",
-	slideshare: "101010100011110",
-	cirp: "101010100011111",
-	sketchtoy: "101010100100000",
-	backcountry: "101010100100001",
-	"99percentinvisible": "101010100100010",
-	health: "101010100100011",
-	giantitp: "101010100100100",
-	chess: "101010100100101",
-	hhs: "101010100100110",
-	endclothing: "101010100100111",
-	kijiji: "101010100101000",
-	profootballfocus: "101010100101001",
-	"images6.fanpop": "101010100101010",
-	theroot: "101010100101011",
-	lemonde: "101010100101100",
-	moridb: "101010100101101",
-	canadiancouchpotato: "101010100101110",
-	androidauthority: "101010100101111",
-	privateinternetaccess: "101010100110000",
-	gao: "101010100110001",
-	easports: "101010100110010",
-	codecademy: "101010100110011",
-	"static.tumblr": "101010100110100",
-	"onepiece.wikia": "101010100110101",
-	"fc03.deviantart": "101010100110110",
-	dnaindia: "101010100110111",
-	votetexas: "101010100111000",
-	freakonomics: "101010100111001",
-	asos: "101010100111010",
-	jacobinmag: "101010100111011",
-	pjmedia: "101010100111100",
-	loc: "101010100111101",
-	"iopscience.iop": "101010100111110",
-	"borderlands.wikia": "101010100111111",
-	thefreedictionary: "10101010100000",
-	"img.photobucket": "10101010100001",
-	redtube: "10101010100010",
-	grooveshark: "10101010100011",
-	thingiverse: "101010101001",
-	familysearch: "10101010101000",
-	"media-cache-ec0.pinimg": "10101010101001",
-	samaritans: "10101010101010",
-	matthieugrieger: "10101010101011",
-	"docs.oracle": "10101010101100",
-	beeradvocate: "10101010101101",
-	eia: "10101010101110",
-	neogaf: "10101010101111",
-	puu: "1010101011",
-	minderoo: "101010110000",
-	"xn--b1actsqfc5b.xn--j1aef": "101010110001",
-	"i.gyazo": "10101011001",
-	"store.playstation": "101010110100",
-	fantasypros: "1010101101010",
-	nymag: "1010101101011",
-	"video.google": "10101011011000",
-	stimson: "10101011011001",
-	"images4-e.ravelrycache": "1010101101101",
-	"google.com": "101010110111",
-	"scp-wiki": "1010101110",
-	redditenhancementsuite: "1010101111",
-	"tvvidzon.blogspot": "1010110000000",
-	netrunnerdb: "1010110000001",
-	bigkosmos: "1010110000010",
-	"video.nfl": "1010110000011",
-	seedsindia: "10101100001",
-	greasyfork: "10101100010",
-	speedtest: "1010110001100",
-	redditgifts: "10101100011010",
-	rateyourmusic: "10101100011011",
-	homedepot: "101011000111",
-	newegg: "1010110010",
-	theatlantic: "10101100110",
-	"wiki.guildwars2": "101011001110",
-	creativecommons: "1010110011110",
-	bing: "1010110011111",
-	howtogeek: "1010110100000",
-	"ebay.co": "1010110100001",
-	moviehunterz: "1010110100010",
-	"giant.gfycat": "1010110100011",
-	"click.linksynergy": "10101101001",
-	gameinformer: "10101101010000",
-	"elderscrolls.wikia": "10101101010001",
-	motorola: "10101101010010",
-	random: "10101101010011",
-	usa: "10101101010100",
-	oregonlive: "10101101010101",
-	readability: "10101101010110",
-	irishtimes: "10101101010111",
-	"jobs.target": "10101101011000",
-	capitalone: "10101101011001",
-	learnbitcoin: "10101101011010",
-	veryfetch: "10101101011011",
-	porygon: "10101101011100",
-	ctvnews: "10101101011101",
-	shters: "10101101011110",
-	scriptogr: "10101101011111",
-	"support.google": "1010110110",
-	thedailybeast: "101011011100",
-	netflix: "1010110111010",
-	livestreamfails: "1010110111011",
-	countle: "10101101111",
-	gfycat: "10101110",
-	medium: "101011110",
-	megalodon: "101011111",
-	usblackchambers: "101100000000",
-	zerohedge: "1011000000010",
-	motherjones: "1011000000011",
-	tiktok: "10110000001",
-	apple: "10110000010",
-	opendota: "101100000110",
-	theverge: "101100000111",
-	"upload.wikimedia": "101100001",
-	notehub: "1011000100000",
-	"media0.giphy": "1011000100001",
-	"i.magaimg": "1011000100010",
-	"r34.tsumino": "1011000100011",
-	"imgs.xkcd": "101100010010",
-	e621: "101100010011",
-	nexusmods: "1011000101",
-	dotabuff: "1011000110",
-	psychologytoday: "101100011100",
-	"espn.go": "101100011101",
-	t: "10110001111",
-	"m.imgur": "101100100",
-	snopes: "10110010100",
-	ff2ebook: "10110010101",
-	hearthpwn: "10110010110",
-	brickset: "10110010111",
-	"2.bp.blogspot": "10110011000",
-	patheos: "10110011001000",
-	venturebeat: "10110011001001",
-	"data.whicdn": "10110011001010",
-	tinypic: "10110011001011",
-	zdnet: "10110011001100",
-	"penny-arcade": "10110011001101",
-	thenation: "10110011001110",
-	tampabay: "10110011001111",
-	bugguide: "10110011010",
-	ravelry: "10110011011",
-	thediplomat: "101100111000000",
-	maggardrazors: "101100111000001",
-	"keto-calculator.ankerl": "101100111000010",
-	vg247: "101100111000011",
-	datpiff: "101100111000100",
-	"farm9.staticflickr": "101100111000101",
-	thenextweb: "101100111000110",
-	logicalincrements: "101100111000111",
-	"support.rockstargames": "101100111001000",
-	"thetimes.co": "101100111001001",
-	"doc.rust-lang": "101100111001010",
-	"t-mobile": "101100111001011",
-	"youllot.nation2": "101100111001100",
-	teespring: "101100111001101",
-	"i.4cdn": "101100111001110",
-	"support.activision": "101100111001111",
-	musiciansfriend: "101100111010000",
-	"gta.wikia": "101100111010001",
-	eeoc: "101100111010010",
-	"euw.leagueoflegends": "101100111010011",
-	"lh5.googleusercontent": "101100111010100",
-	artofmanliness: "101100111010101",
-	washingtonsblog: "101100111010110",
-	portforward: "101100111010111",
-	digikey: "101100111011000",
-	scarleteen: "101100111011001",
-	"productforums.google": "101100111011010",
-	cbs: "101100111011011",
-	allenedmonds: "101100111011100",
-	pewglobal: "101100111011101",
-	charitynavigator: "101100111011110",
-	themarysue: "101100111011111",
-	vertigobutik: "101100111100000",
-	cubers: "101100111100001",
-	"event.mobilelegends": "101100111100010",
-	"i.ibb": "101100111100011",
-	"e-hentai": "101100111100100",
-	"gttp.votinginfoproject": "101100111100101",
-	buzzfeednews: "101100111100110",
-	imgtc: "101100111100111",
-	"community.c2cglobal": "101100111101000",
-	allaboutcookies: "101100111101001",
-	"getsupport.apple": "101100111101010",
-	naacpimageawards: "101100111101011",
-	pahilopost: "101100111101100",
-	"gamepedia.cursecdn": "101100111101101",
-	"applieddigitalskills.withgoogle": "101100111101110",
-	jerkofftocelebs: "101100111101111",
-	vslive: "101100111110000",
-	accessories4less: "101100111110001",
-	"wowwiki.wikia": "101100111110010",
-	apkmirror: "101100111110011",
-	"account.oneplus": "101100111110100",
-	abc7news: "101100111110101",
-	webtoons: "101100111110110",
-	ohchr: "101100111110111",
-	patch: "101100111111000",
-	priberam: "101100111111001",
-	sandiegouniontribune: "101100111111010",
-	"heqreditmonis.in": "101100111111011",
-	nowwatchtvlive: "101100111111100",
-	"modlog.github": "101100111111101",
-	sciencealert: "101100111111110",
-	"go.berniesanders": "101100111111111",
-	phish: "1011010000000",
-	"m.xkcd": "1011010000001",
-	"bzgnnbab.bzgnnbab": "1011010000010",
-	"euw.op": "1011010000011",
-	"pro-football-reference": "1011010000100",
-	xhamster: "1011010000101",
-	glassdoor: "1011010000110",
-	dailycaller: "1011010000111",
-	sciencebasedmedicine: "101101000100000",
-	bankrate: "101101000100001",
-	"browse.deviantart": "101101000100010",
-	launchpad: "101101000100011",
-	"dmv.ca": "101101000100100",
-	norml: "101101000100101",
-	gothamist: "101101000100110",
-	"sales.starcitygames": "101101000100111",
-	cbpp: "101101000101000",
-	autoblog: "101101000101001",
-	"fc08.deviantart": "101101000101010",
-	oglaf: "101101000101011",
-	"tardis.wikia": "101101000101100",
-	payscale: "101101000101101",
-	"inception.davepedu": "101101000101110",
-	"27.media.tumblr": "101101000101111",
-	thinkwithgoogle: "1011010001100",
-	"photos.app.goo": "1011010001101",
-	"26.media.tumblr": "101101000111000",
-	"tools.ietf": "101101000111001",
-	thestranger: "101101000111010",
-	"store.apple": "101101000111011",
-	sourcewatch: "101101000111100",
-	"farm3.static.flickr": "101101000111101",
-	stltoday: "101101000111110",
-	"forum.bodybuilding": "101101000111111",
-	camwhores: "10110100100000",
-	matchstats: "10110100100001",
-	jv: "10110100100010",
-	swgoh: "10110100100011",
-	ifixit: "10110100100100",
-	"c-span": "10110100100101",
-	hdmoviejunction: "10110100100110",
-	steamdb: "10110100100111",
-	"register.uso": "101101001010000",
-	"developers.home.google": "101101001010001",
-	"customers.microsoft": "10110100101001",
-	storytoys: "101101001010100",
-	fastdemocracy: "101101001010101",
-	"documentation.spire": "101101001010110",
-	iotc: "101101001010111",
-	"mba.ac": "10110100101100",
-	"services.google": "10110100101101",
-	earthshotprize: "10110100101110",
-	bavc: "10110100101111",
-	"1.bp.blogspot": "10110100110",
-	kickstarter: "101101001110",
-	newsweek: "101101001111",
-	globalfishingwatch: "1011010100",
-	"uso.zoom": "101101010100",
-	"shop.aclu": "101101010101",
-	"code.google": "101101010110",
-	"media.tenor": "1011010101110",
-	deckbox: "1011010101111",
-	cdc: "10110101100",
-	ywca: "10110101101",
-	"translate.google": "1011010111",
-	bls: "1011011000000",
-	uniqlo: "10110110000010",
-	gamefaqs: "10110110000011",
-	vera: "101101100001",
-	politico: "10110110001",
-	pbs: "101101100100",
-	"maps.google": "101101100101",
-	justinpaulin: "101101100110",
-	gitlab: "101101100111",
-	removeddit: "10110110100",
-	zappos: "10110110101000",
-	accesstoinsight: "10110110101001",
-	skepticalscience: "10110110101010",
-	donorschoose: "10110110101011",
-	ssshorts: "101101101011",
-	strava: "10110110110000",
-	"cdn.meme": "10110110110001",
-	wikiwand: "10110110110010",
-	"c2.staticflickr": "10110110110011",
-	"assets.sbnation": "10110110110100",
-	"papers.ssrn": "10110110110101",
-	indiegogo: "10110110110110",
-	extremetech: "10110110110111",
-	prf: "10110110111000",
-	"news.gallup": "10110110111001",
-	channel4: "101101101110100",
-	"cdn.donorschoose": "101101101110101",
-	refugees: "10110110111011",
-	smash: "10110110111100",
-	getpocket: "10110110111101",
-	"img.buzzfeed": "10110110111110",
-	"xn--e1akfklne0d.xn--j1aef": "10110110111111",
-	imdb: "10110111",
-	youtu: "10111",
-	"blog.mozilla": "1100000000000",
-	"smbc-comics": "1100000000001",
-	vulpix: "1100000000010",
-	"dl.dropboxusercontent": "1100000000011",
-	sephora: "110000000010",
-	"31.media.tumblr": "110000000011",
-	"itunes.apple": "1100000001",
-	para: "1100000010",
-	hsreplay: "11000000110",
-	wikihow: "110000001110",
-	"wiki.teamliquid": "1100000011110",
-	teamliquid: "1100000011111",
-	"forum.xda-developers": "11000001000",
-	"services.parliament": "1100000100100",
-	weknowmemes: "1100000100101",
-	getindiebill: "1100000100110",
-	"hentai-foundry": "1100000100111",
-	steamkiwi: "11000001010",
-	"lastfm-img2.akamaized": "11000001011",
-	"en.wiktionary": "110000011000",
-	fangraphs: "1100000110010",
-	flic: "1100000110011",
-	"41.media.tumblr": "110000011010",
-	"38.media.tumblr": "110000011011",
-	bit: "1100000111",
-	discord: "11000010",
-	nytimes: "110000110",
-	dndbeyond: "110000111000000",
-	"3ds": "110000111000001",
-	"support.discordapp": "110000111000010",
-	yourporn: "110000111000011",
-	"storage.googleapis": "110000111000100",
-	"gxb.carolgames": "110000111000101",
-	electrek: "110000111000110",
-	dbr: "110000111000111",
-	frameiteasy: "110000111001000",
-	format: "110000111001001",
-	"visualstudio.microsoft": "110000111001010",
-	mobilize: "110000111001011",
-	limraexim: "110000111001100",
-	primealpha: "110000111001101",
-	"qph.fs.quoracdn": "110000111001110",
-	registertovoteflorida: "110000111001111",
-	"dnd.wizards": "110000111010000",
-	"media4.giphy": "110000111010001",
-	indiewire: "110000111010010",
-	minyoung: "110000111010011",
-	"bendhur.tumblr": "110000111010100",
-	dermstore: "110000111010101",
-	gg: "110000111010110",
-	"southpark.cc": "110000111010111",
-	"vrsws.sos.ky": "110000111011000",
-	tdeecalculator: "110000111011001",
-	"pdfs.semanticscholar": "110000111011010",
-	emojipedia: "110000111011011",
-	"m.dhgate": "110000111011100",
-	rtings: "110000111011101",
-	"bugreport.apple": "110000111011110",
-	oneplus: "110000111011111",
-	"pc-kombo": "11000011110000",
-	"amazon.com": "11000011110001",
-	shortland: "11000011110010",
-	snapchat: "11000011110011",
-	codepen: "11000011110100",
-	hobbyking: "11000011110101",
-	dogechain: "11000011110110",
-	"worldwidetvshowsnow.blogspot": "11000011110111",
-	oceanpanel: "11000011111000",
-	loanmanager: "11000011111001",
-	wadhwaniai: "110000111110100",
-	iibuffalo: "110000111110101",
-	gub: "11000011111011",
-	herbibot: "11000011111100",
-	a: "11000011111101",
-	"external-preview.redd": "11000011111110",
-	"support.coinbase": "11000011111111",
-	propublica: "110001000000000",
-	drupal: "110001000000001",
-	jsonline: "110001000000010",
-	youporn: "110001000000011",
-	"sports.espn.go": "110001000000100",
-	eurekalert: "110001000000101",
-	infoplease: "110001000000110",
-	nybooks: "110001000000111",
-	exrx: "110001000001000",
-	io9: "110001000001001",
-	urbanoutfitters: "110001000001010",
-	oecd: "110001000001011",
-	tf2b: "110001000001100",
-	sparkfun: "110001000001101",
-	freep: "110001000001110",
-	"blogs.discovermagazine": "110001000001111",
-	"cdn.discordapp": "11000100001",
-	"help.ea": "110001000100000",
-	"mwo.smurfy-net": "110001000100001",
-	kff: "110001000100010",
-	llbean: "110001000100011",
-	dulfy: "110001000100100",
-	welt: "110001000100101",
-	"forums.warframe": "110001000100110",
-	hbr: "110001000100111",
-	mtgsalvation: "110001000101000",
-	"f-droid": "110001000101001",
-	npmjs: "110001000101010",
-	"cdn.mediacru": "110001000101011",
-	atlasobscura: "110001000101100",
-	"bigstory.ap": "110001000101101",
-	halopedia: "110001000101110",
-	ideone: "110001000101111",
-	pcgamingwiki: "110001000110000",
-	"psycnet.apa": "110001000110001",
-	phoronix: "110001000110010",
-	"images5.fanpop": "110001000110011",
-	polyvore: "110001000110100",
-	observer: "110001000110101",
-	"fc09.deviantart": "110001000110110",
-	cabelas: "110001000110111",
-	"fiber.google": "110001000111000",
-	greenmangaming: "110001000111001",
-	ndtv: "110001000111010",
-	androidpolice: "110001000111011",
-	d20srd: "110001000111100",
-	bmj: "110001000111101",
-	newstatesman: "110001000111110",
-	about: "110001000111111",
-	animenewsnetwork: "11000100100000",
-	jalopnik: "11000100100001",
-	chamorrobible: "11000100100010",
-	tradingeconomics: "11000100100011",
-	redditinc: "110001001001",
-	"i.chzbgr": "11000100101000",
-	mediaite: "11000100101001",
-	theconversation: "11000100101010",
-	gamestop: "11000100101011",
-	nbc: "11000100101100",
-	sciencemag: "11000100101101",
-	rcfp: "11000100101110",
-	deadspin: "11000100101111",
-	canada: "1100010011000",
-	space: "11000100110010",
-	mines: "11000100110011",
-	mega: "1100010011010",
-	"static.api3.studiobebop": "1100010011011",
-	wsj: "110001001110",
-	"abc.net": "110001001111",
-	"i.redd": "11000101",
-	aclu: "11000110",
-	myanimelist: "11000111",
-	thehimalayantimes: "1100100000000",
-	theintercept: "1100100000001",
-	ripsave: "1100100000010",
-	xx1: "1100100000011",
-	"de.wikipedia": "110010000010",
-	puzzledragonx: "1100100000110",
-	thelocal: "11001000001110",
-	sourceforge: "11001000001111",
-	"i.pinimg": "11001000010",
-	deviantart: "11001000011",
-	yelp: "110010001000",
-	nasa: "1100100010010",
-	"images.google": "1100100010011",
-	battle: "11001000101000",
-	ibtimes: "11001000101001",
-	"items.jellyneo": "11001000101010",
-	tandfonline: "11001000101011",
-	"sv.wikipedia": "11001000101100",
-	"answers.yahoo": "11001000101101",
-	"thumbs.dreamstime": "11001000101110",
-	mentalfloss: "11001000101111",
-	pornhub: "1100100011",
-	discordapp: "11001001",
-	"video.twimg": "11001010000000",
-	ltstyt: "11001010000001",
-	"photo.walgreens": "11001010000010",
-	meme: "11001010000011",
-	audible: "11001010000100",
-	bostonglobe: "11001010000101",
-	"media.discordapp": "11001010000110",
-	etherscan: "11001010000111",
-	rollingstone: "1100101000100",
-	"fallout.wikia": "1100101000101",
-	uso: "1100101000110",
-	today: "1100101000111",
-	mtgprice: "1100101001",
-	govtrack: "1100101010000",
-	youtubedoubler: "11001010100010",
-	weather: "110010101000110",
-	"forum.notebookreview": "110010101000111",
-	"contact.dankmemesreddit": "110010101001",
-	credo360: "11001010101",
-	"s3.amazonaws": "110010101100",
-	gog: "1100101011010",
-	"es.wikipedia": "1100101011011",
-	espn: "110010101110",
-	grailed: "110010101111",
-	"en.m.wikipedia": "11001011",
-	google: "1100110",
-	"i.reddituploads": "1100111000000",
-	"journals.plos": "1100111000001",
-	imo: "1100111000010",
-	"myaccount.google": "1100111000011",
-	swtor: "1100111000100",
-	"reddit.honestbleeps": "1100111000101",
-	"userserve-ak.last": "1100111000110",
-	"runescape.wikia": "1100111000111",
-	flickr: "1100111001",
-	"chrome.google": "1100111010",
-	futbin: "110011101100",
-	"botmetric.pythonanywhere": "1100111011010",
-	instructables: "1100111011011",
-	strawpoll: "110011101110",
-	irs: "110011101111",
-	copymethat: "11001111000000",
-	healthline: "11001111000001",
-	"preview.redd": "11001111000010",
-	stratz: "11001111000011",
-	meshcenter: "11001111000100",
-	"boards.na.leagueoflegends": "11001111000101",
-	crisistextline: "11001111000110",
-	"store.google": "11001111000111",
-	diamondcarepetfood: "110011110010000",
-	"images-wixmp-ed30a86b8c4ca887773594c2.wixmp": "110011110010001",
-	"policies.google": "110011110010010",
-	ratopati: "110011110010011",
-	classicdb: "110011110010100",
-	whoaremyrepresentatives: "110011110010101",
-	"voterlookup.elections.state.ny": "110011110010110",
-	setopati: "110011110010111",
-	skillsoft: "11001111001100",
-	"payneinstitute.mines": "11001111001101",
-	"newsroom.ca.paypal-corp": "110011110011100",
-	mpatlas: "110011110011101",
-	"newsroom.uk.paypal-corp": "110011110011110",
-	"newsroom.it.paypal-corp": "110011110011111",
-	"tv.youtube": "110011110100",
-	"m.facebook": "110011110101",
-	dw: "11001111011000",
-	"1d4chan": "11001111011001",
-	steamcharts: "11001111011010",
-	imagecomics: "11001111011011",
-	nj: "11001111011100",
-	mobygames: "11001111011101",
-	myfigurecollection: "11001111011110",
-	seattletimes: "11001111011111",
-	mtgtop8: "110011111000000",
-	smogon: "110011111000001",
-	"en.numista": "110011111000010",
-	"data.bls": "110011111000011",
-	"s3-ec.buzzfed": "110011111000100",
-	"iep.utm": "110011111000101",
-	nap: "110011111000110",
-	songkick: "110011111000111",
-	texastribune: "110011111001000",
-	"sphotos-a.xx.fbcdn": "110011111001001",
-	"imperial-library": "110011111001010",
-	"usatoday30.usatoday": "110011111001011",
-	"no.wikipedia": "110011111001100",
-	diablofans: "110011111001101",
-	"g.e-hentai": "110011111001110",
-	"forums.civfanatics": "110011111001111",
-	jewishvirtuallibrary: "110011111010000",
-	pbfcomics: "110011111010001",
-	newadvent: "110011111010010",
-	zazzle: "110011111010011",
-	vredd: "1100111110101",
-	listverse: "110011111011000",
-	"images4.wikia.nocookie": "110011111011001",
-	deathpenaltyinfo: "110011111011010",
-	nola: "110011111011011",
-	homebrewtalk: "110011111011100",
-	"en.wikisource": "110011111011101",
-	gq: "110011111011110",
-	ontario: "110011111011111",
-	"cfb.diydunce": "110011111100000",
-	pajhwok: "110011111100001",
-	"mnvotes.sos.state.mn": "110011111100010",
-	dmsguild: "110011111100011",
-	"cdn-images-1.medium": "110011111100100",
-	periscope: "110011111100101",
-	oodaloop: "110011111100110",
-	"vfdvdfvdvf.deviantart": "110011111100111",
-	"mtg.gamepedia": "110011111101000",
-	resistbot: "110011111101001",
-	"image.ibb": "110011111101010",
-	"secure-dawn-77807.herokuapp": "110011111101011",
-	jamanetwork: "110011111101100",
-	nakilon: "110011111101101",
-	unblockvideos: "110011111101110",
-	"img.bricklink": "110011111101111",
-	mrwgifs: "110011111110000",
-	"ark.intel": "110011111110001",
-	usmagazine: "110011111110010",
-	gamersnexus: "110011111110011",
-	bizjournals: "110011111110100",
-	pokemon: "110011111110101",
-	footballoutsiders: "110011111110110",
-	probuilds: "110011111110111",
-	windowscentral: "110011111111000",
-	thefederalist: "110011111111001",
-	imgrush: "110011111111010",
-	vipleague: "110011111111011",
-	virustotal: "110011111111100",
-	"warhammer40k.wikia": "110011111111101",
-	channelfireball: "110011111111110",
-	"docs.aws.amazon": "110011111111111",
-	"i.imgur": "1101",
-	facebook: "11100000",
-	"rover.ebay": "1110000100000",
-	thinkprogress: "1110000100001",
-	orcz: "1110000100010",
-	variety: "1110000100011",
-	tvtropes: "11100001001",
-	"media1.tenor": "1110000101000",
-	autistichoya: "1110000101001",
-	"support.xbox": "111000010101",
-	anidb: "111000010110",
-	"i.kinja-img": "1110000101110",
-	derpibooru: "1110000101111",
-	msnbc: "11100001100000",
-	vodlockershow: "11100001100001",
-	"ncaaf.live-tvstreaming": "11100001100010",
-	"impress.openneo": "11100001100011",
-	mspaintadventures: "11100001100100",
-	hrw: "11100001100101",
-	"screenshot.freshphase": "11100001100110",
-	"en.bitcoin": "11100001100111",
-	"empleadoestatalbot.ddns": "11100001101000",
-	"academic.oup": "11100001101001",
-	talkorigins: "111000011010100",
-	credobeauty: "111000011010101",
-	pmc: "11100001101011",
-	"pokegiveawaybot.tumblr": "11100001101100",
-	poe: "11100001101101",
-	vote: "11100001101110",
-	livechart: "11100001101111",
-	meritamerica: "111000011100",
-	"smh.com": "1110000111010",
-	"policy.medium": "1110000111011",
-	target: "11100001111",
-	sesamestreetincommunities: "11100010",
-	wordpress: "1110001100000",
-	cracked: "1110001100001",
-	g: "1110001100010",
-	minecraftforum: "1110001100011",
-	"independent.co": "11100011001",
-	locationbot: "111000110100",
-	"plato.stanford": "1110001101010",
-	votesmart: "1110001101011",
-	"turkopticon.differenceengines": "11100011011000",
-	zillow: "11100011011001",
-	replygif: "11100011011010",
-	"i.stack.imgur": "11100011011011",
-	britannica: "11100011011100",
-	memegenerator: "11100011011101",
-	apa: "11100011011110",
-	"boards.4chan": "11100011011111",
-	"developer.valvesoftware": "111000111000000",
-	townhall: "111000111000001",
-	alibaba: "111000111000010",
-	bgr: "111000111000011",
-	"images1.wikia.nocookie": "111000111000100",
-	gifbin: "111000111000101",
-	dota2wiki: "111000111000110",
-	"earthquake.usgs": "111000111000111",
-	pugetsystems: "111000111001000",
-	stathat: "111000111001001",
-	livememe: "111000111001010",
-	"m.wikihow": "111000111001011",
-	"forum-en.guildwars2": "111000111001100",
-	evga: "111000111001101",
-	france24: "111000111001110",
-	startribune: "111000111001111",
-	"m.imdb": "1110001110100",
-	"fr.wikipedia": "1110001110101",
-	youjizz: "111000111011000",
-	worldcat: "111000111011001",
-	"e-cigarette-forum": "111000111011010",
-	"fc04.deviantart": "111000111011011",
-	islamqa: "111000111011100",
-	encyclopediadramatica: "111000111011101",
-	cbo: "111000111011110",
-	ubuntu: "111000111011111",
-	adessium: "111000111100000",
-	thahakhabar: "111000111100001",
-	"learn.microsoft": "111000111100010",
-	waittfoundation: "111000111100011",
-	milkcasino: "111000111100100",
-	"richzhang.github": "111000111100101",
-	"warframe.fandom": "111000111100110",
-	"brasil.elpais": "111000111100111",
-	orcid: "111000111101000",
-	"mragasiapacific.com": "111000111101001",
-	pntra: "111000111101010",
-	"citation-needed.springer": "111000111101011",
-	"newsroom.br.paypal-corp": "111000111101100",
-	"tv.apple": "111000111101101",
-	mccormickfoundation: "111000111101110",
-	"newsroom.au.paypal-corp": "111000111101111",
-	cubetutor: "111000111110000",
-	"auto.leprosorium": "111000111110001",
-	sportsnet: "111000111110010",
-	"yt3.ggpht": "111000111110011",
-	localbitcoins: "111000111110100",
-	"icy-veins": "111000111110101",
-	"images4-d.ravelrycache": "111000111110110",
-	iflscience: "111000111110111",
-	frinkiac: "111000111111000",
-	bustle: "111000111111001",
-	"ae01.alicdn": "111000111111010",
-	"1piwup.spb": "111000111111011",
-	tagpro: "111000111111100",
-	"unfortunate-maps.jukejuice": "111000111111101",
-	firstpost: "111000111111110",
-	openload: "111000111111111",
-	pcpartpicker: "111001",
-	people: "11101",
-	sportstainment: "11110000000000",
-	"m.ebay": "11110000000001",
-	detigenii: "11110000000010",
-	because: "11110000000011",
-	"na.finalfantasyxiv": "11110000000100",
-	udemy: "11110000000101",
-	"img3.wikia.nocookie": "11110000000110",
-	edigitalplace: "11110000000111",
-	"action.aclu": "11110000001000",
-	yanginsondurmeistanbul: "11110000001001",
-	"cebc.cnrs": "11110000001010",
-	"sentinel.esa": "11110000001011",
-	oload: "11110000001100",
-	shortsss: "11110000001101",
-	onmyojiarena: "11110000001110",
-	"r-drrp.appspot": "11110000001111",
-	"w.atch": "111100000100",
-	"i.kym-cdn": "111100000101",
-	paypal: "11110000011",
-	"anime-planet": "1111000010",
-	biblegateway: "11110000110",
-	"telegraph.co": "11110000111",
-	archive: "11110001",
-	"img.scryfall": "11110010",
-	scryfall: "11110011",
-	memes: "111101000000",
-	meetup: "1111010000010",
-	thestar: "1111010000011",
-	reuters: "11110100001",
-	commondreams: "11110100010000",
-	yanglinks: "11110100010001",
-	fortune: "1111010001001",
-	mayoclinic: "1111010001010",
-	thepiratebay: "11110100010110",
-	moddb: "11110100010111",
-	livebuzztv: "111101000110",
-	"danbooru.donmai": "111101000111",
-	vshare: "11110100100000",
-	shortwww: "11110100100001",
-	"cdn11.bigcommerce": "11110100100010",
-	"steamuserimages-a.akamaihd": "11110100100011",
-	commonsensemedia: "11110100100100",
-	"pets.webmd": "11110100100101",
-	"res.cloudinary": "11110100100110",
-	"m.mlb": "11110100100111",
-	qz: "1111010010100",
-	ulta: "1111010010101",
-	goodwill: "1111010010110",
-	"images.akamai.steamusercontent": "1111010010111",
-	vox: "111101001100",
-	vice: "1111010011010",
-	wearegreenbay: "1111010011011",
-	wikidata: "111101001110",
-	"sites.google": "111101001111",
-	wolframalpha: "1111010100",
-	xkcd: "1111010101",
-	yugiohprices: "111101011000",
-	arstechnica: "111101011001",
-	mtggoldfish: "1111010110100",
-	blockchain: "1111010110101",
-	movies: "1111010110110",
-	vid: "1111010110111",
-	lmgtfy: "11110101110",
-	"au.pcpartpicker": "11110101111",
-	"i.qkme": "11110110000",
-	"news.nationalgeographic": "11110110001000",
-	"developer.apple": "11110110001001",
-	splcenter: "11110110001010",
-	wizards: "11110110001011",
-	"i.sli": "111101100011",
-	philly: "111101100100000",
-	nvidia: "111101100100001",
-	"en.memory-alpha": "111101100100010",
-	pcmag: "111101100100011",
-	hackaday: "111101100100100",
-	"dc.wikia": "111101100100101",
-	"lh4.googleusercontent": "111101100100110",
-	"xda-developers": "111101100100111",
-	bandcamp: "111101100101000",
-	tube8: "111101100101001",
-	complex: "111101100101010",
-	shroomery: "111101100101011",
-	"fc02.deviantart": "111101100101100",
-	directv: "111101100101101",
-	"farm4.staticflickr": "111101100101110",
-	"fc00.deviantart": "111101100101111",
-	shopineer: "1111011001100",
-	cnet: "1111011001101",
-	nationmaster: "111101100111000",
-	jezebel: "111101100111001",
-	drugs: "111101100111010",
-	superuser: "111101100111011",
-	hillaryclinton: "111101100111100",
-	"city-data": "111101100111101",
-	sheldonbrown: "111101100111110",
-	"en.wikibooks": "111101100111111",
-	"help.twitch": "111101101000000",
-	milb: "111101101000001",
-	niceme: "111101101000010",
-	metabattle: "111101101000011",
-	nutritionfacts: "111101101000100",
-	"chat.tripsit": "111101101000101",
-	thegatewaypundit: "111101101000110",
-	"play.spotify": "111101101000111",
-	paste4btc: "111101101001000",
-	plays: "111101101001001",
-	streamendous: "111101101001010",
-	"9gug": "111101101001011",
-	playstation: "111101101001100",
-	"uk.reuters": "111101101001101",
-	coriolis: "111101101001110",
-	offsided: "111101101001111",
-	barnesandnoble: "111101101010000",
-	rotoworld: "111101101010001",
-	"dev.dota2": "111101101010010",
-	"studentaid.ed": "111101101010011",
-	torproject: "111101101010100",
-	"in.reuters": "111101101010101",
-	rainn: "111101101010110",
-	"support.mozilla": "111101101010111",
-	sunnah: "111101101011000",
-	"forum.supercell": "111101101011001",
-	"it.pcpartpicker": "111101101011010",
-	"it.wikipedia": "111101101011011",
-	al: "111101101011100",
-	"en.cppreference": "111101101011101",
-	op: "111101101011110",
-	indiedb: "111101101011111",
-	gaugepowered: "11110110110000",
-	"media3.giphy": "11110110110001",
-	sbtl: "11110110110010",
-	clyp: "11110110110011",
-	humblebundle: "11110110110100",
-	factcheck: "11110110110101",
-	lowes: "11110110110110",
-	w3: "11110110110111",
-	"s.reddit": "111101101110000",
-	dis: "111101101110001",
-	lokaantar: "111101101110010",
-	vrddit: "111101101110011",
-	heavy: "111101101110100",
-	"support.oculus": "111101101110101",
-	steemit: "111101101110110",
-	thesilphroad: "111101101110111",
-	postkodstiftelsen: "11110110111100",
-	"piskihuiski.ivanovo": "11110110111101",
-	"newsroom.fr.paypal-corp": "111101101111100",
-	oakfnd: "111101101111101",
-	bloomingdales: "111101101111110",
-	"newsroom.apac.paypal-corp": "111101101111111",
-	theglobeandmail: "1111011100000",
-	"finance.yahoo": "1111011100001",
-	lg: "1111011100010",
-	change: "1111011100011",
-	"friendsafaribot.tumblr": "11110111001",
-	marxists: "11110111010",
-	tineye: "11110111011",
-	streamable: "111101111",
-	wired: "111110000000",
-	ign: "1111100000010",
-	realclearpolitics: "1111100000011",
-	pagesix: "1111100000100",
-	geekwire: "1111100000101",
-	shareasale: "1111100000110",
-	"vignette4.wikia.nocookie": "1111100000111",
-	vine: "1111100001000",
-	"stream1.gifsoup": "1111100001001",
-	anrdoezrs: "1111100001010",
-	biblehub: "1111100001011",
-	manyvids: "1111100001100",
-	"events.jacksonville": "1111100001101",
-	who: "1111100001110",
-	"theregister.co": "11111000011110",
-	newscientist: "11111000011111",
-	"old.reddit": "111110001",
-	cnbc: "111110010000",
-	"qsniyg.github": "1111100100010",
-	legaliq: "1111100100011",
-	pinterest: "111110010010",
-	mediafire: "111110010011",
-	ow: "11111001010000",
-	gawker: "11111001010001",
-	timesofisrael: "11111001010010",
-	"img4.wikia.nocookie": "11111001010011",
-	nhs: "11111001010100",
-	nps: "11111001010101",
-	history: "11111001010110",
-	bitbucket: "11111001010111",
-	"news.un": "11111001011000",
-	yangintupufirmasi: "11111001011001",
-	"presidencia.go": "11111001011010",
-	googlecloudcommunity: "11111001011011",
-	beedogs: "11111001011100",
-	cakedogg: "11111001011101",
-	noteb: "11111001011110",
-	grammarerrors: "11111001011111",
-	watttime: "1111100110000",
-	mercons: "1111100110001",
-	hollywoodreporter: "1111100110010",
-	thehindu: "11111001100110",
-	eff: "11111001100111",
-	dota2: "111110011010",
-	quickmeme: "111110011011",
-	"40.media.tumblr": "111110011100",
-	redditlog: "111110011101",
-	patreon: "11111001111",
-	imageshack: "111110100000000",
-	"pages.ebay": "111110100000001",
-	"naruto.wikia": "111110100000010",
-	"nintendo.co": "111110100000011",
-	libcom: "111110100000100",
-	lesswrong: "111110100000101",
-	"nzherald.co": "111110100000110",
-	giantbomb: "111110100000111",
-	spotrac: "111110100001000",
-	shapeways: "111110100001001",
-	michigan: "111110100001010",
-	iafd: "111110100001011",
-	boxofficemojo: "111110100001100",
-	numbeo: "111110100001101",
-	cinemablend: "111110100001110",
-	usccb: "111110100001111",
-	apnews: "1111101000100",
-	"encrypted-tbn0.gstatic": "1111101000101",
-	gsmarena: "111110100011000",
-	ynetnews: "111110100011001",
-	"hackage.haskell": "111110100011010",
-	"fsis.usda": "111110100011011",
-	medicalnewstoday: "111110100011100",
-	democracynow: "111110100011101",
-	example: "111110100011110",
-	counterpunch: "111110100011111",
-	bigflixmovies: "111110100100000",
-	"2kmtcentral": "111110100100001",
-	"support.sprint": "111110100100010",
-	"support.office": "111110100100011",
-	eporner: "111110100100100",
-	coinbase: "111110100100101",
-	livestreamhdtv365: "111110100100110",
-	"raw.githubusercontent": "111110100100111",
-	trythatsoap: "111110100101000",
-	"mods.factorio": "111110100101001",
-	bitchute: "111110100101010",
-	"7-eleven": "111110100101011",
-	pin: "111110100101100",
-	gilishe: "111110100101101",
-	"sci-hub": "111110100101110",
-	"shadowverse-portal": "111110100101111",
-	vk: "111110100110000",
-	banggood: "111110100110001",
-	yl: "111110100110010",
-	revzilla: "111110100110011",
-	leafly: "111110100110100",
-	screenrant: "111110100110101",
-	code: "111110100110110",
-	mlssoccer: "111110100110111",
-	"forum.warthunder": "111110100111000",
-	color: "111110100111001",
-	"img.4plebs": "111110100111010",
-	smashboards: "111110100111011",
-	"sto.gamepedia": "111110100111100",
-	obsproject: "111110100111101",
-	"sbs.com": "111110100111110",
-	cleantechnica: "111110100111111",
-	opensource: "11111010100000",
-	infobae: "11111010100001",
-	"image.prntscr": "11111010100010",
-	"67.media.tumblr": "11111010100011",
-	"cdn.awwni": "11111010100100",
-	ballotpedia: "11111010100101",
-	msn: "11111010100110",
-	"source.android": "11111010100111",
-	ffa: "111110101010000",
-	donabertarelli: "111110101010001",
-	"faq.spire": "111110101010010",
-	"newsroom.deatch.paypal-corp": "111110101010011",
-	forms: "111110101010100",
-	"repo.packix": "111110101010101",
-	"en.unesco": "111110101010110",
-	"assistant.google": "111110101010111",
-	rnintendoswitch: "11111010101100",
-	"md-akc.med.nhl": "11111010101101",
-	"help.medium": "11111010101110",
-	dupebot: "11111010101111",
-	dailydot: "11111010110000",
-	phys: "11111010110001",
-	"i1.wp": "11111010110010",
-	hiyo: "11111010110011",
-	"i2.kym-cdn": "1111101011010",
-	monoprice: "11111010110110",
-	hiringourheroes: "11111010110111",
-	"giftcards.kroger": "11111010111",
-	"mobile.twitter": "11111011000",
-	bloomberg: "11111011001",
-	hearthhead: "111110110100",
-	"mobile.nytimes": "1111101101010",
-	usnews: "1111101101011",
-	"media-hearth.cursecdn": "11111011011",
-	karmadecay: "1111101110",
-	quora: "111110111100",
-	rt: "1111101111010",
-	"developer.android": "1111101111011",
-	bbc: "11111011111",
-	"v.redd": "11111100000",
-	"technet.microsoft": "11111100001000",
-	senate: "11111100001001",
-	etymonline: "11111100001010",
-	"thesun.co": "11111100001011",
-	stackoverflow: "111111000011",
-	bogleheads: "11111100010000",
-	si: "11111100010001",
-	"data.worldbank": "11111100010010",
-	nintendo: "11111100010011",
-	bleacherreport: "11111100010100",
-	mashable: "11111100010101",
-	wayfair: "11111100010110",
-	"static.fjcdn": "11111100010111",
-	steamtrades: "11111100011000",
-	battleforthenet: "11111100011001",
-	"mediadownloads.mlb": "1111110001101",
-	"forums.frontier.co": "11111100011100",
-	coinmarketcap: "11111100011101",
-	tenor: "11111100011110",
-	"en.uesp": "11111100011111",
-	"osu.ppy": "11111100100",
-	monthlyreview: "1111110010100",
-	pewresearch: "1111110010101",
-	"news.yahoo": "11111100101100",
-	"news.cnet": "111111001011010",
-	kongregate: "111111001011011",
-	yang2020: "1111110010111",
-	hltv: "11111100110",
-	"news.ycombinator": "111111001110",
-	sciencedaily: "1111110011110",
-	nber: "11111100111110",
-	"discussions.apple": "11111100111111",
-	"play.google": "111111010",
-	dropbox: "11111101100",
-	"consumer.ftc": "11111101101000",
-	evike: "11111101101001",
-	gofundme: "11111101101010",
-	"media1.giphy": "11111101101011",
-	deadline: "11111101101100",
-	fda: "11111101101101",
-	examine: "11111101101110",
-	askubuntu: "11111101101111",
-	mediacru: "111111011100000",
-	"hockey-reference": "111111011100001",
-	geforce: "111111011100010",
-	prnewswire: "111111011100011",
-	ask: "111111011100100",
-	vulture: "111111011100101",
-	"us.asos": "111111011100110",
-	dhgate: "111111011100111",
-	"orig00.deviantart": "111111011101000",
-	"i.guim.co": "111111011101001",
-	userbenchmark: "111111011101010",
-	linkesloder: "111111011101011",
-	tvwire: "111111011101100",
-	coindesk: "111111011101101",
-	icloud: "111111011101110",
-	bitinfocharts: "111111011101111",
-	"fc06.deviantart": "111111011110000",
-	adafruit: "111111011110001",
-	"parts-express": "111111011110010",
-	funnyjunk: "111111011110011",
-	sendspace: "111111011110100",
-	"forums.steampowered": "111111011110101",
-	uscis: "111111011110110",
-	"bugzilla.mozilla": "111111011110111",
-	"theage.com": "111111011111000",
-	faa: "111111011111001",
-	supremecourt: "111111011111010",
-	"3dmark": "111111011111011",
-	cleveland: "111111011111100",
-	"cic.gc": "111111011111101",
-	mrmoneymustache: "111111011111110",
-	rockpapershotgun: "111111011111111",
-	"ncbi.nlm.nih": "111111100",
-	"pbs.twimg": "111111101",
-	"api.scryfall": "111111110",
-	"owo.bitz": "11111111100000",
-	"dl.opensubtitles": "11111111100001",
-	alkami: "11111111100010",
-	fyens: "11111111100011",
-	"static1.squarespace": "11111111100100",
-	warcraftlogs: "11111111100101",
-	"kalugaluga.kaluga": "11111111100110",
-	videopriem: "11111111100111",
-	"api.random": "111111111010000",
-	"trends.google": "111111111010001",
-	"phanes.feralhosting": "111111111010010",
-	"d1u5p3l4wpay3k.cloudfront": "111111111010011",
-	"aws.wariomissed": "111111111010100",
-	"charts.camelcamelcamel": "111111111010101",
-	"ishtar-collective": "111111111010110",
-	ourworldindata: "111111111010111",
-	blackentrepreneursday: "111111111011000",
-	glotalent: "111111111011001",
-	"libguides.ala": "111111111011010",
-	kidsbeetv: "111111111011011",
-	"blog.nationalgeographic": "111111111011100",
-	lettercount: "111111111011101",
-	"foundation.mozilla": "111111111011110",
-	ushcc: "111111111011111",
-	reddithelp: "11111111110",
-	urbandictionary: "11111111111"
-}, c = {
-	0: "1100111000",
-	1: "1100111100",
-	2: "1100111101",
-	3: "0010011100",
-	4: "00100111101",
-	5: "11001110010",
-	6: "00100111011",
-	7: "11001110011",
-	8: "00100111010",
-	9: "00100111100",
-	l: "0000",
-	c: "0001",
-	v: "001000",
-	"-": "0010010",
-	x: "00100110",
-	q: "0010011111",
-	g: "00101",
-	n: "0011",
-	p: "01000",
-	y: "010010",
-	w: "010011",
-	i: "0101",
-	t: "0110",
-	r: "0111",
-	s: "1000",
-	d: "10010",
-	m: "10011",
-	END: "1010",
-	o: "1011",
-	u: "11000",
-	f: "110010",
-	k: "1100110",
-	z: "110011101",
-	j: "110011111",
-	a: "1101",
-	e: "1110",
-	".": "11110",
-	h: "111110",
-	b: "111111"
-}, l = {
-	0: "011011",
-	1: "011001",
-	2: "1111000",
-	3: "1010011",
-	4: "1010010",
-	5: "1001011",
-	6: "1001010",
-	7: "1000101",
-	8: "1000110",
-	9: "0110001",
-	o: "0000",
-	"/": "0001",
-	s: "0010",
-	"&": "00110000",
-	R: "00110001",
-	"?": "0011001",
-	k: "001101",
-	d: "00111",
-	t: "0100",
-	i: "0101",
-	",": "01100000000",
-	"'": "0110000000100",
-	"]": "0110000000101",
-	"!": "011000000011",
-	":": "0110000001",
-	W: "011000001",
-	q: "01100001",
-	b: "011010",
-	a: "0111",
-	l: "10000",
-	U: "100010000",
-	L: "100010001",
-	A: "10001001",
-	".": "1000111",
-	f: "100100",
-	c: "10011",
-	"=": "1010000",
-	G: "101000100",
-	E: "101000101",
-	I: "101000110",
-	F: "101000111",
-	m: "10101",
-	"-": "10110",
-	w: "101110",
-	X: "1011110000",
-	"+": "1011110001",
-	D: "101111001",
-	Z: "1011110100",
-	"*": "10111101010000",
-	$: "1011110101000100",
-	";": "1011110101000101",
-	"@": "101111010100011",
-	"[": "1011110101001",
-	"(": "101111010101",
-	")": "10111101011",
-	P: "101111011",
-	v: "1011111",
-	e: "1100",
-	j: "11010000",
-	O: "110100010",
-	Q: "1101000110",
-	K: "1101000111",
-	y: "1101001",
-	g: "110101",
-	h: "110110",
-	u: "110111",
-	n: "11100",
-	V: "1110100000",
-	Y: "1110100001",
-	B: "111010001",
-	M: "111010010",
-	C: "111010011",
-	x: "11101010",
-	J: "1110101100",
-	"#": "1110101101",
-	S: "111010111",
-	_: "111011",
-	z: "111100100",
-	"%": "111100101",
-	T: "111100110",
-	H: "1111001110",
-	N: "1111001111",
-	p: "111101",
-	r: "11111"
-}, u = {};
-for (let e in o) u[o[e]] = e;
-var d = {};
-for (let e in s) d[s[e]] = e;
-Object.keys(s).sort((e, t) => t.length - e.length);
-var f = {};
-for (let e in c) f[c[e]] = e;
-var p = {};
-for (let e in l) p[l[e]] = e;
-Object.freeze({
-	"r:": "javascript",
-	"m:": "markdown",
-	"h:": "html"
-});
-var m = Object.freeze({
-	javascript: "r:",
-	markdown: "m:",
-	html: "h:"
-});
-function h(e) {
-	return m[e] || "";
-}
-// src/app/src/vendor/lnkr/link-runtime.ts
-var g = Object.freeze([
-	["ss:", "super-source"],
-	["sm:", "source-markdown"],
-	["sj:", "source-javascript"],
-	["sh:", "source-html"],
-	["hs:", "source-live"],
-	["media:", "media"],
-	["pdf:", "pdf"],
-	["lr:", "resolved"],
-	["lf:", "framed"],
-	["i:", "image"],
-	["s:", "source"],
-	["l:", "guarded"]
-]), _ = [
-	"javascript",
-	"markdown",
-	"html"
-].map((e) => h(e).slice(0, -1));
-RegExp(`^#(?:${[...g.map(([e]) => e.slice(0, -1)), ..._].join("|")}):\\S+$`, "i"), Object.freeze({
-	md: "markdown",
-	markdown: "markdown",
-	mdown: "markdown",
-	mkdn: "markdown",
-	js: "javascript",
-	mjs: "javascript",
-	cjs: "javascript",
-	jsx: "javascript",
-	ts: "javascript",
-	tsx: "javascript",
-	css: "text",
-	html: "html",
-	htm: "html",
-	xhtml: "html"
-}), Object.freeze({
-	"text/html": "html",
-	"application/xhtml+xml": "html",
-	"text/markdown": "markdown",
-	"text/x-markdown": "markdown",
-	"application/markdown": "markdown",
-	"text/javascript": "javascript",
-	"application/javascript": "javascript",
-	"text/ecmascript": "javascript",
-	"application/ecmascript": "javascript",
-	"text/typescript": "javascript",
-	"application/typescript": "javascript",
-	"text/css": "text"
-});
-// src/app/src/vendor/lnkr/vendor/pako.esm.min.ts
-function v(e) {
-	let t = e.length;
-	for (; --t >= 0;) e[t] = 0;
-}
-var y = 3, b = 258, x = 29, S = 256, C = S + 1 + x, w = 30, T = 19, E = 2 * C + 1, D = 15, O = 16, ee = 7, k = 256, te = 16, ne = 17, re = 18, ie = new Uint8Array([
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	1,
-	1,
-	1,
-	1,
-	2,
-	2,
-	2,
-	2,
-	3,
-	3,
-	3,
-	3,
-	4,
-	4,
-	4,
-	4,
-	5,
-	5,
-	5,
-	5,
-	0
-]), ae = new Uint8Array([
-	0,
-	0,
-	0,
-	0,
-	1,
-	1,
-	2,
-	2,
-	3,
-	3,
-	4,
-	4,
-	5,
-	5,
-	6,
-	6,
-	7,
-	7,
-	8,
-	8,
-	9,
-	9,
-	10,
-	10,
-	11,
-	11,
-	12,
-	12,
-	13,
-	13
-]), oe = new Uint8Array([
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	2,
-	3,
-	7
-]), se = new Uint8Array([
-	16,
-	17,
-	18,
-	0,
-	8,
-	7,
-	9,
-	6,
-	10,
-	5,
-	11,
-	4,
-	12,
-	3,
-	13,
-	2,
-	14,
-	1,
-	15
-]), ce = 512, A = Array((C + 2) * 2);
-v(A);
-var le = Array(w * 2);
-v(le);
-var ue = Array(ce);
-v(ue);
-var de = Array(b - y + 1);
-v(de);
-var fe = Array(x);
-v(fe);
-var pe = Array(w);
-v(pe);
-function me(e, t, n, r, i) {
-	this.static_tree = e, this.extra_bits = t, this.extra_base = n, this.elems = r, this.max_length = i, this.has_stree = e && e.length;
-}
-var he, ge, _e;
-function ve(e, t) {
-	this.dyn_tree = e, this.max_code = 0, this.stat_desc = t;
-}
-var ye = (e) => e < 256 ? ue[e] : ue[256 + (e >>> 7)], be = (e, t) => {
-	e.pending_buf[e.pending++] = t & 255, e.pending_buf[e.pending++] = t >>> 8 & 255;
-}, j = (e, t, n) => {
-	e.bi_valid > O - n ? (e.bi_buf |= t << e.bi_valid & 65535, be(e, e.bi_buf), e.bi_buf = t >> O - e.bi_valid, e.bi_valid += n - O) : (e.bi_buf |= t << e.bi_valid & 65535, e.bi_valid += n);
-}, M = (e, t, n) => {
-	j(e, n[t * 2], n[t * 2 + 1]);
-}, xe = (e, t) => {
-	let n = 0;
-	do
-		n |= e & 1, e >>>= 1, n <<= 1;
-	while (--t > 0);
-	return n >>> 1;
-}, Se = (e) => {
-	e.bi_valid === 16 ? (be(e, e.bi_buf), e.bi_buf = 0, e.bi_valid = 0) : e.bi_valid >= 8 && (e.pending_buf[e.pending++] = e.bi_buf & 255, e.bi_buf >>= 8, e.bi_valid -= 8);
-}, Ce = (e, t) => {
-	let { dyn_tree: n, max_code: r } = t, i = t.stat_desc.static_tree, a = t.stat_desc.has_stree, o = t.stat_desc.extra_bits, s = t.stat_desc.extra_base, c = t.stat_desc.max_length, l, u, d, f, p, m, h = 0;
-	for (f = 0; f <= D; f++) e.bl_count[f] = 0;
-	for (n[e.heap[e.heap_max] * 2 + 1] = 0, l = e.heap_max + 1; l < E; l++) u = e.heap[l], f = n[n[u * 2 + 1] * 2 + 1] + 1, f > c && (f = c, h++), n[u * 2 + 1] = f, !(u > r) && (e.bl_count[f]++, p = 0, u >= s && (p = o[u - s]), m = n[u * 2], e.opt_len += m * (f + p), a && (e.static_len += m * (i[u * 2 + 1] + p)));
-	if (h !== 0) {
-		do {
-			for (f = c - 1; e.bl_count[f] === 0;) f--;
-			e.bl_count[f]--, e.bl_count[f + 1] += 2, e.bl_count[c]--, h -= 2;
-		} while (h > 0);
-		for (f = c; f !== 0; f--) for (u = e.bl_count[f]; u !== 0;) d = e.heap[--l], !(d > r) && (n[d * 2 + 1] !== f && (e.opt_len += (f - n[d * 2 + 1]) * n[d * 2], n[d * 2 + 1] = f), u--);
+	var l = Object.freeze({
+		javascript: "r:",
+		markdown: "m:",
+		html: "h:"
+	});
+	function u(e) {
+		return l[e] || "";
 	}
-}, we = (e, t, n) => {
-	let r = Array(D + 1), i = 0, a, o;
-	for (a = 1; a <= D; a++) i = i + n[a - 1] << 1, r[a] = i;
-	for (o = 0; o <= t; o++) {
-		let t = e[o * 2 + 1];
-		t !== 0 && (e[o * 2] = xe(r[t]++, t));
+	var d = Object.freeze([
+		["ss:", "super-source"],
+		["sm:", "source-markdown"],
+		["sj:", "source-javascript"],
+		["sh:", "source-html"],
+		["hs:", "source-live"],
+		["media:", "media"],
+		["pdf:", "pdf"],
+		["lr:", "resolved"],
+		["lf:", "framed"],
+		["i:", "image"],
+		["s:", "source"],
+		["l:", "guarded"]
+	]), f = [
+		"javascript",
+		"markdown",
+		"html"
+	].map((e) => u(e).slice(0, -1));
+	RegExp(`^#(?:${[...d.map(([e]) => e.slice(0, -1)), ...f].join("|")}):\\S+$`, "i"), Object.freeze({
+		md: "markdown",
+		markdown: "markdown",
+		mdown: "markdown",
+		mkdn: "markdown",
+		js: "javascript",
+		mjs: "javascript",
+		cjs: "javascript",
+		jsx: "javascript",
+		ts: "javascript",
+		tsx: "javascript",
+		css: "text",
+		html: "html",
+		htm: "html",
+		xhtml: "html"
+	}), Object.freeze({
+		"text/html": "html",
+		"application/xhtml+xml": "html",
+		"text/markdown": "markdown",
+		"text/x-markdown": "markdown",
+		"application/markdown": "markdown",
+		"text/javascript": "javascript",
+		"application/javascript": "javascript",
+		"text/ecmascript": "javascript",
+		"application/ecmascript": "javascript",
+		"text/typescript": "javascript",
+		"application/typescript": "javascript",
+		"text/css": "text"
+	});
+	function p(e) {
+		let t = e.length;
+		for (; --t >= 0;) e[t] = 0;
 	}
-}, Te = () => {
-	let e, t, n, r, i, a = Array(D + 1);
-	for (n = 0, r = 0; r < x - 1; r++) for (fe[r] = n, e = 0; e < 1 << ie[r]; e++) de[n++] = r;
-	for (de[n - 1] = r, i = 0, r = 0; r < 16; r++) for (pe[r] = i, e = 0; e < 1 << ae[r]; e++) ue[i++] = r;
-	for (i >>= 7; r < w; r++) for (pe[r] = i << 7, e = 0; e < 1 << ae[r] - 7; e++) ue[256 + i++] = r;
-	for (t = 0; t <= D; t++) a[t] = 0;
-	for (e = 0; e <= 143;) A[e * 2 + 1] = 8, e++, a[8]++;
-	for (; e <= 255;) A[e * 2 + 1] = 9, e++, a[9]++;
-	for (; e <= 279;) A[e * 2 + 1] = 7, e++, a[7]++;
-	for (; e <= 287;) A[e * 2 + 1] = 8, e++, a[8]++;
-	for (we(A, C + 1, a), e = 0; e < w; e++) le[e * 2 + 1] = 5, le[e * 2] = xe(e, 5);
-	he = new me(A, ie, S + 1, C, D), ge = new me(le, ae, 0, w, D), _e = new me([], oe, 0, T, ee);
-}, Ee = (e) => {
-	let t = 0;
-	for (; t < C; t++) e.dyn_ltree[t * 2] = 0;
-	for (t = 0; t < w; t++) e.dyn_dtree[t * 2] = 0;
-	for (t = 0; t < T; t++) e.bl_tree[t * 2] = 0;
-	e.dyn_ltree[k * 2] = 1, e.opt_len = e.static_len = 0, e.sym_next = e.matches = 0;
-}, De = (e) => {
-	e.bi_valid > 8 ? be(e, e.bi_buf) : e.bi_valid > 0 && (e.pending_buf[e.pending++] = e.bi_buf), e.bi_buf = 0, e.bi_valid = 0;
-}, Oe = (e, t, n, r) => {
-	let i = t * 2, a = n * 2;
-	return e[i] < e[a] || e[i] === e[a] && r[t] <= r[n];
-}, ke = (e, t, n) => {
-	let r = e.heap[n], i = n << 1;
-	for (; i <= e.heap_len && (i < e.heap_len && Oe(t, e.heap[i + 1], e.heap[i], e.depth) && i++, !Oe(t, r, e.heap[i], e.depth));) e.heap[n] = e.heap[i], n = i, i <<= 1;
-	e.heap[n] = r;
-}, Ae = (e, t, n) => {
-	let r, i, a = 0, o, s;
-	if (e.sym_next !== 0) do
-		r = e.pending_buf[e.sym_buf + a++] & 255, r += (e.pending_buf[e.sym_buf + a++] & 255) << 8, i = e.pending_buf[e.sym_buf + a++], r === 0 ? M(e, i, t) : (o = de[i], M(e, o + S + 1, t), s = ie[o], s !== 0 && (i -= fe[o], j(e, i, s)), r--, o = ye(r), M(e, o, n), s = ae[o], s !== 0 && (r -= pe[o], j(e, r, s)));
-	while (a < e.sym_next);
-	M(e, k, t);
-}, je = (e, t) => {
-	let n = t.dyn_tree, r = t.stat_desc.static_tree, i = t.stat_desc.has_stree, a = t.stat_desc.elems, o, s, c = -1, l;
-	for (e.heap_len = 0, e.heap_max = E, o = 0; o < a; o++) n[o * 2] === 0 ? n[o * 2 + 1] = 0 : (e.heap[++e.heap_len] = c = o, e.depth[o] = 0);
-	for (; e.heap_len < 2;) l = e.heap[++e.heap_len] = c < 2 ? ++c : 0, n[l * 2] = 1, e.depth[l] = 0, e.opt_len--, i && (e.static_len -= r[l * 2 + 1]);
-	for (t.max_code = c, o = e.heap_len >> 1; o >= 1; o--) ke(e, n, o);
-	l = a;
-	do
-		o = e.heap[1], e.heap[1] = e.heap[e.heap_len--], ke(e, n, 1), s = e.heap[1], e.heap[--e.heap_max] = o, e.heap[--e.heap_max] = s, n[l * 2] = n[o * 2] + n[s * 2], e.depth[l] = (e.depth[o] >= e.depth[s] ? e.depth[o] : e.depth[s]) + 1, n[o * 2 + 1] = n[s * 2 + 1] = l, e.heap[1] = l++, ke(e, n, 1);
-	while (e.heap_len >= 2);
-	e.heap[--e.heap_max] = e.heap[1], Ce(e, t), we(n, c, e.bl_count);
-}, Me = (e, t, n) => {
-	let r, i = -1, a, o = t[1], s = 0, c = 7, l = 4;
-	for (o === 0 && (c = 138, l = 3), t[(n + 1) * 2 + 1] = 65535, r = 0; r <= n; r++) a = o, o = t[(r + 1) * 2 + 1], !(++s < c && a === o) && (s < l ? e.bl_tree[a * 2] += s : a === 0 ? s <= 10 ? e.bl_tree[ne * 2]++ : e.bl_tree[re * 2]++ : (a !== i && e.bl_tree[a * 2]++, e.bl_tree[te * 2]++), s = 0, i = a, o === 0 ? (c = 138, l = 3) : a === o ? (c = 6, l = 3) : (c = 7, l = 4));
-}, Ne = (e, t, n) => {
-	let r, i = -1, a, o = t[1], s = 0, c = 7, l = 4;
-	for (o === 0 && (c = 138, l = 3), r = 0; r <= n; r++) if (a = o, o = t[(r + 1) * 2 + 1], !(++s < c && a === o)) {
-		if (s < l) do
-			M(e, a, e.bl_tree);
-		while (--s !== 0);
-		else a === 0 ? s <= 10 ? (M(e, ne, e.bl_tree), j(e, s - 3, 3)) : (M(e, re, e.bl_tree), j(e, s - 11, 7)) : (a !== i && (M(e, a, e.bl_tree), s--), M(e, te, e.bl_tree), j(e, s - 3, 2));
-		s = 0, i = a, o === 0 ? (c = 138, l = 3) : a === o ? (c = 6, l = 3) : (c = 7, l = 4);
+	var m = 0, h = 1, g = 2, _ = 3, v = 258, y = 29, b = 256, x = b + 1 + y, S = 30, C = 19, w = 2 * x + 1, T = 15, E = 16, D = 7, O = 256, ee = 16, te = 17, ne = 18, re = new Uint8Array([
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		1,
+		1,
+		1,
+		1,
+		2,
+		2,
+		2,
+		2,
+		3,
+		3,
+		3,
+		3,
+		4,
+		4,
+		4,
+		4,
+		5,
+		5,
+		5,
+		5,
+		0
+	]), ie = new Uint8Array([
+		0,
+		0,
+		0,
+		0,
+		1,
+		1,
+		2,
+		2,
+		3,
+		3,
+		4,
+		4,
+		5,
+		5,
+		6,
+		6,
+		7,
+		7,
+		8,
+		8,
+		9,
+		9,
+		10,
+		10,
+		11,
+		11,
+		12,
+		12,
+		13,
+		13
+	]), ae = new Uint8Array([
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		2,
+		3,
+		7
+	]), oe = new Uint8Array([
+		16,
+		17,
+		18,
+		0,
+		8,
+		7,
+		9,
+		6,
+		10,
+		5,
+		11,
+		4,
+		12,
+		3,
+		13,
+		2,
+		14,
+		1,
+		15
+	]), se = 512, k = Array((x + 2) * 2);
+	p(k);
+	var ce = Array(S * 2);
+	p(ce);
+	var le = Array(se);
+	p(le);
+	var ue = Array(v - _ + 1);
+	p(ue);
+	var de = Array(y);
+	p(de);
+	var fe = Array(S);
+	p(fe);
+	function pe(e, t, n, r, i) {
+		this.static_tree = e, this.extra_bits = t, this.extra_base = n, this.elems = r, this.max_length = i, this.has_stree = e && e.length;
 	}
-}, Pe = (e) => {
-	let t;
-	for (Me(e, e.dyn_ltree, e.l_desc.max_code), Me(e, e.dyn_dtree, e.d_desc.max_code), je(e, e.bl_desc), t = T - 1; t >= 3 && e.bl_tree[se[t] * 2 + 1] === 0; t--);
-	return e.opt_len += 3 * (t + 1) + 5 + 5 + 4, t;
-}, Fe = (e, t, n, r) => {
-	let i;
-	for (j(e, t - 257, 5), j(e, n - 1, 5), j(e, r - 4, 4), i = 0; i < r; i++) j(e, e.bl_tree[se[i] * 2 + 1], 3);
-	Ne(e, e.dyn_ltree, t - 1), Ne(e, e.dyn_dtree, n - 1);
-}, Ie = (e) => {
-	let t = 4093624447, n = 0;
-	for (; n <= 31; n++, t >>>= 1) if (t & 1 && e.dyn_ltree[n * 2] !== 0) return 0;
-	if (e.dyn_ltree[18] !== 0 || e.dyn_ltree[20] !== 0 || e.dyn_ltree[26] !== 0) return 1;
-	for (n = 32; n < S; n++) if (e.dyn_ltree[n * 2] !== 0) return 1;
-	return 0;
-}, Le = !1, Re = (e) => {
-	Le ||= (Te(), !0), e.l_desc = new ve(e.dyn_ltree, he), e.d_desc = new ve(e.dyn_dtree, ge), e.bl_desc = new ve(e.bl_tree, _e), e.bi_buf = 0, e.bi_valid = 0, Ee(e);
-}, ze = (e, t, n, r) => {
-	j(e, 0 + +!!r, 3), De(e), be(e, n), be(e, ~n), n && e.pending_buf.set(e.window.subarray(t, t + n), e.pending), e.pending += n;
-}, Be = {
-	_tr_init: Re,
-	_tr_stored_block: ze,
-	_tr_flush_block: (e, t, n, r) => {
-		let i, a, o = 0;
-		e.level > 0 ? (e.strm.data_type === 2 && (e.strm.data_type = Ie(e)), je(e, e.l_desc), je(e, e.d_desc), o = Pe(e), i = e.opt_len + 3 + 7 >>> 3, a = e.static_len + 3 + 7 >>> 3, a <= i && (i = a)) : i = a = n + 5, n + 4 <= i && t !== -1 ? ze(e, t, n, r) : e.strategy === 4 || a === i ? (j(e, 2 + +!!r, 3), Ae(e, A, le)) : (j(e, 4 + +!!r, 3), Fe(e, e.l_desc.max_code + 1, e.d_desc.max_code + 1, o + 1), Ae(e, e.dyn_ltree, e.dyn_dtree)), Ee(e), r && De(e);
-	},
-	_tr_tally: (e, t, n) => (e.pending_buf[e.sym_buf + e.sym_next++] = t, e.pending_buf[e.sym_buf + e.sym_next++] = t >> 8, e.pending_buf[e.sym_buf + e.sym_next++] = n, t === 0 ? e.dyn_ltree[n * 2]++ : (e.matches++, t--, e.dyn_ltree[(de[n] + S + 1) * 2]++, e.dyn_dtree[ye(t) * 2]++), e.sym_next === e.sym_end),
-	_tr_align: (e) => {
-		j(e, 2, 3), M(e, k, A), Se(e);
+	var me, he, ge;
+	function _e(e, t) {
+		this.dyn_tree = e, this.max_code = 0, this.stat_desc = t;
 	}
-}, Ve = (e, t, n, r) => {
-	let i = e & 65535, a = e >>> 16 & 65535, o = 0;
-	for (; n !== 0;) {
-		o = n > 2e3 ? 2e3 : n, n -= o;
+	var ve = (e) => e < 256 ? le[e] : le[256 + (e >>> 7)], ye = (e, t) => {
+		e.pending_buf[e.pending++] = t & 255, e.pending_buf[e.pending++] = t >>> 8 & 255;
+	}, A = (e, t, n) => {
+		e.bi_valid > E - n ? (e.bi_buf |= t << e.bi_valid & 65535, ye(e, e.bi_buf), e.bi_buf = t >> E - e.bi_valid, e.bi_valid += n - E) : (e.bi_buf |= t << e.bi_valid & 65535, e.bi_valid += n);
+	}, j = (e, t, n) => {
+		A(e, n[t * 2], n[t * 2 + 1]);
+	}, be = (e, t) => {
+		let n = 0;
 		do
-			i = i + t[r++] | 0, a = a + i | 0;
-		while (--o);
-		i %= 65521, a %= 65521;
-	}
-	return i | a << 16;
-}, He = new Uint32Array((() => {
-	let e, t = [];
-	for (var n = 0; n < 256; n++) {
-		e = n;
-		for (var r = 0; r < 8; r++) e = e & 1 ? 3988292384 ^ e >>> 1 : e >>> 1;
-		t[n] = e;
-	}
-	return t;
-})()), N = (e, t, n, r) => {
-	let i = He, a = r + n;
-	e ^= -1;
-	for (let n = r; n < a; n++) e = e >>> 8 ^ i[(e ^ t[n]) & 255];
-	return e ^ -1;
-}, Ue = {
-	2: "need dictionary",
-	1: "stream end",
-	0: "",
-	"-1": "file error",
-	"-2": "stream error",
-	"-3": "data error",
-	"-4": "insufficient memory",
-	"-5": "buffer error",
-	"-6": "incompatible version"
-}, We = {
-	Z_NO_FLUSH: 0,
-	Z_PARTIAL_FLUSH: 1,
-	Z_SYNC_FLUSH: 2,
-	Z_FULL_FLUSH: 3,
-	Z_FINISH: 4,
-	Z_BLOCK: 5,
-	Z_TREES: 6,
-	Z_OK: 0,
-	Z_STREAM_END: 1,
-	Z_NEED_DICT: 2,
-	Z_ERRNO: -1,
-	Z_STREAM_ERROR: -2,
-	Z_DATA_ERROR: -3,
-	Z_MEM_ERROR: -4,
-	Z_BUF_ERROR: -5,
-	Z_NO_COMPRESSION: 0,
-	Z_BEST_SPEED: 1,
-	Z_BEST_COMPRESSION: 9,
-	Z_DEFAULT_COMPRESSION: -1,
-	Z_FILTERED: 1,
-	Z_HUFFMAN_ONLY: 2,
-	Z_RLE: 3,
-	Z_FIXED: 4,
-	Z_DEFAULT_STRATEGY: 0,
-	Z_BINARY: 0,
-	Z_TEXT: 1,
-	Z_UNKNOWN: 2,
-	Z_DEFLATED: 8
-}, { _tr_init: Ge, _tr_stored_block: Ke, _tr_flush_block: qe, _tr_tally: P, _tr_align: Je } = Be, { Z_NO_FLUSH: F, Z_PARTIAL_FLUSH: Ye, Z_FULL_FLUSH: Xe, Z_FINISH: I, Z_BLOCK: Ze, Z_OK: L, Z_STREAM_END: Qe, Z_STREAM_ERROR: R, Z_DATA_ERROR: $e, Z_BUF_ERROR: et, Z_DEFAULT_COMPRESSION: tt, Z_FILTERED: nt, Z_HUFFMAN_ONLY: rt, Z_RLE: it, Z_FIXED: at, Z_DEFAULT_STRATEGY: ot, Z_UNKNOWN: st, Z_DEFLATED: ct } = We, lt = 9, ut = 15, dt = 8, ft = 286, pt = 30, mt = 19, ht = 2 * ft + 1, gt = 15, z = 3, B = 258, V = B + z + 1, _t = 32, vt = 42, yt = 57, bt = 69, xt = 73, St = 91, Ct = 103, H = 113, wt = 666, U = 1, Tt = 2, W = 3, Et = 4, Dt = 3, Ot = (e, t) => (e.msg = Ue[t], t), kt = (e) => e * 2 - (e > 4 ? 9 : 0), G = (e) => {
-	let t = e.length;
-	for (; --t >= 0;) e[t] = 0;
-}, At = (e) => {
-	let t, n, r, i = e.w_size;
-	t = e.hash_size, r = t;
-	do
-		n = e.head[--r], e.head[r] = n >= i ? n - i : 0;
-	while (--t);
-	t = i, r = t;
-	do
-		n = e.prev[--r], e.prev[r] = n >= i ? n - i : 0;
-	while (--t);
-}, jt = (e, t, n) => (t << e.hash_shift ^ n) & e.hash_mask, Mt = (e, t) => {
-	let n;
-	if (e.legacy_hash) n = e.ins_h = jt(e, e.ins_h, e.window[t + z - 1]);
-	else {
-		let r = e.window, i = r[t] | r[t + 1] << 8 | r[t + 2] << 16 | r[t + 3] << 24;
-		n = e.ins_h = Math.imul(i, 66521) + 66521 >>> 16 & e.hash_mask;
-	}
-	let r = e.prev[t & e.w_mask] = e.head[n];
-	return e.head[n] = t, r;
-}, K = (e) => {
-	let t = e.state, n = t.pending;
-	n > e.avail_out && (n = e.avail_out), n !== 0 && (e.output.set(t.pending_buf.subarray(t.pending_out, t.pending_out + n), e.next_out), e.next_out += n, t.pending_out += n, e.total_out += n, e.avail_out -= n, t.pending -= n, t.pending === 0 && (t.pending_out = 0));
-}, q = (e, t) => {
-	qe(e, e.block_start >= 0 ? e.block_start : -1, e.strstart - e.block_start, t), e.block_start = e.strstart, K(e.strm);
-}, J = (e, t) => {
-	e.pending_buf[e.pending++] = t;
-}, Nt = (e, t) => {
-	e.pending_buf[e.pending++] = t >>> 8 & 255, e.pending_buf[e.pending++] = t & 255;
-}, Pt = (e, t, n, r) => {
-	let i = e.avail_in;
-	return i > r && (i = r), i === 0 ? 0 : (e.avail_in -= i, t.set(e.input.subarray(e.next_in, e.next_in + i), n), e.state.wrap === 1 ? e.adler = Ve(e.adler, t, i, n) : e.state.wrap === 2 && (e.adler = N(e.adler, t, i, n)), e.next_in += i, e.total_in += i, i);
-}, Ft = (e, t) => {
-	let { max_chain_length: n, strstart: r } = e, i, a, o = e.prev_length, s = e.nice_match, c = e.strstart > e.w_size - V ? e.strstart - (e.w_size - V) : 0, l = e.window, u = e.w_mask, d = e.prev, f = e.strstart + B, p = l[r + o - 1], m = l[r + o];
-	e.prev_length >= e.good_match && (n >>= 2), s > e.lookahead && (s = e.lookahead);
-	do
-		if (i = t, l[i + o] === m && l[i + o - 1] === p && l[i] === l[r] && l[++i] === l[r + 1]) {
-			r += 2, i++;
-			do;
-			while (l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && r < f);
-			if (a = B - (f - r), r = f - B, a > o) {
-				if (e.match_start = t, o = a, a >= s) break;
-				p = l[r + o - 1], m = l[r + o];
-			}
+			n |= e & 1, e >>>= 1, n <<= 1;
+		while (--t > 0);
+		return n >>> 1;
+	}, xe = (e) => {
+		e.bi_valid === 16 ? (ye(e, e.bi_buf), e.bi_buf = 0, e.bi_valid = 0) : e.bi_valid >= 8 && (e.pending_buf[e.pending++] = e.bi_buf & 255, e.bi_buf >>= 8, e.bi_valid -= 8);
+	}, Se = (e, t) => {
+		let { dyn_tree: n, max_code: r } = t, i = t.stat_desc.static_tree, a = t.stat_desc.has_stree, o = t.stat_desc.extra_bits, s = t.stat_desc.extra_base, c = t.stat_desc.max_length, l, u, d, f, p, m, h = 0;
+		for (f = 0; f <= T; f++) e.bl_count[f] = 0;
+		for (n[e.heap[e.heap_max] * 2 + 1] = 0, l = e.heap_max + 1; l < w; l++) u = e.heap[l], f = n[n[u * 2 + 1] * 2 + 1] + 1, f > c && (f = c, h++), n[u * 2 + 1] = f, !(u > r) && (e.bl_count[f]++, p = 0, u >= s && (p = o[u - s]), m = n[u * 2], e.opt_len += m * (f + p), a && (e.static_len += m * (i[u * 2 + 1] + p)));
+		if (h !== 0) {
+			do {
+				for (f = c - 1; e.bl_count[f] === 0;) f--;
+				e.bl_count[f]--, e.bl_count[f + 1] += 2, e.bl_count[c]--, h -= 2;
+			} while (h > 0);
+			for (f = c; f !== 0; f--) for (u = e.bl_count[f]; u !== 0;) d = e.heap[--l], !(d > r) && (n[d * 2 + 1] !== f && (e.opt_len += (f - n[d * 2 + 1]) * n[d * 2], n[d * 2 + 1] = f), u--);
 		}
-	while ((t = d[t & u]) > c && --n !== 0);
-	return o <= e.lookahead ? o : e.lookahead;
-}, It = (e) => {
-	let t = e.w_size, n, r, i;
-	do {
-		if (r = e.window_size - e.lookahead - e.strstart, e.strstart >= t + (t - V) && (e.window.set(e.window.subarray(t, t + t - r), 0), e.match_start -= t, e.strstart -= t, e.block_start -= t, e.insert > e.strstart && (e.insert = e.strstart), At(e), r += t), e.strm.avail_in === 0) break;
-		if (n = Pt(e.strm, e.window, e.strstart + e.lookahead, r), e.lookahead += n, !e.legacy_hash) {
-			if (e.lookahead + e.insert > z) for (i = e.strstart - e.insert; e.insert && (Mt(e, i), i++, e.insert--, !(e.lookahead + e.insert <= z)););
-		} else if (e.lookahead + e.insert >= z) for (i = e.strstart - e.insert, e.ins_h = e.window[i], e.ins_h = jt(e, e.ins_h, e.window[i + 1]); e.insert && (Mt(e, i), i++, e.insert--, !(e.lookahead + e.insert < z)););
-	} while (e.lookahead < V && e.strm.avail_in !== 0);
-}, Lt = (e, t) => {
-	let n = e.pending_buf_size - 5 > e.w_size ? e.w_size : e.pending_buf_size - 5, r, i, a, o = 0, s = e.strm.avail_in;
-	do {
-		if (r = 65535, a = e.bi_valid + 42 >> 3, e.strm.avail_out < a || (a = e.strm.avail_out - a, i = e.strstart - e.block_start, r > i + e.strm.avail_in && (r = i + e.strm.avail_in), r > a && (r = a), r < n && (r === 0 && t !== I || t === F || r !== i + e.strm.avail_in))) break;
-		o = +(t === I && r === i + e.strm.avail_in), Ke(e, 0, 0, o), e.pending_buf[e.pending - 4] = r, e.pending_buf[e.pending - 3] = r >> 8, e.pending_buf[e.pending - 2] = ~r, e.pending_buf[e.pending - 1] = ~r >> 8, K(e.strm), i && (i > r && (i = r), e.strm.output.set(e.window.subarray(e.block_start, e.block_start + i), e.strm.next_out), e.strm.next_out += i, e.strm.avail_out -= i, e.strm.total_out += i, e.block_start += i, r -= i), r && (Pt(e.strm, e.strm.output, e.strm.next_out, r), e.strm.next_out += r, e.strm.avail_out -= r, e.strm.total_out += r);
-	} while (o === 0);
-	return s -= e.strm.avail_in, s && (s >= e.w_size ? (e.matches = 2, e.window.set(e.strm.input.subarray(e.strm.next_in - e.w_size, e.strm.next_in), 0), e.strstart = e.w_size, e.insert = e.strstart) : (e.window_size - e.strstart <= s && (e.strstart -= e.w_size, e.window.set(e.window.subarray(e.w_size, e.w_size + e.strstart), 0), e.matches < 2 && e.matches++, e.insert > e.strstart && (e.insert = e.strstart)), e.window.set(e.strm.input.subarray(e.strm.next_in - s, e.strm.next_in), e.strstart), e.strstart += s, e.insert += s > e.w_size - e.insert ? e.w_size - e.insert : s), e.block_start = e.strstart), e.high_water < e.strstart && (e.high_water = e.strstart), o ? Et : t !== F && t !== I && e.strm.avail_in === 0 && e.strstart === e.block_start ? Tt : (a = e.window_size - e.strstart, e.strm.avail_in > a && e.block_start >= e.w_size && (e.block_start -= e.w_size, e.strstart -= e.w_size, e.window.set(e.window.subarray(e.w_size, e.w_size + e.strstart), 0), e.matches < 2 && e.matches++, a += e.w_size, e.insert > e.strstart && (e.insert = e.strstart)), a > e.strm.avail_in && (a = e.strm.avail_in), a && (Pt(e.strm, e.window, e.strstart, a), e.strstart += a, e.insert += a > e.w_size - e.insert ? e.w_size - e.insert : a), e.high_water < e.strstart && (e.high_water = e.strstart), a = e.bi_valid + 42 >> 3, a = e.pending_buf_size - a > 65535 ? 65535 : e.pending_buf_size - a, n = a > e.w_size ? e.w_size : a, i = e.strstart - e.block_start, (i >= n || (i || t === I) && t !== F && e.strm.avail_in === 0 && i <= a) && (r = i > a ? a : i, o = +(t === I && e.strm.avail_in === 0 && r === i), Ke(e, e.block_start, r, o), e.block_start += r, K(e.strm)), o ? W : U);
-}, Rt = (e, t) => {
-	let n, r;
-	for (;;) {
-		if (e.lookahead < V) {
-			if (It(e), e.lookahead < V && t === F) return U;
-			if (e.lookahead === 0) break;
+	}, Ce = (e, t, n) => {
+		let r = Array(T + 1), i = 0, a, o;
+		for (a = 1; a <= T; a++) i = i + n[a - 1] << 1, r[a] = i;
+		for (o = 0; o <= t; o++) {
+			let t = e[o * 2 + 1];
+			t !== 0 && (e[o * 2] = be(r[t]++, t));
 		}
-		if (n = 0, e.lookahead >= z && (n = Mt(e, e.strstart)), n !== 0 && e.strstart - n <= e.w_size - V && (e.match_length = Ft(e, n)), e.match_length >= z) {
-			if (r = P(e, e.strstart - e.match_start, e.match_length - z), e.lookahead -= e.match_length, e.match_length <= e.max_lazy_match && e.lookahead >= z) {
-				e.match_length--;
-				do
-					e.strstart++, n = Mt(e, e.strstart);
-				while (--e.match_length !== 0);
-				e.strstart++;
-			} else e.strstart += e.match_length, e.match_length = 0, e.legacy_hash && (e.ins_h = e.window[e.strstart], e.ins_h = jt(e, e.ins_h, e.window[e.strstart + 1]));
-		} else r = P(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++;
-		if (r && (q(e, !1), e.strm.avail_out === 0)) return U;
-	}
-	return e.insert = e.strstart < z - 1 ? e.strstart : z - 1, t === I ? (q(e, !0), e.strm.avail_out === 0 ? W : Et) : e.sym_next && (q(e, !1), e.strm.avail_out === 0) ? U : Tt;
-}, zt = (e, t) => {
-	let n, r, i;
-	for (;;) {
-		if (e.lookahead < V) {
-			if (It(e), e.lookahead < V && t === F) return U;
-			if (e.lookahead === 0) break;
-		}
-		if (n = 0, e.lookahead >= z && (n = Mt(e, e.strstart)), e.prev_length = e.match_length, e.prev_match = e.match_start, e.match_length = z - 1, n !== 0 && e.prev_length < e.max_lazy_match && e.strstart - n <= e.w_size - V && (e.match_length = Ft(e, n), e.match_length <= 5 && (e.strategy === nt || e.match_length === z && e.strstart - e.match_start > 4096) && (e.match_length = z - 1)), e.prev_length >= z && e.match_length <= e.prev_length) {
-			i = e.strstart + e.lookahead - z, r = P(e, e.strstart - 1 - e.prev_match, e.prev_length - z), e.lookahead -= e.prev_length - 1, e.prev_length -= 2;
-			do
-				++e.strstart <= i && (n = Mt(e, e.strstart));
-			while (--e.prev_length !== 0);
-			if (e.match_available = 0, e.match_length = z - 1, e.strstart++, r && (q(e, !1), e.strm.avail_out === 0)) return U;
-		} else if (e.match_available) {
-			if (r = P(e, 0, e.window[e.strstart - 1]), r && q(e, !1), e.strstart++, e.lookahead--, e.strm.avail_out === 0) return U;
-		} else e.match_available = 1, e.strstart++, e.lookahead--;
-	}
-	return e.match_available &&= (r = P(e, 0, e.window[e.strstart - 1]), 0), e.insert = e.strstart < z - 1 ? e.strstart : z - 1, t === I ? (q(e, !0), e.strm.avail_out === 0 ? W : Et) : e.sym_next && (q(e, !1), e.strm.avail_out === 0) ? U : Tt;
-}, Bt = (e, t) => {
-	let n, r, i, a, o = e.window;
-	for (;;) {
-		if (e.lookahead <= B) {
-			if (It(e), e.lookahead <= B && t === F) return U;
-			if (e.lookahead === 0) break;
-		}
-		if (e.match_length = 0, e.lookahead >= z && e.strstart > 0 && (i = e.strstart - 1, r = o[i], r === o[++i] && r === o[++i] && r === o[++i])) {
-			a = e.strstart + B;
-			do;
-			while (r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && i < a);
-			e.match_length = B - (a - i), e.match_length > e.lookahead && (e.match_length = e.lookahead);
-		}
-		if (e.match_length >= z ? (n = P(e, 1, e.match_length - z), e.lookahead -= e.match_length, e.strstart += e.match_length, e.match_length = 0) : (n = P(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++), n && (q(e, !1), e.strm.avail_out === 0)) return U;
-	}
-	return e.insert = 0, t === I ? (q(e, !0), e.strm.avail_out === 0 ? W : Et) : e.sym_next && (q(e, !1), e.strm.avail_out === 0) ? U : Tt;
-}, Vt = (e, t) => {
-	let n;
-	for (;;) {
-		if (e.lookahead === 0 && (It(e), e.lookahead === 0)) {
-			if (t === F) return U;
-			break;
-		}
-		if (e.match_length = 0, n = P(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++, n && (q(e, !1), e.strm.avail_out === 0)) return U;
-	}
-	return e.insert = 0, t === I ? (q(e, !0), e.strm.avail_out === 0 ? W : Et) : e.sym_next && (q(e, !1), e.strm.avail_out === 0) ? U : Tt;
-};
-function Y(e, t, n, r, i) {
-	this.good_length = e, this.max_lazy = t, this.nice_length = n, this.max_chain = r, this.func = i;
-}
-var Ht = [
-	new Y(0, 0, 0, 0, Lt),
-	new Y(4, 4, 8, 4, Rt),
-	new Y(4, 5, 16, 8, Rt),
-	new Y(4, 6, 32, 32, Rt),
-	new Y(4, 4, 16, 16, zt),
-	new Y(8, 16, 32, 32, zt),
-	new Y(8, 16, 128, 128, zt),
-	new Y(8, 32, 128, 256, zt),
-	new Y(32, 128, 258, 1024, zt),
-	new Y(32, 258, 258, 4096, zt)
-], Ut = (e) => {
-	e.window_size = 2 * e.w_size, G(e.head), e.max_lazy_match = Ht[e.level].max_lazy, e.good_match = Ht[e.level].good_length, e.nice_match = Ht[e.level].nice_length, e.max_chain_length = Ht[e.level].max_chain, e.strstart = 0, e.block_start = 0, e.lookahead = 0, e.insert = 0, e.match_length = e.prev_length = z - 1, e.match_available = 0, e.ins_h = 0;
-};
-function Wt() {
-	this.strm = null, this.status = 0, this.pending_buf = null, this.pending_buf_size = 0, this.pending_out = 0, this.pending = 0, this.wrap = 0, this.gzhead = null, this.gzindex = 0, this.method = ct, this.last_flush = -1, this.w_size = 0, this.w_bits = 0, this.w_mask = 0, this.window = null, this.window_size = 0, this.prev = null, this.head = null, this.ins_h = 0, this.legacy_hash = 0, this.hash_size = 0, this.hash_bits = 0, this.hash_mask = 0, this.hash_shift = 0, this.block_start = 0, this.match_length = 0, this.prev_match = 0, this.match_available = 0, this.strstart = 0, this.match_start = 0, this.lookahead = 0, this.prev_length = 0, this.max_chain_length = 0, this.max_lazy_match = 0, this.level = 0, this.strategy = 0, this.good_match = 0, this.nice_match = 0, this.dyn_ltree = new Uint16Array(ht * 2), this.dyn_dtree = new Uint16Array((2 * pt + 1) * 2), this.bl_tree = new Uint16Array((2 * mt + 1) * 2), G(this.dyn_ltree), G(this.dyn_dtree), G(this.bl_tree), this.l_desc = null, this.d_desc = null, this.bl_desc = null, this.bl_count = new Uint16Array(gt + 1), this.heap = new Uint16Array(2 * ft + 1), G(this.heap), this.heap_len = 0, this.heap_max = 0, this.depth = new Uint16Array(2 * ft + 1), G(this.depth), this.sym_buf = 0, this.lit_bufsize = 0, this.sym_next = 0, this.sym_end = 0, this.opt_len = 0, this.static_len = 0, this.matches = 0, this.insert = 0, this.bi_buf = 0, this.bi_valid = 0;
-}
-var Gt = (e) => {
-	if (!e) return 1;
-	let t = e.state;
-	return +(!t || t.strm !== e || t.status !== vt && t.status !== yt && t.status !== bt && t.status !== xt && t.status !== St && t.status !== Ct && t.status !== H && t.status !== wt);
-}, Kt = (e) => {
-	if (Gt(e)) return Ot(e, R);
-	e.total_in = e.total_out = 0, e.data_type = st;
-	let t = e.state;
-	return t.pending = 0, t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap === 2 ? yt : t.wrap ? vt : H, e.adler = t.wrap === 2 ? 0 : 1, t.last_flush = -2, Ge(t), L;
-}, qt = (e) => {
-	let t = Kt(e);
-	return t === L && Ut(e.state), t;
-}, Jt = (e, t) => Gt(e) || e.state.wrap !== 2 ? R : (e.state.gzhead = t, L), Yt = (e, t, n, r, i, a, o) => {
-	if (!e) return R;
-	let s = 1;
-	if (t === tt && (t = 6), r < 0 ? (s = 0, r = -r) : r > 15 && (s = 2, r -= 16), i < 1 || i > lt || n !== ct || r < 8 || r > 15 || t < 0 || t > 9 || a < 0 || a > at || r === 8 && s !== 1) return Ot(e, R);
-	r === 8 && (r = 9);
-	let c = new Wt();
-	return e.state = c, c.strm = e, c.status = vt, c.wrap = s, c.gzhead = null, c.w_bits = r, c.w_size = 1 << c.w_bits, c.w_mask = c.w_size - 1, c.legacy_hash = +!!o, c.hash_bits = i + 7, !c.legacy_hash && c.hash_bits < 15 && (c.hash_bits = 15), c.hash_size = 1 << c.hash_bits, c.hash_mask = c.hash_size - 1, c.hash_shift = ~~((c.hash_bits + z - 1) / z), c.window = new Uint8Array(c.w_size * 2), c.head = new Uint16Array(c.hash_size), c.prev = new Uint16Array(c.w_size), c.lit_bufsize = 1 << i + 6, c.pending_buf_size = c.lit_bufsize * 4, c.pending_buf = new Uint8Array(c.pending_buf_size), c.sym_buf = c.lit_bufsize, c.sym_end = (c.lit_bufsize - 1) * 3, c.level = t, c.strategy = a, c.method = n, qt(e);
-}, Xt = {
-	deflateInit: (e, t) => Yt(e, t, ct, ut, dt, ot),
-	deflateInit2: Yt,
-	deflateReset: qt,
-	deflateResetKeep: Kt,
-	deflateSetHeader: Jt,
-	deflate: (e, t) => {
-		if (Gt(e) || t > Ze || t < 0) return e ? Ot(e, R) : R;
-		let n = e.state;
-		if (!e.output || e.avail_in !== 0 && !e.input || n.status === wt && t !== I) return Ot(e, e.avail_out === 0 ? et : R);
-		let r = n.last_flush;
-		if (n.last_flush = t, n.pending !== 0) {
-			if (K(e), e.avail_out === 0) return n.last_flush = -1, L;
-		} else if (e.avail_in === 0 && kt(t) <= kt(r) && t !== I) return Ot(e, et);
-		if (n.status === wt && e.avail_in !== 0) return Ot(e, et);
-		if (n.status === vt && n.wrap === 0 && (n.status = H), n.status === vt) {
-			let t = ct + (n.w_bits - 8 << 4) << 8, r = -1;
-			if (r = n.strategy >= rt || n.level < 2 ? 0 : n.level < 6 ? 1 : n.level === 6 ? 2 : 3, t |= r << 6, n.strstart !== 0 && (t |= _t), t += 31 - t % 31, Nt(n, t), n.strstart !== 0 && (Nt(n, e.adler >>> 16), Nt(n, e.adler & 65535)), e.adler = 1, n.status = H, K(e), n.pending !== 0) return n.last_flush = -1, L;
-		}
-		if (n.status === yt) {
-			if (e.adler = 0, J(n, 31), J(n, 139), J(n, 8), !n.gzhead) {
-				if (J(n, 0), J(n, 0), J(n, 0), J(n, 0), J(n, 0), J(n, n.level === 9 ? 2 : n.strategy >= rt || n.level < 2 ? 4 : 0), J(n, Dt), n.status = H, K(e), n.pending !== 0) return n.last_flush = -1, L;
-			} else J(n, +!!n.gzhead.text + (n.gzhead.hcrc ? 2 : 0) + (n.gzhead.extra ? 4 : 0) + (n.gzhead.name ? 8 : 0) + (n.gzhead.comment ? 16 : 0)), J(n, n.gzhead.time & 255), J(n, n.gzhead.time >> 8 & 255), J(n, n.gzhead.time >> 16 & 255), J(n, n.gzhead.time >> 24 & 255), J(n, n.level === 9 ? 2 : n.strategy >= rt || n.level < 2 ? 4 : 0), J(n, n.gzhead.os & 255), n.gzhead.extra && n.gzhead.extra.length && (J(n, n.gzhead.extra.length & 255), J(n, n.gzhead.extra.length >> 8 & 255)), n.gzhead.hcrc && (e.adler = N(e.adler, n.pending_buf, n.pending, 0)), n.gzindex = 0, n.status = bt;
-		}
-		if (n.status === bt) {
-			if (n.gzhead.extra) {
-				let t = n.pending, r = (n.gzhead.extra.length & 65535) - n.gzindex;
-				for (; n.pending + r > n.pending_buf_size;) {
-					let i = n.pending_buf_size - n.pending;
-					if (n.pending_buf.set(n.gzhead.extra.subarray(n.gzindex, n.gzindex + i), n.pending), n.pending = n.pending_buf_size, n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex += i, K(e), n.pending !== 0) return n.last_flush = -1, L;
-					t = 0, r -= i;
-				}
-				let i = new Uint8Array(n.gzhead.extra);
-				n.pending_buf.set(i.subarray(n.gzindex, n.gzindex + r), n.pending), n.pending += r, n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex = 0;
-			}
-			n.status = xt;
-		}
-		if (n.status === xt) {
-			if (n.gzhead.name) {
-				let t = n.pending, r;
-				do {
-					if (n.pending === n.pending_buf_size) {
-						if (n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t)), K(e), n.pending !== 0) return n.last_flush = -1, L;
-						t = 0;
-					}
-					r = n.gzindex < n.gzhead.name.length ? n.gzhead.name.charCodeAt(n.gzindex++) & 255 : 0, J(n, r);
-				} while (r !== 0);
-				n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex = 0;
-			}
-			n.status = St;
-		}
-		if (n.status === St) {
-			if (n.gzhead.comment) {
-				let t = n.pending, r;
-				do {
-					if (n.pending === n.pending_buf_size) {
-						if (n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t)), K(e), n.pending !== 0) return n.last_flush = -1, L;
-						t = 0;
-					}
-					r = n.gzindex < n.gzhead.comment.length ? n.gzhead.comment.charCodeAt(n.gzindex++) & 255 : 0, J(n, r);
-				} while (r !== 0);
-				n.gzhead.hcrc && n.pending > t && (e.adler = N(e.adler, n.pending_buf, n.pending - t, t));
-			}
-			n.status = Ct;
-		}
-		if (n.status === Ct) {
-			if (n.gzhead.hcrc) {
-				if (n.pending + 2 > n.pending_buf_size && (K(e), n.pending !== 0)) return n.last_flush = -1, L;
-				J(n, e.adler & 255), J(n, e.adler >> 8 & 255), e.adler = 0;
-			}
-			if (n.status = H, K(e), n.pending !== 0) return n.last_flush = -1, L;
-		}
-		if (e.avail_in !== 0 || n.lookahead !== 0 || t !== F && n.status !== wt) {
-			let r = n.level === 0 ? Lt(n, t) : n.strategy === rt ? Vt(n, t) : n.strategy === it ? Bt(n, t) : Ht[n.level].func(n, t);
-			if ((r === W || r === Et) && (n.status = wt), r === U || r === W) return e.avail_out === 0 && (n.last_flush = -1), L;
-			if (r === Tt && (t === Ye ? Je(n) : t !== Ze && (Ke(n, 0, 0, !1), t === Xe && (G(n.head), n.lookahead === 0 && (n.strstart = 0, n.block_start = 0, n.insert = 0))), K(e), e.avail_out === 0)) return n.last_flush = -1, L;
-		}
-		return t === I ? n.wrap <= 0 ? Qe : (n.wrap === 2 ? (J(n, e.adler & 255), J(n, e.adler >> 8 & 255), J(n, e.adler >> 16 & 255), J(n, e.adler >> 24 & 255), J(n, e.total_in & 255), J(n, e.total_in >> 8 & 255), J(n, e.total_in >> 16 & 255), J(n, e.total_in >> 24 & 255)) : (Nt(n, e.adler >>> 16), Nt(n, e.adler & 65535)), K(e), n.wrap > 0 && (n.wrap = -n.wrap), n.pending === 0 ? Qe : L) : L;
-	},
-	deflateEnd: (e) => {
-		if (Gt(e)) return R;
-		let t = e.state.status;
-		return e.state = null, t === H ? Ot(e, $e) : L;
-	},
-	deflateSetDictionary: (e, t) => {
-		let n = t.length;
-		if (Gt(e)) return R;
-		let r = e.state, i = r.wrap;
-		if (i === 2 || i === 1 && r.status !== vt || r.lookahead) return R;
-		if (i === 1 && (e.adler = Ve(e.adler, t, n, 0)), r.wrap = 0, n >= r.w_size) {
-			i === 0 && (G(r.head), r.strstart = 0, r.block_start = 0, r.insert = 0);
-			let e = new Uint8Array(r.w_size);
-			e.set(t.subarray(n - r.w_size, n), 0), t = e, n = r.w_size;
-		}
-		let { avail_in: a, next_in: o, input: s } = e;
-		for (e.avail_in = n, e.next_in = 0, e.input = t, It(r); r.lookahead >= z;) {
-			let e = r.strstart, t = r.lookahead - (z - 1);
-			do
-				Mt(r, e), e++;
-			while (--t);
-			r.strstart = e, r.lookahead = z - 1, It(r);
-		}
-		return r.strstart += r.lookahead, r.block_start = r.strstart, r.insert = r.lookahead, r.lookahead = 0, r.match_length = r.prev_length = z - 1, r.match_available = 0, e.next_in = o, e.input = s, e.avail_in = a, r.wrap = i, L;
-	},
-	deflateInfo: "pako deflate (from Nodeca project)"
-}, Zt = (e, t) => Object.prototype.hasOwnProperty.call(e, t), Qt = {
-	assign: function(e) {
-		let t = Array.prototype.slice.call(arguments, 1);
-		for (; t.length;) {
-			let n = t.shift();
-			if (n) {
-				if (typeof n != "object") throw TypeError(n + "must be non-object");
-				for (let t in n) Zt(n, t) && (e[t] = n[t]);
-			}
-		}
-		return e;
-	},
-	flattenChunks: (e) => {
+	}, we = () => {
+		let e, t, n, r, i, a = Array(T + 1);
+		for (n = 0, r = 0; r < y - 1; r++) for (de[r] = n, e = 0; e < 1 << re[r]; e++) ue[n++] = r;
+		for (ue[n - 1] = r, i = 0, r = 0; r < 16; r++) for (fe[r] = i, e = 0; e < 1 << ie[r]; e++) le[i++] = r;
+		for (i >>= 7; r < S; r++) for (fe[r] = i << 7, e = 0; e < 1 << ie[r] - 7; e++) le[256 + i++] = r;
+		for (t = 0; t <= T; t++) a[t] = 0;
+		for (e = 0; e <= 143;) k[e * 2 + 1] = 8, e++, a[8]++;
+		for (; e <= 255;) k[e * 2 + 1] = 9, e++, a[9]++;
+		for (; e <= 279;) k[e * 2 + 1] = 7, e++, a[7]++;
+		for (; e <= 287;) k[e * 2 + 1] = 8, e++, a[8]++;
+		for (Ce(k, x + 1, a), e = 0; e < S; e++) ce[e * 2 + 1] = 5, ce[e * 2] = be(e, 5);
+		me = new pe(k, re, b + 1, x, T), he = new pe(ce, ie, 0, S, T), ge = new pe([], ae, 0, C, D);
+	}, Te = (e) => {
 		let t = 0;
-		for (let n = 0, r = e.length; n < r; n++) t += e[n].length;
-		let n = new Uint8Array(t);
-		for (let t = 0, r = 0, i = e.length; t < i; t++) {
-			let i = e[t];
-			n.set(i, r), r += i.length;
+		for (; t < x; t++) e.dyn_ltree[t * 2] = 0;
+		for (t = 0; t < S; t++) e.dyn_dtree[t * 2] = 0;
+		for (t = 0; t < C; t++) e.bl_tree[t * 2] = 0;
+		e.dyn_ltree[O * 2] = 1, e.opt_len = e.static_len = 0, e.sym_next = e.matches = 0;
+	}, Ee = (e) => {
+		e.bi_valid > 8 ? ye(e, e.bi_buf) : e.bi_valid > 0 && (e.pending_buf[e.pending++] = e.bi_buf), e.bi_buf = 0, e.bi_valid = 0;
+	}, De = (e, t, n, r) => {
+		let i = t * 2, a = n * 2;
+		return e[i] < e[a] || e[i] === e[a] && r[t] <= r[n];
+	}, Oe = (e, t, n) => {
+		let r = e.heap[n], i = n << 1;
+		for (; i <= e.heap_len && (i < e.heap_len && De(t, e.heap[i + 1], e.heap[i], e.depth) && i++, !De(t, r, e.heap[i], e.depth));) e.heap[n] = e.heap[i], n = i, i <<= 1;
+		e.heap[n] = r;
+	}, ke = (e, t, n) => {
+		let r, i, a = 0, o, s;
+		if (e.sym_next !== 0) do
+			r = e.pending_buf[e.sym_buf + a++] & 255, r += (e.pending_buf[e.sym_buf + a++] & 255) << 8, i = e.pending_buf[e.sym_buf + a++], r === 0 ? j(e, i, t) : (o = ue[i], j(e, o + b + 1, t), s = re[o], s !== 0 && (i -= de[o], A(e, i, s)), r--, o = ve(r), j(e, o, n), s = ie[o], s !== 0 && (r -= fe[o], A(e, r, s)));
+		while (a < e.sym_next);
+		j(e, O, t);
+	}, Ae = (e, t) => {
+		let n = t.dyn_tree, r = t.stat_desc.static_tree, i = t.stat_desc.has_stree, a = t.stat_desc.elems, o, s, c = -1, l;
+		for (e.heap_len = 0, e.heap_max = w, o = 0; o < a; o++) n[o * 2] === 0 ? n[o * 2 + 1] = 0 : (e.heap[++e.heap_len] = c = o, e.depth[o] = 0);
+		for (; e.heap_len < 2;) l = e.heap[++e.heap_len] = c < 2 ? ++c : 0, n[l * 2] = 1, e.depth[l] = 0, e.opt_len--, i && (e.static_len -= r[l * 2 + 1]);
+		for (t.max_code = c, o = e.heap_len >> 1; o >= 1; o--) Oe(e, n, o);
+		l = a;
+		do
+			o = e.heap[1], e.heap[1] = e.heap[e.heap_len--], Oe(e, n, 1), s = e.heap[1], e.heap[--e.heap_max] = o, e.heap[--e.heap_max] = s, n[l * 2] = n[o * 2] + n[s * 2], e.depth[l] = (e.depth[o] >= e.depth[s] ? e.depth[o] : e.depth[s]) + 1, n[o * 2 + 1] = n[s * 2 + 1] = l, e.heap[1] = l++, Oe(e, n, 1);
+		while (e.heap_len >= 2);
+		e.heap[--e.heap_max] = e.heap[1], Se(e, t), Ce(n, c, e.bl_count);
+	}, je = (e, t, n) => {
+		let r, i = -1, a, o = t[1], s = 0, c = 7, l = 4;
+		for (o === 0 && (c = 138, l = 3), t[(n + 1) * 2 + 1] = 65535, r = 0; r <= n; r++) a = o, o = t[(r + 1) * 2 + 1], !(++s < c && a === o) && (s < l ? e.bl_tree[a * 2] += s : a === 0 ? s <= 10 ? e.bl_tree[te * 2]++ : e.bl_tree[ne * 2]++ : (a !== i && e.bl_tree[a * 2]++, e.bl_tree[ee * 2]++), s = 0, i = a, o === 0 ? (c = 138, l = 3) : a === o ? (c = 6, l = 3) : (c = 7, l = 4));
+	}, Me = (e, t, n) => {
+		let r, i = -1, a, o = t[1], s = 0, c = 7, l = 4;
+		for (o === 0 && (c = 138, l = 3), r = 0; r <= n; r++) if (a = o, o = t[(r + 1) * 2 + 1], !(++s < c && a === o)) {
+			if (s < l) do
+				j(e, a, e.bl_tree);
+			while (--s !== 0);
+			else a === 0 ? s <= 10 ? (j(e, te, e.bl_tree), A(e, s - 3, 3)) : (j(e, ne, e.bl_tree), A(e, s - 11, 7)) : (a !== i && (j(e, a, e.bl_tree), s--), j(e, ee, e.bl_tree), A(e, s - 3, 2));
+			s = 0, i = a, o === 0 ? (c = 138, l = 3) : a === o ? (c = 6, l = 3) : (c = 7, l = 4);
 		}
-		return n;
-	}
-}, $t = !0;
-try {
-	String.fromCharCode.apply(null, /* @__PURE__ */ new Uint8Array(1));
-} catch {
-	$t = !1;
-}
-var en = /* @__PURE__ */ new Uint8Array(256);
-for (let e = 0; e < 256; e++) en[e] = e >= 252 ? 6 : e >= 248 ? 5 : e >= 240 ? 4 : e >= 224 ? 3 : e >= 192 ? 2 : 1;
-en[254] = en[255] = 1;
-var tn = (e) => {
-	if (typeof TextEncoder == "function" && TextEncoder.prototype.encode) return new TextEncoder().encode(e);
-	let t, n, r, i, a, o = e.length, s = 0;
-	for (i = 0; i < o; i++) n = e.charCodeAt(i), (n & 64512) == 55296 && i + 1 < o && (r = e.charCodeAt(i + 1), (r & 64512) == 56320 && (n = 65536 + (n - 55296 << 10) + (r - 56320), i++)), s += n < 128 ? 1 : n < 2048 ? 2 : n < 65536 ? 3 : 4;
-	for (t = new Uint8Array(s), a = 0, i = 0; a < s; i++) n = e.charCodeAt(i), (n & 64512) == 55296 && i + 1 < o && (r = e.charCodeAt(i + 1), (r & 64512) == 56320 && (n = 65536 + (n - 55296 << 10) + (r - 56320), i++)), n < 128 ? t[a++] = n : n < 2048 ? (t[a++] = 192 | n >>> 6, t[a++] = 128 | n & 63) : n < 65536 ? (t[a++] = 224 | n >>> 12, t[a++] = 128 | n >>> 6 & 63, t[a++] = 128 | n & 63) : (t[a++] = 240 | n >>> 18, t[a++] = 128 | n >>> 12 & 63, t[a++] = 128 | n >>> 6 & 63, t[a++] = 128 | n & 63);
-	return t;
-}, nn = (e, t) => {
-	if (t < 65534 && e.subarray && $t) return String.fromCharCode.apply(null, e.length === t ? e : e.subarray(0, t));
-	let n = "";
-	for (let r = 0; r < t; r++) n += String.fromCharCode(e[r]);
-	return n;
-}, rn = {
-	string2buf: tn,
-	buf2string: (e, t) => {
-		let n = t || e.length;
-		if (typeof TextDecoder == "function" && TextDecoder.prototype.decode) return new TextDecoder().decode(e.subarray(0, t));
-		let r, i, a = Array(n * 2);
-		for (i = 0, r = 0; r < n;) {
-			let t = e[r++];
-			if (t < 128) {
-				a[i++] = t;
-				continue;
-			}
-			let o = en[t];
-			if (o > 4) a[i++] = 65533, r += o - 1;
-			else {
-				for (t &= o === 2 ? 31 : o === 3 ? 15 : 7; o > 1 && r < n;) t = t << 6 | e[r++] & 63, o--;
-				o > 1 ? a[i++] = 65533 : t < 65536 ? a[i++] = t : (t -= 65536, a[i++] = 55296 | t >> 10 & 1023, a[i++] = 56320 | t & 1023);
-			}
+	}, Ne = (e) => {
+		let t;
+		for (je(e, e.dyn_ltree, e.l_desc.max_code), je(e, e.dyn_dtree, e.d_desc.max_code), Ae(e, e.bl_desc), t = C - 1; t >= 3 && e.bl_tree[oe[t] * 2 + 1] === 0; t--);
+		return e.opt_len += 3 * (t + 1) + 5 + 5 + 4, t;
+	}, Pe = (e, t, n, r) => {
+		let i;
+		for (A(e, t - 257, 5), A(e, n - 1, 5), A(e, r - 4, 4), i = 0; i < r; i++) A(e, e.bl_tree[oe[i] * 2 + 1], 3);
+		Me(e, e.dyn_ltree, t - 1), Me(e, e.dyn_dtree, n - 1);
+	}, Fe = (e) => {
+		let t = 4093624447, n = 0;
+		for (; n <= 31; n++, t >>>= 1) if (t & 1 && e.dyn_ltree[n * 2] !== 0) return 0;
+		if (e.dyn_ltree[18] !== 0 || e.dyn_ltree[20] !== 0 || e.dyn_ltree[26] !== 0) return 1;
+		for (n = 32; n < b; n++) if (e.dyn_ltree[n * 2] !== 0) return 1;
+		return 0;
+	}, Ie = !1, Le = (e) => {
+		Ie ||= (we(), !0), e.l_desc = new _e(e.dyn_ltree, me), e.d_desc = new _e(e.dyn_dtree, he), e.bl_desc = new _e(e.bl_tree, ge), e.bi_buf = 0, e.bi_valid = 0, Te(e);
+	}, Re = (e, t, n, r) => {
+		A(e, (m << 1) + +!!r, 3), Ee(e), ye(e, n), ye(e, ~n), n && e.pending_buf.set(e.window.subarray(t, t + n), e.pending), e.pending += n;
+	}, ze = {
+		_tr_init: Le,
+		_tr_stored_block: Re,
+		_tr_flush_block: (e, t, n, r) => {
+			let i, a, o = 0;
+			e.level > 0 ? (e.strm.data_type === 2 && (e.strm.data_type = Fe(e)), Ae(e, e.l_desc), Ae(e, e.d_desc), o = Ne(e), i = e.opt_len + 3 + 7 >>> 3, a = e.static_len + 3 + 7 >>> 3, a <= i && (i = a)) : i = a = n + 5, n + 4 <= i && t !== -1 ? Re(e, t, n, r) : e.strategy === 4 || a === i ? (A(e, (h << 1) + +!!r, 3), ke(e, k, ce)) : (A(e, (g << 1) + +!!r, 3), Pe(e, e.l_desc.max_code + 1, e.d_desc.max_code + 1, o + 1), ke(e, e.dyn_ltree, e.dyn_dtree)), Te(e), r && Ee(e);
+		},
+		_tr_tally: (e, t, n) => (e.pending_buf[e.sym_buf + e.sym_next++] = t, e.pending_buf[e.sym_buf + e.sym_next++] = t >> 8, e.pending_buf[e.sym_buf + e.sym_next++] = n, t === 0 ? e.dyn_ltree[n * 2]++ : (e.matches++, t--, e.dyn_ltree[(ue[n] + b + 1) * 2]++, e.dyn_dtree[ve(t) * 2]++), e.sym_next === e.sym_end),
+		_tr_align: (e) => {
+			A(e, h << 1, 3), j(e, O, k), xe(e);
 		}
-		return nn(a, i);
-	},
-	utf8border: (e, t) => {
-		t ||= e.length, t > e.length && (t = e.length);
-		let n = t - 1;
-		for (; n >= 0 && (e[n] & 192) == 128;) n--;
-		return n < 0 || n === 0 ? t : n + en[e[n]] > t ? n : t;
+	}, Be = (e, t, n, r) => {
+		let i = e & 65535, a = e >>> 16 & 65535, o = 0;
+		for (; n !== 0;) {
+			o = n > 2e3 ? 2e3 : n, n -= o;
+			do
+				i = i + t[r++] | 0, a = a + i | 0;
+			while (--o);
+			i %= 65521, a %= 65521;
+		}
+		return i | a << 16;
+	}, Ve = new Uint32Array((() => {
+		let e, t = [];
+		for (var n = 0; n < 256; n++) {
+			e = n;
+			for (var r = 0; r < 8; r++) e = e & 1 ? 3988292384 ^ e >>> 1 : e >>> 1;
+			t[n] = e;
+		}
+		return t;
+	})()), M = (e, t, n, r) => {
+		let i = Ve, a = r + n;
+		e ^= -1;
+		for (let n = r; n < a; n++) e = e >>> 8 ^ i[(e ^ t[n]) & 255];
+		return e ^ -1;
+	}, He = {
+		2: "need dictionary",
+		1: "stream end",
+		0: "",
+		"-1": "file error",
+		"-2": "stream error",
+		"-3": "data error",
+		"-4": "insufficient memory",
+		"-5": "buffer error",
+		"-6": "incompatible version"
+	}, Ue = {
+		Z_NO_FLUSH: 0,
+		Z_PARTIAL_FLUSH: 1,
+		Z_SYNC_FLUSH: 2,
+		Z_FULL_FLUSH: 3,
+		Z_FINISH: 4,
+		Z_BLOCK: 5,
+		Z_TREES: 6,
+		Z_OK: 0,
+		Z_STREAM_END: 1,
+		Z_NEED_DICT: 2,
+		Z_ERRNO: -1,
+		Z_STREAM_ERROR: -2,
+		Z_DATA_ERROR: -3,
+		Z_MEM_ERROR: -4,
+		Z_BUF_ERROR: -5,
+		Z_NO_COMPRESSION: 0,
+		Z_BEST_SPEED: 1,
+		Z_BEST_COMPRESSION: 9,
+		Z_DEFAULT_COMPRESSION: -1,
+		Z_FILTERED: 1,
+		Z_HUFFMAN_ONLY: 2,
+		Z_RLE: 3,
+		Z_FIXED: 4,
+		Z_DEFAULT_STRATEGY: 0,
+		Z_BINARY: 0,
+		Z_TEXT: 1,
+		Z_UNKNOWN: 2,
+		Z_DEFLATED: 8
+	}, { _tr_init: We, _tr_stored_block: Ge, _tr_flush_block: Ke, _tr_tally: N, _tr_align: qe } = ze, { Z_NO_FLUSH: P, Z_PARTIAL_FLUSH: Je, Z_FULL_FLUSH: Ye, Z_FINISH: F, Z_BLOCK: Xe, Z_OK: I, Z_STREAM_END: Ze, Z_STREAM_ERROR: L, Z_DATA_ERROR: Qe, Z_BUF_ERROR: $e, Z_DEFAULT_COMPRESSION: et, Z_FILTERED: tt, Z_HUFFMAN_ONLY: nt, Z_RLE: rt, Z_FIXED: it, Z_DEFAULT_STRATEGY: at, Z_UNKNOWN: ot, Z_DEFLATED: st } = Ue, ct = 9, lt = 15, ut = 8, dt = 286, ft = 30, pt = 19, mt = 2 * dt + 1, ht = 15, R = 3, z = 258, B = z + R + 1, gt = 32, _t = 42, vt = 57, yt = 69, bt = 73, xt = 91, St = 103, V = 113, Ct = 666, H = 1, wt = 2, U = 3, Tt = 4, Et = 3, Dt = (e, t) => (e.msg = He[t], t), Ot = (e) => e * 2 - (e > 4 ? 9 : 0), W = (e) => {
+		let t = e.length;
+		for (; --t >= 0;) e[t] = 0;
+	}, kt = (e) => {
+		let t, n, r, i = e.w_size;
+		t = e.hash_size, r = t;
+		do
+			n = e.head[--r], e.head[r] = n >= i ? n - i : 0;
+		while (--t);
+		t = i, r = t;
+		do
+			n = e.prev[--r], e.prev[r] = n >= i ? n - i : 0;
+		while (--t);
+	}, At = (e, t, n) => (t << e.hash_shift ^ n) & e.hash_mask, jt = (e, t) => {
+		let n;
+		if (e.legacy_hash) n = e.ins_h = At(e, e.ins_h, e.window[t + R - 1]);
+		else {
+			let r = e.window, i = r[t] | r[t + 1] << 8 | r[t + 2] << 16 | r[t + 3] << 24;
+			n = e.ins_h = Math.imul(i, 66521) + 66521 >>> 16 & e.hash_mask;
+		}
+		let r = e.prev[t & e.w_mask] = e.head[n];
+		return e.head[n] = t, r;
+	}, G = (e) => {
+		let t = e.state, n = t.pending;
+		n > e.avail_out && (n = e.avail_out), n !== 0 && (e.output.set(t.pending_buf.subarray(t.pending_out, t.pending_out + n), e.next_out), e.next_out += n, t.pending_out += n, e.total_out += n, e.avail_out -= n, t.pending -= n, t.pending === 0 && (t.pending_out = 0));
+	}, K = (e, t) => {
+		Ke(e, e.block_start >= 0 ? e.block_start : -1, e.strstart - e.block_start, t), e.block_start = e.strstart, G(e.strm);
+	}, q = (e, t) => {
+		e.pending_buf[e.pending++] = t;
+	}, Mt = (e, t) => {
+		e.pending_buf[e.pending++] = t >>> 8 & 255, e.pending_buf[e.pending++] = t & 255;
+	}, Nt = (e, t, n, r) => {
+		let i = e.avail_in;
+		return i > r && (i = r), i === 0 ? 0 : (e.avail_in -= i, t.set(e.input.subarray(e.next_in, e.next_in + i), n), e.state.wrap === 1 ? e.adler = Be(e.adler, t, i, n) : e.state.wrap === 2 && (e.adler = M(e.adler, t, i, n)), e.next_in += i, e.total_in += i, i);
+	}, Pt = (e, t) => {
+		let { max_chain_length: n, strstart: r } = e, i, a, { prev_length: o, nice_match: s } = e, c = e.strstart > e.w_size - B ? e.strstart - (e.w_size - B) : 0, { window: l, w_mask: u, prev: d } = e, f = e.strstart + z, p = l[r + o - 1], m = l[r + o];
+		e.prev_length >= e.good_match && (n >>= 2), s > e.lookahead && (s = e.lookahead);
+		do
+			if (i = t, l[i + o] === m && l[i + o - 1] === p && l[i] === l[r] && l[++i] === l[r + 1]) {
+				r += 2, i++;
+				do;
+				while (l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && l[++r] === l[++i] && r < f);
+				if (a = z - (f - r), r = f - z, a > o) {
+					if (e.match_start = t, o = a, a >= s) break;
+					p = l[r + o - 1], m = l[r + o];
+				}
+			}
+		while ((t = d[t & u]) > c && --n !== 0);
+		return o <= e.lookahead ? o : e.lookahead;
+	}, Ft = (e) => {
+		let t = e.w_size, n, r, i;
+		do {
+			if (r = e.window_size - e.lookahead - e.strstart, e.strstart >= t + (t - B) && (e.window.set(e.window.subarray(t, t + t - r), 0), e.match_start -= t, e.strstart -= t, e.block_start -= t, e.insert > e.strstart && (e.insert = e.strstart), kt(e), r += t), e.strm.avail_in === 0) break;
+			if (n = Nt(e.strm, e.window, e.strstart + e.lookahead, r), e.lookahead += n, !e.legacy_hash) {
+				if (e.lookahead + e.insert > R) for (i = e.strstart - e.insert; e.insert && (jt(e, i), i++, e.insert--, !(e.lookahead + e.insert <= R)););
+			} else if (e.lookahead + e.insert >= R) for (i = e.strstart - e.insert, e.ins_h = e.window[i], e.ins_h = At(e, e.ins_h, e.window[i + 1]); e.insert && (jt(e, i), i++, e.insert--, !(e.lookahead + e.insert < R)););
+		} while (e.lookahead < B && e.strm.avail_in !== 0);
+	}, It = (e, t) => {
+		let n = e.pending_buf_size - 5 > e.w_size ? e.w_size : e.pending_buf_size - 5, r, i, a, o = 0, s = e.strm.avail_in;
+		do {
+			if (r = 65535, a = e.bi_valid + 42 >> 3, e.strm.avail_out < a || (a = e.strm.avail_out - a, i = e.strstart - e.block_start, r > i + e.strm.avail_in && (r = i + e.strm.avail_in), r > a && (r = a), r < n && (r === 0 && t !== F || t === P || r !== i + e.strm.avail_in))) break;
+			o = +(t === F && r === i + e.strm.avail_in), Ge(e, 0, 0, o), e.pending_buf[e.pending - 4] = r, e.pending_buf[e.pending - 3] = r >> 8, e.pending_buf[e.pending - 2] = ~r, e.pending_buf[e.pending - 1] = ~r >> 8, G(e.strm), i && (i > r && (i = r), e.strm.output.set(e.window.subarray(e.block_start, e.block_start + i), e.strm.next_out), e.strm.next_out += i, e.strm.avail_out -= i, e.strm.total_out += i, e.block_start += i, r -= i), r && (Nt(e.strm, e.strm.output, e.strm.next_out, r), e.strm.next_out += r, e.strm.avail_out -= r, e.strm.total_out += r);
+		} while (o === 0);
+		return s -= e.strm.avail_in, s && (s >= e.w_size ? (e.matches = 2, e.window.set(e.strm.input.subarray(e.strm.next_in - e.w_size, e.strm.next_in), 0), e.strstart = e.w_size, e.insert = e.strstart) : (e.window_size - e.strstart <= s && (e.strstart -= e.w_size, e.window.set(e.window.subarray(e.w_size, e.w_size + e.strstart), 0), e.matches < 2 && e.matches++, e.insert > e.strstart && (e.insert = e.strstart)), e.window.set(e.strm.input.subarray(e.strm.next_in - s, e.strm.next_in), e.strstart), e.strstart += s, e.insert += s > e.w_size - e.insert ? e.w_size - e.insert : s), e.block_start = e.strstart), e.high_water < e.strstart && (e.high_water = e.strstart), o ? Tt : t !== P && t !== F && e.strm.avail_in === 0 && e.strstart === e.block_start ? wt : (a = e.window_size - e.strstart, e.strm.avail_in > a && e.block_start >= e.w_size && (e.block_start -= e.w_size, e.strstart -= e.w_size, e.window.set(e.window.subarray(e.w_size, e.w_size + e.strstart), 0), e.matches < 2 && e.matches++, a += e.w_size, e.insert > e.strstart && (e.insert = e.strstart)), a > e.strm.avail_in && (a = e.strm.avail_in), a && (Nt(e.strm, e.window, e.strstart, a), e.strstart += a, e.insert += a > e.w_size - e.insert ? e.w_size - e.insert : a), e.high_water < e.strstart && (e.high_water = e.strstart), a = e.bi_valid + 42 >> 3, a = e.pending_buf_size - a > 65535 ? 65535 : e.pending_buf_size - a, n = a > e.w_size ? e.w_size : a, i = e.strstart - e.block_start, (i >= n || (i || t === F) && t !== P && e.strm.avail_in === 0 && i <= a) && (r = i > a ? a : i, o = +(t === F && e.strm.avail_in === 0 && r === i), Ge(e, e.block_start, r, o), e.block_start += r, G(e.strm)), o ? U : H);
+	}, Lt = (e, t) => {
+		let n, r;
+		for (;;) {
+			if (e.lookahead < B) {
+				if (Ft(e), e.lookahead < B && t === P) return H;
+				if (e.lookahead === 0) break;
+			}
+			if (n = 0, e.lookahead >= R && (n = jt(e, e.strstart)), n !== 0 && e.strstart - n <= e.w_size - B && (e.match_length = Pt(e, n)), e.match_length >= R) {
+				if (r = N(e, e.strstart - e.match_start, e.match_length - R), e.lookahead -= e.match_length, e.match_length <= e.max_lazy_match && e.lookahead >= R) {
+					e.match_length--;
+					do
+						e.strstart++, n = jt(e, e.strstart);
+					while (--e.match_length !== 0);
+					e.strstart++;
+				} else e.strstart += e.match_length, e.match_length = 0, e.legacy_hash && (e.ins_h = e.window[e.strstart], e.ins_h = At(e, e.ins_h, e.window[e.strstart + 1]));
+			} else r = N(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++;
+			if (r && (K(e, !1), e.strm.avail_out === 0)) return H;
+		}
+		return e.insert = e.strstart < R - 1 ? e.strstart : R - 1, t === F ? (K(e, !0), e.strm.avail_out === 0 ? U : Tt) : e.sym_next && (K(e, !1), e.strm.avail_out === 0) ? H : wt;
+	}, Rt = (e, t) => {
+		let n, r, i;
+		for (;;) {
+			if (e.lookahead < B) {
+				if (Ft(e), e.lookahead < B && t === P) return H;
+				if (e.lookahead === 0) break;
+			}
+			if (n = 0, e.lookahead >= R && (n = jt(e, e.strstart)), e.prev_length = e.match_length, e.prev_match = e.match_start, e.match_length = R - 1, n !== 0 && e.prev_length < e.max_lazy_match && e.strstart - n <= e.w_size - B && (e.match_length = Pt(e, n), e.match_length <= 5 && (e.strategy === tt || e.match_length === R && e.strstart - e.match_start > 4096) && (e.match_length = R - 1)), e.prev_length >= R && e.match_length <= e.prev_length) {
+				i = e.strstart + e.lookahead - R, r = N(e, e.strstart - 1 - e.prev_match, e.prev_length - R), e.lookahead -= e.prev_length - 1, e.prev_length -= 2;
+				do
+					++e.strstart <= i && (n = jt(e, e.strstart));
+				while (--e.prev_length !== 0);
+				if (e.match_available = 0, e.match_length = R - 1, e.strstart++, r && (K(e, !1), e.strm.avail_out === 0)) return H;
+			} else if (e.match_available) {
+				if (r = N(e, 0, e.window[e.strstart - 1]), r && K(e, !1), e.strstart++, e.lookahead--, e.strm.avail_out === 0) return H;
+			} else e.match_available = 1, e.strstart++, e.lookahead--;
+		}
+		return e.match_available &&= (r = N(e, 0, e.window[e.strstart - 1]), 0), e.insert = e.strstart < R - 1 ? e.strstart : R - 1, t === F ? (K(e, !0), e.strm.avail_out === 0 ? U : Tt) : e.sym_next && (K(e, !1), e.strm.avail_out === 0) ? H : wt;
+	}, zt = (e, t) => {
+		let n, r, i, a, o = e.window;
+		for (;;) {
+			if (e.lookahead <= z) {
+				if (Ft(e), e.lookahead <= z && t === P) return H;
+				if (e.lookahead === 0) break;
+			}
+			if (e.match_length = 0, e.lookahead >= R && e.strstart > 0 && (i = e.strstart - 1, r = o[i], r === o[++i] && r === o[++i] && r === o[++i])) {
+				a = e.strstart + z;
+				do;
+				while (r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && r === o[++i] && i < a);
+				e.match_length = z - (a - i), e.match_length > e.lookahead && (e.match_length = e.lookahead);
+			}
+			if (e.match_length >= R ? (n = N(e, 1, e.match_length - R), e.lookahead -= e.match_length, e.strstart += e.match_length, e.match_length = 0) : (n = N(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++), n && (K(e, !1), e.strm.avail_out === 0)) return H;
+		}
+		return e.insert = 0, t === F ? (K(e, !0), e.strm.avail_out === 0 ? U : Tt) : e.sym_next && (K(e, !1), e.strm.avail_out === 0) ? H : wt;
+	}, Bt = (e, t) => {
+		let n;
+		for (;;) {
+			if (e.lookahead === 0 && (Ft(e), e.lookahead === 0)) {
+				if (t === P) return H;
+				break;
+			}
+			if (e.match_length = 0, n = N(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++, n && (K(e, !1), e.strm.avail_out === 0)) return H;
+		}
+		return e.insert = 0, t === F ? (K(e, !0), e.strm.avail_out === 0 ? U : Tt) : e.sym_next && (K(e, !1), e.strm.avail_out === 0) ? H : wt;
+	};
+	function J(e, t, n, r, i) {
+		this.good_length = e, this.max_lazy = t, this.nice_length = n, this.max_chain = r, this.func = i;
 	}
-};
-function an() {
-	this.input = null, this.next_in = 0, this.avail_in = 0, this.total_in = 0, this.output = null, this.next_out = 0, this.avail_out = 0, this.total_out = 0, this.msg = "", this.state = null, this.data_type = 2, this.adler = 0;
-}
-var on = an, sn = Object.prototype.toString, { Z_NO_FLUSH: cn, Z_SYNC_FLUSH: ln, Z_FULL_FLUSH: un, Z_FINISH: dn, Z_OK: fn, Z_STREAM_END: pn, Z_DEFAULT_COMPRESSION: mn, Z_DEFAULT_STRATEGY: hn, Z_DEFLATED: gn } = We, _n = {
-	level: mn,
-	method: gn,
-	chunkSize: 16384,
-	windowBits: 15,
-	memLevel: 8,
-	strategy: hn,
-	legacyHash: !0
-};
-function vn(e) {
-	this.options = Qt.assign({}, _n, e || {});
-	let t = this.options;
-	t.raw && t.windowBits > 0 ? t.windowBits = -t.windowBits : t.gzip && t.windowBits > 0 && t.windowBits < 16 && (t.windowBits += 16), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new on(), this.strm.avail_out = 0;
-	let n = Xt.deflateInit2(this.strm, t.level, t.method, t.windowBits, t.memLevel, t.strategy, t.legacyHash);
-	if (n !== fn) throw Error(Ue[n]);
-	if (t.header && Xt.deflateSetHeader(this.strm, t.header), t.dictionary) {
-		let e;
-		if (e = typeof t.dictionary == "string" ? rn.string2buf(t.dictionary) : sn.call(t.dictionary) === "[object ArrayBuffer]" ? new Uint8Array(t.dictionary) : t.dictionary, n = Xt.deflateSetDictionary(this.strm, e), n !== fn) throw Error(Ue[n]);
-		this._dict_set = !0;
+	var Vt = [
+		new J(0, 0, 0, 0, It),
+		new J(4, 4, 8, 4, Lt),
+		new J(4, 5, 16, 8, Lt),
+		new J(4, 6, 32, 32, Lt),
+		new J(4, 4, 16, 16, Rt),
+		new J(8, 16, 32, 32, Rt),
+		new J(8, 16, 128, 128, Rt),
+		new J(8, 32, 128, 256, Rt),
+		new J(32, 128, 258, 1024, Rt),
+		new J(32, 258, 258, 4096, Rt)
+	], Ht = (e) => {
+		e.window_size = 2 * e.w_size, W(e.head), e.max_lazy_match = Vt[e.level].max_lazy, e.good_match = Vt[e.level].good_length, e.nice_match = Vt[e.level].nice_length, e.max_chain_length = Vt[e.level].max_chain, e.strstart = 0, e.block_start = 0, e.lookahead = 0, e.insert = 0, e.match_length = e.prev_length = R - 1, e.match_available = 0, e.ins_h = 0;
+	};
+	function Ut() {
+		this.strm = null, this.status = 0, this.pending_buf = null, this.pending_buf_size = 0, this.pending_out = 0, this.pending = 0, this.wrap = 0, this.gzhead = null, this.gzindex = 0, this.method = st, this.last_flush = -1, this.w_size = 0, this.w_bits = 0, this.w_mask = 0, this.window = null, this.window_size = 0, this.prev = null, this.head = null, this.ins_h = 0, this.legacy_hash = 0, this.hash_size = 0, this.hash_bits = 0, this.hash_mask = 0, this.hash_shift = 0, this.block_start = 0, this.match_length = 0, this.prev_match = 0, this.match_available = 0, this.strstart = 0, this.match_start = 0, this.lookahead = 0, this.prev_length = 0, this.max_chain_length = 0, this.max_lazy_match = 0, this.level = 0, this.strategy = 0, this.good_match = 0, this.nice_match = 0, this.dyn_ltree = new Uint16Array(mt * 2), this.dyn_dtree = new Uint16Array((2 * ft + 1) * 2), this.bl_tree = new Uint16Array((2 * pt + 1) * 2), W(this.dyn_ltree), W(this.dyn_dtree), W(this.bl_tree), this.l_desc = null, this.d_desc = null, this.bl_desc = null, this.bl_count = new Uint16Array(ht + 1), this.heap = new Uint16Array(2 * dt + 1), W(this.heap), this.heap_len = 0, this.heap_max = 0, this.depth = new Uint16Array(2 * dt + 1), W(this.depth), this.sym_buf = 0, this.lit_bufsize = 0, this.sym_next = 0, this.sym_end = 0, this.opt_len = 0, this.static_len = 0, this.matches = 0, this.insert = 0, this.bi_buf = 0, this.bi_valid = 0;
 	}
-}
-vn.prototype.push = function(e, t) {
-	let n = this.strm, r = this.options.chunkSize, i, a;
-	if (this.ended) return !1;
-	for (a = t === ~~t ? t : t === !0 ? dn : cn, n.input = typeof e == "string" ? rn.string2buf(e) : sn.call(e) === "[object ArrayBuffer]" ? new Uint8Array(e) : e, n.next_in = 0, n.avail_in = n.input.length;;) if (n.avail_out === 0 && (n.output = new Uint8Array(r), n.next_out = 0, n.avail_out = r), (a === ln || a === un) && n.avail_out <= 6) this.onData(n.output.subarray(0, n.next_out)), n.avail_out = 0;
-	else {
-		if (i = Xt.deflate(n, a), i === pn) return n.next_out > 0 && this.onData(n.output.subarray(0, n.next_out)), i = Xt.deflateEnd(this.strm), this.onEnd(i), this.ended = !0, i === fn;
-		if (n.avail_out === 0) this.onData(n.output);
-		else if (a > 0 && n.next_out > 0) this.onData(n.output.subarray(0, n.next_out)), n.avail_out = 0;
-		else if (n.avail_in === 0) break;
-	}
-	return !0;
-}, vn.prototype.onData = function(e) {
-	this.chunks.push(e);
-}, vn.prototype.onEnd = function(e) {
-	e === fn && (this.result = Qt.flattenChunks(this.chunks)), this.chunks = [], this.err = e, this.msg = this.strm.msg;
-};
-function yn(e, t) {
-	let n = new vn(t);
-	if (n.push(e, !0), n.err) throw n.msg || Ue[n.err];
-	return n.result;
-}
-function bn(e, t) {
-	return t ||= {}, t.raw = !0, yn(e, t);
-}
-function xn(e, t) {
-	return t ||= {}, t.gzip = !0, yn(e, t);
-}
-var Sn = {
-	Deflate: vn,
-	deflate: yn,
-	deflateRaw: bn,
-	gzip: xn,
-	constants: We
-}, Cn = 16209, wn = 16191, Tn = function(e, t) {
-	let n, r, i, a, o, s, c, l, u, d, f, p, m, h, g, _, v, y, b, x, S, C, w, T, E = e.state;
-	n = e.next_in, w = e.input, r = n + (e.avail_in - 5), i = e.next_out, T = e.output, a = i - (t - e.avail_out), o = i + (e.avail_out - 257), s = E.dmax, c = E.wsize, l = E.whave, u = E.wnext, d = E.window, f = E.hold, p = E.bits, m = E.lencode, h = E.distcode, g = (1 << E.lenbits) - 1, _ = (1 << E.distbits) - 1;
-	e: do {
-		p < 15 && (f += w[n++] << p, p += 8, f += w[n++] << p, p += 8), v = m[f & g];
-		t: for (;;) {
-			if (y = v >>> 24, f >>>= y, p -= y, y = v >>> 16 & 255, y === 0) T[i++] = v & 65535;
-			else if (y & 16) {
-				b = v & 65535, y &= 15, y && (p < y && (f += w[n++] << p, p += 8), b += f & (1 << y) - 1, f >>>= y, p -= y), p < 15 && (f += w[n++] << p, p += 8, f += w[n++] << p, p += 8), v = h[f & _];
-				i: for (;;) {
-					if (y = v >>> 24, f >>>= y, p -= y, y = v >>> 16 & 255, y & 16) {
-						if (x = v & 65535, y &= 15, p < y && (f += w[n++] << p, p += 8, p < y && (f += w[n++] << p, p += 8)), x += f & (1 << y) - 1, x > s) {
-							e.msg = "invalid distance too far back", E.mode = Cn;
-							break e;
+	var Wt = (e) => {
+		if (!e) return 1;
+		let t = e.state;
+		return +(!t || t.strm !== e || t.status !== _t && t.status !== vt && t.status !== yt && t.status !== bt && t.status !== xt && t.status !== St && t.status !== V && t.status !== Ct);
+	}, Gt = (e) => {
+		if (Wt(e)) return Dt(e, L);
+		e.total_in = e.total_out = 0, e.data_type = ot;
+		let t = e.state;
+		return t.pending = 0, t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap === 2 ? vt : t.wrap ? _t : V, e.adler = t.wrap === 2 ? 0 : 1, t.last_flush = -2, We(t), I;
+	}, Kt = (e) => {
+		let t = Gt(e);
+		return t === I && Ht(e.state), t;
+	}, qt = (e, t) => Wt(e) || e.state.wrap !== 2 ? L : (e.state.gzhead = t, I), Jt = (e, t, n, r, i, a, o) => {
+		if (!e) return L;
+		let s = 1;
+		if (t === et && (t = 6), r < 0 ? (s = 0, r = -r) : r > 15 && (s = 2, r -= 16), i < 1 || i > ct || n !== st || r < 8 || r > 15 || t < 0 || t > 9 || a < 0 || a > it || r === 8 && s !== 1) return Dt(e, L);
+		r === 8 && (r = 9);
+		let c = new Ut();
+		return e.state = c, c.strm = e, c.status = _t, c.wrap = s, c.gzhead = null, c.w_bits = r, c.w_size = 1 << c.w_bits, c.w_mask = c.w_size - 1, c.legacy_hash = +!!o, c.hash_bits = i + 7, !c.legacy_hash && c.hash_bits < 15 && (c.hash_bits = 15), c.hash_size = 1 << c.hash_bits, c.hash_mask = c.hash_size - 1, c.hash_shift = ~~((c.hash_bits + R - 1) / R), c.window = new Uint8Array(c.w_size * 2), c.head = new Uint16Array(c.hash_size), c.prev = new Uint16Array(c.w_size), c.lit_bufsize = 1 << i + 6, c.pending_buf_size = c.lit_bufsize * 4, c.pending_buf = new Uint8Array(c.pending_buf_size), c.sym_buf = c.lit_bufsize, c.sym_end = (c.lit_bufsize - 1) * 3, c.level = t, c.strategy = a, c.method = n, Kt(e);
+	}, Yt = {
+		deflateInit: (e, t) => Jt(e, t, st, lt, ut, at),
+		deflateInit2: Jt,
+		deflateReset: Kt,
+		deflateResetKeep: Gt,
+		deflateSetHeader: qt,
+		deflate: (e, t) => {
+			if (Wt(e) || t > Xe || t < 0) return e ? Dt(e, L) : L;
+			let n = e.state;
+			if (!e.output || e.avail_in !== 0 && !e.input || n.status === Ct && t !== F) return Dt(e, e.avail_out === 0 ? $e : L);
+			let r = n.last_flush;
+			if (n.last_flush = t, n.pending !== 0) {
+				if (G(e), e.avail_out === 0) return n.last_flush = -1, I;
+			} else if (e.avail_in === 0 && Ot(t) <= Ot(r) && t !== F) return Dt(e, $e);
+			if (n.status === Ct && e.avail_in !== 0) return Dt(e, $e);
+			if (n.status === _t && n.wrap === 0 && (n.status = V), n.status === _t) {
+				let t = st + (n.w_bits - 8 << 4) << 8, r = -1;
+				if (r = n.strategy >= nt || n.level < 2 ? 0 : n.level < 6 ? 1 : n.level === 6 ? 2 : 3, t |= r << 6, n.strstart !== 0 && (t |= gt), t += 31 - t % 31, Mt(n, t), n.strstart !== 0 && (Mt(n, e.adler >>> 16), Mt(n, e.adler & 65535)), e.adler = 1, n.status = V, G(e), n.pending !== 0) return n.last_flush = -1, I;
+			}
+			if (n.status === vt) {
+				if (e.adler = 0, q(n, 31), q(n, 139), q(n, 8), !n.gzhead) {
+					if (q(n, 0), q(n, 0), q(n, 0), q(n, 0), q(n, 0), q(n, n.level === 9 ? 2 : n.strategy >= nt || n.level < 2 ? 4 : 0), q(n, Et), n.status = V, G(e), n.pending !== 0) return n.last_flush = -1, I;
+				} else q(n, +!!n.gzhead.text + (n.gzhead.hcrc ? 2 : 0) + (n.gzhead.extra ? 4 : 0) + (n.gzhead.name ? 8 : 0) + (n.gzhead.comment ? 16 : 0)), q(n, n.gzhead.time & 255), q(n, n.gzhead.time >> 8 & 255), q(n, n.gzhead.time >> 16 & 255), q(n, n.gzhead.time >> 24 & 255), q(n, n.level === 9 ? 2 : n.strategy >= nt || n.level < 2 ? 4 : 0), q(n, n.gzhead.os & 255), n.gzhead.extra && n.gzhead.extra.length && (q(n, n.gzhead.extra.length & 255), q(n, n.gzhead.extra.length >> 8 & 255)), n.gzhead.hcrc && (e.adler = M(e.adler, n.pending_buf, n.pending, 0)), n.gzindex = 0, n.status = yt;
+			}
+			if (n.status === yt) {
+				if (n.gzhead.extra) {
+					let t = n.pending, r = (n.gzhead.extra.length & 65535) - n.gzindex;
+					for (; n.pending + r > n.pending_buf_size;) {
+						let i = n.pending_buf_size - n.pending;
+						if (n.pending_buf.set(n.gzhead.extra.subarray(n.gzindex, n.gzindex + i), n.pending), n.pending = n.pending_buf_size, n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex += i, G(e), n.pending !== 0) return n.last_flush = -1, I;
+						t = 0, r -= i;
+					}
+					let i = new Uint8Array(n.gzhead.extra);
+					n.pending_buf.set(i.subarray(n.gzindex, n.gzindex + r), n.pending), n.pending += r, n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex = 0;
+				}
+				n.status = bt;
+			}
+			if (n.status === bt) {
+				if (n.gzhead.name) {
+					let t = n.pending, r;
+					do {
+						if (n.pending === n.pending_buf_size) {
+							if (n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t)), G(e), n.pending !== 0) return n.last_flush = -1, I;
+							t = 0;
 						}
-						if (f >>>= y, p -= y, y = i - a, x > y) {
-							if (y = x - y, y > l && E.sane) {
-								e.msg = "invalid distance too far back", E.mode = Cn;
+						r = n.gzindex < n.gzhead.name.length ? n.gzhead.name.charCodeAt(n.gzindex++) & 255 : 0, q(n, r);
+					} while (r !== 0);
+					n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t)), n.gzindex = 0;
+				}
+				n.status = xt;
+			}
+			if (n.status === xt) {
+				if (n.gzhead.comment) {
+					let t = n.pending, r;
+					do {
+						if (n.pending === n.pending_buf_size) {
+							if (n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t)), G(e), n.pending !== 0) return n.last_flush = -1, I;
+							t = 0;
+						}
+						r = n.gzindex < n.gzhead.comment.length ? n.gzhead.comment.charCodeAt(n.gzindex++) & 255 : 0, q(n, r);
+					} while (r !== 0);
+					n.gzhead.hcrc && n.pending > t && (e.adler = M(e.adler, n.pending_buf, n.pending - t, t));
+				}
+				n.status = St;
+			}
+			if (n.status === St) {
+				if (n.gzhead.hcrc) {
+					if (n.pending + 2 > n.pending_buf_size && (G(e), n.pending !== 0)) return n.last_flush = -1, I;
+					q(n, e.adler & 255), q(n, e.adler >> 8 & 255), e.adler = 0;
+				}
+				if (n.status = V, G(e), n.pending !== 0) return n.last_flush = -1, I;
+			}
+			if (e.avail_in !== 0 || n.lookahead !== 0 || t !== P && n.status !== Ct) {
+				let r = n.level === 0 ? It(n, t) : n.strategy === nt ? Bt(n, t) : n.strategy === rt ? zt(n, t) : Vt[n.level].func(n, t);
+				if ((r === U || r === Tt) && (n.status = Ct), r === H || r === U) return e.avail_out === 0 && (n.last_flush = -1), I;
+				if (r === wt && (t === Je ? qe(n) : t !== Xe && (Ge(n, 0, 0, !1), t === Ye && (W(n.head), n.lookahead === 0 && (n.strstart = 0, n.block_start = 0, n.insert = 0))), G(e), e.avail_out === 0)) return n.last_flush = -1, I;
+			}
+			return t === F ? n.wrap <= 0 ? Ze : (n.wrap === 2 ? (q(n, e.adler & 255), q(n, e.adler >> 8 & 255), q(n, e.adler >> 16 & 255), q(n, e.adler >> 24 & 255), q(n, e.total_in & 255), q(n, e.total_in >> 8 & 255), q(n, e.total_in >> 16 & 255), q(n, e.total_in >> 24 & 255)) : (Mt(n, e.adler >>> 16), Mt(n, e.adler & 65535)), G(e), n.wrap > 0 && (n.wrap = -n.wrap), n.pending === 0 ? Ze : I) : I;
+		},
+		deflateEnd: (e) => {
+			if (Wt(e)) return L;
+			let t = e.state.status;
+			return e.state = null, t === V ? Dt(e, Qe) : I;
+		},
+		deflateSetDictionary: (e, t) => {
+			let n = t.length;
+			if (Wt(e)) return L;
+			let r = e.state, i = r.wrap;
+			if (i === 2 || i === 1 && r.status !== _t || r.lookahead) return L;
+			if (i === 1 && (e.adler = Be(e.adler, t, n, 0)), r.wrap = 0, n >= r.w_size) {
+				i === 0 && (W(r.head), r.strstart = 0, r.block_start = 0, r.insert = 0);
+				let e = new Uint8Array(r.w_size);
+				e.set(t.subarray(n - r.w_size, n), 0), t = e, n = r.w_size;
+			}
+			let { avail_in: a, next_in: o, input: s } = e;
+			for (e.avail_in = n, e.next_in = 0, e.input = t, Ft(r); r.lookahead >= R;) {
+				let e = r.strstart, t = r.lookahead - (R - 1);
+				do
+					jt(r, e), e++;
+				while (--t);
+				r.strstart = e, r.lookahead = R - 1, Ft(r);
+			}
+			return r.strstart += r.lookahead, r.block_start = r.strstart, r.insert = r.lookahead, r.lookahead = 0, r.match_length = r.prev_length = R - 1, r.match_available = 0, e.next_in = o, e.input = s, e.avail_in = a, r.wrap = i, I;
+		},
+		deflateInfo: "pako deflate (from Nodeca project)"
+	}, Xt = (e, t) => Object.prototype.hasOwnProperty.call(e, t), Zt = {
+		assign: function(e) {
+			let t = Array.prototype.slice.call(arguments, 1);
+			for (; t.length;) {
+				let n = t.shift();
+				if (n) {
+					if (typeof n != "object") throw TypeError(n + "must be non-object");
+					for (let t in n) Xt(n, t) && (e[t] = n[t]);
+				}
+			}
+			return e;
+		},
+		flattenChunks: (e) => {
+			let t = 0;
+			for (let n = 0, r = e.length; n < r; n++) t += e[n].length;
+			let n = new Uint8Array(t);
+			for (let t = 0, r = 0, i = e.length; t < i; t++) {
+				let i = e[t];
+				n.set(i, r), r += i.length;
+			}
+			return n;
+		}
+	}, Qt = !0;
+	try {
+		String.fromCharCode.apply(null, /* @__PURE__ */ new Uint8Array(1));
+	} catch {
+		Qt = !1;
+	}
+	var $t = /* @__PURE__ */ new Uint8Array(256);
+	for (let e = 0; e < 256; e++) $t[e] = e >= 252 ? 6 : e >= 248 ? 5 : e >= 240 ? 4 : e >= 224 ? 3 : e >= 192 ? 2 : 1;
+	$t[254] = $t[255] = 1;
+	var en = (e) => {
+		if (typeof TextEncoder == "function" && TextEncoder.prototype.encode) return new TextEncoder().encode(e);
+		let t, n, r, i, a, o = e.length, s = 0;
+		for (i = 0; i < o; i++) n = e.charCodeAt(i), (n & 64512) == 55296 && i + 1 < o && (r = e.charCodeAt(i + 1), (r & 64512) == 56320 && (n = 65536 + (n - 55296 << 10) + (r - 56320), i++)), s += n < 128 ? 1 : n < 2048 ? 2 : n < 65536 ? 3 : 4;
+		for (t = new Uint8Array(s), a = 0, i = 0; a < s; i++) n = e.charCodeAt(i), (n & 64512) == 55296 && i + 1 < o && (r = e.charCodeAt(i + 1), (r & 64512) == 56320 && (n = 65536 + (n - 55296 << 10) + (r - 56320), i++)), n < 128 ? t[a++] = n : n < 2048 ? (t[a++] = 192 | n >>> 6, t[a++] = 128 | n & 63) : n < 65536 ? (t[a++] = 224 | n >>> 12, t[a++] = 128 | n >>> 6 & 63, t[a++] = 128 | n & 63) : (t[a++] = 240 | n >>> 18, t[a++] = 128 | n >>> 12 & 63, t[a++] = 128 | n >>> 6 & 63, t[a++] = 128 | n & 63);
+		return t;
+	}, tn = (e, t) => {
+		if (t < 65534 && e.subarray && Qt) return String.fromCharCode.apply(null, e.length === t ? e : e.subarray(0, t));
+		let n = "";
+		for (let r = 0; r < t; r++) n += String.fromCharCode(e[r]);
+		return n;
+	}, nn = {
+		string2buf: en,
+		buf2string: (e, t) => {
+			let n = t || e.length;
+			if (typeof TextDecoder == "function" && TextDecoder.prototype.decode) return new TextDecoder().decode(e.subarray(0, t));
+			let r, i, a = Array(n * 2);
+			for (i = 0, r = 0; r < n;) {
+				let t = e[r++];
+				if (t < 128) {
+					a[i++] = t;
+					continue;
+				}
+				let o = $t[t];
+				if (o > 4) a[i++] = 65533, r += o - 1;
+				else {
+					for (t &= o === 2 ? 31 : o === 3 ? 15 : 7; o > 1 && r < n;) t = t << 6 | e[r++] & 63, o--;
+					o > 1 ? a[i++] = 65533 : t < 65536 ? a[i++] = t : (t -= 65536, a[i++] = 55296 | t >> 10 & 1023, a[i++] = 56320 | t & 1023);
+				}
+			}
+			return tn(a, i);
+		},
+		utf8border: (e, t) => {
+			t ||= e.length, t > e.length && (t = e.length);
+			let n = t - 1;
+			for (; n >= 0 && (e[n] & 192) == 128;) n--;
+			return n < 0 || n === 0 ? t : n + $t[e[n]] > t ? n : t;
+		}
+	};
+	function rn() {
+		this.input = null, this.next_in = 0, this.avail_in = 0, this.total_in = 0, this.output = null, this.next_out = 0, this.avail_out = 0, this.total_out = 0, this.msg = "", this.state = null, this.data_type = 2, this.adler = 0;
+	}
+	var an = rn, on = Object.prototype.toString, { Z_NO_FLUSH: sn, Z_SYNC_FLUSH: cn, Z_FULL_FLUSH: ln, Z_FINISH: un, Z_OK: dn, Z_STREAM_END: fn, Z_DEFAULT_COMPRESSION: pn, Z_DEFAULT_STRATEGY: mn, Z_DEFLATED: hn } = Ue, gn = {
+		level: pn,
+		method: hn,
+		chunkSize: 16384,
+		windowBits: 15,
+		memLevel: 8,
+		strategy: mn,
+		legacyHash: !0
+	};
+	function _n(e) {
+		this.options = Zt.assign({}, gn, e || {});
+		let t = this.options;
+		t.raw && t.windowBits > 0 ? t.windowBits = -t.windowBits : t.gzip && t.windowBits > 0 && t.windowBits < 16 && (t.windowBits += 16), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new an(), this.strm.avail_out = 0;
+		let n = Yt.deflateInit2(this.strm, t.level, t.method, t.windowBits, t.memLevel, t.strategy, t.legacyHash);
+		if (n !== dn) throw Error(He[n]);
+		if (t.header && Yt.deflateSetHeader(this.strm, t.header), t.dictionary) {
+			let e;
+			if (e = typeof t.dictionary == "string" ? nn.string2buf(t.dictionary) : on.call(t.dictionary) === "[object ArrayBuffer]" ? new Uint8Array(t.dictionary) : t.dictionary, n = Yt.deflateSetDictionary(this.strm, e), n !== dn) throw Error(He[n]);
+			this._dict_set = !0;
+		}
+	}
+	_n.prototype.push = function(e, t) {
+		let n = this.strm, r = this.options.chunkSize, i, a;
+		if (this.ended) return !1;
+		for (a = t === ~~t ? t : t === !0 ? un : sn, n.input = typeof e == "string" ? nn.string2buf(e) : on.call(e) === "[object ArrayBuffer]" ? new Uint8Array(e) : e, n.next_in = 0, n.avail_in = n.input.length;;) if (n.avail_out === 0 && (n.output = new Uint8Array(r), n.next_out = 0, n.avail_out = r), (a === cn || a === ln) && n.avail_out <= 6) this.onData(n.output.subarray(0, n.next_out)), n.avail_out = 0;
+		else {
+			if (i = Yt.deflate(n, a), i === fn) return n.next_out > 0 && this.onData(n.output.subarray(0, n.next_out)), i = Yt.deflateEnd(this.strm), this.onEnd(i), this.ended = !0, i === dn;
+			if (n.avail_out === 0) this.onData(n.output);
+			else if (a > 0 && n.next_out > 0) this.onData(n.output.subarray(0, n.next_out)), n.avail_out = 0;
+			else if (n.avail_in === 0) break;
+		}
+		return !0;
+	}, _n.prototype.onData = function(e) {
+		this.chunks.push(e);
+	}, _n.prototype.onEnd = function(e) {
+		e === dn && (this.result = Zt.flattenChunks(this.chunks)), this.chunks = [], this.err = e, this.msg = this.strm.msg;
+	};
+	function vn(e, t) {
+		let n = new _n(t);
+		if (n.push(e, !0), n.err) throw n.msg || He[n.err];
+		return n.result;
+	}
+	function yn(e, t) {
+		return t ||= {}, t.raw = !0, vn(e, t);
+	}
+	function bn(e, t) {
+		return t ||= {}, t.gzip = !0, vn(e, t);
+	}
+	var xn = {
+		Deflate: _n,
+		deflate: vn,
+		deflateRaw: yn,
+		gzip: bn,
+		constants: Ue
+	}, Sn = 16209, Cn = 16191, wn = function(e, t) {
+		let n, r, i, a, o, s, c, l, u, d, f, p, m, h, g, _, v, y, b, x, S, C, w, T, E = e.state;
+		n = e.next_in, w = e.input, r = n + (e.avail_in - 5), i = e.next_out, T = e.output, a = i - (t - e.avail_out), o = i + (e.avail_out - 257), s = E.dmax, c = E.wsize, l = E.whave, u = E.wnext, d = E.window, f = E.hold, p = E.bits, m = E.lencode, h = E.distcode, g = (1 << E.lenbits) - 1, _ = (1 << E.distbits) - 1;
+		e: do {
+			p < 15 && (f += w[n++] << p, p += 8, f += w[n++] << p, p += 8), v = m[f & g];
+			t: for (;;) {
+				if (y = v >>> 24, f >>>= y, p -= y, y = v >>> 16 & 255, y === 0) T[i++] = v & 65535;
+				else if (y & 16) {
+					b = v & 65535, y &= 15, y && (p < y && (f += w[n++] << p, p += 8), b += f & (1 << y) - 1, f >>>= y, p -= y), p < 15 && (f += w[n++] << p, p += 8, f += w[n++] << p, p += 8), v = h[f & _];
+					i: for (;;) {
+						if (y = v >>> 24, f >>>= y, p -= y, y = v >>> 16 & 255, y & 16) {
+							if (x = v & 65535, y &= 15, p < y && (f += w[n++] << p, p += 8, p < y && (f += w[n++] << p, p += 8)), x += f & (1 << y) - 1, x > s) {
+								e.msg = "invalid distance too far back", E.mode = Sn;
 								break e;
 							}
-							if (S = 0, C = d, u === 0) {
-								if (S += c - y, y < b) {
+							if (f >>>= y, p -= y, y = i - a, x > y) {
+								if (y = x - y, y > l && E.sane) {
+									e.msg = "invalid distance too far back", E.mode = Sn;
+									break e;
+								}
+								if (S = 0, C = d, u === 0) {
+									if (S += c - y, y < b) {
+										b -= y;
+										do
+											T[i++] = d[S++];
+										while (--y);
+										S = i - x, C = T;
+									}
+								} else if (u < y) {
+									if (S += c + u - y, y -= u, y < b) {
+										b -= y;
+										do
+											T[i++] = d[S++];
+										while (--y);
+										if (S = 0, u < b) {
+											y = u, b -= y;
+											do
+												T[i++] = d[S++];
+											while (--y);
+											S = i - x, C = T;
+										}
+									}
+								} else if (S += u - y, y < b) {
 									b -= y;
 									do
 										T[i++] = d[S++];
 									while (--y);
 									S = i - x, C = T;
 								}
-							} else if (u < y) {
-								if (S += c + u - y, y -= u, y < b) {
-									b -= y;
-									do
-										T[i++] = d[S++];
-									while (--y);
-									if (S = 0, u < b) {
-										y = u, b -= y;
-										do
-											T[i++] = d[S++];
-										while (--y);
-										S = i - x, C = T;
-									}
-								}
-							} else if (S += u - y, y < b) {
-								b -= y;
+								for (; b > 2;) T[i++] = C[S++], T[i++] = C[S++], T[i++] = C[S++], b -= 3;
+								b && (T[i++] = C[S++], b > 1 && (T[i++] = C[S++]));
+							} else {
+								S = i - x;
 								do
-									T[i++] = d[S++];
-								while (--y);
-								S = i - x, C = T;
+									T[i++] = T[S++], T[i++] = T[S++], T[i++] = T[S++], b -= 3;
+								while (b > 2);
+								b && (T[i++] = T[S++], b > 1 && (T[i++] = T[S++]));
 							}
-							for (; b > 2;) T[i++] = C[S++], T[i++] = C[S++], T[i++] = C[S++], b -= 3;
-							b && (T[i++] = C[S++], b > 1 && (T[i++] = C[S++]));
-						} else {
-							S = i - x;
-							do
-								T[i++] = T[S++], T[i++] = T[S++], T[i++] = T[S++], b -= 3;
-							while (b > 2);
-							b && (T[i++] = T[S++], b > 1 && (T[i++] = T[S++]));
-						}
-					} else if (y & 64) {
-						e.msg = "invalid distance code", E.mode = Cn;
-						break e;
-					} else {
-						v = h[(v & 65535) + (f & (1 << y) - 1)];
-						continue i;
-					}
-					break;
-				}
-			} else if (!(y & 64)) {
-				v = m[(v & 65535) + (f & (1 << y) - 1)];
-				continue t;
-			} else if (y & 32) {
-				E.mode = wn;
-				break e;
-			} else {
-				e.msg = "invalid literal/length code", E.mode = Cn;
-				break e;
-			}
-			break;
-		}
-	} while (n < r && i < o);
-	b = p >> 3, n -= b, p -= b << 3, f &= (1 << p) - 1, e.next_in = n, e.next_out = i, e.avail_in = n < r ? 5 + (r - n) : 5 - (n - r), e.avail_out = i < o ? 257 + (o - i) : 257 - (i - o), E.hold = f, E.bits = p;
-}, En = 15, Dn = 852, On = 592, kn = 0, An = 1, jn = 2, Mn = new Uint16Array([
-	3,
-	4,
-	5,
-	6,
-	7,
-	8,
-	9,
-	10,
-	11,
-	13,
-	15,
-	17,
-	19,
-	23,
-	27,
-	31,
-	35,
-	43,
-	51,
-	59,
-	67,
-	83,
-	99,
-	115,
-	131,
-	163,
-	195,
-	227,
-	258,
-	0,
-	0
-]), Nn = new Uint8Array([
-	16,
-	16,
-	16,
-	16,
-	16,
-	16,
-	16,
-	16,
-	17,
-	17,
-	17,
-	17,
-	18,
-	18,
-	18,
-	18,
-	19,
-	19,
-	19,
-	19,
-	20,
-	20,
-	20,
-	20,
-	21,
-	21,
-	21,
-	21,
-	16,
-	199,
-	75
-]), Pn = new Uint16Array([
-	1,
-	2,
-	3,
-	4,
-	5,
-	7,
-	9,
-	13,
-	17,
-	25,
-	33,
-	49,
-	65,
-	97,
-	129,
-	193,
-	257,
-	385,
-	513,
-	769,
-	1025,
-	1537,
-	2049,
-	3073,
-	4097,
-	6145,
-	8193,
-	12289,
-	16385,
-	24577,
-	0,
-	0
-]), Fn = new Uint8Array([
-	16,
-	16,
-	16,
-	16,
-	17,
-	17,
-	18,
-	18,
-	19,
-	19,
-	20,
-	20,
-	21,
-	21,
-	22,
-	22,
-	23,
-	23,
-	24,
-	24,
-	25,
-	25,
-	26,
-	26,
-	27,
-	27,
-	28,
-	28,
-	29,
-	29,
-	64,
-	64
-]), In = (e, t, n, r, i, a, o, s) => {
-	let c = s.bits, l = 0, u = 0, d = 0, f = 0, p = 0, m = 0, h = 0, g = 0, _ = 0, v = 0, y, b, x, S, C, w = null, T, E = new Uint16Array(En + 1), D = new Uint16Array(En + 1), O = null, ee, k, te;
-	for (l = 0; l <= En; l++) E[l] = 0;
-	for (u = 0; u < r; u++) E[t[n + u]]++;
-	for (p = c, f = En; f >= 1 && E[f] === 0; f--);
-	if (p > f && (p = f), f === 0) return i[a++] = 20971520, i[a++] = 20971520, s.bits = 1, 0;
-	for (d = 1; d < f && E[d] === 0; d++);
-	for (p < d && (p = d), g = 1, l = 1; l <= En; l++) if (g <<= 1, g -= E[l], g < 0) return -1;
-	if (g > 0 && (e === kn || f !== 1)) return -1;
-	for (D[1] = 0, l = 1; l < En; l++) D[l + 1] = D[l] + E[l];
-	for (u = 0; u < r; u++) t[n + u] !== 0 && (o[D[t[n + u]]++] = u);
-	if (e === kn ? (w = O = o, T = 20) : e === An ? (w = Mn, O = Nn, T = 257) : (w = Pn, O = Fn, T = 0), v = 0, u = 0, l = d, C = a, m = p, h = 0, x = -1, _ = 1 << p, S = _ - 1, e === An && _ > Dn || e === jn && _ > On) return 1;
-	for (;;) {
-		ee = l - h, o[u] + 1 < T ? (k = 0, te = o[u]) : o[u] >= T ? (k = O[o[u] - T], te = w[o[u] - T]) : (k = 96, te = 0), y = 1 << l - h, b = 1 << m, d = b;
-		do
-			b -= y, i[C + (v >> h) + b] = ee << 24 | k << 16 | te;
-		while (b !== 0);
-		for (y = 1 << l - 1; v & y;) y >>= 1;
-		if (y === 0 ? v = 0 : (v &= y - 1, v += y), u++, --E[l] === 0) {
-			if (l === f) break;
-			l = t[n + o[u]];
-		}
-		if (l > p && (v & S) !== x) {
-			for (h === 0 && (h = p), C += d, m = l - h, g = 1 << m; m + h < f && (g -= E[m + h], !(g <= 0));) m++, g <<= 1;
-			if (_ += 1 << m, e === An && _ > Dn || e === jn && _ > On) return 1;
-			x = v & S, i[x] = p << 24 | m << 16 | C - a;
-		}
-	}
-	return v !== 0 && (i[C + v] = l - h << 24 | 4194304), s.bits = p, 0;
-}, Ln = 0, Rn = 1, zn = 2, { Z_FINISH: Bn, Z_BLOCK: Vn, Z_TREES: Hn, Z_OK: Un, Z_STREAM_END: Wn, Z_NEED_DICT: Gn, Z_STREAM_ERROR: X, Z_DATA_ERROR: Kn, Z_MEM_ERROR: qn, Z_BUF_ERROR: Jn, Z_DEFLATED: Yn } = We, Xn = 16180, Zn = 16181, Qn = 16182, $n = 16183, er = 16184, tr = 16185, nr = 16186, rr = 16187, ir = 16188, ar = 16189, or = 16190, Z = 16191, sr = 16192, cr = 16193, lr = 16194, ur = 16195, dr = 16196, fr = 16197, pr = 16198, mr = 16199, hr = 16200, gr = 16201, _r = 16202, vr = 16203, yr = 16204, br = 16205, xr = 16206, Sr = 16207, Cr = 16208, Q = 16209, wr = 16210, Tr = 16211, Er = 852, Dr = 592, Or = 15, kr = (e) => (e >>> 24 & 255) + (e >>> 8 & 65280) + ((e & 65280) << 8) + ((e & 255) << 24);
-function Ar() {
-	this.strm = null, this.mode = 0, this.last = !1, this.wrap = 0, this.havedict = !1, this.flags = 0, this.dmax = 0, this.check = 0, this.total = 0, this.head = null, this.wbits = 0, this.wsize = 0, this.whave = 0, this.wnext = 0, this.window = null, this.hold = 0, this.bits = 0, this.length = 0, this.offset = 0, this.extra = 0, this.lencode = null, this.distcode = null, this.lenbits = 0, this.distbits = 0, this.ncode = 0, this.nlen = 0, this.ndist = 0, this.have = 0, this.next = null, this.lens = /* @__PURE__ */ new Uint16Array(320), this.work = /* @__PURE__ */ new Uint16Array(288), this.lendyn = null, this.distdyn = null, this.sane = 0, this.back = 0, this.was = 0;
-}
-var jr = (e) => {
-	if (!e) return 1;
-	let t = e.state;
-	return +(!t || t.strm !== e || t.mode < Xn || t.mode > Tr);
-}, Mr = (e) => {
-	if (jr(e)) return X;
-	let t = e.state;
-	return e.total_in = e.total_out = t.total = 0, e.msg = "", t.wrap && (e.adler = t.wrap & 1), t.mode = Xn, t.last = 0, t.havedict = 0, t.flags = -1, t.dmax = 32768, t.head = null, t.hold = 0, t.bits = 0, t.lencode = t.lendyn = new Int32Array(Er), t.distcode = t.distdyn = new Int32Array(Dr), t.sane = 1, t.back = -1, Un;
-}, Nr = (e) => {
-	if (jr(e)) return X;
-	let t = e.state;
-	return t.wsize = 0, t.whave = 0, t.wnext = 0, Mr(e);
-}, Pr = (e, t) => {
-	let n;
-	if (jr(e)) return X;
-	let r = e.state;
-	return t < 0 ? (n = 0, t = -t) : (n = (t >> 4) + 5, t < 48 && (t &= 15)), t && (t < 8 || t > 15) ? X : (r.window !== null && r.wbits !== t && (r.window = null), r.wrap = n, r.wbits = t, Nr(e));
-}, Fr = (e, t) => {
-	if (!e) return X;
-	let n = new Ar();
-	e.state = n, n.strm = e, n.window = null, n.mode = Xn;
-	let r = Pr(e, t);
-	return r !== Un && (e.state = null), r;
-}, Ir = (e) => Fr(e, Or), Lr = !0, Rr, zr, Br = (e) => {
-	if (Lr) {
-		Rr = /* @__PURE__ */ new Int32Array(512), zr = /* @__PURE__ */ new Int32Array(32);
-		let t = 0;
-		for (; t < 144;) e.lens[t++] = 8;
-		for (; t < 256;) e.lens[t++] = 9;
-		for (; t < 280;) e.lens[t++] = 7;
-		for (; t < 288;) e.lens[t++] = 8;
-		for (In(Rn, e.lens, 0, 288, Rr, 0, e.work, { bits: 9 }), t = 0; t < 32;) e.lens[t++] = 5;
-		In(zn, e.lens, 0, 32, zr, 0, e.work, { bits: 5 }), Lr = !1;
-	}
-	e.lencode = Rr, e.lenbits = 9, e.distcode = zr, e.distbits = 5;
-}, Vr = (e, t, n, r) => {
-	let i, a = e.state;
-	return a.window === null && (a.window = new Uint8Array(1 << a.wbits)), a.wsize === 0 && (a.wsize = 1 << a.wbits, a.wnext = 0, a.whave = 0), r >= a.wsize ? (a.window.set(t.subarray(n - a.wsize, n), 0), a.wnext = 0, a.whave = a.wsize) : (i = a.wsize - a.wnext, i > r && (i = r), a.window.set(t.subarray(n - r, n - r + i), a.wnext), r -= i, r ? (a.window.set(t.subarray(n - r, n), 0), a.wnext = r, a.whave = a.wsize) : (a.wnext += i, a.wnext === a.wsize && (a.wnext = 0), a.whave < a.wsize && (a.whave += i))), 0;
-}, $ = {
-	inflateReset: Nr,
-	inflateReset2: Pr,
-	inflateResetKeep: Mr,
-	inflateInit: Ir,
-	inflateInit2: Fr,
-	inflate: (e, t) => {
-		let n, r, i, a, o, s, c, l, u, d, f, p, m, h, g = 0, _, v, y, b, x, S, C, w, T = /* @__PURE__ */ new Uint8Array(4), E, D, O = new Uint8Array([
-			16,
-			17,
-			18,
-			0,
-			8,
-			7,
-			9,
-			6,
-			10,
-			5,
-			11,
-			4,
-			12,
-			3,
-			13,
-			2,
-			14,
-			1,
-			15
-		]);
-		if (jr(e) || !e.output || !e.input && e.avail_in !== 0) return X;
-		n = e.state, n.mode === Z && (n.mode = sr), o = e.next_out, i = e.output, c = e.avail_out, a = e.next_in, r = e.input, s = e.avail_in, l = n.hold, u = n.bits, d = s, f = c, w = Un;
-		e: for (;;) switch (n.mode) {
-			case Xn:
-				if (n.wrap === 0) {
-					n.mode = sr;
-					break;
-				}
-				for (; u < 16;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if (n.wrap & 2 && l === 35615) {
-					n.wbits === 0 && (n.wbits = 15), n.check = 0, T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = N(n.check, T, 2, 0), l = 0, u = 0, n.mode = Zn;
-					break;
-				}
-				if (n.head && (n.head.done = !1), !(n.wrap & 1) || (((l & 255) << 8) + (l >> 8)) % 31) {
-					e.msg = "incorrect header check", n.mode = Q;
-					break;
-				}
-				if ((l & 15) !== Yn) {
-					e.msg = "unknown compression method", n.mode = Q;
-					break;
-				}
-				if (l >>>= 4, u -= 4, C = (l & 15) + 8, n.wbits === 0 && (n.wbits = C), C > 15 || C > n.wbits) {
-					e.msg = "invalid window size", n.mode = Q;
-					break;
-				}
-				n.dmax = 1 << n.wbits, n.flags = 0, e.adler = n.check = 1, n.mode = l & 512 ? ar : Z, l = 0, u = 0;
-				break;
-			case Zn:
-				for (; u < 16;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if (n.flags = l, (n.flags & 255) !== Yn) {
-					e.msg = "unknown compression method", n.mode = Q;
-					break;
-				}
-				if (n.flags & 57344) {
-					e.msg = "unknown header flags set", n.mode = Q;
-					break;
-				}
-				n.head && (n.head.text = l >> 8 & 1), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = N(n.check, T, 2, 0)), l = 0, u = 0, n.mode = Qn;
-			case Qn:
-				for (; u < 32;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				n.head && (n.head.time = l), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, T[2] = l >>> 16 & 255, T[3] = l >>> 24 & 255, n.check = N(n.check, T, 4, 0)), l = 0, u = 0, n.mode = $n;
-			case $n:
-				for (; u < 16;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				n.head && (n.head.xflags = l & 255, n.head.os = l >> 8), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = N(n.check, T, 2, 0)), l = 0, u = 0, n.mode = er;
-			case er:
-				if (n.flags & 1024) {
-					for (; u < 16;) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					n.length = l, n.head && (n.head.extra_len = l), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = N(n.check, T, 2, 0)), l = 0, u = 0;
-				} else n.head && (n.head.extra = null);
-				n.mode = tr;
-			case tr:
-				if (n.flags & 1024 && (p = n.length, p > s && (p = s), p && (n.head && (C = n.head.extra_len - n.length, !n.head.extra && (n.head.extra = new Uint8Array(n.head.extra_len)), n.head.extra.set(r.subarray(a, a + p), C)), n.flags & 512 && n.wrap & 4 && (n.check = N(n.check, r, p, a)), s -= p, a += p, n.length -= p), n.length)) break e;
-				n.length = 0, n.mode = nr;
-			case nr:
-				if (n.flags & 2048) {
-					if (s === 0) break e;
-					p = 0;
-					do
-						C = r[a + p++], n.head && C && n.length < 65536 && (n.head.name += String.fromCharCode(C));
-					while (C && p < s);
-					if (n.flags & 512 && n.wrap & 4 && (n.check = N(n.check, r, p, a)), s -= p, a += p, C) break e;
-				} else n.head && (n.head.name = null);
-				n.length = 0, n.mode = rr;
-			case rr:
-				if (n.flags & 4096) {
-					if (s === 0) break e;
-					p = 0;
-					do
-						C = r[a + p++], n.head && C && n.length < 65536 && (n.head.comment += String.fromCharCode(C));
-					while (C && p < s);
-					if (n.flags & 512 && n.wrap & 4 && (n.check = N(n.check, r, p, a)), s -= p, a += p, C) break e;
-				} else n.head && (n.head.comment = null);
-				n.mode = ir;
-			case ir:
-				if (n.flags & 512) {
-					for (; u < 16;) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					if (n.wrap & 4 && l !== (n.check & 65535)) {
-						e.msg = "header crc mismatch", n.mode = Q;
-						break;
-					}
-					l = 0, u = 0;
-				}
-				n.head && (n.head.hcrc = n.flags >> 9 & 1, n.head.done = !0), e.adler = n.check = 0, n.mode = Z;
-				break;
-			case ar:
-				for (; u < 32;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				e.adler = n.check = kr(l), l = 0, u = 0, n.mode = or;
-			case or:
-				if (n.havedict === 0) return e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, Gn;
-				e.adler = n.check = 1, n.mode = Z;
-			case Z: if (t === Vn || t === Hn) break e;
-			case sr:
-				if (n.last) {
-					l >>>= u & 7, u -= u & 7, n.mode = xr;
-					break;
-				}
-				for (; u < 3;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				switch (n.last = l & 1, l >>>= 1, --u, l & 3) {
-					case 0:
-						n.mode = cr;
-						break;
-					case 1:
-						if (Br(n), n.mode = mr, t === Hn) {
-							l >>>= 2, u -= 2;
+						} else if (y & 64) {
+							e.msg = "invalid distance code", E.mode = Sn;
 							break e;
+						} else {
+							v = h[(v & 65535) + (f & (1 << y) - 1)];
+							continue i;
 						}
 						break;
-					case 2:
-						n.mode = dr;
+					}
+				} else if (!(y & 64)) {
+					v = m[(v & 65535) + (f & (1 << y) - 1)];
+					continue t;
+				} else if (y & 32) {
+					E.mode = Cn;
+					break e;
+				} else {
+					e.msg = "invalid literal/length code", E.mode = Sn;
+					break e;
+				}
+				break;
+			}
+		} while (n < r && i < o);
+		b = p >> 3, n -= b, p -= b << 3, f &= (1 << p) - 1, e.next_in = n, e.next_out = i, e.avail_in = n < r ? 5 + (r - n) : 5 - (n - r), e.avail_out = i < o ? 257 + (o - i) : 257 - (i - o), E.hold = f, E.bits = p;
+	}, Tn = 15, En = 852, Dn = 592, On = 0, kn = 1, An = 2, jn = new Uint16Array([
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9,
+		10,
+		11,
+		13,
+		15,
+		17,
+		19,
+		23,
+		27,
+		31,
+		35,
+		43,
+		51,
+		59,
+		67,
+		83,
+		99,
+		115,
+		131,
+		163,
+		195,
+		227,
+		258,
+		0,
+		0
+	]), Mn = new Uint8Array([
+		16,
+		16,
+		16,
+		16,
+		16,
+		16,
+		16,
+		16,
+		17,
+		17,
+		17,
+		17,
+		18,
+		18,
+		18,
+		18,
+		19,
+		19,
+		19,
+		19,
+		20,
+		20,
+		20,
+		20,
+		21,
+		21,
+		21,
+		21,
+		16,
+		199,
+		75
+	]), Nn = new Uint16Array([
+		1,
+		2,
+		3,
+		4,
+		5,
+		7,
+		9,
+		13,
+		17,
+		25,
+		33,
+		49,
+		65,
+		97,
+		129,
+		193,
+		257,
+		385,
+		513,
+		769,
+		1025,
+		1537,
+		2049,
+		3073,
+		4097,
+		6145,
+		8193,
+		12289,
+		16385,
+		24577,
+		0,
+		0
+	]), Pn = new Uint8Array([
+		16,
+		16,
+		16,
+		16,
+		17,
+		17,
+		18,
+		18,
+		19,
+		19,
+		20,
+		20,
+		21,
+		21,
+		22,
+		22,
+		23,
+		23,
+		24,
+		24,
+		25,
+		25,
+		26,
+		26,
+		27,
+		27,
+		28,
+		28,
+		29,
+		29,
+		64,
+		64
+	]), Fn = (e, t, n, r, i, a, o, s) => {
+		let c = s.bits, l = 0, u = 0, d = 0, f = 0, p = 0, m = 0, h = 0, g = 0, _ = 0, v = 0, y, b, x, S, C, w = null, T, E = new Uint16Array(Tn + 1), D = new Uint16Array(Tn + 1), O = null, ee, te, ne;
+		for (l = 0; l <= Tn; l++) E[l] = 0;
+		for (u = 0; u < r; u++) E[t[n + u]]++;
+		for (p = c, f = Tn; f >= 1 && E[f] === 0; f--);
+		if (p > f && (p = f), f === 0) return i[a++] = 20971520, i[a++] = 20971520, s.bits = 1, 0;
+		for (d = 1; d < f && E[d] === 0; d++);
+		for (p < d && (p = d), g = 1, l = 1; l <= Tn; l++) if (g <<= 1, g -= E[l], g < 0) return -1;
+		if (g > 0 && (e === On || f !== 1)) return -1;
+		for (D[1] = 0, l = 1; l < Tn; l++) D[l + 1] = D[l] + E[l];
+		for (u = 0; u < r; u++) t[n + u] !== 0 && (o[D[t[n + u]]++] = u);
+		if (e === On ? (w = O = o, T = 20) : e === kn ? (w = jn, O = Mn, T = 257) : (w = Nn, O = Pn, T = 0), v = 0, u = 0, l = d, C = a, m = p, h = 0, x = -1, _ = 1 << p, S = _ - 1, e === kn && _ > En || e === An && _ > Dn) return 1;
+		for (;;) {
+			ee = l - h, o[u] + 1 < T ? (te = 0, ne = o[u]) : o[u] >= T ? (te = O[o[u] - T], ne = w[o[u] - T]) : (te = 96, ne = 0), y = 1 << l - h, b = 1 << m, d = b;
+			do
+				b -= y, i[C + (v >> h) + b] = ee << 24 | te << 16 | ne;
+			while (b !== 0);
+			for (y = 1 << l - 1; v & y;) y >>= 1;
+			if (y === 0 ? v = 0 : (v &= y - 1, v += y), u++, --E[l] === 0) {
+				if (l === f) break;
+				l = t[n + o[u]];
+			}
+			if (l > p && (v & S) !== x) {
+				for (h === 0 && (h = p), C += d, m = l - h, g = 1 << m; m + h < f && (g -= E[m + h], !(g <= 0));) m++, g <<= 1;
+				if (_ += 1 << m, e === kn && _ > En || e === An && _ > Dn) return 1;
+				x = v & S, i[x] = p << 24 | m << 16 | C - a;
+			}
+		}
+		return v !== 0 && (i[C + v] = l - h << 24 | 4194304), s.bits = p, 0;
+	}, In = 0, Ln = 1, Rn = 2, { Z_FINISH: zn, Z_BLOCK: Bn, Z_TREES: Vn, Z_OK: Hn, Z_STREAM_END: Un, Z_NEED_DICT: Wn, Z_STREAM_ERROR: Y, Z_DATA_ERROR: Gn, Z_MEM_ERROR: Kn, Z_BUF_ERROR: qn, Z_DEFLATED: Jn } = Ue, Yn = 16180, Xn = 16181, Zn = 16182, Qn = 16183, $n = 16184, er = 16185, tr = 16186, nr = 16187, rr = 16188, ir = 16189, ar = 16190, X = 16191, or = 16192, sr = 16193, cr = 16194, lr = 16195, ur = 16196, dr = 16197, fr = 16198, pr = 16199, mr = 16200, hr = 16201, gr = 16202, _r = 16203, vr = 16204, yr = 16205, br = 16206, xr = 16207, Sr = 16208, Z = 16209, Cr = 16210, wr = 16211, Tr = 852, Er = 592, Dr = 15, Or = (e) => (e >>> 24 & 255) + (e >>> 8 & 65280) + ((e & 65280) << 8) + ((e & 255) << 24);
+	function kr() {
+		this.strm = null, this.mode = 0, this.last = !1, this.wrap = 0, this.havedict = !1, this.flags = 0, this.dmax = 0, this.check = 0, this.total = 0, this.head = null, this.wbits = 0, this.wsize = 0, this.whave = 0, this.wnext = 0, this.window = null, this.hold = 0, this.bits = 0, this.length = 0, this.offset = 0, this.extra = 0, this.lencode = null, this.distcode = null, this.lenbits = 0, this.distbits = 0, this.ncode = 0, this.nlen = 0, this.ndist = 0, this.have = 0, this.next = null, this.lens = /* @__PURE__ */ new Uint16Array(320), this.work = /* @__PURE__ */ new Uint16Array(288), this.lendyn = null, this.distdyn = null, this.sane = 0, this.back = 0, this.was = 0;
+	}
+	var Q = (e) => {
+		if (!e) return 1;
+		let t = e.state;
+		return +(!t || t.strm !== e || t.mode < Yn || t.mode > wr);
+	}, Ar = (e) => {
+		if (Q(e)) return Y;
+		let t = e.state;
+		return e.total_in = e.total_out = t.total = 0, e.msg = "", t.wrap && (e.adler = t.wrap & 1), t.mode = Yn, t.last = 0, t.havedict = 0, t.flags = -1, t.dmax = 32768, t.head = null, t.hold = 0, t.bits = 0, t.lencode = t.lendyn = new Int32Array(Tr), t.distcode = t.distdyn = new Int32Array(Er), t.sane = 1, t.back = -1, Hn;
+	}, jr = (e) => {
+		if (Q(e)) return Y;
+		let t = e.state;
+		return t.wsize = 0, t.whave = 0, t.wnext = 0, Ar(e);
+	}, Mr = (e, t) => {
+		let n;
+		if (Q(e)) return Y;
+		let r = e.state;
+		return t < 0 ? (n = 0, t = -t) : (n = (t >> 4) + 5, t < 48 && (t &= 15)), t && (t < 8 || t > 15) ? Y : (r.window !== null && r.wbits !== t && (r.window = null), r.wrap = n, r.wbits = t, jr(e));
+	}, Nr = (e, t) => {
+		if (!e) return Y;
+		let n = new kr();
+		e.state = n, n.strm = e, n.window = null, n.mode = Yn;
+		let r = Mr(e, t);
+		return r !== Hn && (e.state = null), r;
+	}, Pr = (e) => Nr(e, Dr), Fr = !0, Ir, Lr, Rr = (e) => {
+		if (Fr) {
+			Ir = /* @__PURE__ */ new Int32Array(512), Lr = /* @__PURE__ */ new Int32Array(32);
+			let t = 0;
+			for (; t < 144;) e.lens[t++] = 8;
+			for (; t < 256;) e.lens[t++] = 9;
+			for (; t < 280;) e.lens[t++] = 7;
+			for (; t < 288;) e.lens[t++] = 8;
+			for (Fn(Ln, e.lens, 0, 288, Ir, 0, e.work, { bits: 9 }), t = 0; t < 32;) e.lens[t++] = 5;
+			Fn(Rn, e.lens, 0, 32, Lr, 0, e.work, { bits: 5 }), Fr = !1;
+		}
+		e.lencode = Ir, e.lenbits = 9, e.distcode = Lr, e.distbits = 5;
+	}, zr = (e, t, n, r) => {
+		let i, a = e.state;
+		return a.window === null && (a.window = new Uint8Array(1 << a.wbits)), a.wsize === 0 && (a.wsize = 1 << a.wbits, a.wnext = 0, a.whave = 0), r >= a.wsize ? (a.window.set(t.subarray(n - a.wsize, n), 0), a.wnext = 0, a.whave = a.wsize) : (i = a.wsize - a.wnext, i > r && (i = r), a.window.set(t.subarray(n - r, n - r + i), a.wnext), r -= i, r ? (a.window.set(t.subarray(n - r, n), 0), a.wnext = r, a.whave = a.wsize) : (a.wnext += i, a.wnext === a.wsize && (a.wnext = 0), a.whave < a.wsize && (a.whave += i))), 0;
+	}, $ = {
+		inflateReset: jr,
+		inflateReset2: Mr,
+		inflateResetKeep: Ar,
+		inflateInit: Pr,
+		inflateInit2: Nr,
+		inflate: (e, t) => {
+			let n, r, i, a, o, s, c, l, u, d, f, p, m, h, g = 0, _, v, y, b, x, S, C, w, T = /* @__PURE__ */ new Uint8Array(4), E, D, O = new Uint8Array([
+				16,
+				17,
+				18,
+				0,
+				8,
+				7,
+				9,
+				6,
+				10,
+				5,
+				11,
+				4,
+				12,
+				3,
+				13,
+				2,
+				14,
+				1,
+				15
+			]);
+			if (Q(e) || !e.output || !e.input && e.avail_in !== 0) return Y;
+			n = e.state, n.mode === X && (n.mode = or), o = e.next_out, i = e.output, c = e.avail_out, a = e.next_in, r = e.input, s = e.avail_in, l = n.hold, u = n.bits, d = s, f = c, w = Hn;
+			e: for (;;) switch (n.mode) {
+				case Yn:
+					if (n.wrap === 0) {
+						n.mode = or;
 						break;
-					case 3: e.msg = "invalid block type", n.mode = Q;
-				}
-				l >>>= 2, u -= 2;
-				break;
-			case cr:
-				for (l >>>= u & 7, u -= u & 7; u < 32;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if ((l & 65535) != (l >>> 16 ^ 65535)) {
-					e.msg = "invalid stored block lengths", n.mode = Q;
+					}
+					for (; u < 16;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					if (n.wrap & 2 && l === 35615) {
+						n.wbits === 0 && (n.wbits = 15), n.check = 0, T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = M(n.check, T, 2, 0), l = 0, u = 0, n.mode = Xn;
+						break;
+					}
+					if (n.head && (n.head.done = !1), !(n.wrap & 1) || (((l & 255) << 8) + (l >> 8)) % 31) {
+						e.msg = "incorrect header check", n.mode = Z;
+						break;
+					}
+					if ((l & 15) !== Jn) {
+						e.msg = "unknown compression method", n.mode = Z;
+						break;
+					}
+					if (l >>>= 4, u -= 4, C = (l & 15) + 8, n.wbits === 0 && (n.wbits = C), C > 15 || C > n.wbits) {
+						e.msg = "invalid window size", n.mode = Z;
+						break;
+					}
+					n.dmax = 1 << n.wbits, n.flags = 0, e.adler = n.check = 1, n.mode = l & 512 ? ir : X, l = 0, u = 0;
 					break;
-				}
-				if (n.length = l & 65535, l = 0, u = 0, n.mode = lr, t === Hn) break e;
-			case lr: n.mode = ur;
-			case ur:
-				if (p = n.length, p) {
-					if (p > s && (p = s), p > c && (p = c), p === 0) break e;
-					i.set(r.subarray(a, a + p), o), s -= p, a += p, c -= p, o += p, n.length -= p;
+				case Xn:
+					for (; u < 16;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					if (n.flags = l, (n.flags & 255) !== Jn) {
+						e.msg = "unknown compression method", n.mode = Z;
+						break;
+					}
+					if (n.flags & 57344) {
+						e.msg = "unknown header flags set", n.mode = Z;
+						break;
+					}
+					n.head && (n.head.text = l >> 8 & 1), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = M(n.check, T, 2, 0)), l = 0, u = 0, n.mode = Zn;
+				case Zn:
+					for (; u < 32;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					n.head && (n.head.time = l), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, T[2] = l >>> 16 & 255, T[3] = l >>> 24 & 255, n.check = M(n.check, T, 4, 0)), l = 0, u = 0, n.mode = Qn;
+				case Qn:
+					for (; u < 16;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					n.head && (n.head.xflags = l & 255, n.head.os = l >> 8), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = M(n.check, T, 2, 0)), l = 0, u = 0, n.mode = $n;
+				case $n:
+					if (n.flags & 1024) {
+						for (; u < 16;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						n.length = l, n.head && (n.head.extra_len = l), n.flags & 512 && n.wrap & 4 && (T[0] = l & 255, T[1] = l >>> 8 & 255, n.check = M(n.check, T, 2, 0)), l = 0, u = 0;
+					} else n.head && (n.head.extra = null);
+					n.mode = er;
+				case er:
+					if (n.flags & 1024 && (p = n.length, p > s && (p = s), p && (n.head && (C = n.head.extra_len - n.length, !n.head.extra && (n.head.extra = new Uint8Array(n.head.extra_len)), n.head.extra.set(r.subarray(a, a + p), C)), n.flags & 512 && n.wrap & 4 && (n.check = M(n.check, r, p, a)), s -= p, a += p, n.length -= p), n.length)) break e;
+					n.length = 0, n.mode = tr;
+				case tr:
+					if (n.flags & 2048) {
+						if (s === 0) break e;
+						p = 0;
+						do
+							C = r[a + p++], n.head && C && n.length < 65536 && (n.head.name += String.fromCharCode(C));
+						while (C && p < s);
+						if (n.flags & 512 && n.wrap & 4 && (n.check = M(n.check, r, p, a)), s -= p, a += p, C) break e;
+					} else n.head && (n.head.name = null);
+					n.length = 0, n.mode = nr;
+				case nr:
+					if (n.flags & 4096) {
+						if (s === 0) break e;
+						p = 0;
+						do
+							C = r[a + p++], n.head && C && n.length < 65536 && (n.head.comment += String.fromCharCode(C));
+						while (C && p < s);
+						if (n.flags & 512 && n.wrap & 4 && (n.check = M(n.check, r, p, a)), s -= p, a += p, C) break e;
+					} else n.head && (n.head.comment = null);
+					n.mode = rr;
+				case rr:
+					if (n.flags & 512) {
+						for (; u < 16;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						if (n.wrap & 4 && l !== (n.check & 65535)) {
+							e.msg = "header crc mismatch", n.mode = Z;
+							break;
+						}
+						l = 0, u = 0;
+					}
+					n.head && (n.head.hcrc = n.flags >> 9 & 1, n.head.done = !0), e.adler = n.check = 0, n.mode = X;
 					break;
-				}
-				n.mode = Z;
-				break;
-			case dr:
-				for (; u < 14;) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if (n.nlen = (l & 31) + 257, l >>>= 5, u -= 5, n.ndist = (l & 31) + 1, l >>>= 5, u -= 5, n.ncode = (l & 15) + 4, l >>>= 4, u -= 4, n.nlen > 286 || n.ndist > 30) {
-					e.msg = "too many length or distance symbols", n.mode = Q;
-					break;
-				}
-				n.have = 0, n.mode = fr;
-			case fr:
-				for (; n.have < n.ncode;) {
+				case ir:
+					for (; u < 32;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					e.adler = n.check = Or(l), l = 0, u = 0, n.mode = ar;
+				case ar:
+					if (n.havedict === 0) return e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, Wn;
+					e.adler = n.check = 1, n.mode = X;
+				case X: if (t === Bn || t === Vn) break e;
+				case or:
+					if (n.last) {
+						l >>>= u & 7, u -= u & 7, n.mode = br;
+						break;
+					}
 					for (; u < 3;) {
 						if (s === 0) break e;
 						s--, l += r[a++] << u, u += 8;
 					}
-					n.lens[O[n.have++]] = l & 7, l >>>= 3, u -= 3;
-				}
-				for (; n.have < 19;) n.lens[O[n.have++]] = 0;
-				if (n.lencode = n.lendyn, n.lenbits = 7, E = { bits: n.lenbits }, w = In(Ln, n.lens, 0, 19, n.lencode, 0, n.work, E), n.lenbits = E.bits, w) {
-					e.msg = "invalid code lengths set", n.mode = Q;
+					switch (n.last = l & 1, l >>>= 1, --u, l & 3) {
+						case 0:
+							n.mode = sr;
+							break;
+						case 1:
+							if (Rr(n), n.mode = pr, t === Vn) {
+								l >>>= 2, u -= 2;
+								break e;
+							}
+							break;
+						case 2:
+							n.mode = ur;
+							break;
+						case 3: e.msg = "invalid block type", n.mode = Z;
+					}
+					l >>>= 2, u -= 2;
 					break;
-				}
-				n.have = 0, n.mode = pr;
-			case pr:
-				for (; n.have < n.nlen + n.ndist;) {
-					for (; g = n.lencode[l & (1 << n.lenbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
+				case sr:
+					for (l >>>= u & 7, u -= u & 7; u < 32;) {
 						if (s === 0) break e;
 						s--, l += r[a++] << u, u += 8;
 					}
-					if (y < 16) l >>>= _, u -= _, n.lens[n.have++] = y;
-					else {
-						if (y === 16) {
-							for (D = _ + 2; u < D;) {
-								if (s === 0) break e;
-								s--, l += r[a++] << u, u += 8;
+					if ((l & 65535) != (l >>> 16 ^ 65535)) {
+						e.msg = "invalid stored block lengths", n.mode = Z;
+						break;
+					}
+					if (n.length = l & 65535, l = 0, u = 0, n.mode = cr, t === Vn) break e;
+				case cr: n.mode = lr;
+				case lr:
+					if (p = n.length, p) {
+						if (p > s && (p = s), p > c && (p = c), p === 0) break e;
+						i.set(r.subarray(a, a + p), o), s -= p, a += p, c -= p, o += p, n.length -= p;
+						break;
+					}
+					n.mode = X;
+					break;
+				case ur:
+					for (; u < 14;) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					if (n.nlen = (l & 31) + 257, l >>>= 5, u -= 5, n.ndist = (l & 31) + 1, l >>>= 5, u -= 5, n.ncode = (l & 15) + 4, l >>>= 4, u -= 4, n.nlen > 286 || n.ndist > 30) {
+						e.msg = "too many length or distance symbols", n.mode = Z;
+						break;
+					}
+					n.have = 0, n.mode = dr;
+				case dr:
+					for (; n.have < n.ncode;) {
+						for (; u < 3;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						n.lens[O[n.have++]] = l & 7, l >>>= 3, u -= 3;
+					}
+					for (; n.have < 19;) n.lens[O[n.have++]] = 0;
+					if (n.lencode = n.lendyn, n.lenbits = 7, E = { bits: n.lenbits }, w = Fn(In, n.lens, 0, 19, n.lencode, 0, n.work, E), n.lenbits = E.bits, w) {
+						e.msg = "invalid code lengths set", n.mode = Z;
+						break;
+					}
+					n.have = 0, n.mode = fr;
+				case fr:
+					for (; n.have < n.nlen + n.ndist;) {
+						for (; g = n.lencode[l & (1 << n.lenbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						if (y < 16) l >>>= _, u -= _, n.lens[n.have++] = y;
+						else {
+							if (y === 16) {
+								for (D = _ + 2; u < D;) {
+									if (s === 0) break e;
+									s--, l += r[a++] << u, u += 8;
+								}
+								if (l >>>= _, u -= _, n.have === 0) {
+									e.msg = "invalid bit length repeat", n.mode = Z;
+									break;
+								}
+								C = n.lens[n.have - 1], p = 3 + (l & 3), l >>>= 2, u -= 2;
+							} else if (y === 17) {
+								for (D = _ + 3; u < D;) {
+									if (s === 0) break e;
+									s--, l += r[a++] << u, u += 8;
+								}
+								l >>>= _, u -= _, C = 0, p = 3 + (l & 7), l >>>= 3, u -= 3;
+							} else {
+								for (D = _ + 7; u < D;) {
+									if (s === 0) break e;
+									s--, l += r[a++] << u, u += 8;
+								}
+								l >>>= _, u -= _, C = 0, p = 11 + (l & 127), l >>>= 7, u -= 7;
 							}
-							if (l >>>= _, u -= _, n.have === 0) {
-								e.msg = "invalid bit length repeat", n.mode = Q;
+							if (n.have + p > n.nlen + n.ndist) {
+								e.msg = "invalid bit length repeat", n.mode = Z;
 								break;
 							}
-							C = n.lens[n.have - 1], p = 3 + (l & 3), l >>>= 2, u -= 2;
-						} else if (y === 17) {
-							for (D = _ + 3; u < D;) {
-								if (s === 0) break e;
-								s--, l += r[a++] << u, u += 8;
-							}
-							l >>>= _, u -= _, C = 0, p = 3 + (l & 7), l >>>= 3, u -= 3;
-						} else {
-							for (D = _ + 7; u < D;) {
-								if (s === 0) break e;
-								s--, l += r[a++] << u, u += 8;
-							}
-							l >>>= _, u -= _, C = 0, p = 11 + (l & 127), l >>>= 7, u -= 7;
+							for (; p--;) n.lens[n.have++] = C;
 						}
-						if (n.have + p > n.nlen + n.ndist) {
-							e.msg = "invalid bit length repeat", n.mode = Q;
+					}
+					if (n.mode === Z) break;
+					if (n.lens[256] === 0) {
+						e.msg = "invalid code -- missing end-of-block", n.mode = Z;
+						break;
+					}
+					if (n.lenbits = 9, E = { bits: n.lenbits }, w = Fn(Ln, n.lens, 0, n.nlen, n.lencode, 0, n.work, E), n.lenbits = E.bits, w) {
+						e.msg = "invalid literal/lengths set", n.mode = Z;
+						break;
+					}
+					if (n.distbits = 6, n.distcode = n.distdyn, E = { bits: n.distbits }, w = Fn(Rn, n.lens, n.nlen, n.ndist, n.distcode, 0, n.work, E), n.distbits = E.bits, w) {
+						e.msg = "invalid distances set", n.mode = Z;
+						break;
+					}
+					if (n.mode = pr, t === Vn) break e;
+				case pr: n.mode = mr;
+				case mr:
+					if (s >= 6 && c >= 258) {
+						e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, wn(e, f), o = e.next_out, i = e.output, c = e.avail_out, a = e.next_in, r = e.input, s = e.avail_in, l = n.hold, u = n.bits, n.mode === X && (n.back = -1);
+						break;
+					}
+					for (n.back = 0; g = n.lencode[l & (1 << n.lenbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					if (v && !(v & 240)) {
+						for (b = _, x = v, S = y; g = n.lencode[S + ((l & (1 << b + x) - 1) >> b)], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(b + _ <= u);) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						l >>>= b, u -= b, n.back += b;
+					}
+					if (l >>>= _, u -= _, n.back += _, n.length = y, v === 0) {
+						n.mode = yr;
+						break;
+					}
+					if (v & 32) {
+						n.back = -1, n.mode = X;
+						break;
+					}
+					if (v & 64) {
+						e.msg = "invalid literal/length code", n.mode = Z;
+						break;
+					}
+					n.extra = v & 15, n.mode = hr;
+				case hr:
+					if (n.extra) {
+						for (D = n.extra; u < D;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						n.length += l & (1 << n.extra) - 1, l >>>= n.extra, u -= n.extra, n.back += n.extra;
+					}
+					n.was = n.length, n.mode = gr;
+				case gr:
+					for (; g = n.distcode[l & (1 << n.distbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
+						if (s === 0) break e;
+						s--, l += r[a++] << u, u += 8;
+					}
+					if (!(v & 240)) {
+						for (b = _, x = v, S = y; g = n.distcode[S + ((l & (1 << b + x) - 1) >> b)], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(b + _ <= u);) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						l >>>= b, u -= b, n.back += b;
+					}
+					if (l >>>= _, u -= _, n.back += _, v & 64) {
+						e.msg = "invalid distance code", n.mode = Z;
+						break;
+					}
+					n.offset = y, n.extra = v & 15, n.mode = _r;
+				case _r:
+					if (n.extra) {
+						for (D = n.extra; u < D;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						n.offset += l & (1 << n.extra) - 1, l >>>= n.extra, u -= n.extra, n.back += n.extra;
+					}
+					if (n.offset > n.dmax) {
+						e.msg = "invalid distance too far back", n.mode = Z;
+						break;
+					}
+					n.mode = vr;
+				case vr:
+					if (c === 0) break e;
+					if (p = f - c, n.offset > p) {
+						if (p = n.offset - p, p > n.whave && n.sane) {
+							e.msg = "invalid distance too far back", n.mode = Z;
 							break;
 						}
-						for (; p--;) n.lens[n.have++] = C;
+						p > n.wnext ? (p -= n.wnext, m = n.wsize - p) : m = n.wnext - p, p > n.length && (p = n.length), h = n.window;
+					} else h = i, m = o - n.offset, p = n.length;
+					p > c && (p = c), c -= p, n.length -= p;
+					do
+						i[o++] = h[m++];
+					while (--p);
+					n.length === 0 && (n.mode = mr);
+					break;
+				case yr:
+					if (c === 0) break e;
+					i[o++] = n.length, c--, n.mode = mr;
+					break;
+				case br:
+					if (n.wrap) {
+						for (; u < 32;) {
+							if (s === 0) break e;
+							s--, l |= r[a++] << u, u += 8;
+						}
+						if (f -= c, e.total_out += f, n.total += f, n.wrap & 4 && f && (e.adler = n.check = n.flags ? M(n.check, i, f, o - f) : Be(n.check, i, f, o - f)), f = c, n.wrap & 4 && (n.flags ? l : Or(l)) !== n.check) {
+							e.msg = "incorrect data check", n.mode = Z;
+							break;
+						}
+						l = 0, u = 0;
 					}
-				}
-				if (n.mode === Q) break;
-				if (n.lens[256] === 0) {
-					e.msg = "invalid code -- missing end-of-block", n.mode = Q;
+					n.mode = xr;
+				case xr:
+					if (n.wrap && n.flags) {
+						for (; u < 32;) {
+							if (s === 0) break e;
+							s--, l += r[a++] << u, u += 8;
+						}
+						if (n.wrap & 4 && l !== (n.total | 0)) {
+							e.msg = "incorrect length check", n.mode = Z;
+							break;
+						}
+						l = 0, u = 0;
+					}
+					n.mode = Sr;
+				case Sr:
+					w = Un;
+					break e;
+				case Z:
+					w = Gn;
+					break e;
+				case Cr: return Kn;
+				case wr:
+				default: return Y;
+			}
+			return e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, (n.wsize || f !== e.avail_out && n.mode < Z && (n.mode < br || t !== zn)) && zr(e, e.output, e.next_out, f - e.avail_out), d -= e.avail_in, f -= e.avail_out, e.total_in += d, e.total_out += f, n.total += f, n.wrap & 4 && f && (e.adler = n.check = n.flags ? M(n.check, i, f, e.next_out - f) : Be(n.check, i, f, e.next_out - f)), e.data_type = n.bits + (n.last ? 64 : 0) + (n.mode === X ? 128 : 0) + (n.mode === pr || n.mode === cr ? 256 : 0), (d === 0 && f === 0 || t === zn) && w === Hn && (w = qn), w;
+		},
+		inflateEnd: (e) => {
+			if (Q(e)) return Y;
+			let t = e.state;
+			return t.window &&= null, e.state = null, Hn;
+		},
+		inflateGetHeader: (e, t) => {
+			if (Q(e)) return Y;
+			let n = e.state;
+			return n.wrap & 2 ? (n.head = t, t.done = !1, Hn) : Y;
+		},
+		inflateSetDictionary: (e, t) => {
+			let n = t.length, r, i, a;
+			return Q(e) || (r = e.state, r.wrap !== 0 && r.mode !== ar) ? Y : r.mode === ar && (i = 1, i = Be(i, t, n, 0), i !== r.check) ? Gn : (a = zr(e, t, n, n), a ? (r.mode = Cr, Kn) : (r.havedict = 1, Hn));
+		},
+		inflateInfo: "pako inflate (from Nodeca project)"
+	};
+	function Br() {
+		this.text = 0, this.time = 0, this.xflags = 0, this.os = 0, this.extra = null, this.extra_len = 0, this.name = "", this.comment = "", this.hcrc = 0, this.done = !1;
+	}
+	var Vr = Br, Hr = Object.prototype.toString, { Z_NO_FLUSH: Ur, Z_FINISH: Wr, Z_OK: Gr, Z_STREAM_END: Kr, Z_NEED_DICT: qr, Z_STREAM_ERROR: Jr, Z_DATA_ERROR: Yr, Z_MEM_ERROR: Xr, Z_BUF_ERROR: Zr } = Ue, Qr = {
+		chunkSize: 65536,
+		windowBits: 15,
+		to: ""
+	};
+	function $r(e) {
+		this.options = Zt.assign({}, Qr, e || {});
+		let t = this.options;
+		t.raw && t.windowBits >= 0 && t.windowBits < 16 && (t.windowBits = -t.windowBits, t.windowBits === 0 && (t.windowBits = -15)), t.windowBits >= 0 && t.windowBits < 16 && !(e && e.windowBits) && (t.windowBits += 32), t.windowBits > 15 && t.windowBits < 48 && (t.windowBits & 15 || (t.windowBits |= 15)), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new an(), this.strm.avail_out = 0;
+		let n = $.inflateInit2(this.strm, t.windowBits);
+		if (n !== Gr || (this.header = new Vr(), $.inflateGetHeader(this.strm, this.header), t.dictionary && (typeof t.dictionary == "string" ? t.dictionary = nn.string2buf(t.dictionary) : Hr.call(t.dictionary) === "[object ArrayBuffer]" && (t.dictionary = new Uint8Array(t.dictionary)), t.raw && (n = $.inflateSetDictionary(this.strm, t.dictionary), n !== Gr)))) throw Error(He[n]);
+	}
+	$r.prototype.push = function(e, t) {
+		let n = this.strm, r = this.options.chunkSize, i = this.options.dictionary, a, o, s;
+		if (this.ended) return !1;
+		for (o = t === ~~t ? t : t === !0 ? Wr : Ur, n.input = Hr.call(e) === "[object ArrayBuffer]" ? new Uint8Array(e) : e, n.next_in = 0, n.avail_in = n.input.length;;) {
+			for (n.avail_out === 0 && (n.output = new Uint8Array(r), n.next_out = 0, n.avail_out = r), a = $.inflate(n, o), a === qr && i && (a = $.inflateSetDictionary(n, i), a === Gr ? a = $.inflate(n, o) : a === Yr && (a = qr)); n.avail_in > 0 && a === Kr && n.state.wrap & 2 && n.state.flags !== 0 && n.input[n.next_in] !== 0;) $.inflateReset(n), a = $.inflate(n, o);
+			switch (a) {
+				case Jr:
+				case Yr:
+				case qr:
+				case Xr: return this.onEnd(a), this.ended = !0, !1;
+			}
+			if (s = n.avail_out, n.next_out && (n.avail_out === 0 || a === Kr || o > 0)) {
+				if (this.options.to === "string") {
+					let e = nn.utf8border(n.output, n.next_out), t = n.next_out - e, i = nn.buf2string(n.output, e);
+					n.next_out = t, n.avail_out = r - t, t && n.output.set(n.output.subarray(e, e + t), 0), this.onData(i);
+				} else this.onData(n.output.length === n.next_out ? n.output : n.output.subarray(0, n.next_out)), n.avail_out = 0, n.next_out = 0;
+			}
+			if (a !== Gr && a !== Zr || s !== 0) {
+				if (a === Kr) return a = $.inflateEnd(this.strm), this.onEnd(a), this.ended = !0, !0;
+				if (n.avail_in === 0) {
+					if (o === Wr) return a = $.inflateEnd(this.strm), this.onEnd(a === Gr ? Zr : a), this.ended = !0, !1;
 					break;
 				}
-				if (n.lenbits = 9, E = { bits: n.lenbits }, w = In(Rn, n.lens, 0, n.nlen, n.lencode, 0, n.work, E), n.lenbits = E.bits, w) {
-					e.msg = "invalid literal/lengths set", n.mode = Q;
-					break;
-				}
-				if (n.distbits = 6, n.distcode = n.distdyn, E = { bits: n.distbits }, w = In(zn, n.lens, n.nlen, n.ndist, n.distcode, 0, n.work, E), n.distbits = E.bits, w) {
-					e.msg = "invalid distances set", n.mode = Q;
-					break;
-				}
-				if (n.mode = mr, t === Hn) break e;
-			case mr: n.mode = hr;
-			case hr:
-				if (s >= 6 && c >= 258) {
-					e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, Tn(e, f), o = e.next_out, i = e.output, c = e.avail_out, a = e.next_in, r = e.input, s = e.avail_in, l = n.hold, u = n.bits, n.mode === Z && (n.back = -1);
-					break;
-				}
-				for (n.back = 0; g = n.lencode[l & (1 << n.lenbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if (v && !(v & 240)) {
-					for (b = _, x = v, S = y; g = n.lencode[S + ((l & (1 << b + x) - 1) >> b)], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(b + _ <= u);) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					l >>>= b, u -= b, n.back += b;
-				}
-				if (l >>>= _, u -= _, n.back += _, n.length = y, v === 0) {
-					n.mode = br;
-					break;
-				}
-				if (v & 32) {
-					n.back = -1, n.mode = Z;
-					break;
-				}
-				if (v & 64) {
-					e.msg = "invalid literal/length code", n.mode = Q;
-					break;
-				}
-				n.extra = v & 15, n.mode = gr;
-			case gr:
-				if (n.extra) {
-					for (D = n.extra; u < D;) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					n.length += l & (1 << n.extra) - 1, l >>>= n.extra, u -= n.extra, n.back += n.extra;
-				}
-				n.was = n.length, n.mode = _r;
-			case _r:
-				for (; g = n.distcode[l & (1 << n.distbits) - 1], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(_ <= u);) {
-					if (s === 0) break e;
-					s--, l += r[a++] << u, u += 8;
-				}
-				if (!(v & 240)) {
-					for (b = _, x = v, S = y; g = n.distcode[S + ((l & (1 << b + x) - 1) >> b)], _ = g >>> 24, v = g >>> 16 & 255, y = g & 65535, !(b + _ <= u);) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					l >>>= b, u -= b, n.back += b;
-				}
-				if (l >>>= _, u -= _, n.back += _, v & 64) {
-					e.msg = "invalid distance code", n.mode = Q;
-					break;
-				}
-				n.offset = y, n.extra = v & 15, n.mode = vr;
-			case vr:
-				if (n.extra) {
-					for (D = n.extra; u < D;) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					n.offset += l & (1 << n.extra) - 1, l >>>= n.extra, u -= n.extra, n.back += n.extra;
-				}
-				if (n.offset > n.dmax) {
-					e.msg = "invalid distance too far back", n.mode = Q;
-					break;
-				}
-				n.mode = yr;
-			case yr:
-				if (c === 0) break e;
-				if (p = f - c, n.offset > p) {
-					if (p = n.offset - p, p > n.whave && n.sane) {
-						e.msg = "invalid distance too far back", n.mode = Q;
-						break;
-					}
-					p > n.wnext ? (p -= n.wnext, m = n.wsize - p) : m = n.wnext - p, p > n.length && (p = n.length), h = n.window;
-				} else h = i, m = o - n.offset, p = n.length;
-				p > c && (p = c), c -= p, n.length -= p;
-				do
-					i[o++] = h[m++];
-				while (--p);
-				n.length === 0 && (n.mode = hr);
-				break;
-			case br:
-				if (c === 0) break e;
-				i[o++] = n.length, c--, n.mode = hr;
-				break;
-			case xr:
-				if (n.wrap) {
-					for (; u < 32;) {
-						if (s === 0) break e;
-						s--, l |= r[a++] << u, u += 8;
-					}
-					if (f -= c, e.total_out += f, n.total += f, n.wrap & 4 && f && (e.adler = n.check = n.flags ? N(n.check, i, f, o - f) : Ve(n.check, i, f, o - f)), f = c, n.wrap & 4 && (n.flags ? l : kr(l)) !== n.check) {
-						e.msg = "incorrect data check", n.mode = Q;
-						break;
-					}
-					l = 0, u = 0;
-				}
-				n.mode = Sr;
-			case Sr:
-				if (n.wrap && n.flags) {
-					for (; u < 32;) {
-						if (s === 0) break e;
-						s--, l += r[a++] << u, u += 8;
-					}
-					if (n.wrap & 4 && l !== (n.total | 0)) {
-						e.msg = "incorrect length check", n.mode = Q;
-						break;
-					}
-					l = 0, u = 0;
-				}
-				n.mode = Cr;
-			case Cr:
-				w = Wn;
-				break e;
-			case Q:
-				w = Kn;
-				break e;
-			case wr: return qn;
-			case Tr:
-			default: return X;
-		}
-		return e.next_out = o, e.avail_out = c, e.next_in = a, e.avail_in = s, n.hold = l, n.bits = u, (n.wsize || f !== e.avail_out && n.mode < Q && (n.mode < xr || t !== Bn)) && Vr(e, e.output, e.next_out, f - e.avail_out), d -= e.avail_in, f -= e.avail_out, e.total_in += d, e.total_out += f, n.total += f, n.wrap & 4 && f && (e.adler = n.check = n.flags ? N(n.check, i, f, e.next_out - f) : Ve(n.check, i, f, e.next_out - f)), e.data_type = n.bits + (n.last ? 64 : 0) + (n.mode === Z ? 128 : 0) + (n.mode === mr || n.mode === lr ? 256 : 0), (d === 0 && f === 0 || t === Bn) && w === Un && (w = Jn), w;
-	},
-	inflateEnd: (e) => {
-		if (jr(e)) return X;
-		let t = e.state;
-		return t.window &&= null, e.state = null, Un;
-	},
-	inflateGetHeader: (e, t) => {
-		if (jr(e)) return X;
-		let n = e.state;
-		return n.wrap & 2 ? (n.head = t, t.done = !1, Un) : X;
-	},
-	inflateSetDictionary: (e, t) => {
-		let n = t.length, r, i, a;
-		return jr(e) || (r = e.state, r.wrap !== 0 && r.mode !== or) ? X : r.mode === or && (i = 1, i = Ve(i, t, n, 0), i !== r.check) ? Kn : (a = Vr(e, t, n, n), a ? (r.mode = wr, qn) : (r.havedict = 1, Un));
-	},
-	inflateInfo: "pako inflate (from Nodeca project)"
-};
-function Hr() {
-	this.text = 0, this.time = 0, this.xflags = 0, this.os = 0, this.extra = null, this.extra_len = 0, this.name = "", this.comment = "", this.hcrc = 0, this.done = !1;
-}
-var Ur = Hr, Wr = Object.prototype.toString, { Z_NO_FLUSH: Gr, Z_FINISH: Kr, Z_OK: qr, Z_STREAM_END: Jr, Z_NEED_DICT: Yr, Z_STREAM_ERROR: Xr, Z_DATA_ERROR: Zr, Z_MEM_ERROR: Qr, Z_BUF_ERROR: $r } = We, ei = {
-	chunkSize: 65536,
-	windowBits: 15,
-	to: ""
-};
-function ti(e) {
-	this.options = Qt.assign({}, ei, e || {});
-	let t = this.options;
-	t.raw && t.windowBits >= 0 && t.windowBits < 16 && (t.windowBits = -t.windowBits, t.windowBits === 0 && (t.windowBits = -15)), t.windowBits >= 0 && t.windowBits < 16 && !(e && e.windowBits) && (t.windowBits += 32), t.windowBits > 15 && t.windowBits < 48 && (t.windowBits & 15 || (t.windowBits |= 15)), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new on(), this.strm.avail_out = 0;
-	let n = $.inflateInit2(this.strm, t.windowBits);
-	if (n !== qr || (this.header = new Ur(), $.inflateGetHeader(this.strm, this.header), t.dictionary && (typeof t.dictionary == "string" ? t.dictionary = rn.string2buf(t.dictionary) : Wr.call(t.dictionary) === "[object ArrayBuffer]" && (t.dictionary = new Uint8Array(t.dictionary)), t.raw && (n = $.inflateSetDictionary(this.strm, t.dictionary), n !== qr)))) throw Error(Ue[n]);
-}
-ti.prototype.push = function(e, t) {
-	let n = this.strm, r = this.options.chunkSize, i = this.options.dictionary, a, o, s;
-	if (this.ended) return !1;
-	for (o = t === ~~t ? t : t === !0 ? Kr : Gr, n.input = Wr.call(e) === "[object ArrayBuffer]" ? new Uint8Array(e) : e, n.next_in = 0, n.avail_in = n.input.length;;) {
-		for (n.avail_out === 0 && (n.output = new Uint8Array(r), n.next_out = 0, n.avail_out = r), a = $.inflate(n, o), a === Yr && i && (a = $.inflateSetDictionary(n, i), a === qr ? a = $.inflate(n, o) : a === Zr && (a = Yr)); n.avail_in > 0 && a === Jr && n.state.wrap & 2 && n.state.flags !== 0 && n.input[n.next_in] !== 0;) $.inflateReset(n), a = $.inflate(n, o);
-		switch (a) {
-			case Xr:
-			case Zr:
-			case Yr:
-			case Qr: return this.onEnd(a), this.ended = !0, !1;
-		}
-		if (s = n.avail_out, n.next_out && (n.avail_out === 0 || a === Jr || o > 0)) {
-			if (this.options.to === "string") {
-				let e = rn.utf8border(n.output, n.next_out), t = n.next_out - e, i = rn.buf2string(n.output, e);
-				n.next_out = t, n.avail_out = r - t, t && n.output.set(n.output.subarray(e, e + t), 0), this.onData(i);
-			} else this.onData(n.output.length === n.next_out ? n.output : n.output.subarray(0, n.next_out)), n.avail_out = 0, n.next_out = 0;
-		}
-		if (a !== qr && a !== $r || s !== 0) {
-			if (a === Jr) return a = $.inflateEnd(this.strm), this.onEnd(a), this.ended = !0, !0;
-			if (n.avail_in === 0) {
-				if (o === Kr) return a = $.inflateEnd(this.strm), this.onEnd(a === qr ? $r : a), this.ended = !0, !1;
-				break;
 			}
 		}
-	}
-	return !0;
-}, ti.prototype.onData = function(e) {
-	this.chunks.push(e);
-}, ti.prototype.onEnd = function(e) {
-	e === qr && (this.result = this.options.to === "string" ? this.chunks.join("") : Qt.flattenChunks(this.chunks)), this.chunks = [], this.err = e, this.msg = this.strm.msg;
-};
-function ni(e, t) {
-	let n = new ti(t);
-	if (n.push(e, !0), n.err) throw n.msg || Ue[n.err];
-	return n.result;
-}
-function ri(e, t) {
-	return t ||= {}, t.raw = !0, ni(e, t);
-}
-var ii = {
-	Inflate: ti,
-	inflate: ni,
-	inflateRaw: ri,
-	ungzip: ni,
-	constants: We
-}, { Deflate: ai, deflate: oi, deflateRaw: si, gzip: ci } = Sn, { Inflate: li, inflate: ui, inflateRaw: di, ungzip: fi } = ii, pi = oi;
-Object.freeze([
-	0,
-	4,
-	8,
-	16,
-	32,
-	64,
-	128,
-	256,
-	512,
-	1024,
-	2048
-]), Object.freeze({
-	text: 0,
-	markdown: 1,
-	javascript: 2,
-	html: 3
-}), Object.freeze([
-	"text",
-	"markdown",
-	"javascript",
-	"html"
-]);
-var mi = Object.freeze([
-	" ",
-	"\n",
-	"  ",
-	"    ",
-	"\r\n",
-	"	",
-	"\n\n",
-	"```",
-	"# ",
-	"## ",
-	"### ",
-	"- ",
-	"* ",
-	"> ",
-	"](",
-	")\n",
-	"const ",
-	"let ",
-	"function ",
-	"return ",
-	" => ",
-	" = ",
-	" === ",
-	" !== ",
-	"import ",
-	"export ",
-	" from ",
-	"async ",
-	"await ",
-	"if (",
-	"else ",
-	"for (",
-	"while (",
-	"try {",
-	"} catch (",
-	"class ",
-	"new ",
-	"this.",
-	"throw new ",
-	"typeof ",
-	"instanceof ",
-	"true",
-	"false",
-	"null",
-	"undefined",
-	"switch (",
-	"case ",
-	"break;",
-	"continue;",
-	"document.",
-	"window.",
-	"querySelector(",
-	"querySelectorAll(",
-	"addEventListener(",
-	"textContent",
-	"console.log(",
-	"console.error(",
-	"JSON.stringify(",
-	"JSON.parse(",
-	"Object.",
-	"Array.",
-	"</",
-	"<!--",
-	"-->",
-	"<!DOCTYPE html>",
-	"<html",
-	"<head>",
-	"<body",
-	"<div",
-	"</div>",
-	"<span",
-	"</span>",
-	"<button",
-	"</button>",
-	"<script",
-	"<\/script>",
-	"<style>",
-	"</style>",
-	" class=\"",
-	" id=\"",
-	" href=\"",
-	" src=\"",
-	" aria-",
-	" data-",
-	" role=\"",
-	"display: ",
-	"position: ",
-	"color: ",
-	"background: ",
-	"border: ",
-	"padding: ",
-	"margin: ",
-	"width: ",
-	"height: ",
-	"font-size: ",
-	"font-family: ",
-	"align-items: ",
-	"justify-content: ",
-	"```javascript",
-	"```js",
-	"```html",
-	"```css",
-	"```json",
-	"```bash",
-	"```text",
-	"**",
-	"__",
-	"~~",
-	"![",
-	"https://",
-	"http://",
-	"www.",
-	"README",
-	"LICENSE",
-	" the ",
-	" and ",
-	" that ",
-	" with ",
-	" this ",
-	" for ",
-	" are ",
-	" not ",
-	"The ",
-	"This ",
-	"There ",
-	" can ",
-	" will ",
-	" into ",
-	" when ",
-	" then ",
-	"ing ",
-	"()",
-	"[]",
-	"{}",
-	"();",
-	");",
-	", ",
-	": ",
-	";\n",
-	" {\n",
-	"}\n",
-	"},\n",
-	"\";",
-	"?.",
-	"??",
-	"...",
-	"${",
-	"?.(",
-	"?.[",
-	"Promise",
-	"resolve",
-	"reject",
-	"interface ",
-	"type ",
-	"extends ",
-	"implements ",
-	"public ",
-	"private ",
-	"readonly ",
-	"def ",
-	"self.",
-	"None",
-	"elif ",
-	"except ",
-	"finally:",
-	"lambda ",
-	"yield ",
-	"fn ",
-	"pub ",
-	"mut ",
-	"impl ",
-	"struct ",
-	"enum ",
-	"match ",
-	"Result<",
-	"Option<",
-	"package ",
-	"func ",
-	"defer ",
-	"select {",
-	"range ",
-	"context.",
-	"error",
-	"SELECT ",
-	"FROM ",
-	"WHERE ",
-	"INSERT ",
-	"UPDATE ",
-	"DELETE ",
-	"CREATE ",
-	"JOIN ",
-	"{\n",
-	"\n}",
-	"\n  ",
-	"\n    ",
-	"\n      ",
-	"\r\n  ",
-	"\r\n    "
-]), hi = new TextEncoder();
-new TextDecoder("utf-8", { fatal: !0 });
-var gi = mi.map((e) => hi.encode(e));
-Array.from({ length: 256 }, (e, t) => t.toString(16).padStart(2, "0")), new Set(mi);
-function _i(e = []) {
-	let t = {
-		children: /* @__PURE__ */ new Map(),
-		index: -1
+		return !0;
+	}, $r.prototype.onData = function(e) {
+		this.chunks.push(e);
+	}, $r.prototype.onEnd = function(e) {
+		e === Gr && (this.result = this.options.to === "string" ? this.chunks.join("") : Zt.flattenChunks(this.chunks)), this.chunks = [], this.err = e, this.msg = this.strm.msg;
 	};
-	return gi.forEach((e, n) => {
-		let r = t;
-		for (let t of e) r.children.has(t) || r.children.set(t, {
+	function ei(e, t) {
+		let n = new $r(t);
+		if (n.push(e, !0), n.err) throw n.msg || He[n.err];
+		return n.result;
+	}
+	function ti(e, t) {
+		return t ||= {}, t.raw = !0, ei(e, t);
+	}
+	var ni = {
+		Inflate: $r,
+		inflate: ei,
+		inflateRaw: ti,
+		ungzip: ei,
+		constants: Ue
+	}, { Deflate: ri, deflate: ii, deflateRaw: ai, gzip: oi } = xn, { Inflate: si, inflate: ci, inflateRaw: li, ungzip: ui } = ni, di = ii;
+	Object.freeze([
+		0,
+		4,
+		8,
+		16,
+		32,
+		64,
+		128,
+		256,
+		512,
+		1024,
+		2048
+	]), Object.freeze({
+		text: 0,
+		markdown: 1,
+		javascript: 2,
+		html: 3
+	}), Object.freeze([
+		"text",
+		"markdown",
+		"javascript",
+		"html"
+	]);
+	var fi = Object.freeze([
+		" ",
+		"\n",
+		"  ",
+		"    ",
+		"\r\n",
+		"	",
+		"\n\n",
+		"```",
+		"# ",
+		"## ",
+		"### ",
+		"- ",
+		"* ",
+		"> ",
+		"](",
+		")\n",
+		"const ",
+		"let ",
+		"function ",
+		"return ",
+		" => ",
+		" = ",
+		" === ",
+		" !== ",
+		"import ",
+		"export ",
+		" from ",
+		"async ",
+		"await ",
+		"if (",
+		"else ",
+		"for (",
+		"while (",
+		"try {",
+		"} catch (",
+		"class ",
+		"new ",
+		"this.",
+		"throw new ",
+		"typeof ",
+		"instanceof ",
+		"true",
+		"false",
+		"null",
+		"undefined",
+		"switch (",
+		"case ",
+		"break;",
+		"continue;",
+		"document.",
+		"window.",
+		"querySelector(",
+		"querySelectorAll(",
+		"addEventListener(",
+		"textContent",
+		"console.log(",
+		"console.error(",
+		"JSON.stringify(",
+		"JSON.parse(",
+		"Object.",
+		"Array.",
+		"</",
+		"<!--",
+		"-->",
+		"<!DOCTYPE html>",
+		"<html",
+		"<head>",
+		"<body",
+		"<div",
+		"</div>",
+		"<span",
+		"</span>",
+		"<button",
+		"</button>",
+		"<script",
+		"<\/script>",
+		"<style>",
+		"</style>",
+		" class=\"",
+		" id=\"",
+		" href=\"",
+		" src=\"",
+		" aria-",
+		" data-",
+		" role=\"",
+		"display: ",
+		"position: ",
+		"color: ",
+		"background: ",
+		"border: ",
+		"padding: ",
+		"margin: ",
+		"width: ",
+		"height: ",
+		"font-size: ",
+		"font-family: ",
+		"align-items: ",
+		"justify-content: ",
+		"```javascript",
+		"```js",
+		"```html",
+		"```css",
+		"```json",
+		"```bash",
+		"```text",
+		"**",
+		"__",
+		"~~",
+		"![",
+		"https://",
+		"http://",
+		"www.",
+		"README",
+		"LICENSE",
+		" the ",
+		" and ",
+		" that ",
+		" with ",
+		" this ",
+		" for ",
+		" are ",
+		" not ",
+		"The ",
+		"This ",
+		"There ",
+		" can ",
+		" will ",
+		" into ",
+		" when ",
+		" then ",
+		"ing ",
+		"()",
+		"[]",
+		"{}",
+		"();",
+		");",
+		", ",
+		": ",
+		";\n",
+		" {\n",
+		"}\n",
+		"},\n",
+		"\";",
+		"?.",
+		"??",
+		"...",
+		"${",
+		"?.(",
+		"?.[",
+		"Promise",
+		"resolve",
+		"reject",
+		"interface ",
+		"type ",
+		"extends ",
+		"implements ",
+		"public ",
+		"private ",
+		"readonly ",
+		"def ",
+		"self.",
+		"None",
+		"elif ",
+		"except ",
+		"finally:",
+		"lambda ",
+		"yield ",
+		"fn ",
+		"pub ",
+		"mut ",
+		"impl ",
+		"struct ",
+		"enum ",
+		"match ",
+		"Result<",
+		"Option<",
+		"package ",
+		"func ",
+		"defer ",
+		"select {",
+		"range ",
+		"context.",
+		"error",
+		"SELECT ",
+		"FROM ",
+		"WHERE ",
+		"INSERT ",
+		"UPDATE ",
+		"DELETE ",
+		"CREATE ",
+		"JOIN ",
+		"{\n",
+		"\n}",
+		"\n  ",
+		"\n    ",
+		"\n      ",
+		"\r\n  ",
+		"\r\n    "
+	]), pi = new TextEncoder();
+	new TextDecoder("utf-8", { fatal: !0 });
+	var mi = fi.map((e) => pi.encode(e));
+	Array.from({ length: 256 }, (e, t) => t.toString(16).padStart(2, "0")), new Set(fi);
+	function hi(e = []) {
+		let t = {
 			children: /* @__PURE__ */ new Map(),
 			index: -1
-		}), r = r.children.get(t);
-		r.index = n, r.type = "dictionary";
-	}), e.forEach((e, n) => {
-		let r = t;
-		for (let t of e) r.children.has(t) || r.children.set(t, {
-			children: /* @__PURE__ */ new Map(),
-			index: -1
-		}), r = r.children.get(t);
-		r.index = n, r.type = "lexeme";
-	}), t;
-}
-_i();
-// src/app/src/workflow.ts
-function vi(e) {
-	let t = e.trim().replace(/^```(?:json)?\s*\n?/i, "").replace(/\s*```$/, ""), n = JSON.parse(t);
-	if (!n || typeof n != "object" || Array.isArray(n)) throw Error("Expected a ComfyUI workflow object.");
-	if (Array.isArray(n.nodes)) return n;
-	if (n.workflow && Array.isArray(n.workflow.nodes)) return n.workflow;
-	if (n.prompt && typeof n.prompt == "object") return vi(JSON.stringify(n.prompt));
-	if (Object.values(n).some((e) => e && typeof e.class_type == "string" && e.inputs)) return n;
-	throw Error("This JSON is not a ComfyUI workflow or API prompt.");
-}
-function yi(e) {
-	return (e.split(/[\\/]/).pop() || "workflow").replace(/[<>:"|?*\x00-\x1f]/g, "_").replace(/\.json$/i, "") + ".json";
-}
-// src/app/src/links.ts
-function bi(e, t) {
-	let n = new URL(t);
-	return n.search = "", n.hash = e, n.href;
-}
-// src/app/src/share.ts
-function xi(e, t = "workflow.json") {
-	return new URL(Ci(e, t)).hash;
-}
-function Si(e, t = "https://app.shel.sh/make/") {
-	if (!/^#(?:share|p):/.test(e)) throw Error("Expected a Make-compatible workflow fragment.");
-	let n = new URL(t);
-	return n.hash = e, n.href;
-}
-function Ci(e, t = "workflow.json", n = "https://app.shel.sh/make/") {
-	let r = new TextEncoder().encode(JSON.stringify(vi(typeof e == "string" ? e : JSON.stringify(e))));
-	if (r.length > 33550336) throw Error("Workflow exceeds 32 MiB.");
-	let i = new TextEncoder().encode(JSON.stringify({
-		name: yi(t),
-		mime: "application/json"
-	})), a = new Uint8Array(9 + i.length + r.length);
-	a.set([
-		77,
-		75,
-		73,
-		84,
-		1
-	]), new DataView(a.buffer).setUint32(5, i.length, !1), a.set(i, 9), a.set(r, 9 + i.length);
-	let o = pi(a, { level: 9 }), s = "";
-	for (let e = 0; e < o.length; e += 8192) s += String.fromCharCode(...o.subarray(e, e + 8192));
-	let c = new URL(n);
-	return c.hash = "share:" + btoa(s).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, ""), c.href;
-}
-// src/app/src/share-page.ts
-var wi = new URL("./", location.href), Ti = document.querySelector("#source"), Ei = document.querySelector("#mode"), Di = document.querySelector("#status"), Oi = document.querySelector("#viewer-url"), ki = document.querySelector("#result"), Ai = document.querySelector("button[type=submit]"), ji, Mi = "workflow.json", Ni;
-async function Pi() {
-	Ni?.abort(), Ni = new AbortController();
-	let e = Ni;
-	Ai.disabled = !0, ki.hidden = !0, Di.textContent = "Reading workflow…", delete Di.dataset.error;
-	try {
-		let t = Ti.value.trim();
-		if (!t) throw Error("Enter a workflow link or JSON.");
-		let n = t.startsWith("{") || t.startsWith("```"), r;
-		if (n) ji = vi(t);
-		else {
-			let n = await a(t, wi.href, e.signal);
-			if (!n.workflow) throw Error("Use a workflow JSON here. Metadata images can be opened in the editor.");
-			ji = n.workflow, Mi = n.name, r = n.fragment;
+		};
+		return mi.forEach((e, n) => {
+			let r = t;
+			for (let t of e) r.children.has(t) || r.children.set(t, {
+				children: /* @__PURE__ */ new Map(),
+				index: -1
+			}), r = r.children.get(t);
+			r.index = n, r.type = "dictionary";
+		}), e.forEach((e, n) => {
+			let r = t;
+			for (let t of e) r.children.has(t) || r.children.set(t, {
+				children: /* @__PURE__ */ new Map(),
+				index: -1
+			}), r = r.children.get(t);
+			r.index = n, r.type = "lexeme";
+		}), t;
+	}
+	hi();
+	function gi(e) {
+		let t = e.trim().replace(/^```(?:json)?\s*\n?/i, "").replace(/\s*```$/, ""), n = JSON.parse(t);
+		if (!n || typeof n != "object" || Array.isArray(n)) throw Error("Expected a ComfyUI workflow object.");
+		if (Array.isArray(n.nodes)) return n;
+		if (n.workflow && Array.isArray(n.workflow.nodes)) return n.workflow;
+		if (n.prompt && typeof n.prompt == "object") return gi(JSON.stringify(n.prompt));
+		if (Object.values(n).some((e) => e && typeof e.class_type == "string" && e.inputs)) return n;
+		throw Error("This JSON is not a ComfyUI workflow or API prompt.");
+	}
+	function _i(e) {
+		return (e.split(/[\\/]/).pop() || "workflow").replace(/[<>:"|?*\x00-\x1f]/g, "_").replace(/\.json$/i, "") + ".json";
+	}
+	function vi(e, t) {
+		let n = new URL(t);
+		return n.search = "", n.hash = e, n.href;
+	}
+	function yi(e, t = "workflow.json") {
+		return new URL(xi(e, t)).hash;
+	}
+	function bi(e, t = "https://app.shel.sh/make/") {
+		if (!/^#(?:share|p):/.test(e)) throw Error("Expected a Make-compatible workflow fragment.");
+		let n = new URL(t);
+		return n.hash = e, n.href;
+	}
+	function xi(e, t = "workflow.json", n = "https://app.shel.sh/make/") {
+		let r = new TextEncoder().encode(JSON.stringify(gi(typeof e == "string" ? e : JSON.stringify(e))));
+		if (r.length > 33550336) throw Error("Workflow exceeds 32 MiB.");
+		let i = new TextEncoder().encode(JSON.stringify({
+			name: _i(t),
+			mime: "application/json"
+		})), a = new Uint8Array(9 + i.length + r.length);
+		a.set([
+			77,
+			75,
+			73,
+			84,
+			1
+		]), new DataView(a.buffer).setUint32(5, i.length, !1), a.set(i, 9), a.set(r, 9 + i.length);
+		let o = di(a, { level: 9 }), s = "";
+		for (let e = 0; e < o.length; e += 8192) s += String.fromCharCode(...o.subarray(e, e + 8192));
+		let c = new URL(n);
+		return c.hash = "share:" + btoa(s).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, ""), c.href;
+	}
+	var Si = new URL("./", location.href), Ci = document.querySelector("#source"), wi = document.querySelector("#mode"), Ti = document.querySelector("#status"), Ei = document.querySelector("#viewer-url"), Di = document.querySelector("#result"), Oi = document.querySelector("button[type=submit]"), ki, Ai = "workflow.json", ji;
+	async function Mi() {
+		ji?.abort(), ji = new AbortController();
+		let t = ji;
+		Oi.disabled = !0, Di.hidden = !0, Ti.textContent = "Reading workflow…", delete Ti.dataset.error;
+		try {
+			let n = Ci.value.trim();
+			if (!n) throw Error("Enter a workflow link or JSON.");
+			let r = n.startsWith("{") || n.startsWith("```"), i;
+			if (r) ki = gi(n);
+			else {
+				let r = await e(n, Si.href, t.signal);
+				if (!r.workflow) throw Error("Use a workflow JSON here. Metadata images can be opened in the editor.");
+				ki = r.workflow, Ai = r.name, i = r.fragment;
+			}
+			t.signal.throwIfAborted();
+			let a = yi(ki, Ai);
+			Ei.value = vi(i && wi.value === "source" ? i : a, Si.href), document.querySelector("#open").href = Ei.value, document.querySelector("#make").href = bi(a), Di.hidden = !1, Ti.textContent = `${new TextEncoder().encode(JSON.stringify(ki)).length.toLocaleString()} bytes JSON · ${Ei.value.length.toLocaleString()} characters in link`;
+		} catch (e) {
+			Ti.textContent = e instanceof Error ? e.message : String(e), Ti.dataset.error = "";
+		} finally {
+			t === ji && (Oi.disabled = !1);
 		}
-		e.signal.throwIfAborted();
-		let i = xi(ji, Mi);
-		Oi.value = bi(r && Ei.value === "source" ? r : i, wi.href), document.querySelector("#open").href = Oi.value, document.querySelector("#make").href = Si(i), ki.hidden = !1, Di.textContent = `${new TextEncoder().encode(JSON.stringify(ji)).length.toLocaleString()} bytes JSON · ${Oi.value.length.toLocaleString()} characters in link`;
-	} catch (e) {
-		Di.textContent = e instanceof Error ? e.message : String(e), Di.dataset.error = "";
-	} finally {
-		e === Ni && (Ai.disabled = !1);
 	}
-}
-document.querySelector("#share-form").onsubmit = (e) => {
-	e.preventDefault(), Pi();
-}, document.querySelector("#upload").onchange = async (e) => {
-	let t = e.target.files?.[0];
-	t && (Mi = t.name, Ti.value = await t.text(), Ei.value = "embed", Pi());
-}, document.querySelector("#copy").onclick = async () => {
-	try {
-		await navigator.clipboard.writeText(Oi.value), Di.textContent = "Link copied.";
-	} catch {
-		Oi.focus(), Oi.select(), Di.textContent = "Copy the selected URL.";
-	}
-}, document.querySelector("#download").onclick = () => {
-	let e = URL.createObjectURL(new Blob([JSON.stringify(ji, null, 2)], { type: "application/json" })), t = document.createElement("a");
-	t.href = e, t.download = yi(Mi), t.click(), setTimeout(() => URL.revokeObjectURL(e), 1e4);
-};""")
+	document.querySelector("#share-form").onsubmit = (e) => {
+		e.preventDefault(), Mi();
+	}, document.querySelector("#upload").onchange = async (e) => {
+		let t = e.target.files?.[0];
+		t && (Ai = t.name, Ci.value = await t.text(), wi.value = "embed", Mi());
+	}, document.querySelector("#copy").onclick = async () => {
+		try {
+			await navigator.clipboard.writeText(Ei.value), Ti.textContent = "Link copied.";
+		} catch {
+			Ei.focus(), Ei.select(), Ti.textContent = "Copy the selected URL.";
+		}
+	}, document.querySelector("#download").onclick = () => {
+		let e = URL.createObjectURL(new Blob([JSON.stringify(ki, null, 2)], { type: "application/json" })), t = document.createElement("a");
+		t.href = e, t.download = _i(Ai), t.click(), setTimeout(() => URL.revokeObjectURL(e), 1e4);
+	};
+})();""")
             ]
         ]
         body [] [
