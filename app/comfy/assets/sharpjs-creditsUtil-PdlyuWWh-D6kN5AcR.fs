@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.CreditsUtilPdlyuWWhD6kN5AcRJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";var e={minimumFractionDigits:2,maximumFractionDigits:2},t=({value:t,locale:n,options:r})=>{let i={...e,...r};return typeof i.maximumFractionDigits==`number`&&typeof i.minimumFractionDigits==`number`&&i.maximumFractionDigits<i.minimumFractionDigits&&(i.minimumFractionDigits=i.maximumFractionDigits),new Intl.NumberFormat(n,i).format(t)},n=e=>Math.round(e*211/100),r=e=>Math.round(e*211),i=e=>Math.round(e/211*100)/100,a=({value:e,locale:n,numberOptions:r})=>t({value:e,locale:n,options:r}),o=({cents:e,locale:t,numberOptions:r})=>a({value:n(e),locale:t,numberOptions:r}),s=({usd:e,locale:t,numberOptions:n})=>a({value:r(e),locale:t,numberOptions:n}),c=({value:e,locale:n,numberOptions:r})=>t({value:e,locale:n,options:r}),l=({cents:e,locale:t,numberOptions:n})=>c({value:e/100,locale:t,numberOptions:n});export{s as a,o as i,i as n,l as o,a as r,r as s,n as t};"""
-
-let render() = file

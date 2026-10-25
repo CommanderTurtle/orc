@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.TopBarHeaderCdTTF9NzBiwbDuiJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{At as e,Ct as t,E as n,N as r,Ut as i,_ as a,b as o,it as s,u as c}from"./vendor-vue-core-y4MynkKA-BstGHdqw.js";import{t as l}from"./Button-BXQ0rlkG-CIWom5KZ.js";import{r as u}from"./vendor-i18n-D0rAmGhT-Dg6vqr98.js";import{t as d}from"./DialogClose-DFtlH61B-iH-PAHbs.js";var f={class:`flex w-full items-center justify-between gap-2 border-b border-border-default p-2`},p={class:`flex items-center gap-2`},m={class:`m-0 text-sm font-semibold`},h={class:`flex items-center gap-2`},g=r({__name:`TopBarHeader`,setup(r){let{t:g}=u();return(r,u)=>(s(),o(`div`,f,[a(`div`,p,[u[0]||=a(`i`,{class:`icon-[lucide--layers-2] size-4`},null,-1),a(`h3`,m,t(e(g)(`layerEditor.title`)),1)]),a(`div`,h,[u[2]||=a(`div`,{id:`layer-editor-header-actions`,class:`flex items-center gap-2`,role:`group`},null,-1),c(d,null,{default:i(()=>[c(l,{variant:`outline`,size:`md`},{default:i(()=>[n(t(e(g)(`g.close`))+` `,1),u[1]||=a(`i`,{class:`icon-[lucide--x] size-4`},null,-1)]),_:1})]),_:1})])]))}});export{g as default};"""
-
-let render() = file

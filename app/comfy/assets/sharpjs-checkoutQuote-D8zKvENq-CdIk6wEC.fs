@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.CheckoutQuoteD8zKvENqCdIk6wECJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";function e(e){return e===`ANNUAL`}function t(t,n){return t===void 0?n===`yearly`:e(t)}var n=`usd`;function r(e,t,n){return t?new Intl.NumberFormat(n,{style:`currency`,currency:t.toUpperCase()}).format(e/100):``}function i(e,t){return new Intl.NumberFormat(t).format(e)}function a(e,t){return new Intl.NumberFormat(t,{minimumFractionDigits:2,maximumFractionDigits:2}).format(e/100)}function o(e,t,r){return e===void 0?{cents:r,currency:n}:{cents:e,currency:t}}function s(e){return o(e.amount_due_cents,e.currency,e.cost_today_cents)}function c(e,t){let n=s(e),r=s(t);return n.cents!==r.cents||n.currency!==r.currency}function l(e,t){let{cents:n,currency:i}=s(e);return r(n,i,t)}function u(e,t){let{cents:n,currency:i}=o(e.renewal_amount_cents,e.currency,e.cost_next_period_cents);return r(n,i,t)}function d(e){return e.renewal_at??e.new_plan.period_end}export{u as a,t as c,r as i,d as l,l as n,a as o,i as r,e as s,c as t};"""
-
-let render() = file

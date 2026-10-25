@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.ErrorsDaM9klL2CaXFSZ1gJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{br as e}from"./vendor-other-DMCJdr63-rGllg5-G.js";var t=`UNKNOWN_ERROR`,n=500,r=/^<[a-z!/]/i,i=/^[A-Z][A-Z0-9_]*$/;function a(e){return e instanceof Error&&`status`in e&&e.status===409&&`code`in e&&e.code===`WORKSPACE_BILLING_REQUIRED`}function o(e){let n=e.code??(typeof e.error==`string`&&i.test(e.error)?e.error:void 0);return typeof n==`string`&&n!==``?n:t}function s(e,t){let i=e.trim();return i!==``&&i.length<=n&&!r.test(i)?i:t}function c(n,r){if(typeof n==`string`)return{code:t,message:s(n,r)};let i=e(n)?n:{},a=o(i),c=typeof i.message==`string`&&i.message!==``?i.message:r,l=e(i.details)?i.details:void 0;return l===void 0?{code:a,message:c}:{code:a,message:c,details:l}}function l(e){if(e.trim()!==``)try{return JSON.parse(e)}catch{return e}}async function u(e){let t=e.statusText||`HTTP ${e.status}`;return c(l(await e.text().catch(e=>(console.warn(`parseErrorResponse: failed to read response body`,e),``))),t)}export{t as i,a as n,u as r,c as t};"""
-
-let render() = file

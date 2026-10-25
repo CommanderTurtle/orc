@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.Constants2xW19JicCpZIHD9Js
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";var e=new Set([`.gltf`,`.glb`,`.obj`,`.fbx`,`.stl`]),t=new Set([...e,`.spz`,`.splat`,`.ply`,`.ksplat`]),n=[...t].join(`,`),r=new Set([`.hdr`,`.exr`]),i=[...r].join(`,`),a=`none`,o=new Set([`ply`,`spz`,`splat`,`ksplat`]),s=[{label:`GLB`,value:`glb`},{label:`OBJ`,value:`obj`},{label:`STL`,value:`stl`},{label:`FBX`,value:`fbx`}];function c(e){let t=e?.toLowerCase();return t&&o.has(t)?[{label:t.toUpperCase(),value:t}]:s}window.comfyAPI=window.comfyAPI||{},window.comfyAPI.constants=window.comfyAPI.constants||{},window.comfyAPI.constants.SUPPORTED_MESH_EXTENSIONS=e,window.comfyAPI.constants.SUPPORTED_EXTENSIONS=t,window.comfyAPI.constants.SUPPORTED_EXTENSIONS_ACCEPT=n,window.comfyAPI.constants.SUPPORTED_HDRI_EXTENSIONS=r,window.comfyAPI.constants.SUPPORTED_HDRI_EXTENSIONS_ACCEPT=i,window.comfyAPI.constants.LOAD3D_NONE_MODEL=a,window.comfyAPI.constants.DIRECT_EXPORT_FORMATS=o,window.comfyAPI.constants.getExportFormatOptions=c;export{n as a,t as c,i,e as n,o,c as r,r as s,a as t};"""
-
-let render() = file

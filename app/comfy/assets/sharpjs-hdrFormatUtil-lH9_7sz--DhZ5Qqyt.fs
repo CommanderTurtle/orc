@@ -1,5 +1,0 @@
-﻿module ComfyUI.Assets.HdrFormatUtilLH97szDhZ5QqytJs
-
-let file = """import"./rolldown-runtime-CM1DJQSe-DW4eb1zL.js";import{t as e}from"./api-Cwoz8_OZ-_ARMy4Sb.js";var t=[`.exr`,`.hdr`];function n(e){if(!e)return!1;let n=e.toLowerCase();return t.some(e=>n.endsWith(e))}function r(e){if(e)try{let t=new URL(e,window.location.origin);return t.searchParams.get(`filename`)??t.pathname.split(`/`).pop()??void 0}catch{return e.split(`/`).pop()}}function i(e){return e?n(r(e)):!1}function a(e){let t=e&&i(e)&&new URL(e,window.location.origin).searchParams.get(`preview_id`);return t?s(t):void 0}function o(e){let t=new URL(e.dataset.fileUrl??e.src,e.baseURI);return t.searchParams.delete(`preview`),t}function s(t){return e.apiURL(`/assets/${t}/content?disposition=inline`)}function c(e){try{let t=new URL(e,window.location.origin);return t.searchParams.delete(`preview`),e.startsWith(`http`)?t.toString():`${t.pathname}${t.search}`}catch{return e}}export{n as a,s as i,o as n,i as o,r,c as s,a as t};"""
-
-let render() = file
