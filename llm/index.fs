@@ -465,12 +465,28 @@ let page =
                             str "Maximum tool rounds"
                         ]
                         input [ _id "max-tool-rounds"; _type "number"; attr "min" "1"; attr "max" "16"; attr "step" "1"; attr "value" "8" ]
-                        label [ _class "check-row" ] [
-                            input [ _id "ocr-enabled"; _type "checkbox"; attr "checked" "" ]
-                            str "Local image OCR"
+                        fieldset [ _id "ocr-control"; _class "ocr-control"; attr "aria-describedby" "ocr-hint" ] [
+                            legend [] [
+                                str "Local image OCR"
+                            ]
+                            div [ _class "ocr-dial" ] [
+                                input [ _id "ocr-v1"; _type "radio"; attr "name" "ocr-mode"; attr "value" "v1"; attr "aria-label" "Tesseract"; attr "autocomplete" "off"; attr "checked" "" ]
+                                label [ attr "for" "ocr-v1"; attr "title" "tesseract" ] [
+                                    str "v1"
+                                ]
+                                input [ _id "ocr-v2"; _type "radio"; attr "name" "ocr-mode"; attr "value" "v2"; attr "aria-label" "PPOCR"; attr "autocomplete" "off" ]
+                                label [ attr "for" "ocr-v2"; attr "title" "ppocr" ] [
+                                    str "v2"
+                                ]
+                                input [ _id "ocr-off"; _type "radio"; attr "name" "ocr-mode"; attr "value" "off"; attr "aria-label" "OCR off"; attr "autocomplete" "off" ]
+                                label [ attr "for" "ocr-off"; attr "title" "No OCR tool" ] [
+                                    str "off"
+                                ]
+                                span [ _class "ocr-dial-thumb"; attr "aria-hidden" "true" ] []
+                            ]
                         ]
-                        p [ _class "hint" ] [
-                            str "Tesseract worker, core, and English data are bundled locally and load only when called."
+                        p [ _id "ocr-hint"; _class "hint" ] [
+                            str "Bundled OCR runs locally and loads only when called."
                         ]
                         div [ _class "tool-group" ] [
                             label [ _class "check-row" ] [
