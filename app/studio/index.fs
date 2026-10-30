@@ -1,4 +1,4 @@
-﻿module Make.IndexHtml
+﻿module Studio.IndexHtml
 
 open Giraffe.ViewEngine
 
