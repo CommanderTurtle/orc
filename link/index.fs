@@ -1,4 +1,4 @@
-﻿module ConvertedFiles.IndexHtml
+﻿module Link.IndexHtml
 
 open Giraffe.ViewEngine
 
