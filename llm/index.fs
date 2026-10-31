@@ -12,6 +12,7 @@ let page =
             title [] [
                 str "llm.shel.sh"
             ]
+            link [ attr "rel" "stylesheet"; _href "/vendor/markdown/github-dark.min.css" ]
             script [ _type "module"; attr "crossorigin" ""; _src "/assets/index.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/assets/index.css" ]
         ]
