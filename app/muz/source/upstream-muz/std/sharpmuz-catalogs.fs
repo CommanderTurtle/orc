@@ -1,0 +1,397 @@
+﻿module Muz.Source.UpstreamMuz.Std.CatalogsMuz
+
+let file = """// Default vocabulary and musical recipes are editable source.
+let synth_presets = {
+    "init": {},
+    "pulse-bass": {
+        mode: "pulse",
+        cutoff_hz: 800.0,
+        filter_env: 2.5,
+        attack_ms: 2.0,
+        decay_ms: 120.0,
+        sustain: 0.45,
+        release_ms: 70.0,
+        sub: 0.45,
+        drive_db: 3.0,
+        gain_db: -13.0
+    },
+    "glass-lead": {
+        mode: "saw",
+        unison: 3.0,
+        detune_cents: 8.0,
+        attack_ms: 8.0,
+        decay_ms: 170.0,
+        sustain: 0.6,
+        release_ms: 180.0,
+        cutoff_hz: 3800.0,
+        filter_env: 1.0,
+        vibrato_cents: 9.0,
+        gain_db: -18.0
+    },
+    "pad": {
+        mode: "saw",
+        unison: 5.0,
+        detune_cents: 14.0,
+        attack_ms: 650.0,
+        release_ms: 1800.0,
+        sustain: 0.7,
+        cutoff_hz: 1800.0,
+        filter_env: 0.4,
+        gain_db: -23.0
+    },
+    // Legacy alias of pad; retained unchanged. Use std/synthesis for distinct structures.
+    "choir": {
+        mode: "saw",
+        unison: 5.0,
+        detune_cents: 14.0,
+        attack_ms: 650.0,
+        release_ms: 1800.0,
+        sustain: 0.7,
+        cutoff_hz: 1800.0,
+        filter_env: 0.4,
+        gain_db: -23.0
+    },
+    "bell": {
+        mode: "fm",
+        fm_ratio: 2.0,
+        fm_index: 2.5,
+        attack_ms: 2.0,
+        decay_ms: 450.0,
+        sustain: 0.1,
+        release_ms: 850.0,
+        gain_db: -18.0,
+        cutoff_hz: 9000.0
+    },
+    "kick": {mode: "kick", decay_ms: 150.0, gain_db: -7.0},
+    "snare": {mode: "snare", decay_ms: 125.0, drive_db: 4.0, gain_db: -13.0},
+    "hat": {mode: "cymbal", decay_ms: 32.0, gain_db: -25.0},
+    "crash": {mode: "cymbal", decay_ms: 850.0, gain_db: -23.0},
+    "tom": {mode: "fm_percussion", decay_ms: 190.0, fm_ratio: 1.5, fm_index: 1.0, gain_db: -13.0},
+    "noise": {
+        mode: "noise",
+        attack_ms: 700.0,
+        release_ms: 300.0,
+        gain_db: -27.0,
+        cutoff_hz: 3000.0
+    },
+    "fifths": {
+        mode: "pulse",
+        unison: 3.0,
+        detune_cents: 5.0,
+        attack_ms: 3.0,
+        release_ms: 90.0,
+        cutoff_hz: 2300.0,
+        filter_env: 0.5,
+        drive_db: 10.0,
+        gain_db: -20.0
+    }
+};
+// Numeric codes belong only at the native device boundary. Presets and composer
+// overrides use checked names; these codes are integers, not musical quantities.
+let synth_mode_codes = {
+    saw: 0,
+    pulse: 1,
+    fm: 2,
+    kick: 3,
+    snare: 4,
+    cymbal: 5,
+    fm_percussion: 6,
+    noise: 7
+};
+// One-shot ADSRs are general voice envelopes; all drum timbre choices live here.
+fn percussion_envelope(id, decay) = {
+    id: id,
+    op: "adsr",
+    attack: 0,
+    decay: decay,
+    sustain: 0,
+    release: 0.008,
+    one_shot: true
+};
+fn percussion_patch(name, settings) {
+    let p = merge({decay_ms: 200, gain_db: -14, drive_db: 0}, settings);
+    let common = [
+        {id: "decay_ms", op: "param", value: p.decay_ms, min: 1, max: 10000},
+        {id: "decay_seconds", op: "mul", inputs: ["decay_ms", 0.005]},
+        merge(percussion_envelope("amp", "decay_seconds"), {attack: 0.0007}),
+        {id: "noise", op: "noise"},
+        {id: "air", op: "filter", input: "noise", mode: "highpass", cutoff: 1800, q: 0.7}
+    ];
+    let body = if p.mode == "kick" {
+        [
+            percussion_envelope("sweep", 0.065),
+            {id: "bend", op: "mul", inputs: ["sweep", 5.5]},
+            {id: "ratio", op: "sum", inputs: [1, "bend"]},
+            {id: "osc", op: "osc", wave: "sine", ratio: "ratio"},
+            {id: "saturated", op: "drive", input: "osc", amount: 1.5},
+            {id: "body", op: "mul", inputs: ["saturated", 0.85]},
+            percussion_envelope("click_env", 0.025),
+            {id: "click", op: "mul", inputs: ["air", "click_env", 0.35]},
+            {id: "mix", op: "sum", inputs: ["body", "click"]}
+        ]
+    } else {
+        if p.mode == "snare" {
+            [
+                percussion_envelope("sweep", 0.1),
+                {id: "bend", op: "mul", inputs: ["sweep", 90]},
+                {id: "hz", op: "sum", inputs: [170, "bend"]},
+                {id: "osc", op: "osc", wave: "sine", hz: "hz"},
+                percussion_envelope("body_env", 0.325),
+                {id: "body", op: "mul", inputs: ["osc", "body_env", 0.55]},
+                percussion_envelope("snap_env", 0.055),
+                {id: "snap", op: "mul", inputs: ["snap_env", 0.32]},
+                {id: "rattle", op: "sum", inputs: [0.68, "snap"]},
+                {id: "wire", op: "mul", inputs: ["air", "rattle", 1.6]},
+                {id: "mix", op: "sum", inputs: ["body", "wire"]}
+            ]
+        } else {
+            [
+                {id: "a", op: "osc", wave: "sine", hz: 7313},
+                {id: "b", op: "osc", wave: "sine", hz: 5297},
+                {id: "metal", op: "mul", inputs: ["a", "b", 0.22]},
+                {id: "wash", op: "mul", inputs: ["air", 0.8]},
+                {id: "mix", op: "sum", inputs: ["metal", "wash"]}
+            ]
+        }
+    };
+    let drive = if p.mode == "kick" || p.drive_db <= 0 { 1 } else { pow(10, p.drive_db / 20) };
+    let finish = if drive == 1 {
+        [{id: "out", op: "mul", inputs: ["mix", "amp"]}]
+    } else {
+        [
+            {id: "driven", op: "drive", input: "mix", amount: drive},
+            {id: "out", op: "mul", inputs: ["driven", "amp", 1 / pow(drive, 0.5)]}
+        ]
+    };
+    voice_patch(name, {gain_db: p.gain_db, nodes: common + body + finish, output: "out"})
+}
+fn synth(name = "init", params = {}, presets = synth_presets) {
+    let settings = merge({type: "synth", name: name, mode: "saw"}, presets[name], params);
+    assert(
+        contains(keys(synth_mode_codes), settings.mode),
+        "synth mode must be a name: saw, pulse, fm, kick, snare, cymbal, fm_percussion, or noise"
+    );
+    if contains(["kick", "snare", "cymbal"], settings.mode) {
+        percussion_patch(name, settings)
+    } else {
+        merge(settings, {mode: synth_mode_codes[settings.mode]})
+    }
+}
+
+let drum_voices = {
+    kick: 36,
+    snare: 38,
+    rimshot: 38,
+    rim: 37,
+    hat: 42,
+    closed_hat: 42,
+    open_hat: 46,
+    pedal_hat: 44,
+    crash: 49,
+    ride: 51,
+    tom_high: 50,
+    tom: 47,
+    tom_low: 43
+};
+let drum_articulations = {
+    "X": 0.95,
+    "x": 0.72,
+    "g": 0.34,
+    "o": 0.58,
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3,
+    "4": 0.4,
+    "5": 0.5,
+    "6": 0.6,
+    "7": 0.7,
+    "8": 0.8,
+    "9": 0.9,
+    ".": null,
+    "-": null,
+    "_": null
+};
+fn drums(lanes, span = 4b, voices = drum_voices, articulations = drum_articulations, gate = 0.5) =
+    drum_grid(lanes, voices, articulations, gate, span);
+let kit_defaults = {
+    type: "kit",
+    name: "default",
+    kick: synth("kick"),
+    snare: synth("snare"),
+    rim: synth("snare"),
+    rimshot: synth("snare"),
+    hat: synth("hat"),
+    closed_hat: synth("hat"),
+    pedal_hat: synth("hat"),
+    open_hat: synth("crash"),
+    crash: synth("crash"),
+    ride: synth("crash"),
+    tom: synth("tom"),
+    tom_low: synth("tom"),
+    tom_high: synth("tom"),
+    chokes: [["hat", "open_hat", "pedal_hat"]]
+};
+fn kit(name = "default", params = {}) = merge(kit_defaults, {name: name}, params);
+
+let scale_modes = {
+    major: [0, 2, 4, 5, 7, 9, 11],
+    ionian: [0, 2, 4, 5, 7, 9, 11],
+    minor: [0, 2, 3, 5, 7, 8, 10],
+    aeolian: [0, 2, 3, 5, 7, 8, 10],
+    harmonic_minor: [0, 2, 3, 5, 7, 8, 11],
+    melodic_minor: [0, 2, 3, 5, 7, 9, 11],
+    dorian: [0, 2, 3, 5, 7, 9, 10],
+    phrygian: [0, 1, 3, 5, 7, 8, 10],
+    lydian: [0, 2, 4, 6, 7, 9, 11],
+    mixolydian: [0, 2, 4, 5, 7, 9, 10],
+    locrian: [0, 1, 3, 5, 6, 8, 10],
+    pentatonic: [0, 2, 4, 7, 9],
+    minor_pentatonic: [0, 3, 5, 7, 10],
+    whole_tone: [0, 2, 4, 6, 8, 10]
+};
+fn scale(root, mode = "minor", octave = 4, modes = scale_modes) = modes[mode].map(
+    fn(interval) => pitch(root, octave) + interval
+);
+fn degree(scale, degree) {
+    assert(len(scale) > 0, "scale is empty");
+    assert(degree == floor(degree), "degree must be an integer");
+    let octave = floor((degree - 1) / len(scale));
+    scale[degree - 1 - octave * len(scale)] + 12 * octave
+}
+let degree_pitch = degree;
+fn diatonic_chord(scale, degree, voices = 3) {
+    assert(
+        voices == floor(voices) && voices >= 1 && voices <= 8,
+        "diatonic chord needs 1..8 voices"
+    );
+    range(voices).map(fn(i) => degree_pitch(scale, degree + 2 * i))
+}
+fn euclidean(hits, steps, pitch = 42, span = 4b, rotation = 0) {
+    assert(
+        steps == floor(steps)
+        && hits == floor(hits)
+        && rotation == floor(rotation)
+        && steps > 0
+        && steps <= 4096
+        && hits >= 0
+        && hits <= steps
+        && rotation >= 0,
+        "euclidean requires integer 0 <= hits <= steps <= 4096 and nonnegative rotation"
+    );
+    stack([
+        rest(span),
+        stack(
+            range(steps)
+                .filter(fn(i) => (i * hits) % steps < hits)
+                .map(
+                    fn(i) => note(
+                        pitch,
+                        span / (steps * 2),
+                        at = ((i + rotation) % steps) * span / steps
+                    )
+                )
+        )
+    ])
+}
+fn time_coordinate(value, tick) = if unit(value) == 1 { value * tick } else { value };
+fn lfo(period, duration, low = 0, high = 1, phase = 0) {
+    let tick = if unit(period) == 1s { 1s } else { 1b };
+    let period = time_coordinate(period, tick);
+    let duration = time_coordinate(duration, tick);
+    let cycles = duration / period;
+    assert(
+        cycles > 0 && cycles <= 1500 && period > period * 0,
+        "LFO needs positive period/duration and at most 1500 cycles"
+    );
+    let count = max(1, -floor(-cycles * 64));
+    curve(
+        range(count + 1).map(fn(i) => [
+            duration * i / count,
+            low
+            + (high - low) * (0.5 - 0.5 * cos(6.283185307179586 * (cycles * i / count + phase)))
+        ])
+    )
+}
+fn curve_at(curve, offset) {
+    let tick = if unit(offset) == 1s { 1s } else { 1b };
+    merge(curve, {
+        points: curve.points.map(fn(p) => [
+            time_coordinate(p[0], tick) + time_coordinate(offset, tick),
+            p[1]
+        ])
+    })
+}
+
+// Musical ranking preferences are data, distinct from bounded search mechanics.
+let tonal_scoring = {
+    common_tone: -1,
+    parallel: 2,
+    candidate_center: 1,
+    candidate_spread: 0.03,
+    center: 0.2,
+    strong_beat: 1.5,
+    weak_beat: 0.75,
+    repeat: 0.8,
+    fifth: 0.15,
+    motion: 0.1,
+    alternative_movement: 0.03,
+    metrical_period: 2,
+    metrical_tolerance: 0.000001
+};
+fn voicelead(harmony, low = 48, high = 84, center = 64, scoring = tonal_scoring) = voicelead_solve(
+    harmony,
+    low,
+    high,
+    center,
+    scoring
+);
+fn reharmonize(harmony, melody, candidates, octave = 3, scoring = tonal_scoring) =
+    reharmonize_solve(harmony, melody, candidates, octave, scoring);
+fn reharmonizations(harmony, melody, candidates, octave = 3, count = 3, scoring = tonal_scoring) =
+    reharmonizations_solve(harmony, melody, candidates, octave, scoring, count);
+
+// Sampling policy: retain knots, add a regular grid, and preserve step edges.
+fn curve_knots(c, tick) {
+    let points = c.points.map(fn(p) => time_coordinate(p[0], tick));
+    let shape = merge({shape: "linear"}, c).shape;
+    points
+    + if shape == "step" {
+        points.filter(fn(p) => p != points[0]).map(fn(p) => max(tick * 0, p - tick * 0.000001))
+    } else {
+        []
+    }
+}
+fn curve_sample_times(a, b, resolution) {
+    let tick = if unit(a.points[0][0]) == 1s { 1s } else { 1b };
+    let end = max(time_coordinate(a.points[-1][0], tick), time_coordinate(b.points[-1][0], tick));
+    let steps = end / tick / resolution;
+    assert(resolution > 0 && steps <= 100000, "control resolution exceeds 100000 points");
+    let times =
+        curve_knots(a, tick)
+        + curve_knots(b, tick)
+        + range(-floor(-steps) + 1).map(fn(i) => min(end, i * resolution * tick));
+    let ordered = sort_by(times, fn(t) => t);
+    range(len(ordered))
+        .filter(fn(i) => i == 0 || ordered[i] != ordered[i - 1])
+        .map(fn(i) => ordered[i])
+}
+fn curve_map(curve, function, resolution = 1/64) {
+    let times = curve_sample_times(curve, curve, resolution);
+    let values = curve_value(curve, times).map(function);
+    {points: range(len(times)).map(fn(i) => [times[i], values[i]]), shape: "linear"}
+}
+fn curve_add(curve, other, resolution = 1/64) {
+    let times = curve_sample_times(curve, other, resolution);
+    let a = curve_value(curve, times);
+    let b = curve_value(other, times);
+    {points: range(len(times)).map(fn(i) => [times[i], a[i] + b[i]]), shape: "linear"}
+}
+fn curve_mul(curve, other, resolution = 1/64) {
+    let times = curve_sample_times(curve, other, resolution);
+    let a = curve_value(curve, times);
+    let b = curve_value(other, times);
+    {points: range(len(times)).map(fn(i) => [times[i], a[i] * b[i]]), shape: "linear"}
+}
+"""
+
+let render() = file

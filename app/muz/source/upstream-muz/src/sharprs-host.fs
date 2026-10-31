@@ -1,0 +1,75 @@
+﻿module Muz.Source.UpstreamMuz.Src.HostRs
+
+let file = """//! Instance-owned preparation services. Scopes are synchronous and unwind-safe;
+//! they do not install services on the audio callback or other threads.
+use std::{
+    cell::RefCell,
+    sync::{
+        Arc,
+        atomic::{AtomicBool, Ordering},
+    },
+};
+#[derive(Clone)]
+pub struct HostContext {
+    pub provenance: bool,
+    pub expansion: crate::limits::ExpansionLimits,
+    pub evaluation_steps: usize,
+    pub graph_units: usize,
+    pub cancelled: Arc<AtomicBool>,
+    pub assets: Arc<dyn crate::assets::AssetResolver>,
+    pub decoded_assets: Arc<crate::audio_file::DecodedCache>,
+    pub legacy_interrupt: bool,
+}
+impl Default for HostContext {
+    fn default() -> Self {
+        Self {
+            provenance: false,
+            expansion: Default::default(),
+            evaluation_steps: 5_000_000,
+            graph_units: 4096,
+            cancelled: Arc::new(AtomicBool::new(false)),
+            assets: Arc::new(crate::assets::FileAssets),
+            decoded_assets: Arc::new(crate::audio_file::DecodedCache::default()),
+            legacy_interrupt: false,
+        }
+    }
+}
+thread_local! { static CURRENT:RefCell<Option<HostContext>>=const{RefCell::new(None)}; }
+impl HostContext {
+    pub fn cli() -> Self {
+        Self {
+            legacy_interrupt: true,
+            graph_units: crate::model::graph_budget().unwrap_or(0),
+            ..Self::default()
+        }
+    }
+    pub fn is_cancelled(&self) -> bool {
+        self.cancelled.load(Ordering::Relaxed)
+            || (self.legacy_interrupt && crate::INTERRUPTED.load(Ordering::Relaxed))
+    }
+    pub fn run<T>(&self, f: impl FnOnce() -> T) -> T {
+        struct Restore(Option<HostContext>);
+        impl Drop for Restore {
+            fn drop(&mut self) {
+                CURRENT.with(|c| *c.borrow_mut() = self.0.take());
+            }
+        }
+        let _restore = Restore(CURRENT.with(|c| c.replace(Some(self.clone()))));
+        f()
+    }
+}
+pub(crate) fn current() -> Option<HostContext> {
+    CURRENT.with(|c| c.borrow().clone())
+}
+
+/// Preparation checkpoint, never called from the realtime callback.
+pub fn check_cancelled() -> anyhow::Result<()> {
+    anyhow::ensure!(
+        !CURRENT.with(|c| c.borrow().as_ref().is_some_and(HostContext::is_cancelled)),
+        "operation cancelled"
+    );
+    Ok(())
+}
+"""
+
+let render() = file

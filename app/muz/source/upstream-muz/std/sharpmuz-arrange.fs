@@ -1,0 +1,260 @@
+﻿module Muz.Source.UpstreamMuz.Std.ArrangeMuz
+
+let file = """// Arrangement values are ordinary records. Instruments and routing belong to
+// the song's persistent tracks; a passage only carries material and gestures.
+fn measures(count, meter = [4, 4]) {
+    assert(len(meter) == 2, "meter needs numerator and denominator");
+    assert(
+        unit(count) == 1 && count >= 0
+        && unit(meter[0]) == 1 && floor(meter[0]) == meter[0]
+        && meter[0] > 0 && meter[0] <= 255
+        && contains([1, 2, 4, 8, 16, 32, 64, 128], meter[1]),
+        "measures needs a nonnegative scalar count and an integral valid meter"
+    );
+    count * meter[0] * 4b / meter[1]
+}
+fn bars(count, meter = [4, 4]) = measures(count, meter);
+
+fn passage(span, parts = [], gestures = [], tempos = []) {
+    assert(span > 0b, "passage span must be positive");
+    {span: span, parts: parts, gestures: gestures, tempos: tempos, contracts: []}
+}
+fn part(id, pattern) = {id: id, pattern: pattern};
+fn occurrence(name, material) = merge(material, {name: name});
+
+fn sequence(items) = fold(
+    items,
+    {span: 0b, placements: [], names: []},
+    fn(state, item) => {
+        assert(
+            !contains(state.names, item.name),
+            "duplicate arrangement occurrence: " + item.name
+        );
+        {
+            span: state.span + item.span,
+            names: state.names + [item.name],
+            placements: state.placements + [merge(item, {start: state.span})]
+        }
+    }
+);
+
+// Changes only the requested part of this passage value. The shared input stays
+// available for the other occurrences. Multiple layers with the same id are valid.
+fn edit(material, id, transform) {
+    assert(len(filter(material.parts, fn(p) => p.id == id)) > 0, "passage has no part: " + id);
+    merge(material, {
+        parts: map(material.parts, fn(p) => if p.id == id {
+            merge(p, {pattern: transform(p.pattern)})
+        } else {
+            p
+        })
+    })
+}
+fn require(pattern, selector, count = 1) {
+    assert(
+        len(pattern.select(selector)) == count,
+        "pinned selection did not match the expected number of notes"
+    );
+    pattern
+}
+
+// Logical contracts include trailing rests and do not inspect performed time.
+fn require_span(pattern, expected) {
+    assert((unit(expected) == 1b || unit(expected) == 1bar) && expected >= 0b, "expected span must be a nonnegative beat duration");
+    assert(pattern.span == expected, "pattern does not have the required span");
+    pattern
+}
+fn require_fit(pattern, limit) {
+    assert((unit(limit) == 1b || unit(limit) == 1bar) && limit >= 0b, "span limit must be a nonnegative beat duration");
+    assert(pattern.span <= limit, "pattern exceeds the span limit");
+    pattern
+}
+
+fn contained_start(start, begin, end, pickups, label, kind) {
+    assert(pickups || start >= begin, label + kind + " pickup crosses passage start");
+    assert(start < end, label + kind + " start reaches or crosses passage end")
+}
+fn require_contained(material, pickups = false, tails = false) = merge(material, {
+    contracts: material.contracts + [fn(c) => {
+        let begin = seconds_at(c.start, c.timing);
+        let end = seconds_at(c.start + c.span, c.timing);
+        map(c.parts, fn(p) => {
+            let label = "occurrence " + c.name + ", part " + p.id + ": ";
+            assert(!p.pattern.has_clock_timing, label + "unsupported clock timing in containment contract");
+            map(p.pattern.notes, fn(n) => {
+                let start = seconds_at(n.at, c.timing) + n.offset;
+                let release = seconds_at(n.at + n.duration * n.gate, c.timing)
+                    + n.offset + n.release_offset;
+                contained_start(start, begin, end, pickups, label, "note");
+                assert(tails || release <= end, label + "note release crosses passage end")
+            });
+            map(p.pattern.controls, fn(event) => contained_start(
+                seconds_at(event.at, c.timing) + event.offset, begin, end, pickups, label, "control"
+            ));
+            map(p.pattern.raw, fn(event) => contained_start(
+                seconds_at(event.at, c.timing) + event.offset, begin, end, pickups, label, "raw event"
+            ))
+        })
+    }]
+});
+
+fn placed_parts(item) = map(
+    item.parts,
+    fn(p) => part(p.id, p.pattern.at(item.start, key = item.name))
+);
+fn collect(parts, id) = overlay(map(filter(parts, fn(p) => p.id == id), fn(p) => p.pattern));
+fn material(context, id) = collect(context.parts, id);
+fn flatten(lists) = fold(lists, [], fn(out, list) => out + list);
+
+fn context(item, timing) = {
+    name: item.name,
+    start: item.start,
+    span: item.span,
+    parts: placed_parts(item),
+    timing: timing
+};
+
+// Nest an already arranged collection. edit() preserves part slots, so closures
+// can select each child's layers from the final parent context instead of
+// retaining pre-edit patterns. The selected parts are already fully placed.
+fn group(arrangement) = fold(arrangement.placements, passage(arrangement.span), fn(
+    state,
+    item
+) => {
+    let indices = range(len(state.parts) + len(item.parts), start = len(state.parts));
+    merge(state, {
+        parts: state.parts + placed_parts(item),
+        gestures:
+            state.gestures
+            + map(
+                item.gestures,
+                fn(gesture) => fn(parent) => gesture(
+                    merge(parent, {
+                        start: parent.start + item.start,
+                        name: parent.name + "/" + item.name,
+                        span: item.span,
+                        parts: map(indices, fn(i) => parent.parts[i])
+                    })
+                )
+            ),
+        contracts:
+            state.contracts
+            + map(
+                item.contracts,
+                fn(contract) => fn(parent) => contract(
+                    merge(parent, {
+                        start: parent.start + item.start,
+                        name: parent.name + "/" + item.name,
+                        span: item.span,
+                        parts: map(indices, fn(i) => parent.parts[i])
+                    })
+                )
+            ),
+        tempos: state.tempos + map(item.tempos, fn(point) => [item.start + point[0], point[1]])
+    })
+});
+
+// Two explicit time domains: beat-relative curves move with score time; clock
+// curves keep their seconds offsets even when the surrounding tempo changes.
+fn local(target, points, shape = "linear") = fn(c) => [
+    automation(target, curve(map(points, fn(point) => [c.start + point[0], point[1]]), shape))
+];
+fn clock(target, points, shape = "linear") = fn(c) => [
+    automation(
+        target,
+        curve(
+            map(points, fn(point) => [seconds_at(c.start, c.timing) + point[0], point[1]]),
+            shape
+        )
+    )
+];
+
+// Normalize gesture positions to seconds only after placement. Concatenation
+// requires compatible endpoints; overlaps need an explicit composer combination.
+fn append_curve(state, next) {
+    let points = next.curve.points;
+    assert(state.shape == next.curve.shape, "joining gestures requires the same curve shape");
+    let previous = state.points[-1];
+    let first = points[0];
+    assert(previous[0] <= first[0], "overlapping automation gestures need an explicit combination");
+    assert(
+        state.shape == "step" || previous[1] == first[1],
+        "continuous gesture endpoints differ; supply an explicit transition"
+    );
+    assert(
+        previous[0] != first[0] || previous[1] == first[1],
+        "automation gestures disagree at a shared boundary"
+    );
+    {shape: state.shape, points: state.points + filter(points, fn(p) => p[0] > previous[0])}
+}
+fn join(automations, timing) {
+    let clocked = map(
+        automations,
+        fn(a) => merge(a, {
+            curve: merge(a.curve, {
+                points: map(a.curve.points, fn(p) => [seconds_at(p[0], timing), p[1]])
+            })
+        })
+    );
+    map(group_by(clocked, fn(a) => a.target), fn(group) => {
+        let ordered = sort_by(group, fn(a) => a.curve.points[0][0]);
+        let combined = fold(
+            filter(range(len(ordered)), fn(i) => i > 0),
+            ordered[0].curve,
+            fn(state, i) => append_curve(state, ordered[i])
+        );
+        automation(ordered[0].target, combined)
+    })
+}
+
+fn build(arrangement, settings, gestures = []) {
+    let defaults = {tempo: 120, tempos: [], automation: [], tracks: []};
+    let config = merge(defaults, settings);
+    let all_parts = flatten(map(arrangement.placements, fn(item) => placed_parts(item)));
+    let track_ids = map(config.tracks, fn(t) => t.id);
+    assert(
+        len(filter(all_parts, fn(p) => !contains(track_ids, p.id))) == 0,
+        "arrangement part has no matching song track"
+    );
+    let timing = {
+        tempo: config.tempo,
+        tempos:
+            config.tempos
+            + flatten(
+                map(
+                    arrangement.placements,
+                    fn(item) => map(item.tempos, fn(point) => [item.start + point[0], point[1]])
+                )
+            )
+    };
+    map(arrangement.placements, fn(item) => map(
+        item.contracts, fn(contract) => contract(context(item, timing))
+    ));
+    let local_gestures = flatten(
+        map(
+            arrangement.placements,
+            fn(item) => flatten(
+                map(item.gestures, fn(gesture) => gesture(context(item, timing)))
+            )
+        )
+    );
+    let global_context = {
+        name: "song",
+        start: 0b,
+        span: arrangement.span,
+        parts: all_parts,
+        timing: timing
+    };
+    let global_gestures = flatten(map(gestures, fn(gesture) => gesture(global_context)));
+    song(
+        merge(config, {
+            tempos: timing.tempos,
+            sections: map(arrangement.placements, fn(item) => section(item.name, item.span)),
+            tracks: map(config.tracks, fn(t) => merge(t, {pattern: collect(all_parts, t.id)})),
+            automation: join(config.automation + local_gestures + global_gestures, timing)
+        })
+    )
+}
+"""
+
+let render() = file

@@ -1,0 +1,25 @@
+﻿module Muz.Source.UpstreamMuz.Std.TonalMuz
+
+let file = """use "std/catalogs" as catalogs;
+let scale = catalogs.scale;
+let degree = catalogs.degree;
+let diatonic_chord = catalogs.diatonic_chord;
+let scale_modes = catalogs.scale_modes;
+// Degree numbers start at 1 and continue naturally across octaves.
+fn voicing(pitches, duration = 4b) = stack(pitches.map(fn(p) => note(p, duration)));
+fn progression(key, degrees, each = 4b, voices = 3) = seq(
+    degrees.map(fn(d) => voicing(diatonic_chord(key, d, voices), each))
+);
+fn melody(key, degrees, step = 1b) = seq(degrees.map(fn(d) => note(degree(key, d), step)));
+fn cadences(key) = [
+    progression(key, [2, 5, 1]),
+    progression(key, [4, 5, 1]),
+    progression(key, [6, 4, 5, 1])
+];
+let tonal_scoring = catalogs.tonal_scoring;
+let voicelead = catalogs.voicelead;
+let reharmonize = catalogs.reharmonize;
+let reharmonizations = catalogs.reharmonizations;
+"""
+
+let render() = file

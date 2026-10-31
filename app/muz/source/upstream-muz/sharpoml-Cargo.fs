@@ -1,0 +1,51 @@
+﻿module Muz.Source.UpstreamMuz.CargoToml
+
+let file = """[package]
+name = "muz"
+version = "0.1.0"
+edition = "2024"
+default-run = "muz"
+
+[workspace]
+members = ["crates/muz-clap"]
+
+[features]
+default = ["desktop"]
+desktop = ["dep:clap", "dep:cpal", "dep:libloading", "dep:notify", "dep:rtrb", "dep:vst3", "dep:ebur128", "dep:ctrlc", "dep:clap-sys"]
+
+[[bin]]
+name = "muz"
+path = "src/main.rs"
+required-features = ["desktop"]
+
+[dependencies]
+arrayvec = "0.7.6"
+base64 = "0.22.1"
+sha2 = "0.10.9"
+clap = { version = "4.5.47", features = ["derive"], optional = true }
+cpal = { version = "0.18.2", features = ["pipewire"], optional = true }
+json5 = "1.3.1"
+libloading = { version = "0.8.9", optional = true }
+notify = { version = "8.2.0", optional = true }
+midly = { version = "0.5.3", default-features = false, features = ["std", "strict"] }
+rtrb = { version = "0.4.0", optional = true }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.143"
+thiserror = "2.0.16"
+tempfile = "3.21.0"
+vst3 = { version = "0.3.0", optional = true }
+anyhow = "1.0"
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+hound = "3.5"
+ebur128 = { version = "0.1.10", optional = true }
+ctrlc = { version = "3.5.2", features = ["termination"], optional = true }
+claxon = "0.4.3"
+clap-sys = { version = "0.5.0", optional = true }
+zip = { version = "2.4", default-features = false, features = ["deflate"] }
+
+[dev-dependencies]
+tempfile = "3.21.0"
+"""
+
+let render() = file

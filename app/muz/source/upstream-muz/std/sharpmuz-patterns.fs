@@ -1,0 +1,112 @@
+﻿module Muz.Source.UpstreamMuz.Std.PatternsMuz
+
+let file = """// Rhythmic and note-selection policies over general pattern transformations.
+fn swing(pattern, ratio = 0.57, grid = 1/2b) {
+    assert(
+        ratio >= 0.5 && ratio <= 0.8 && grid > 0b,
+        "swing needs ratio 0.5..0.8 and a positive grid"
+    );
+    pattern.map_notes(fn(n) => {
+        let position = n.at / grid;
+        let tick = round(position);
+        {
+            at:
+                n.at
+                + if abs(position - tick) < 0.000001 && abs(tick % 2) == 1 {
+                    (ratio * 2 - 1) * grid
+                } else {
+                    0b
+                }
+        }
+    })
+}
+
+fn arpeggiate(harmony, order = [0, 2, 1, 2], step = 1/2b) {
+    assert(step > 0b && len(order) > 0, "arpeggiator needs positive step and nonempty order");
+    map(
+        order,
+        fn(index) => assert(index == floor(index), "arpeggiator order needs integer indices")
+    );
+    let groups = sort_by(group_by(harmony.notes, fn(n) => n.at), fn(group) => group[0].at);
+    let spans = map(range(len(groups)), fn(i) => {
+        let chord = sort_by(groups[i], fn(n) => n.pitch);
+        let start = chord[0].at;
+        let end = if i + 1 < len(groups) { groups[i + 1][0].at } else { harmony.span };
+        {chord: chord, start: start, end: end, count: max(0, -floor(-(end - start) / step))}
+    });
+    assert(
+        fold(spans, 0, fn(total, group) => total + group.count) <= 200000,
+        "arpeggio exceeds event budget"
+    );
+    let patches = fold(
+        map(range(len(spans)), fn(i) => {
+            let group = spans[i];
+            map(range(group.count), fn(j) => {
+                let k = order[j % len(order)];
+                let octave = floor(k / len(group.chord));
+                let index = k - octave * len(group.chord);
+                let original = group.chord[index];
+                let at = group.start + j * step;
+                merge(original, {
+                    pitch: original.pitch + 12 * octave,
+                    at: at,
+                    duration: min(step, group.end - at),
+                    key: original.key + "/arp" + str(i) + "." + str(j)
+                })
+            })
+        }),
+        [],
+        fn(out, group) => out + group
+    );
+    if len(harmony.notes) == 0 {
+        harmony
+    } else {
+        let first = harmony.notes[0].key;
+        harmony.flat_map_notes(fn(n) => if n.key == first { patches } else { [] })
+    }
+}
+
+// Context is always drawn from the original notes. Voice labels describe runs;
+// simultaneous unvoiced notes remain one stable, explicitly ordered run.
+fn map_note_runs(pattern, function, run = fn(n) => n.voice) {
+    let original = map(pattern.notes, fn(n) => {note: n, run: run(n)});
+    let groups = group_by(original, fn(item) => item.run);
+    let results = map(groups, fn(group) => {
+        let ordered = sort_by(group, fn(item) => item.note.at);
+        let count = len(ordered);
+        map(range(count), fn(i) => {
+            let n = ordered[i].note;
+            {
+                key: n.key,
+                patch: function({
+                    note: n,
+                    previous: if i > 0 { ordered[i - 1].note } else { null },
+                    next: if i + 1 < count { ordered[i + 1].note } else { null },
+                    run: ordered[i].run,
+                    index: i,
+                    count: count
+                })
+            }
+        })
+    });
+    // Pass the helper to itself: lexical function bindings do not implicitly
+    // capture their own names. Balanced joins avoid copying a growing prefix
+    // for every singleton run, and keep recursion logarithmic.
+    fn join_ranges(self, begin, end) {
+        if begin == end {
+            []
+        } else {
+            if end - begin == 1 {
+                results[begin]
+            } else {
+                let middle = floor((begin + end) / 2);
+                self(self, begin, middle) + self(self, middle, end)
+            }
+        }
+    }
+    let by_key = index_by(join_ranges(join_ranges, 0, len(results)), fn(item) => item.key);
+    pattern.map_notes(fn(n) => by_key[n.key].patch)
+}
+"""
+
+let render() = file

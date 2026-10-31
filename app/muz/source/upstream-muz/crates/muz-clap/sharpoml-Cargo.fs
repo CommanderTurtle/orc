@@ -1,0 +1,19 @@
+﻿module Muz.Source.UpstreamMuz.Crates.MuzClap.CargoToml
+
+let file = """[package]
+name = "muz-clap"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+muz = { path = "../..", default-features = false }
+clap-sys = "0.5.0"
+
+[dev-dependencies]
+serde_json = "1.0.143"
+"""
+
+let render() = file

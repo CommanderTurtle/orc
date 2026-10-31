@@ -12,8 +12,7 @@ let page =
             title [] [
                 str "muzstatic"
             ]
-            script [ _type "module"; attr "crossorigin" ""; _src "/muz/assets/index.js" ] [ rawText ("""""") ]
-            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/muz/assets/index.css" ]
+            link [ attr "rel" "stylesheet"; _href "./assets/style.css" ]
         ]
         body [] [
             header [ _class "topbar" ] [
@@ -258,6 +257,7 @@ let page =
             ]
             input [ _id "file-input"; _type "file"; attr "multiple" ""; attr "hidden" "" ]
             input [ _id "folder-input"; _type "file"; attr "webkitdirectory" ""; attr "multiple" ""; attr "hidden" "" ]
+            script [ _type "module"; _src "./assets/app.js" ] [ rawText ("""""") ]
         ]
     ]
 
