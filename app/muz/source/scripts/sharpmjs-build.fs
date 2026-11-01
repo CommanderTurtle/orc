@@ -4,6 +4,7 @@ let file = """import { cp, mkdir, readFile, writeFile, stat, rm, realpath } from
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { buildWorkbench } from './workbench.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -41,16 +42,29 @@ if (config.engineDir) {
   // Refresh the selected local installation on every build, including uncommitted edits.
   // Only copy engine build inputs. Never modify the selected checkout.
   await mkdir(engine, { recursive: true });
-  for (const name of ['Cargo.toml', 'src', 'std', 'templates', 'crates']) {
+  for (const name of ['Cargo.toml', 'src', 'std', 'templates', 'crates', 'README.md', 'docs', 'examples']) {
     if (resolve(config.engineDir) === resolve(engine)) throw Error('--engine-dir must point to your source checkout, not the generated cache.');
     await removeGenerated(join(engine, name));
     await cp(join(config.engineDir, name), join(engine, name), { recursive: true, force: true, filter: path => !/(?:^|[\\/])(?:target|\.git)(?:[\\/]|$)/.test(path) });
+  }
+  const contrib = join(config.engineDir, 'contrib');
+  if (await stat(contrib).then(() => true).catch(() => false)) {
+    await removeGenerated(join(engine, 'contrib'));
+    await cp(contrib, join(engine, 'contrib'), { recursive: true, filter: async path => {
+      if (/(?:^|[\\/])(?:assets|target|\.git)(?:[\\/]|$)/.test(path)) return false;
+      return (await stat(path)).isDirectory() || /\.(muz|md|json|py)$/.test(path);
+    } });
   }
   const result = spawnSync('git', ['-C', config.engineDir, 'rev-parse', 'HEAD'], { encoding: 'utf8' });
   const dirty = spawnSync('git', ['-C', config.engineDir, 'status', '--porcelain'], { encoding: 'utf8' });
   provenance = { repository: upstream.repository, revision: result.stdout?.trim() || 'local', local: true, dirty: Boolean(dirty.stdout?.trim()) };
 } else {
-  const exists = await stat(join(engine, '.git')).then(() => true).catch(() => false);
+  let exists = await stat(join(engine, '.git')).then(() => true).catch(() => false);
+  if (exists && spawnSync('git', ['status', '--porcelain'], { cwd: engine, encoding: 'utf8' }).stdout?.trim()) {
+    // Local-checkout builds can have refreshed this owned cache. Returning to
+    // the public pin must never silently retain those different build inputs.
+    await removeGenerated(engine); exists = false;
+  }
   if (!exists) {
     await removeGenerated(engine);
     run('git', ['-c', 'credential.helper=', '-c', 'core.askPass=', 'clone', '--no-checkout', '--filter=blob:none', upstream.repository, engine]);
@@ -58,8 +72,8 @@ if (config.engineDir) {
   const current = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: engine, encoding: 'utf8' });
   if (current.stdout?.trim() !== upstream.revision) {
     run('git', ['-c', 'credential.helper=', '-c', 'core.askPass=', 'fetch', '--depth', '1', 'origin', upstream.revision], engine);
-    run('git', ['checkout', '--detach', upstream.revision], engine);
   }
+  run('git', ['checkout', '--detach', upstream.revision], engine);
   provenance = { repository: upstream.repository, revision: upstream.revision, local: false, dirty: false };
 }
 // The bridge has its own lockfile and no desktop features. No patching of upstream.
@@ -69,6 +83,7 @@ await mkdir(join(root, 'dist/assets'), { recursive: true });
 await cp(join(root, 'engine/target/wasm32-unknown-unknown/release/muzstatic_engine.wasm'), join(root, 'dist/assets/muz.wasm'));
 await cp(join(root, 'src/index.html'), join(root, 'dist/index.html'));
 await cp(join(root, 'src/style.css'), join(root, 'dist/assets/style.css'));
+await cp(join(root, 'src/studio.css'), join(root, 'dist/assets/studio.css'));
 const build = await Bun.build({ entrypoints: ['src/app.js', 'src/engine-worker.js', 'src/data-worker.js'], root: join(root, 'src'), outdir: join(root, 'dist/assets'), target: 'browser', minify: true, sourcemap: 'none' });
 if (!build.success) throw new AggregateError(build.logs, 'Browser build failed');
 await cp(join(root, 'src/player-worklet.js'), join(root, 'dist/assets/player-worklet.js'));
@@ -85,6 +100,21 @@ async function collect(dir, prefix) {
 }
 await collect(join(engine, 'std'), 'std');
 await writeFile(join(root, 'dist/assets/library.json'), JSON.stringify(modules));
+// Ship catalog descriptions and source mappings, never download the recordings.
+// Manifests with individual pinned URLs can be imported selectively in-browser.
+const catalogRoot = config.engineDir || engine;
+const packs = [];
+for (const name of ['vsco-2-ce', 'karoryfer']) {
+  const dir = join(catalogRoot, 'contrib', name);
+  const manifest = await readFile(join(dir, 'manifest.json'), 'utf8').then(JSON.parse).catch(() => undefined);
+  if (!manifest?.files?.some(f => f.url)) continue;
+  const { readdir } = await import('node:fs/promises');
+  const files = [];
+  for (const item of await readdir(dir)) if (item.endsWith('.muz') || item === 'README.md') files.push({ path: `contrib/${name}/${item}`, text: await readFile(join(dir, item), 'utf8') });
+  for (const item of manifest.files) if (item.url) files.push({ path: `contrib/${name}/assets/${item.path}`, url: item.url, bytes: item.bytes, sha256: item.sha256 });
+  packs.push({ title: name, license: Object.values(manifest.repositories || {}).map(r => `${r.name}: ${r.license}`).join('; '), files });
+}
+await writeFile(join(root, 'dist/assets/catalogs.json'), JSON.stringify(packs));
 await mkdir(join(root, 'dist/reference'), { recursive: true });
 for (const topic of ['language', 'workflow', 'performance', 'embedding']) {
   const selected = config.engineDir ? join(config.engineDir, `docs/${topic}.md`) : join(engine, `docs/${topic}.md`);
@@ -93,12 +123,13 @@ for (const topic of ['language', 'workflow', 'performance', 'embedding']) {
 const source = join(root, 'dist/source');
 await removeGenerated(source);
 await mkdir(join(source, 'engine'), { recursive: true });
-for (const name of ['src', 'scripts', 'tests', 'toolkit', 'skills', 'docs', 'examples', '.gitignore', '.gitattributes', 'package.json', 'upstream.json', 'README.md', 'LICENSE']) await cp(join(root, name), join(source, name), { recursive: true });
+for (const name of ['src', 'scripts', 'tests', 'toolkit', 'skills', 'docs', 'examples', '.gitignore', '.gitattributes', 'package.json', 'bun.lock', 'upstream.json', 'workbench.json', 'README.md', 'LICENSE']) await cp(join(root, name), join(source, name), { recursive: true });
 for (const name of ['src', 'Cargo.toml', 'Cargo.lock']) await cp(join(root, 'engine', name), join(source, 'engine', name), { recursive: true });
 await cp(engine, join(source, 'upstream-muz'), { recursive: true, filter: path => !/(?:^|[\\/])(?:target|\.git)(?:[\\/]|$)/.test(path) });
 await mkdir(join(source, 'upstream-muz/docs'), { recursive: true });
 for (const topic of ['language', 'workflow', 'performance', 'embedding']) await cp(join(root, `dist/reference/${topic}.md`), join(source, `upstream-muz/docs/${topic}.md`));
-await writeFile(join(source, 'BUILD.txt'), 'Corresponding source for this build. From this directory: bun run dev --engine-dir ./upstream-muz\nEngine dependencies are selected by engine/Cargo.lock. Runtime files are ../assets/.\n');
+await writeFile(join(source, 'BUILD.txt'), 'Corresponding source for this build. From this directory: bun install, then bun run dev --engine-dir ./upstream-muz\nEngine dependencies are selected by engine/Cargo.lock. Frontend dependencies are selected by bun.lock. Runtime files are ../assets/ and ../workbench/.\n');
+await buildWorkbench({ root, engine, catalogRoot, provenance, removeGenerated });
 const sourceFiles = [];
 async function indexSource(dir, prefix = '') {
   const { readdir } = await import('node:fs/promises');

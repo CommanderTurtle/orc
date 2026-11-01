@@ -37,18 +37,83 @@ let page =
                     ]
                 ]
                 li [] [
-                    a [ _href "src/vendor/lnkr/vendor/licenses/pako-NOTICE.txt" ] [
-                        str "src/vendor/lnkr/vendor/licenses/pako-NOTICE.txt"
+                    a [ _href "src/app.js" ] [
+                        str "src/app.js"
                     ]
                 ]
                 li [] [
-                    a [ _href "src/vendor/lnkr/vendor/pako.esm.min.js" ] [
-                        str "src/vendor/lnkr/vendor/pako.esm.min.js"
+                    a [ _href "src/catalog.js" ] [
+                        str "src/catalog.js"
                     ]
                 ]
                 li [] [
-                    a [ _href "src/vendor/lnkr/LICENSE" ] [
-                        str "src/vendor/lnkr/LICENSE"
+                    a [ _href "src/code-editor.js" ] [
+                        str "src/code-editor.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/data-worker.js" ] [
+                        str "src/data-worker.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/dawproject.js" ] [
+                        str "src/dawproject.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/engine-worker.js" ] [
+                        str "src/engine-worker.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/index.html" ] [
+                        str "src/index.html"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/links.js" ] [
+                        str "src/links.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/player-worklet.js" ] [
+                        str "src/player-worklet.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/project-transfer.js" ] [
+                        str "src/project-transfer.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/project.js" ] [
+                        str "src/project.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/studio-source.js" ] [
+                        str "src/studio-source.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/studio-view.js" ] [
+                        str "src/studio-view.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/studio.css" ] [
+                        str "src/studio.css"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/style.css" ] [
+                        str "src/style.css"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/timeline.js" ] [
+                        str "src/timeline.js"
                     ]
                 ]
                 li [] [
@@ -59,6 +124,11 @@ let page =
                 li [] [
                     a [ _href "src/vendor/lnkr/compress.js" ] [
                         str "src/vendor/lnkr/compress.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/vendor/lnkr/LICENSE" ] [
+                        str "src/vendor/lnkr/LICENSE"
                     ]
                 ]
                 li [] [
@@ -87,48 +157,33 @@ let page =
                     ]
                 ]
                 li [] [
+                    a [ _href "src/vendor/lnkr/vendor/licenses/pako-NOTICE.txt" ] [
+                        str "src/vendor/lnkr/vendor/licenses/pako-NOTICE.txt"
+                    ]
+                ]
+                li [] [
+                    a [ _href "src/vendor/lnkr/vendor/pako.esm.min.js" ] [
+                        str "src/vendor/lnkr/vendor/pako.esm.min.js"
+                    ]
+                ]
+                li [] [
                     a [ _href "src/vendor/lnkr/viewer-runtime.js" ] [
                         str "src/vendor/lnkr/viewer-runtime.js"
                     ]
                 ]
                 li [] [
-                    a [ _href "src/app.js" ] [
-                        str "src/app.js"
+                    a [ _href "src/workbench-bridge.js" ] [
+                        str "src/workbench-bridge.js"
                     ]
                 ]
                 li [] [
-                    a [ _href "src/data-worker.js" ] [
-                        str "src/data-worker.js"
+                    a [ _href "src/workbench-project.js" ] [
+                        str "src/workbench-project.js"
                     ]
                 ]
                 li [] [
-                    a [ _href "src/engine-worker.js" ] [
-                        str "src/engine-worker.js"
-                    ]
-                ]
-                li [] [
-                    a [ _href "src/index.html" ] [
-                        str "src/index.html"
-                    ]
-                ]
-                li [] [
-                    a [ _href "src/links.js" ] [
-                        str "src/links.js"
-                    ]
-                ]
-                li [] [
-                    a [ _href "src/player-worklet.js" ] [
-                        str "src/player-worklet.js"
-                    ]
-                ]
-                li [] [
-                    a [ _href "src/project.js" ] [
-                        str "src/project.js"
-                    ]
-                ]
-                li [] [
-                    a [ _href "src/style.css" ] [
-                        str "src/style.css"
+                    a [ _href "src/zip.js" ] [
+                        str "src/zip.js"
                     ]
                 ]
                 li [] [
@@ -142,13 +197,28 @@ let page =
                     ]
                 ]
                 li [] [
+                    a [ _href "scripts/workbench.mjs" ] [
+                        str "scripts/workbench.mjs"
+                    ]
+                ]
+                li [] [
                     a [ _href "tests/analysis.test.js" ] [
                         str "tests/analysis.test.js"
                     ]
                 ]
                 li [] [
+                    a [ _href "tests/catalog-export.test.js" ] [
+                        str "tests/catalog-export.test.js"
+                    ]
+                ]
+                li [] [
                     a [ _href "tests/colorful.test.js" ] [
                         str "tests/colorful.test.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "tests/editor.test.js" ] [
+                        str "tests/editor.test.js"
                     ]
                 ]
                 li [] [
@@ -167,6 +237,11 @@ let page =
                     ]
                 ]
                 li [] [
+                    a [ _href "tests/studio.test.js" ] [
+                        str "tests/studio.test.js"
+                    ]
+                ]
+                li [] [
                     a [ _href "tests/toolkit-engine.test.js" ] [
                         str "tests/toolkit-engine.test.js"
                     ]
@@ -174,6 +249,11 @@ let page =
                 li [] [
                     a [ _href "tests/toolkit.test.js" ] [
                         str "tests/toolkit.test.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "tests/workbench.test.js" ] [
+                        str "tests/workbench.test.js"
                     ]
                 ]
                 li [] [
@@ -297,8 +377,18 @@ let page =
                     ]
                 ]
                 li [] [
+                    a [ _href "bun.lock" ] [
+                        str "bun.lock"
+                    ]
+                ]
+                li [] [
                     a [ _href "upstream.json" ] [
                         str "upstream.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench.json" ] [
+                        str "workbench.json"
                     ]
                 ]
                 li [] [
@@ -752,18 +842,23 @@ let page =
                     ]
                 ]
                 li [] [
-                    a [ _href "upstream-muz/docs/language.md" ] [
-                        str "upstream-muz/docs/language.md"
+                    a [ _href "upstream-muz/README.md" ] [
+                        str "upstream-muz/README.md"
                     ]
                 ]
                 li [] [
-                    a [ _href "upstream-muz/docs/workflow.md" ] [
-                        str "upstream-muz/docs/workflow.md"
+                    a [ _href "upstream-muz/docs/composer-friction.md" ] [
+                        str "upstream-muz/docs/composer-friction.md"
                     ]
                 ]
                 li [] [
-                    a [ _href "upstream-muz/docs/performance.md" ] [
-                        str "upstream-muz/docs/performance.md"
+                    a [ _href "upstream-muz/docs/dawproject-validation.md" ] [
+                        str "upstream-muz/docs/dawproject-validation.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/dawproject.md" ] [
+                        str "upstream-muz/docs/dawproject.md"
                     ]
                 ]
                 li [] [
@@ -772,8 +867,758 @@ let page =
                     ]
                 ]
                 li [] [
+                    a [ _href "upstream-muz/docs/getting-started.md" ] [
+                        str "upstream-muz/docs/getting-started.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/instruments.md" ] [
+                        str "upstream-muz/docs/instruments.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/language.md" ] [
+                        str "upstream-muz/docs/language.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/performance.md" ] [
+                        str "upstream-muz/docs/performance.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/production.md" ] [
+                        str "upstream-muz/docs/production.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/README.md" ] [
+                        str "upstream-muz/docs/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/sfz-performance.md" ] [
+                        str "upstream-muz/docs/sfz-performance.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/sfz-reference-evidence.json" ] [
+                        str "upstream-muz/docs/sfz-reference-evidence.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/sfz-reference.md" ] [
+                        str "upstream-muz/docs/sfz-reference.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/sfz-state-qualification.md" ] [
+                        str "upstream-muz/docs/sfz-state-qualification.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/sfz.md" ] [
+                        str "upstream-muz/docs/sfz.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/synthesis.md" ] [
+                        str "upstream-muz/docs/synthesis.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/docs/workflow.md" ] [
+                        str "upstream-muz/docs/workflow.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/envelope-timing.muz" ] [
+                        str "upstream-muz/examples/envelope-timing.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/instrument-design.muz" ] [
+                        str "upstream-muz/examples/instrument-design.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/midi-messages.muz" ] [
+                        str "upstream-muz/examples/midi-messages.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/modulated-lead.muz" ] [
+                        str "upstream-muz/examples/modulated-lead.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/nested-patch.muz" ] [
+                        str "upstream-muz/examples/nested-patch.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/percussion-patches.muz" ] [
+                        str "upstream-muz/examples/percussion-patches.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/preset-expression.muz" ] [
+                        str "upstream-muz/examples/preset-expression.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/racks.muz" ] [
+                        str "upstream-muz/examples/racks.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/revision-workflow.muz" ] [
+                        str "upstream-muz/examples/revision-workflow.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/sidechain-levels.muz" ] [
+                        str "upstream-muz/examples/sidechain-levels.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/stereo-body.muz" ] [
+                        str "upstream-muz/examples/stereo-body.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/tagged-send.muz" ] [
+                        str "upstream-muz/examples/tagged-send.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/tonal-assistance.muz" ] [
+                        str "upstream-muz/examples/tonal-assistance.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/examples/voice-expression.muz" ] [
+                        str "upstream-muz/examples/voice-expression.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/audit-sfz.py" ] [
+                        str "upstream-muz/contrib/audit-sfz.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/install-sfz.py" ] [
+                        str "upstream-muz/contrib/install-sfz.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/basses.muz" ] [
+                        str "upstream-muz/contrib/karoryfer/basses.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/guitar.muz" ] [
+                        str "upstream-muz/contrib/karoryfer/guitar.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/install.py" ] [
+                        str "upstream-muz/contrib/karoryfer/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/manifest.json" ] [
+                        str "upstream-muz/contrib/karoryfer/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/performance.muz" ] [
+                        str "upstream-muz/contrib/karoryfer/performance.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/README.md" ] [
+                        str "upstream-muz/contrib/karoryfer/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/sfz-audit.json" ] [
+                        str "upstream-muz/contrib/karoryfer/sfz-audit.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/sfz-catalog.json" ] [
+                        str "upstream-muz/contrib/karoryfer/sfz-catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/sfz-manifest.json" ] [
+                        str "upstream-muz/contrib/karoryfer/sfz-manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/karoryfer/sfz.muz" ] [
+                        str "upstream-muz/contrib/karoryfer/sfz.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/chowtape.muz" ] [
+                        str "upstream-muz/contrib/plugins/chowtape.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/juce_state.py" ] [
+                        str "upstream-muz/contrib/plugins/juce_state.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/orbitcab-install.py" ] [
+                        str "upstream-muz/contrib/plugins/orbitcab-install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/orbitcab-manifest.json" ] [
+                        str "upstream-muz/contrib/plugins/orbitcab-manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/orbitcab.muz" ] [
+                        str "upstream-muz/contrib/plugins/orbitcab.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/pianoteq-state.py" ] [
+                        str "upstream-muz/contrib/plugins/pianoteq-state.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/pianoteq.muz" ] [
+                        str "upstream-muz/contrib/plugins/pianoteq.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/README.md" ] [
+                        str "upstream-muz/contrib/plugins/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/surge-xt.muz" ] [
+                        str "upstream-muz/contrib/plugins/surge-xt.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/plugins/test-pianoteq-state.py" ] [
+                        str "upstream-muz/contrib/plugins/test-pianoteq-state.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/README.md" ] [
+                        str "upstream-muz/contrib/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sfz-performance-baseline.json" ] [
+                        str "upstream-muz/contrib/sfz-performance-baseline.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sfz-state-qualification.json" ] [
+                        str "upstream-muz/contrib/sfz-state-qualification.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/SFZ.md" ] [
+                        str "upstream-muz/contrib/SFZ.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/catalog.json" ] [
+                        str "upstream-muz/contrib/sonatina/catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/CATALOG.md" ] [
+                        str "upstream-muz/contrib/sonatina/CATALOG.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/export-catalog.py" ] [
+                        str "upstream-muz/contrib/sonatina/export-catalog.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/install.py" ] [
+                        str "upstream-muz/contrib/sonatina/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/make-state.py" ] [
+                        str "upstream-muz/contrib/sonatina/make-state.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/manifest.json" ] [
+                        str "upstream-muz/contrib/sonatina/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/plugin.muz" ] [
+                        str "upstream-muz/contrib/sonatina/plugin.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/README.md" ] [
+                        str "upstream-muz/contrib/sonatina/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/sfz-audit.json" ] [
+                        str "upstream-muz/contrib/sonatina/sfz-audit.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/sfz-catalog.json" ] [
+                        str "upstream-muz/contrib/sonatina/sfz-catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/sfz.muz" ] [
+                        str "upstream-muz/contrib/sonatina/sfz.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/sonatina/test-pack.py" ] [
+                        str "upstream-muz/contrib/sonatina/test-pack.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/test-install-sfz.py" ] [
+                        str "upstream-muz/contrib/test-install-sfz.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/derive.py" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/derive.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/install.py" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/manifest.json" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/metal-gtx.muz" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/metal-gtx.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/performance.muz" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/performance.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/README.md" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/sfz-audit.json" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/sfz-audit.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/sfz-catalog.json" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/sfz-catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/sfz-manifest.json" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/sfz-manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/metal-gtx/sfz.muz" ] [
+                        str "upstream-muz/contrib/unreal/metal-gtx/sfz.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/install.py" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/manifest.json" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/README.md" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/sfz-audit.json" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/sfz-audit.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/sfz-catalog.json" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/sfz-catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/sfz-manifest.json" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/sfz-manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/sfz.muz" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/sfz.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/unreal/standard-guitar/standard-guitar.muz" ] [
+                        str "upstream-muz/contrib/unreal/standard-guitar/standard-guitar.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/install.py" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/kit.muz" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/kit.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/manifest.json" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/README.md" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/sfz-audit.json" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/sfz-audit.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/sfz-catalog.json" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/sfz-catalog.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/sfz-manifest.json" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/sfz-manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/virtuosity-drums/sfz.muz" ] [
+                        str "upstream-muz/contrib/virtuosity-drums/sfz.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/alternates.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/alternates.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/calibrate.py" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/calibrate.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/calibrated.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/calibrated.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/calibration-gains.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/calibration-gains.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/calibration.json" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/calibration.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/expanded.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/expanded.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/export-calibration.py" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/export-calibration.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/expressive.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/expressive.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/extra.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/extra.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/install.py" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/install.py"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/manifest.json" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/manifest.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/README.md" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/shorts.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/shorts.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/strings.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/strings.muz"
+                    ]
+                ]
+                li [] [
+                    a [ _href "upstream-muz/contrib/vsco-2-ce/winds.muz" ] [
+                        str "upstream-muz/contrib/vsco-2-ce/winds.muz"
+                    ]
+                ]
+                li [] [
                     a [ _href "BUILD.txt" ] [
                         str "BUILD.txt"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/analysis-layout.ts" ] [
+                        str "workbench/src/analysis-layout.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/arrangement-layout.ts" ] [
+                        str "workbench/src/arrangement-layout.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/assets.js" ] [
+                        str "workbench/src/assets.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/audio.ts" ] [
+                        str "workbench/src/audio.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/audition.ts" ] [
+                        str "workbench/src/audition.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/compiler.worker.ts" ] [
+                        str "workbench/src/compiler.worker.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/document.ts" ] [
+                        str "workbench/src/document.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/editor.ts" ] [
+                        str "workbench/src/editor.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/engine.js" ] [
+                        str "workbench/src/engine.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/export-audio.js" ] [
+                        str "workbench/src/export-audio.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/export.ts" ] [
+                        str "workbench/src/export.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/export.worker.ts" ] [
+                        str "workbench/src/export.worker.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/folder.ts" ] [
+                        str "workbench/src/folder.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/gist.js" ] [
+                        str "workbench/src/gist.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/contracts.ts" ] [
+                        str "workbench/src/host/contracts.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/desktop.ts" ] [
+                        str "workbench/src/host/desktop.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/index.ts" ] [
+                        str "workbench/src/host/index.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/web-preferences.ts" ] [
+                        str "workbench/src/host/web-preferences.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/web-projects.ts" ] [
+                        str "workbench/src/host/web-projects.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/host/web.ts" ] [
+                        str "workbench/src/host/web.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/inspection.ts" ] [
+                        str "workbench/src/inspection.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/main.ts" ] [
+                        str "workbench/src/main.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/pan.ts" ] [
+                        str "workbench/src/pan.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/preferences.ts" ] [
+                        str "workbench/src/preferences.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/project-storage.js" ] [
+                        str "workbench/src/project-storage.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/render.worker.ts" ] [
+                        str "workbench/src/render.worker.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/style.css" ] [
+                        str "workbench/src/style.css"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/theme.ts" ] [
+                        str "workbench/src/theme.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/views.ts" ] [
+                        str "workbench/src/views.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/workbench-status.ts" ] [
+                        str "workbench/src/workbench-status.ts"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/src/muzstatic-bridge.js" ] [
+                        str "workbench/src/muzstatic-bridge.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/public/player-worklet.js" ] [
+                        str "workbench/public/player-worklet.js"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/wasm/Cargo.toml" ] [
+                        str "workbench/wasm/Cargo.toml"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/wasm/src/lib.rs" ] [
+                        str "workbench/wasm/src/lib.rs"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/.cargo/config.toml" ] [
+                        str "workbench/.cargo/config.toml"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/Cargo.toml" ] [
+                        str "workbench/Cargo.toml"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/Cargo.lock" ] [
+                        str "workbench/Cargo.lock"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/package.json" ] [
+                        str "workbench/package.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/package-lock.json" ] [
+                        str "workbench/package-lock.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/index.html" ] [
+                        str "workbench/index.html"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/tsconfig.json" ] [
+                        str "workbench/tsconfig.json"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/README.md" ] [
+                        str "workbench/README.md"
+                    ]
+                ]
+                li [] [
+                    a [ _href "workbench/UPSTREAM.json" ] [
+                        str "workbench/UPSTREAM.json"
                     ]
                 ]
             ]

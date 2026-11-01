@@ -1,0 +1,64 @@
+﻿module Muz.Source.UpstreamMuz.Contrib.Vsco2Ce.ExpressiveMuz
+
+let file = """// Opt-in per-note tone over calibrated originals. Full maps fit the explicit 128 MiB budget.
+use "calibrated.muz" as calibrated;
+use "std/instrument" as instrument;
+use "std/signal" as s;
+fn voice(name, keys = [0, 127], tone = 6000Hz, options = {}, sample_budget_frames = 16777216) {
+    assert(len(keys) == 2 && keys[0] <= keys[1], "keys must be [low, high]");
+    let zones = filter(calibrated[name + "_zones"], fn(z) =>
+        z.keys[0] <= keys[1]
+        && z.keys[1] >= keys[0]);
+    let selected = map(
+        zones,
+        fn(z) => merge(z, {keys: [max(z.keys[0], keys[0]), min(z.keys[1], keys[1])]})
+    );
+    let cutoff = s.octaves(s.param("tone", tone, 100Hz, 12000Hz), s.expression("pressure"));
+    instrument.sampled(calibrated.instrument(selected, options), cutoff, {
+        sample_budget_frames: sample_budget_frames
+    })
+};
+
+// Two recorded dynamic layers, with round robins retained inside each layer.
+// Only the three section-string maps have this common velocity split.
+fn strings(name, keys = [0, 127], options = {}) {
+    assert(
+        contains(["cello", "viola", "violin"], name),
+        "dynamic strings requires cello, viola, or violin"
+    );
+    assert(len(keys) == 2 && keys[0] <= keys[1], "keys must be [low, high]");
+    let zones = filter(calibrated[name + "_zones"], fn(z) =>
+        z.keys[0] <= keys[1]
+        && z.keys[1] >= keys[0]);
+    fn layer(loud) = calibrated.instrument(
+        map(
+            filter(zones, fn(z) => if loud {
+                z.velocity[0] >= 0.7
+            } else {
+                z.velocity[1] <= 0.7
+            }),
+            fn(z) => merge(z, {
+                velocity: [0, 1],
+                keys: [max(z.keys[0], keys[0]), min(z.keys[1], keys[1])]
+            })
+        )
+    );
+    let soft = layer(false);
+    let loud = layer(true);
+    let blend = s.mapping(s.expression("pressure"));
+    let e = s.adsr(30ms, 300ms, 0.8, 250ms);
+    fn channel(side) = instrument.crossfade(s.reader(soft, side), s.reader(loud, side), blend);
+    voice_patch(
+        "vsco-dynamic-strings",
+        merge({
+            sample_budget_frames: 16777216,
+            gain_db: 0,
+            velocity_track: 1,
+            output: s.stereo_mul(s.stereo(channel("left"), channel("right")), e),
+            lifetime: {envelope: e, tail: 0s}
+        }, options)
+    )
+};
+"""
+
+let render() = file

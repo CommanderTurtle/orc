@@ -1,0 +1,6 @@
+﻿module Muz.Workbench.IconSvg
+
+let file = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="white"/><path d="M3 20Q9 3 16 16T29 12" fill="none" stroke="black" stroke-width="2"/></svg>
+"""
+
+let render() = file

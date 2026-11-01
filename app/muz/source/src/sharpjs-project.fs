@@ -1,6 +1,7 @@
 ﻿module Muz.Source.Src.ProjectJs
 
-let file = """export const MAX_TEXT = 4 * 1024 * 1024;
+let file = """import { normalizeStudio } from './studio-source.js';
+export const MAX_TEXT = 4 * 1024 * 1024;
 export const MAX_PROJECT = 64 * 1024 * 1024;
 const encoder = new TextEncoder();
 export function projectPath(path) {
@@ -32,7 +33,9 @@ export function normalizeProject(input) {
   if (Object.keys(assets).length > 500) throw Error('Project exceeds 500 assets.');
   const entry = projectPath(input.entry || ('song.muz' in files ? 'song.muz' : Object.keys(files).find(p => p.endsWith('.muz'))));
   if (!entry.endsWith('.muz') || !(entry in files)) throw Error('Choose an existing .muz entry file.');
-  return { format: 'muzstatic/1', title: String(input.title || entry.replace(/\.muz$/, '')).slice(0, 200), entry, files, assets };
+  const studio = normalizeStudio(input.studio, files, assets);
+  if (studio) { projectPath(studio.baseEntry); projectPath(studio.generated); }
+  return { format: 'muzstatic/1', title: String(input.title || entry.replace(/\.muz$/, '')).slice(0, 200), entry, files, assets, ...(studio ? { studio } : {}) };
 }
 export function parseProject(text, name = 'song.muz') {
   if (encoder.encode(text).length > MAX_PROJECT * 1.4 + MAX_TEXT) throw Error('Project is too large.');

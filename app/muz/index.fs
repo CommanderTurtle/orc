@@ -13,6 +13,7 @@ let page =
                 str "muzstatic"
             ]
             link [ attr "rel" "stylesheet"; _href "./assets/style.css" ]
+            link [ attr "rel" "stylesheet"; _href "./assets/studio.css" ]
         ]
         body [] [
             header [ _class "topbar" ] [
@@ -43,11 +44,17 @@ let page =
                     button [ _id "open-folder" ] [
                         str "Folder"
                     ]
+                    button [ _id "catalog" ] [
+                        str "Library"
+                    ]
                     button [ _id "share"; _class "accent" ] [
                         str "Share"
                     ]
                     button [ _id "reference" ] [
                         str "Reference"
+                    ]
+                    button [ _id "open-workbench"; attr "title" "Open this project in the bundled upstream muzpad workbench" ] [
+                        str "Workbench ↗"
                     ]
                 ]
             ]
@@ -75,6 +82,9 @@ let page =
                 span [ _id "tempo"; _class "tag" ] [
                     str "— BPM"
                 ]
+                button [ _id "edit-tempo"; attr "title" "Set the source tempo" ] [
+                    str "Tempo"
+                ]
                 label [ _class "volume" ] [
                     str "Vol"
                     input [ _id "volume"; _type "range"; attr "min" "0"; attr "max" "100"; attr "value" "70"; attr "aria-label" "Volume" ]
@@ -86,8 +96,39 @@ let page =
                 button [ _id "export-wav" ] [
                     str "WAV ↓"
                 ]
+                button [ _id "export-stems" ] [
+                    str "Stems ↓"
+                ]
+                button [ _id "export-daw" ] [
+                    str "DAWProject ↓"
+                ]
                 button [ _id "save-project" ] [
                     str "Project ↓"
+                ]
+            ]
+            section [ _class "timeline-bar"; attr "aria-label" "Timeline transport" ] [
+                input [ _id "seek"; _type "range"; attr "min" "0"; attr "max" "1"; attr "step" "1"; attr "value" "0"; attr "disabled" ""; attr "aria-label" "Playback position"; attr "title" "Drag to seek; arrow keys move the playhead" ]
+                label [] [
+                    input [ _id "loop-enabled"; _type "checkbox" ]
+                    str "Loop"
+                ]
+                button [ _id "loop-in"; attr "title" "Set loop start at playhead" ] [
+                    str "In"
+                ]
+                button [ _id "loop-out"; attr "title" "Set loop end at playhead" ] [
+                    str "Out"
+                ]
+                output [ _id "loop-label" ] [
+                    str "Whole song"
+                ]
+                select [ _id "section"; attr "aria-label" "Jump to section" ] [
+                    option [ attr "value" "" ] [
+                        str "Sections"
+                    ]
+                ]
+                label [ attr "title" "Valid edits apply atomically; errors keep the accepted audio" ] [
+                    input [ _id "live"; _type "checkbox" ]
+                    str "Live"
                 ]
             ]
             main [] [
@@ -113,15 +154,51 @@ let page =
                             select [ _id "entry"; attr "aria-label" "Entry file" ] []
                         ]
                     ]
+                    div [ _class "source-tools" ] [
+                        button [ _id "undo"; attr "disabled" "" ] [
+                            str "Undo"
+                        ]
+                        button [ _id "redo"; attr "disabled" "" ] [
+                            str "Redo"
+                        ]
+                        button [ _id "format-source" ] [
+                            str "Format"
+                        ]
+                        button [ _id "studio-source"; attr "title" "View generated native muz edits" ] [
+                            str "Studio source"
+                        ]
+                        button [ _id "detach-studio"; attr "title" "Keep the generated source and stop managing it visually"; attr "hidden" "" ] [
+                            str "Detach"
+                        ]
+                    ]
+                    div [ _class "revision-tools" ] [
+                        select [ _id "revisions"; attr "aria-label" "Accepted source revision" ] [
+                            option [ attr "value" "" ] [
+                                str "Accepted revisions"
+                            ]
+                        ]
+                        button [ _id "restore-revision"; attr "disabled" "" ] [
+                            str "Restore source"
+                        ]
+                        span [ _class "tag" ] [
+                            str "Session history"
+                        ]
+                    ]
                     div [ _class "editor-wrap" ] [
                         pre [ _id "line-numbers"; attr "aria-hidden" "true" ] [
                             str "1"
                         ]
-                        tag "textarea" [ _id "editor"; attr "aria-label" "Muz source"; attr "spellcheck" "false"; attr "autocapitalize" "off"; attr "autocomplete" "off"; attr "autocorrect" "off"; attr "wrap" "off" ] []
+                        div [ _class "code-stack" ] [
+                            pre [ _id "code-colors"; attr "aria-hidden" "true" ] []
+                            tag "textarea" [ _id "editor"; attr "aria-label" "Muz source"; attr "aria-describedby" "lint-state"; attr "spellcheck" "false"; attr "autocapitalize" "off"; attr "autocomplete" "off"; attr "autocorrect" "off"; attr "wrap" "off" ] []
+                        ]
                     ]
                     div [ _class "editor-footer" ] [
                         span [ _id "file-info" ] [
                             str "UTF-8"
+                        ]
+                        button [ _id "lint-state"; attr "title" "Native muz parser" ] [
+                            str "Syntax"
                         ]
                         span [] [
                             str "Ctrl+S compile · Ctrl+Enter play"
@@ -130,17 +207,146 @@ let page =
                 ]
                 section [ _class "output-panel"; attr "aria-label" "Compiled music" ] [
                     div [ _class "panel-heading" ] [
-                        span [] [
-                            str "SCORE"
+                        div [ _class "view-tabs" ] [
+                            button [ _id "view-arrangement"; attr "aria-pressed" "true" ] [
+                                str "Arrangement"
+                            ]
+                            button [ _id "view-piano"; attr "aria-pressed" "false" ] [
+                                str "Piano roll"
+                            ]
+                            button [ _id "view-inspect"; attr "aria-pressed" "false" ] [
+                                str "Inspect"
+                            ]
                         ]
                         span [ _id "score-info"; _class "tag" ] [
                             str "Not compiled"
                         ]
                     ]
-                    div [ _class "score-scroll" ] [
+                    div [ _id "arrangement-panel"; _class "score-scroll" ] [
                         div [ _id "tracks"; _class "tracks" ] []
                         div [ _id "empty-score" ] [
                             str "Compile a .muz file to view its score."
+                        ]
+                    ]
+                    section [ _id "piano-panel"; _class "studio-panel"; attr "hidden" "" ] [
+                        div [ _class "studio-toolbar" ] [
+                            select [ _id "piano-track"; attr "aria-label" "Piano-roll track" ] []
+                            button [ _id "add-track" ] [
+                                str "+ Track"
+                            ]
+                            label [] [
+                                str "Snap"
+                                select [ _id "grid" ] [
+                                    option [ attr "value" "0.25" ] [
+                                        str "1/16"
+                                    ]
+                                    option [ attr "value" "0.5" ] [
+                                        str "1/8"
+                                    ]
+                                    option [ attr "value" "1" ] [
+                                        str "1/4"
+                                    ]
+                                    option [ attr "value" "0" ] [
+                                        str "Off"
+                                    ]
+                                ]
+                            ]
+                            label [] [
+                                str "Zoom"
+                                input [ _id "zoom"; _type "range"; attr "min" "12"; attr "max" "160"; attr "value" "44"; attr "aria-label" "Piano-roll zoom" ]
+                            ]
+                        ]
+                        div [ _id "piano-scroll"; _class "piano-scroll" ] [
+                            div [ _id "piano-space" ] [
+                                canvas [ _id "piano-roll"; attr "tabindex" "0"; attr "role" "application"; attr "aria-label" "Piano roll. Double-click to add a note; drag to move or resize; Delete removes selected note." ] []
+                            ]
+                        ]
+                        form [ _id "note-form"; _class "note-form" ] [
+                            label [] [
+                                str "Beat"
+                                input [ _id "note-beat"; _type "number"; attr "min" "0"; attr "max" "100000"; attr "step" "any"; attr "required" "" ]
+                            ]
+                            label [] [
+                                str "Length"
+                                input [ _id "note-length"; _type "number"; attr "min" "0.000001"; attr "max" "100000"; attr "step" "any"; attr "required" "" ]
+                            ]
+                            label [] [
+                                str "Key"
+                                input [ _id "note-pitch"; _type "number"; attr "min" "0"; attr "max" "127"; attr "step" "1"; attr "required" "" ]
+                            ]
+                            label [] [
+                                str "Velocity"
+                                input [ _id "note-velocity"; _type "number"; attr "min" "0"; attr "max" "1"; attr "step" "any"; attr "required" "" ]
+                            ]
+                            button [ _type "submit" ] [
+                                str "Set note"
+                            ]
+                            button [ _id "delete-note"; _type "button" ] [
+                                str "Delete"
+                            ]
+                        ]
+                        div [ _class "studio-toolbar" ] [
+                            button [ _id "apply-notes"; _class "primary" ] [
+                                str "Apply notes"
+                            ]
+                            button [ _id "quantize-notes" ] [
+                                str "Quantize"
+                            ]
+                            button [ _id "revert-notes" ] [
+                                str "Revert"
+                            ]
+                            button [ _id "delete-track" ] [
+                                str "Remove track"
+                            ]
+                            span [ _id "piano-info"; _class "tag" ] [
+                                str "Select a track."
+                            ]
+                        ]
+                        p [ _class "studio-help" ] [
+                            str "Double-click adds; drag moves; drag a note’s right edge resizes. Apply writes a native .muz wrapper and preserves original source. Replacing notes freezes the displayed performance; MIDI and kit internals stay source-edited."
+                        ]
+                    ]
+                    section [ _id "inspect-panel"; _class "studio-panel"; attr "hidden" "" ] [
+                        div [ _class "studio-toolbar" ] [
+                            select [ _id "inspect-view"; attr "aria-label" "Engine inspection view" ] [
+                                option [] [
+                                    str "graph"
+                                ]
+                                option [] [
+                                    str "automation"
+                                ]
+                                option [] [
+                                    str "automation_points"
+                                ]
+                                option [] [
+                                    str "sections"
+                                ]
+                                option [] [
+                                    str "track_groups"
+                                ]
+                                option [] [
+                                    str "patches"
+                                ]
+                                option [] [
+                                    str "patch_nodes"
+                                ]
+                                option [] [
+                                    str "diagnostics"
+                                ]
+                            ]
+                            button [ _id "inspect-refresh" ] [
+                                str "Refresh"
+                            ]
+                            button [ _id "inspect-prev" ] [
+                                str "Previous"
+                            ]
+                            button [ _id "inspect-next" ] [
+                                str "Next"
+                            ]
+                            span [ _id "inspect-info"; _class "tag" ] []
+                        ]
+                        pre [ _id "inspect-output" ] [
+                            str "Compile a song to inspect the engine graph."
                         ]
                     ]
                     section [ _class "console"; attr "aria-label" "Compiler output" ] [
@@ -246,14 +452,67 @@ let page =
                     str "The bundled standard library is the engine’s own source. Copy code into your project, or import its module name without the .muz suffix."
                 ]
                 select [ _id "library"; attr "aria-label" "Standard library module" ] []
+                button [ _id "download-module" ] [
+                    str "Download .muz"
+                ]
                 pre [ _id "library-source" ] []
                 p [] [
-                    str "WAV/FLAC samples, MIDI, and SFZ can be imported with a project folder. Native VST3/CLAP hosts and DAWProject compilation remain in the desktop engine."
+                    str "WAV/FLAC samples, MIDI, and SFZ can be imported with a project folder or Library. DAWProject includes rendered audio and editable note lanes; native VST3/CLAP binaries remain desktop-only."
                 ]
                 a [ _href "https://github.com/apage43/muz/blob/main/docs/language.md"; attr "target" "_blank"; attr "rel" "noreferrer" ] [
                     str "Full muz language reference ↗"
                 ]
                 p [ _id "provenance" ] []
+            ]
+            dialog [ _id "catalog-dialog"; _class "reference-dialog" ] [
+                div [ _class "dialog-heading" ] [
+                    h2 [] [
+                        str "Library"
+                    ]
+                    button [ _class "close"; attr "aria-label" "Close" ] [
+                        str "×"
+                    ]
+                ]
+                p [] [
+                    str "Browse pinned upstream sample manifests, or open a CORS-readable catalog. Downloads happen only for selected resources and become project-local assets."
+                ]
+                form [ _id "catalog-form" ] [
+                    label [] [
+                        str "Catalog URL"
+                        input [ _id "catalog-url"; _type "url"; attr "placeholder" "https://…/catalog.json" ]
+                    ]
+                    div [ _class "dialog-actions" ] [
+                        select [ _id "catalog-pack"; attr "aria-label" "Bundled sample catalog" ] [
+                            option [ attr "value" "" ] [
+                                str "Choose a bundled catalog"
+                            ]
+                        ]
+                        button [ _type "submit" ] [
+                            str "Open URL"
+                        ]
+                    ]
+                ]
+                p [ _id "catalog-info"; attr "role" "status" ] []
+                input [ _id "catalog-search"; _type "text"; attr "aria-label" "Filter catalog"; attr "placeholder" "Filter resources…" ]
+                div [ _class "catalog-controls" ] [
+                    button [ _id "catalog-select" ] [
+                        str "Select visible"
+                    ]
+                    button [ _id "catalog-clear" ] [
+                        str "Clear selection"
+                    ]
+                    span [ _id "catalog-count" ] []
+                ]
+                div [ _id "catalog-files" ] []
+                div [ _class "dialog-actions" ] [
+                    button [ _id "catalog-import"; _class "primary" ] [
+                        str "Import selected"
+                    ]
+                    button [ _id "catalog-cancel"; attr "hidden" "" ] [
+                        str "Cancel download"
+                    ]
+                ]
+                p [ _id "catalog-status"; attr "role" "status" ] []
             ]
             input [ _id "file-input"; _type "file"; attr "multiple" ""; attr "hidden" "" ]
             input [ _id "folder-input"; _type "file"; attr "webkitdirectory" ""; attr "multiple" ""; attr "hidden" "" ]

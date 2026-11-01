@@ -1,0 +1,45 @@
+﻿module Muz.Source.UpstreamMuz.Contrib.Vsco2Ce.CalibratedMuz
+
+let file = """// Original recordings with measured per-zone gain. No derived WAVs are required.
+// calibration.json pins the source hashes and the historical body-RMS measurements.
+use "calibration-gains.muz" as gains;
+use "strings.muz" as z;
+use "winds.muz" as w;
+use "expanded.muz" as e;
+let sources = [
+    {id: "cello", zones: z.cello_zones},
+    {id: "viola", zones: z.viola_zones},
+    {id: "violin", zones: z.violin_zones},
+    {id: "flute", zones: w.flute_zones},
+    {id: "horn", zones: e.horn_zones},
+    {id: "oboe", zones: e.oboe_zones},
+    {id: "bass", zones: e.bass_zones}
+];
+fn zones(id, original) = map(
+    range(len(original)),
+    fn(i) => merge(original[i], {gain_db: gains[id][i]})
+);
+fn levels(original) = map(original, fn(level) => merge(level, {db: -24}));
+let cello_zones = zones("cello", z.cello_zones);
+let viola_zones = zones("viola", z.viola_zones);
+let violin_zones = zones("violin", z.violin_zones);
+let flute_zones = zones("flute", w.flute_zones);
+let horn_zones = zones("horn", e.horn_zones);
+let oboe_zones = zones("oboe", e.oboe_zones);
+let bass_zones = zones("bass", e.bass_zones);
+let cello_levels = levels(z.cello_levels);
+let viola_levels = levels(z.viola_levels);
+let violin_levels = levels(z.violin_levels);
+let flute_levels = levels(w.flute_levels);
+let horn_levels = levels(e.horn_levels);
+let oboe_levels = levels(e.oboe_levels);
+let bass_levels = levels(e.bass_levels);
+
+// The engine resolves sample paths in the module that defines the function,
+// so build samplers through this module instead of calling sample() elsewhere.
+fn instrument(zones, options = {}) = sample(zones, options);
+
+sources
+"""
+
+let render() = file

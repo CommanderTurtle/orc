@@ -4,7 +4,7 @@ let file = """//! Consumer-owned portable host. The muz engine and language rema
 use anyhow::{Result, bail, ensure};
 use base64::{Engine as _, engine::general_purpose::STANDARD};
 use muz::{
-    audio::{AudioConfig, AudioEngine},
+    audio::{AudioConfig, AudioEngine, EngineFade, PreparedTransaction},
     host::HostContext,
     lang::SourceLoader,
 };
@@ -13,6 +13,7 @@ use serde_json::{Value, json};
 use std::{
     cell::RefCell,
     collections::BTreeMap,
+    hash::{DefaultHasher, Hash, Hasher},
     path::{Component, Path, PathBuf},
     rc::Rc,
     sync::Arc,
@@ -100,6 +101,9 @@ struct Host {
     compiled: Option<muz::compile::Compiled>,
     engine: Option<AudioEngine>,
     rate: u32,
+    fade: Option<EngineFade>,
+    audibility: Option<Vec<String>>,
+    tap: Option<String>,
 }
 thread_local! { static HOST: RefCell<Host> = RefCell::new(Host::default()); }
 
@@ -125,10 +129,13 @@ fn project_context(v: &Value) -> Result<(PathBuf, Rc<Sources>, HostContext)> {
         let bytes = STANDARD.decode(b64)?;
         size += bytes.len();
         ensure!(size <= 64 * 1024 * 1024, "assets exceed 64 MiB");
+        // Content revisions must change when an imported sample changes in place.
+        let mut version = DefaultHasher::new();
+        bytes.hash(&mut version);
         assets.insert(
             mounted(&Path::new("/project").join(p))?,
             Arc::from(bytes),
-            1,
+            version.finish() as u128,
         );
     }
     let context = HostContext {
@@ -151,6 +158,9 @@ impl Host {
                 self.compiled = None;
                 self.engine = None;
                 self.context = None;
+                self.fade = None;
+                self.audibility = None;
+                self.tap = None;
                 let (entry, sources, context) = project_context(&v)?;
                 let compiled = muz::compile::compile_with_context(&entry, sources, &context)?;
                 let rate = v["rate"].as_u64().unwrap_or(48000) as u32;
@@ -165,43 +175,54 @@ impl Host {
                         },
                     )
                 })?;
-                let status = engine.status();
-                let timeline = muz::audio::transport::TempoTimeline::compile(
-                    rate as f64,
-                    &compiled.session.transport,
-                    &compiled.session.tracks,
-                )
-                .map_err(anyhow::Error::msg)?;
-                // Inspect performed notes after kit expansion, on the engine's tempo timeline.
                 let compact = v["command"] == "check" || v["compact"].as_bool().unwrap_or(false);
-                let tracks: Vec<_> = compiled.session.tracks.iter().map(|track| {
-                    let note = |at: u64, dur: u64, pitch: u8, velocity: f64| {
-                        let start = timeline.tick_to_project_frame(at as f64);
-                        json!({"at": start, "dur": timeline.tick_to_project_frame((at + dur) as f64) - start, "pitch": pitch, "velocity": velocity})
-                    };
-                    if compact { return json!({"id":track.id.as_str(), "name":track.name}); }
-                    let notes: Vec<_> = match &track.source {
-                        muz::model::TrackSource::Pattern(p) => p.notes.iter().map(|n| note(n.start_ticks, n.duration_ticks, n.key, n.velocity as f64)).collect(),
-                        muz::model::TrackSource::Midi(p) => p.imported.notes.iter().filter(|n| p.all_channels || n.channel == p.channel).map(|n| note(n.start_tick, n.duration_ticks, n.key, n.attack_velocity as f64 / 127.0)).collect()
-                    };
-                    json!({"id": track.id.as_str(), "name": track.name, "notes": notes})
-                }).collect();
-                let beats = compiled
-                    .score
-                    .iter()
-                    .map(|s| muz::music::real(s.pattern.span))
-                    .fold(0.0, f64::max);
-                let score_tracks: Vec<_> = compiled.score.iter().map(|t| json!({"id":t.id,"policy":t.policy,"span":t.pattern.span,"notes":t.pattern.notes.len()})).collect();
-                let performed_tracks: Vec<_> = compiled.session.tracks.iter().map(|t| match &t.source {
-                    muz::model::TrackSource::Pattern(p) => { let end = p.notes.iter().map(|n|n.start_ticks+n.duration_ticks).max().unwrap_or(0); json!({"id":t.id,"ppq":muz::model::TICKS_PER_BEAT,"end":[end,muz::model::TICKS_PER_BEAT],"endBeat":end as f64 / muz::model::TICKS_PER_BEAT as f64}) },
-                    muz::model::TrackSource::Midi(m) => json!({"id":t.id,"ppq":m.imported.summary.ppq,"end":[m.imported.summary.end_tick,m.imported.summary.ppq],"endBeat":m.imported.summary.end_tick as f64 / m.imported.summary.ppq as f64})
-                }).collect();
-                let response = json!({"title": compiled.session.extras.title, "bpm": status.transport.bpm, "meter": compiled.session.transport.meter(), "beats": beats, "endTick": status.end_tick, "frames": status.end_project_frame.ceil() as u64, "rate":rate, "tail": compiled.session.extras.tail, "tracks": tracks, "scoreTracks":score_tracks,"performedTracks":performed_tracks,"sections":compiled.session.extras.sections,"transport":compiled.session.transport,"scorePpq":muz::compile::PPQ,"diagnostics": compiled.diagnostics, "locations": compiled.locations});
+                let response = compiled_info(&compiled, &engine, rate, compact)?;
                 self.rate = rate;
                 self.context = Some(context);
                 self.compiled = Some(compiled);
                 self.engine = Some(engine);
                 Ok(response)
+            }
+            "revise" => {
+                // Compile and prepare before touching the accepted graph. A rejected
+                // edit leaves its audio, inspection, source revision and playhead intact.
+                let current = self
+                    .compiled
+                    .as_ref()
+                    .ok_or_else(|| anyhow::anyhow!("compile first"))?;
+                let (entry, sources, context) = project_context(&v)?;
+                let candidate = muz::compile::compile_with_context(&entry, sources, &context)?;
+                let engine = self.engine.as_mut().unwrap();
+                let plan = muz::plan_reconciliation(
+                    engine.revision(),
+                    &current.session,
+                    &candidate.session,
+                )?;
+                let mut transaction = context.run(|| {
+                    PreparedTransaction::prepare(
+                        &current.session,
+                        &candidate.session,
+                        &plan,
+                        0,
+                        None,
+                        AudioConfig {
+                            sample_rate: self.rate as f32,
+                            max_frames: 1024,
+                            offline: false,
+                        },
+                    )
+                })?;
+                let fade = transaction.fade_in();
+                engine.apply_transaction(&mut transaction)?;
+                if let Some(mask) = &mut self.audibility {
+                    mask.retain(|id| candidate.session.tracks.iter().any(|t| t.id.as_str() == id));
+                    engine.set_track_audibility(mask, false)?;
+                }
+                self.fade = fade;
+                let result = compiled_info(&candidate, engine, self.rate, false)?;
+                self.compiled = Some(candidate);
+                self.context = Some(context);
+                Ok(result)
             }
             "evaluate" => {
                 let (entry, sources, context) = project_context(&v)?;
@@ -221,6 +242,18 @@ impl Host {
                 let formatted = muz::lang::format::format(source)?;
                 Ok(json!({"changed":formatted!=source,"source":formatted}))
             }
+            "lint" => {
+                let source = v["source"]
+                    .as_str()
+                    .ok_or_else(|| anyhow::anyhow!("source required"))?;
+                ensure!(source.len() <= 4 * 1024 * 1024, "source exceeds 4 MiB");
+                let path = Path::new(v["path"].as_str().unwrap_or("<editor>"));
+                // Parse only: no evaluation, sample loading, formatting or audio
+                // state changes. Diagnostics come from the engine's own parser.
+                let _ = muz::lang::parse(source)
+                    .map_err(|error| muz::lang::syntax(path, source, error))?;
+                Ok(json!({"valid": true}))
+            }
             "inspect" => {
                 let c = self
                     .compiled
@@ -230,7 +263,7 @@ impl Host {
                     serde_json::from_value(v.get("page").cloned().unwrap_or(json!({})))?;
                 Ok(serde_json::to_value(muz::inspect::page_compiled(
                     c,
-                    1,
+                    self.engine.as_ref().map_or(0, |e| e.revision()),
                     v["view"].as_str().unwrap_or("summary"),
                     &request,
                 )?)?)
@@ -282,6 +315,14 @@ impl Host {
                     )
                 })?);
                 self.engine.as_mut().unwrap().set_running(true);
+                if let Some(mask) = &self.audibility {
+                    self.engine
+                        .as_mut()
+                        .unwrap()
+                        .set_track_audibility(mask, false)?;
+                }
+                self.engine.as_mut().unwrap().set_tap(self.tap.as_deref())?;
+                self.fade = None;
                 Ok(json!({}))
             }
             "render" => {
@@ -292,7 +333,7 @@ impl Host {
                     .engine
                     .as_mut()
                     .ok_or_else(|| anyhow::anyhow!("compile first"))?;
-                e.render_interleaved(&mut self.pcm, 2)?;
+                e.render_interleaved_with_fade(&mut self.pcm, 2, self.fade.take())?;
                 let s = e.status();
                 Ok(
                     json!({"frame": s.transport.project_frame, "tick": s.current_tick, "peak": s.last_peak, "ended": s.ended}),
@@ -304,6 +345,24 @@ impl Host {
                     .as_mut()
                     .ok_or_else(|| anyhow::anyhow!("compile first"))?
                     .set_solo(&names)?;
+                Ok(json!({}))
+            }
+            "audition" => {
+                let names: Vec<String> = serde_json::from_value(v["tracks"].clone())?;
+                self.engine
+                    .as_mut()
+                    .ok_or_else(|| anyhow::anyhow!("compile first"))?
+                    .set_track_audibility(&names, true)?;
+                self.audibility = Some(names);
+                Ok(json!({}))
+            }
+            "tap" => {
+                let tap = v["track"].as_str().map(str::to_owned);
+                self.engine
+                    .as_mut()
+                    .ok_or_else(|| anyhow::anyhow!("compile first"))?
+                    .set_tap(tap.as_deref())?;
+                self.tap = tap;
                 Ok(json!({}))
             }
             "midi" => {
@@ -445,6 +504,54 @@ impl Host {
             json!({"basis":basis,"unit":"quarter-note beats","rows":rows,"total":total,"next":if end<total {Some(end)} else {None}}),
         )
     }
+}
+
+fn compiled_info(
+    c: &muz::compile::Compiled,
+    engine: &AudioEngine,
+    rate: u32,
+    compact: bool,
+) -> Result<Value> {
+    let status = engine.status();
+    let timeline = muz::audio::transport::TempoTimeline::compile(
+        rate as f64,
+        &c.session.transport,
+        &c.session.tracks,
+    )
+    .map_err(anyhow::Error::msg)?;
+    let tracks: Vec<_> = c.session.tracks.iter().map(|track| {
+        if compact { return json!({"id":track.id.as_str(),"name":track.name}); }
+        let note = |at: u64, dur: u64, pitch: u8, velocity: f64, ppq: u32| {
+            let start = timeline.tick_to_project_frame(at as f64);
+            json!({"at":start,"dur":timeline.tick_to_project_frame((at+dur) as f64)-start,"pitch":pitch,"velocity":velocity,"beat":at as f64/ppq as f64,"length":dur as f64/ppq as f64})
+        };
+        let notes: Vec<_> = match &track.source {
+            muz::model::TrackSource::Pattern(p) => p.notes.iter().map(|n| note(n.start_ticks,n.duration_ticks,n.key,n.velocity as f64,muz::model::TICKS_PER_BEAT)).collect(),
+            muz::model::TrackSource::Midi(p) => p.imported.notes.iter().filter(|n|p.all_channels||n.channel==p.channel).map(|n|note(n.start_tick,n.duration_ticks,n.key,n.attack_velocity as f64/127.,p.imported.summary.ppq)).collect(),
+        };
+        // Modern muz lowers authored patterns into MIDI events too. Authored
+        // score identity, rather than the runtime event container, is the edit
+        // boundary; expanded kit voices have no matching logical score id.
+        json!({"id":track.id.as_str(),"name":track.name,"notes":notes,"editable":c.score.iter().any(|s|s.id==track.id.as_str()),"gain":track.output.gain_db,"instrument":track.instrument.kind,"inserts":track.inserts.iter().map(|d|format!("{:?}",d.kind)).collect::<Vec<_>>()})
+    }).collect();
+    let score_tracks: Vec<_> = c.score.iter().map(|t|json!({"id":t.id,"policy":t.policy,"span":t.pattern.span,"notes":t.pattern.notes.len()})).collect();
+    let performed_tracks: Vec<_> = c.session.tracks.iter().map(|t|match &t.source {
+        muz::model::TrackSource::Pattern(p)=>{let end=p.notes.iter().map(|n|n.start_ticks+n.duration_ticks).max().unwrap_or(0);json!({"id":t.id,"ppq":muz::model::TICKS_PER_BEAT,"end":[end,muz::model::TICKS_PER_BEAT],"endBeat":end as f64/muz::model::TICKS_PER_BEAT as f64})},
+        muz::model::TrackSource::Midi(m)=>json!({"id":t.id,"ppq":m.imported.summary.ppq,"end":[m.imported.summary.end_tick,m.imported.summary.ppq],"endBeat":m.imported.summary.end_tick as f64/m.imported.summary.ppq as f64}),
+    }).collect();
+    let beats = timeline.end_tick() as f64 / timeline.ppq() as f64;
+    let mut tempo_ticks = vec![0u64];
+    for t in &c.session.tracks {
+        if let muz::model::TrackSource::Midi(m) = &t.source {
+            tempo_ticks.extend(m.imported.tempos.iter().map(|t| t.tick));
+        }
+    }
+    tempo_ticks.sort_unstable();
+    tempo_ticks.dedup();
+    let tempos: Vec<_> = tempo_ticks.iter().map(|t|json!({"beat":*t as f64/timeline.ppq() as f64,"frame":timeline.tick_to_project_frame(*t as f64),"bpm":timeline.tempo_at_tick(*t as f64)})).collect();
+    Ok(
+        json!({"title":c.session.extras.title,"bpm":status.transport.bpm,"meter":c.session.transport.meter(),"beats":beats,"endTick":status.end_tick,"frames":status.end_project_frame.ceil() as u64,"positionFrame":status.transport.project_frame,"rate":rate,"tail":c.session.extras.tail,"tracks":tracks,"scoreTracks":score_tracks,"performedTracks":performed_tracks,"sections":c.session.extras.sections,"transport":c.session.transport,"tempos":tempos,"automation":c.session.extras.automation,"groups":c.session.extras.track_groups,"scorePpq":muz::compile::PPQ,"diagnostics":c.diagnostics,"locations":c.locations,"revision":engine.revision()}),
+    )
 }
 
 // The worker is the sole caller. Each returned view is borrowed only until the next call.

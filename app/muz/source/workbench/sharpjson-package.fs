@@ -1,0 +1,49 @@
+﻿module Muz.Source.Workbench.PackageJson
+
+let file = """{
+  "name": "muzpad",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:engine": "node scripts/build-engine.mjs",
+    "dev": "vite --host 0.0.0.0",
+    "build": "npm run prepare:engine && tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "format": "prettier --write src scripts tests public/player-worklet.js index.html *.json *.ts README.md",
+    "prepare:catalog": "node scripts/catalog.mjs",
+    "desktop:resources": "node scripts/desktop.mjs resources",
+    "desktop:prepare": "node scripts/desktop.mjs prepare",
+    "desktop:dev": "node scripts/desktop.mjs dev",
+    "desktop:build": "node scripts/desktop.mjs build",
+    "desktop:package": "node scripts/desktop.mjs package",
+    "desktop:release": "node scripts/desktop.mjs release",
+    "deploy": "node scripts/deploy.mjs",
+    "gist:create": "node scripts/create-gist.mjs"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.11.0",
+    "@codemirror/language": "^6.12.4",
+    "@codemirror/search": "^6.7.2",
+    "@codemirror/state": "^6.7.4",
+    "@codemirror/view": "^6.43.11",
+    "@lezer/highlight": "^1.2.3",
+    "codemirror": "^6.0.2",
+    "dompurify": "^3.4.15",
+    "fflate": "^0.8.3",
+    "marked": "^18.0.13"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@tauri-apps/cli": "2.12.1",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "wrangler": "^4.131.1"
+  }
+}
+"""
+
+let render() = file

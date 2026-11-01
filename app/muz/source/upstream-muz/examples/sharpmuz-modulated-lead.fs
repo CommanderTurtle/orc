@@ -1,0 +1,25 @@
+﻿module Muz.Source.UpstreamMuz.Examples.ModulatedLeadMuz
+
+let file = """use "std/signal" as s;
+use "std/instrument" as instrument;
+let env = s.mseg(
+    [{time: 10ms, to: 1}, {time: 200ms, to: 0.6}],
+    [{time: 160ms, to: 0}],
+    sustain = 1
+);
+let motion = s.add([s.mul([s.drift(), 0.1]), s.expression("variation")]);
+let tone = s.filter(s.saw(), s.octaves(800Hz, motion));
+let voice = instrument.mono(
+    voice_patch("lead", {
+        note_controls: {variation: 0},
+        gain_db: -16,
+        output: s.mul([tone, env]),
+        lifetime: {envelope: env, tail: 0s}
+    }),
+    glide = 70ms
+);
+let notes = instrument.variation(phrase("C4:q E4:q G4:q B4:q").gate(1.1), seed = 7);
+song({tracks: [track("lead", notes, voice)], tail: 0.5})
+"""
+
+let render() = file
