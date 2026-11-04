@@ -2,6 +2,10 @@
 
 A complete **F# → GitHub Pages** repo with **F# and DSL support.** - Template at [clonable](https://github.com/CommanderTurtle/orc/tree/clonable) branch.
 
+Render them live with the FSharp Reactor: [𝖍𝖊𝖗𝖊](https://github.com/CommanderTurtle/preview#native-dashboard)
+
+All eight, nine (however many) dev servers are able to be rendered while editing the fsharp source code.
+
 Designed with subdomains in mind, this orchestrator allows each site folder to build locally. GitHub Actions will build artifacts and push output to entirely separate GitHub repositories using token-authenticated git. 
 
 This is a continuation repository - see the mkdocs implementation: [fsharp-material](https://github.com/CommanderTurtle/fsharp-material).
