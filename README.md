@@ -16,7 +16,7 @@ This is a continuation repository - see the mkdocs implementation: [fsharp-mater
 　    (｡･ω･｡)つ━☆・*。
    ⊂ /　  /　       ・゜
      しーＪ　　　    °。+*°。
-		             .・゜F#                                   
+                    .・゜F#                                   
                     ゜｡ﾟﾟ･｡･ﾟﾟ 
                        ╱|、     
                      (˚ˎ 。7 
