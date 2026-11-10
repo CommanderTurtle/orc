@@ -1,0 +1,18 @@
+module Config.Workflows.DeployVibe
+
+let render() =
+    Config.Workflows.DeployCommon.render {
+        WorkflowName = "Deploy Vibe" 💃🎵
+        SourceFolder = "main"
+        TargetRepo = "vibe-pages"
+        TargetBranch = "main"
+        TokenName = "GH_PAGES_TOKEN"
+    }
+	
+	Folder		Repo						Workflow				URL (give me a visit!)	Type of Webapp(s)					
+	doc 		docs-pages 					deploy-docs				docs.shel.sh			zensical docs
+	app 		app-pages 					deploy-app	 			app.shel.sh				standalone html 	(no build)
+	lab 		providers 					deploy-lab 				providers.shel.sh		vite+react+tailwind (no build)
+	vite 		reactproj 					deploy-vite				turtleprotect.org		vite+react+tailwind
+	pages 		blog-pages 					deploy-pages 			vibe.shel.sh			github jekyll 		(no build)
+	blog 		CommanderTurtle.github.io   deploy-blog				shel.sh					jekyll bundle

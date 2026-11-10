@@ -1,0 +1,147 @@
+# Wrapping instructions (these exact site frameworks)
+
+#----------------------------------------------------------------------------
+# app (standalone pages fine, throw logic auto-dir removal)
+
+# set to blog and blog/output
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+# move up, delete literal dirs named 'index'
+Get-ChildItem "C:\path\to\app" -Recurse -File -Filter "index.fs" | `
+    Where-Object { $_.Directory.Name -eq "index" } | `
+    ForEach-Object { `
+        Move-Item $_.FullName ($_.Directory.Parent.FullName + "\index.fs"); `
+        Remove-Item $_.Directory.FullName -Force `
+    }
+
+
+#----------------------------------------------------------------------------
+# blog (must raw-ify to avoid DSL on %jinja% html override files)
+
+Get-ChildItem "C:\path\to\blog" -Recurse -Filter *.html -File | `
+    Rename-Item -NewName { $_.BaseName + ".raw" }
+
+# Set to blog and blog/output
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+Get-ChildItem "C:\path\to\blog" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpraw", "sharphtml") }
+
+# rename to indexmd from sharpmd-index
+Get-ChildItem "C:\path\to\blog" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpmd-index", "indexmd") }
+
+# unraw full folder
+Get-ChildItem "C:\path\to\blog" -Recurse -Filter *.raw -File | `
+    Rename-Item -NewName { $_.BaseName + ".html" }
+
+
+#----------------------------------------------------------------------------
+# docs (must raw-ify to avoid DSL on %jinja% html override files)
+
+Get-ChildItem "C:\path\to\docs" -Recurse -Filter *.html -File | `
+    Rename-Item -NewName { $_.BaseName + ".raw" }
+
+# Set to docs and docs/output
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+Get-ChildItem "C:\path\to\docs" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpraw", "sharphtml") }
+
+# rename to indexmd from sharpmd-index
+Get-ChildItem "C:\path\to\docs" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpmd-index", "indexmd") }
+
+# rename zensical.fs
+Get-ChildItem "C:\path\to\docs" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpoml-zensical", "zensical") }
+
+# unraw full folder
+Get-ChildItem "C:\path\to\docs" -Recurse -Filter *.raw -File | `
+    Rename-Item -NewName { $_.BaseName + ".html" }
+
+
+#----------------------------------------------------------------------------
+# pages (must fix specific codegolf quine standalones)
+
+# filter codegolf rename to raw
+Get-ChildItem "C:\path\to\pages\captcha" -Recurse -Filter *.html -File | `
+    Rename-Item -NewName { $_.BaseName + ".raw" }
+
+# undo on singular file (non-recurse)
+Get-ChildItem "C:\path\to\pages\captcha" -Filter *.raw -File | `
+    Rename-Item -NewName { $_.BaseName + ".html" }
+
+# wrap
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+# rename sharpraws to sharphtml
+Get-ChildItem "C:\path\to\pages\captcha" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpraw", "sharphtml") }
+
+# change sharphtml-index to just index
+Get-ChildItem "C:\path\to\pages\captcha" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharphtml-index", "index") }
+
+# index duplicate dir remove (only one file will be selected)
+Get-ChildItem "C:\path\to\pages\captcha" -Recurse -File -Filter "index.fs" | `
+    Where-Object { $_.Directory.Name -eq "index" } | `
+    ForEach-Object { `
+        Move-Item $_.FullName ($_.Directory.Parent.FullName + "\index.fs"); `
+        Remove-Item $_.Directory.FullName -Force `
+    }
+
+# rename to indexmd from sharpmd-index
+Get-ChildItem "C:\path\to\pages" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpmd-index", "indexmd") }
+	
+# unraw nonoutput folder
+Get-ChildItem "C:\path\to\pages\captcha" -Recurse -Filter *.raw -File | `
+    Rename-Item -NewName { $_.BaseName + ".html" }
+
+
+#----------------------------------------------------------------------------
+# prov (fine, variant of standalone pages)
+
+# set to prov and prov/output
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+# move up, delete literal dirs named 'index'
+Get-ChildItem "C:\path\to\prov" -Recurse -File -Filter "index.fs" | `
+    Where-Object { $_.Directory.Name -eq "index" } | `
+    ForEach-Object { `
+        Move-Item $_.FullName ($_.Directory.Parent.FullName + "\index.fs"); `
+        Remove-Item $_.Directory.FullName -Force `
+    }
+
+
+#----------------------------------------------------------------------------
+# vite (surprisingly fine, variant of standalone pages)
+
+# set to vite and vite/output
+dotnet run --project .\src\generator\Generator.fsproj -- wrap-batch "" ""
+
+# move up, delete literal dirs named 'index'
+Get-ChildItem "C:\path\to\vite" -Recurse -File -Filter "index.fs" | `
+    Where-Object { $_.Directory.Name -eq "index" } | `
+    ForEach-Object { `
+        Move-Item $_.FullName ($_.Directory.Parent.FullName + "\index.fs"); `
+        Remove-Item $_.Directory.FullName -Force `
+    }
+
+# adjust literals
+Get-ChildItem "C:\path\to\vite" -Recurse -File | `
+    Rename-Item -NewName { $_.Name.Replace("sharpmd-index", "indexmd") }
+
+
+#----------------------------------------------------------------------------
+
+# Render anything (point to folder and folder/output)
+dotnet fsi GenerateConfig.fsx render-site "" "" --clean
+
+# Optionally, notepad++ rendered sites find&replace-regular-expr: `><` to become `>\n<`
+# (Only helpful when doing raw html edits, DSL is preferable edit location, render only in tests)
+# (Aka: prettify mini'd)
+
+# If ever error with long `<!-- HTML Comment -->` containing divs, 
+migrate to `/* script-comment */`
