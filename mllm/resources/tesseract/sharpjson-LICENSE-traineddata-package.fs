@@ -1,0 +1,24 @@
+﻿module MLLM.Resources.Tesseract.LICENSETraineddataPackageJson
+
+let file = """{
+  "name": "@tesseract.js-data/eng",
+  "version": "1.0.0",
+  "description": "traineddata for tesseract.js",
+  "main": "index.js",
+  "author": "Balearica <admin@scribeocr.com>",
+  "contributors": [{"name": "Balearica"}, {"name": "jeromewu"}],
+  "license": "AGPL-3.0-only",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naptha/tessdata.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naptha/tessdata/issues"
+  },
+  "homepage": "https://github.com/naptha/tessdata"
+}"""
+
+let render() = file

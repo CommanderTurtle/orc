@@ -1,0 +1,852 @@
+﻿module MLLM.IndexHtml
+
+open Giraffe.ViewEngine
+
+let page =
+    html [ _lang "en" ] [
+        head [] [
+            meta [ attr "charset" "UTF-8" ]
+            meta [ attr "name" "viewport"; attr "content" "width=device-width, initial-scale=1.0" ]
+            meta [ attr "name" "color-scheme"; attr "content" "light dark" ]
+            meta [ attr "name" "description"; attr "content" "A static, browser-local model workspace with Needle, Bonsai, documents and tools." ]
+            title [] [
+                str "mllm.shel.sh"
+            ]
+            link [ attr "rel" "stylesheet"; _href "/resources/markdown/github-dark.min.css" ]
+            script [ _type "module"; attr "crossorigin" ""; _src "/assets/index.js" ] [ rawText ("""""") ]
+            link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/assets/index.css" ]
+        ]
+        body [] [
+            header [ _class "topbar" ] [
+                a [ _class "brand"; _href "./"; attr "aria-label" "mllm.shel.sh home" ] [
+                    str "mllm.shel.sh"
+                ]
+                button [ _id "new-chat"; _type "button" ] [
+                    str "+ New chat"
+                ]
+                button [ _id "connect-local"; _class "primary"; _type "button" ] [
+                    str "Load model"
+                ]
+                span [ _id "connection-status"; _class "status"; attr "data-state" "idle"; attr "role" "status"; attr "aria-live" "polite" ] [
+                    str "Model unloaded"
+                ]
+                span [ _class "topbar-spacer" ] []
+                button [ _id "export-markdown"; _type "button" ] [
+                    str "Markdown"
+                ]
+                button [ _id "copy-markdown"; _class "icon-button"; _type "button"; attr "title" "Copy conversation Markdown · Ctrl+click to omit Firecrawl sections after section 1 (context reads stay complete)"; attr "aria-label" "Copy conversation Markdown; Ctrl+click for collapsed Firecrawl sections"; attr "hidden" "" ] [
+                    str "⧉"
+                ]
+                button [ _id "share-markdown"; _class "icon-button"; _type "button"; attr "title" "Open conversation Markdown in a.shel.sh"; attr "aria-label" "Open conversation Markdown in a.shel.sh"; attr "hidden" "" ] [
+                    str "↗"
+                ]
+                button [ _id "undo"; _class "icon-button"; _type "button"; attr "title" "Undo last deleted turn"; attr "aria-label" "Undo last deleted turn"; attr "disabled" ""; attr "hidden" "" ] [
+                    str "↶"
+                ]
+                button [ _id "open-workspace"; _type "button"; attr "hidden" "" ] [
+                    str "Workspace"
+                ]
+                button [ _id "open-navigator"; _type "button"; attr "hidden" "" ] [
+                    str "Timeline"
+                ]
+                button [ _id "context-meter"; _class "context-meter"; _type "button"; attr "title" "View context and compaction"; attr "aria-label" "View context and compaction"; attr "hidden" "" ] [
+                    span [ _id "context-ring"; _class "context-ring" ] [
+                        span [ _id "context-percent" ] [
+                            str "0%"
+                        ]
+                    ]
+                ]
+                button [ _id "print-chat"; _type "button" ] [
+                    str "Save PDF"
+                ]
+                button [ _id "import-state"; _type "button" ] [
+                    str "Import state"
+                ]
+                button [ _id "export-state"; _type "button" ] [
+                    str "Save state"
+                ]
+                input [ _id "import-file"; _type "file"; attr "accept" "application/json,.json"; attr "hidden" "" ]
+            ]
+            div [ _class "app-shell" ] [
+                aside [ _class "sessions-panel"; attr "aria-label" "Saved chat sessions" ] [
+                    div [ _class "panel-heading" ] [
+                        h2 [] [
+                            str "Chats"
+                        ]
+                        span [ _id "session-count"; _class "hint" ] [
+                            str "1"
+                        ]
+                    ]
+                    div [ _id "sessions"; _class "session-list" ] []
+                    div [ _class "session-actions" ] [
+                        button [ _id "rename-chat"; _type "button" ] [
+                            str "Rename"
+                        ]
+                        button [ _id "delete-chat"; _class "danger"; _type "button" ] [
+                            str "Delete"
+                        ]
+                    ]
+                    p [ _id "storage-status"; _class "storage-note" ] [
+                        str "Loading browser storage…"
+                    ]
+                ]
+                main [ _class "chat-panel" ] [
+                    div [ _id "messages"; _class "messages"; attr "aria-live" "polite" ] [
+                        div [ _id "empty-state"; _class "empty-state" ] [
+                            h1 [] [
+                                str "Local agent harness"
+                            ]
+                            p [] [
+                                str "Load a browser model, attach files, and enable the tools you need. Chats resume after refresh."
+                            ]
+                        ]
+                    ]
+                    form [ _id "composer"; _class "composer" ] [
+                        div [ _id "pending-attachments"; _class "attachment-strip"; attr "aria-live" "polite" ] []
+                        p [ _id "attachment-status"; _class "hint attachment-status"; attr "hidden" "" ] []
+                        label [ _class "sr-only"; attr "for" "prompt" ] [
+                            str "Message"
+                        ]
+                        tag "textarea" [ _id "prompt"; attr "rows" "4"; attr "placeholder" "Message the local model…" ] []
+                        div [ _id "speech-strip"; _class "speech-strip"; attr "hidden" "" ] [
+                            canvas [ _id "speech-wave"; attr "aria-label" "Microphone waveform" ] []
+                            span [ _id "speech-status"; attr "role" "status" ] []
+                            span [ _id "speech-pending" ] []
+                        ]
+                        div [ _class "composer-actions" ] [
+                            button [ _id "attach"; _type "button"; attr "aria-label" "Attach files" ] [
+                                str "+ Files"
+                            ]
+                            input [ _id "attachment-files"; _type "file"; attr "multiple" ""; attr "hidden" "" ]
+                            span [ _id "conversation-stats"; _class "hint" ] [
+                                str "0 messages"
+                            ]
+                            span [ _id "tool-count"; _class "hint" ] [
+                                str "1 browser tool"
+                            ]
+                            span [ _class "topbar-spacer" ] []
+                            button [ _id "microphone"; _type "button"; _class "microphone"; attr "aria-label" "Start microphone"; attr "aria-pressed" "false"; attr "disabled" "" ] []
+                            button [ _id "stop"; _type "button"; attr "disabled" "" ] [
+                                str "Stop"
+                            ]
+                            button [ _id "send"; _class "primary"; _type "submit" ] [
+                                str "Send"
+                            ]
+                        ]
+                    ]
+                ]
+                aside [ _class "settings"; attr "aria-label" "Connection, generation, and tool settings" ] [
+                    section [] [
+                        h2 [] [
+                            str "Local model"
+                        ]
+                        label [ attr "for" "model" ] [
+                            str "Model"
+                        ]
+                        select [ _id "model"; attr "aria-describedby" "model-count" ] []
+                        p [ _id "model-count"; _class "hint" ] [
+                            str "Needle toolcalling · Bonsai chat and editing · ~336 MB download"
+                        ]
+                        progress [ _id "model-progress"; attr "max" "1"; attr "aria-label" "Model loading progress"; attr "hidden" "" ] []
+                        div [ _class "inline-fields" ] [
+                            button [ _id "unload-model"; _type "button"; attr "disabled" "" ] [
+                                str "Unload"
+                            ]
+                            button [ _id "clear-model-cache"; _type "button" ] [
+                                str "Clear model cache"
+                            ]
+                        ]
+                        p [ _class "hint" ] [
+                            str "WASM on CPU. Downloads start with Load; cached weights work offline. Working memory exceeds download size. Images use the local OCR tool."
+                        ]
+                    ]
+                    section [] [
+                        h2 [] [
+                            str "Prompt"
+                        ]
+                        label [ attr "for" "system-prompt" ] [
+                            str "System prompt"
+                        ]
+                        tag "textarea" [ _id "system-prompt"; attr "rows" "5"; attr "placeholder" "Optional system instructions" ] []
+                    ]
+                    details [] [
+                        summary [] [
+                            str "Generation settings"
+                        ]
+                        div [ _class "field-grid" ] [
+                            label [ attr "for" "temperature" ] [
+                                str "Temperature"
+                            ]
+                            input [ _id "temperature"; _type "number"; attr "min" "0"; attr "max" "2"; attr "step" "0.05"; attr "value" "0.6" ]
+                            label [ attr "for" "top-p" ] [
+                                str "Top P"
+                            ]
+                            input [ _id "top-p"; _type "number"; attr "min" "0"; attr "max" "1"; attr "step" "0.01"; attr "value" "0.95" ]
+                            label [ attr "for" "max-tokens" ] [
+                                str "Max tokens"
+                            ]
+                            input [ _id "max-tokens"; _type "number"; attr "min" "1"; attr "step" "1"; attr "value" "8192" ]
+                            label [ _id "context-window-label"; attr "for" "context-window" ] [
+                                str "Context window"
+                            ]
+                            input [ _id "context-window"; _type "number"; attr "min" "256"; attr "max" "32768"; attr "step" "1"; attr "value" "8192" ]
+                            label [ attr "for" "seed" ] [
+                                str "Seed"
+                            ]
+                            input [ _id "seed"; _type "number"; attr "step" "1"; attr "placeholder" "Random" ]
+                            label [ attr "for" "reasoning-effort" ] [
+                                str "Reasoning effort"
+                            ]
+                            select [ _id "reasoning-effort" ] [
+                                option [ attr "value" "" ] [
+                                    str "Model default"
+                                ]
+                                option [ attr "value" "none" ] [
+                                    str "None"
+                                ]
+                                option [ attr "value" "minimal" ] [
+                                    str "Minimal"
+                                ]
+                                option [ attr "value" "low" ] [
+                                    str "Low"
+                                ]
+                                option [ attr "value" "medium" ] [
+                                    str "Medium"
+                                ]
+                                option [ attr "value" "high" ] [
+                                    str "High"
+                                ]
+                                option [ attr "value" "xhigh" ] [
+                                    str "XHigh"
+                                ]
+                            ]
+                        ]
+                        label [ _class "check-row" ] [
+                            input [ _id "enable-thinking"; _type "checkbox"; attr "checked" "" ]
+                            str "Pass"
+                            code [] [
+                                str "enable_thinking"
+                            ]
+                        ]
+                        p [ _class "hint" ] [
+                            str "Reasoning follows the pinned model template. Needle uses deterministic structured extraction; sampling controls apply to Bonsai."
+                        ]
+                    ]
+                    details [ _id "feature-matrix" ] [
+                        summary [] [
+                            str "Feature matrix"
+                        ]
+                        p [ _class "hint" ] [
+                            str "Every enhancement is opt-in. Drag across boxes to paint a choice; Shift-click selects every feature in the same group. With all boxes clear, requests and interaction match the last baseline release."
+                        ]
+                        div [ _class "feature-matrix" ] [
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-stream-recovery"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Interrupted-response recovery"
+                                    ]
+                                    small [] [
+                                        str "Recognize missing terminal signals or output limits and offer Continue on the latest assistant turn."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-auto-continue"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Autocontinue"
+                                    ]
+                                    small [] [
+                                        str "Resume output limits or missing final answers through Continue. Stops on repeated empty/identical output, manual Stop, or three automatic retries."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-advanced-lint"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Advanced linting"
+                                    ]
+                                    small [] [
+                                        str "Local syntax parsers for 59 languages. Open a snippet with the model to discuss diagnostics and choose a replacement."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-auto-max-tokens"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Model-default output allowance"
+                                    ]
+                                    small [] [
+                                        str "Use 1024 tokens within the remaining context; disabling restores the 8192 allowance."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-rich-markdown"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Rich Markdown"
+                                    ]
+                                    small [] [
+                                        str "Syntax highlighting, Mermaid, math, task lists, and inline diagnostics."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-parallel-sessions"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Parallel chats"
+                                    ]
+                                    small [] [
+                                        str "Switch or create chats while requests queue through one browser model. Each keeps its own transcript."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-markdown-actions"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Complete Markdown export"
+                                    ]
+                                    small [] [
+                                        str "Copy, download, or open a rich transcript containing every original turn, reasoning block, tool call, and compaction record."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-vision-retry"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Vision resize recovery"
+                                    ]
+                                    small [] [
+                                        str "Retry dimension ValueErrors in-browser, reducing the longest side by 128px each time."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "reliability" ] [
+                                input [ _id "feature-stable-scroll"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Stable streaming scroll"
+                                    ]
+                                    small [] [
+                                        str "Follow only near the bottom; preserve the reasoning node, disclosure, and nested scroll position."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "context" ] [
+                                input [ _id "feature-context-meter"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Context meter"
+                                    ]
+                                    small [] [
+                                        str "Show per-chat token estimates and the circular context gauge."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "context" ] [
+                                input [ _id "feature-compaction"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Composable context controls"
+                                    ]
+                                    small [] [
+                                        str "Stack lossless Soft collapses and selected Normal summaries without reopening earlier groups."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
+                                input [ _id "feature-image-reads"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Scraped image reads"
+                                    ]
+                                    small [] [
+                                        str "Expose source-bound"
+                                        code [] [
+                                            str "view_image"
+                                        ]
+                                        str "for images discovered in earlier Firecrawl results."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
+                                input [ _id "read-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Browser read tools"
+                                    ]
+                                    small [] [
+                                        str "Let the model reopen exact context, reasoning, instructions, and documents."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
+                                input [ _id "write-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Document write tools"
+                                    ]
+                                    small [] [
+                                        str "Store a formal response ending in DONE directly, or make precise hashline edits after reading."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "tools" ] [
+                                input [ _id "todo-tools-enabled"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "TODO tool"
+                                    ]
+                                    small [] [
+                                        str "Expose the per-chat checklist, including one-click cleanup that keeps the latest item."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "editing" ] [
+                                input [ _id "feature-undo-delete"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Undo deleted turns"
+                                    ]
+                                    small [] [
+                                        str "Keep a short browser-local undo stack for transcript deletions."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "editing" ] [
+                                input [ _id "feature-turn-controls"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Advanced turn controls"
+                                    ]
+                                    small [] [
+                                        str "Copy/edit reasoning and edit or remove individual malformed tool requests without deleting their assistant turn."
+                                    ]
+                                ]
+                            ]
+                            label [ _class "feature-row"; attr "data-feature-group" "presentation" ] [
+                                input [ _id "feature-transcript-navigator"; _type "checkbox" ]
+                                span [] [
+                                    strong [] [
+                                        str "Timeline + search"
+                                    ]
+                                    small [] [
+                                        str "Open a color-coded jump bar and fuzzy transcript search; quote a phrase for exact matching."
+                                    ]
+                                ]
+                            ]
+                        ]
+                        div [ _class "matrix-actions" ] [
+                            button [ _id "feature-enable-all"; _type "button" ] [
+                                str "Enable all"
+                            ]
+                            button [ _id "feature-disable-all"; _type "button" ] [
+                                str "Clear all"
+                            ]
+                            label [ _class "read-gate" ] [
+                                input [ _id "force-read"; _type "checkbox" ]
+                                str "gate edits with a forced read"
+                            ]
+                        ]
+                    ]
+                    details [ _id "tools-settings"; attr "open" "" ] [
+                        summary [] [
+                            str "Browser tools"
+                        ]
+                        label [ attr "for" "tool-approval" ] [
+                            str "Tool approval"
+                        ]
+                        select [ _id "tool-approval" ] [
+                            option [ attr "value" "ask" ] [
+                                str "Ask before every call"
+                            ]
+                            option [ attr "value" "always" ] [
+                                str "Allow enabled tools"
+                            ]
+                        ]
+                        label [ attr "for" "max-tool-rounds" ] [
+                            str "Maximum tool rounds"
+                        ]
+                        input [ _id "max-tool-rounds"; _type "number"; attr "min" "1"; attr "max" "16"; attr "step" "1"; attr "value" "8" ]
+                        fieldset [ _id "ocr-control"; _class "ocr-control"; attr "aria-describedby" "ocr-hint" ] [
+                            legend [] [
+                                str "Local image OCR"
+                            ]
+                            div [ _class "ocr-dial" ] [
+                                input [ _id "ocr-v1"; _type "radio"; attr "name" "ocr-mode"; attr "value" "v1"; attr "aria-label" "Tesseract"; attr "autocomplete" "off"; attr "checked" "" ]
+                                label [ attr "for" "ocr-v1"; attr "title" "tesseract" ] [
+                                    str "v1"
+                                ]
+                                input [ _id "ocr-v2"; _type "radio"; attr "name" "ocr-mode"; attr "value" "v2"; attr "aria-label" "PPOCR"; attr "autocomplete" "off" ]
+                                label [ attr "for" "ocr-v2"; attr "title" "ppocr" ] [
+                                    str "v2"
+                                ]
+                                input [ _id "ocr-off"; _type "radio"; attr "name" "ocr-mode"; attr "value" "off"; attr "aria-label" "OCR off"; attr "autocomplete" "off" ]
+                                label [ attr "for" "ocr-off"; attr "title" "No OCR tool" ] [
+                                    str "off"
+                                ]
+                                span [ _class "ocr-dial-thumb"; attr "aria-hidden" "true" ] []
+                            ]
+                        ]
+                        p [ _id "ocr-hint"; _class "hint" ] [
+                            str "Bundled OCR runs locally and loads only when called."
+                        ]
+                        fieldset [ _class "ocr-control"; attr "aria-describedby" "stt-hint" ] [
+                            legend [] [
+                                str "Local speech input"
+                            ]
+                            div [ _class "ocr-dial" ] [
+                                input [ _id "stt-v1"; _type "radio"; attr "name" "stt-mode"; attr "value" "v1"; attr "aria-label" "Underdog Bark"; attr "autocomplete" "off" ]
+                                label [ attr "for" "stt-v1"; attr "title" "Underdog Bark" ] [
+                                    str "v1"
+                                ]
+                                input [ _id "stt-v2"; _type "radio"; attr "name" "stt-mode"; attr "value" "v2"; attr "aria-label" "Cactus Whistle"; attr "autocomplete" "off" ]
+                                label [ attr "for" "stt-v2"; attr "title" "Cactus Whistle" ] [
+                                    str "v2"
+                                ]
+                                input [ _id "stt-off"; _type "radio"; attr "name" "stt-mode"; attr "value" "off"; attr "aria-label" "Speech input off"; attr "autocomplete" "off"; attr "checked" "" ]
+                                label [ attr "for" "stt-off"; attr "title" "Speech input off" ] [
+                                    str "off"
+                                ]
+                                span [ _class "ocr-dial-thumb"; attr "aria-hidden" "true" ] []
+                            ]
+                        ]
+                        p [ _id "stt-hint"; _class "hint" ] [
+                            str "Microphone stays local. Models load on first use: Bark 685 MB, English; Whistle 17 MB, seven languages."
+                        ]
+                        label [ attr "for" "stt-bark" ] [
+                            str "Bark variant"
+                        ]
+                        select [ _id "stt-bark"; attr "disabled" "" ] [
+                            option [ attr "value" "bark" ] [
+                                str "Base"
+                            ]
+                            option [ attr "value" "bark-plus" ] [
+                                str "Plus"
+                            ]
+                            option [ attr "value" "bark-clean" ] [
+                                str "Clean"
+                            ]
+                        ]
+                        label [ attr "for" "stt-language" ] [
+                            str "Whistle language"
+                        ]
+                        select [ _id "stt-language"; attr "disabled" "" ] [
+                            option [ attr "value" "" ] [
+                                str "Detect"
+                            ]
+                            option [ attr "value" "en" ] [
+                                str "English"
+                            ]
+                            option [ attr "value" "de" ] [
+                                str "German"
+                            ]
+                            option [ attr "value" "fr" ] [
+                                str "French"
+                            ]
+                            option [ attr "value" "es" ] [
+                                str "Spanish"
+                            ]
+                            option [ attr "value" "it" ] [
+                                str "Italian"
+                            ]
+                            option [ attr "value" "nl" ] [
+                                str "Dutch"
+                            ]
+                            option [ attr "value" "pl" ] [
+                                str "Polish"
+                            ]
+                        ]
+                        div [ _class "tool-group" ] [
+                            label [ _class "check-row" ] [
+                                input [ _id "firecrawl-enabled"; _type "checkbox" ]
+                                str "Firecrawl search + scrape"
+                            ]
+                            label [ attr "for" "firecrawl-url" ] [
+                                str "Firecrawl URL"
+                            ]
+                            input [ _id "firecrawl-url"; _type "url"; attr "value" "http://localhost:3002"; attr "spellcheck" "false" ]
+                            div [ _class "inline-fields" ] [
+                                input [ _id "firecrawl-limit"; _type "number"; attr "min" "1"; attr "max" "10"; attr "value" "5"; attr "aria-label" "Default Firecrawl result count" ]
+                                button [ _id "test-firecrawl"; _type "button" ] [
+                                    str "Test"
+                                ]
+                            ]
+                            p [ _id "firecrawl-status"; _class "hint" ] [
+                                str "Disabled."
+                            ]
+                        ]
+                        div [ _class "tool-group" ] [
+                            label [ _class "check-row" ] [
+                                input [ _id "raw-web-enabled"; _type "checkbox" ]
+                                str "airgapped scraping"
+                            ]
+                            p [ _class "hint" ] [
+                                str "Direct public CORS requests only. No proxy; requires network access to the source. Select this or Firecrawl."
+                            ]
+                            label [ attr "for" "raw-web-index" ] [
+                                str "Search index"
+                            ]
+                            select [ _id "raw-web-index" ] []
+                            label [ attr "for" "raw-web-limit" ] [
+                                str "Result count"
+                            ]
+                            input [ _id "raw-web-limit"; _type "number"; attr "min" "1"; attr "max" "10"; attr "value" "5" ]
+                            details [] [
+                                summary [] [
+                                    str "Readable sources"
+                                ]
+                                p [ _class "hint" ] [
+                                    str "Advisory catalog. Other public links are attempted too; access depends on the source's CORS policy."
+                                ]
+                                ul [ _id "raw-sources"; _class "raw-sources" ] []
+                            ]
+                        ]
+                        div [ _class "tool-group" ] [
+                            h3 [] [
+                                str "MCP Streamable HTTP"
+                            ]
+                            label [ attr "for" "mcp-name" ] [
+                                str "Name"
+                            ]
+                            input [ _id "mcp-name"; _type "text"; attr "placeholder" "Firebending bridge" ]
+                            label [ attr "for" "mcp-url" ] [
+                                str "Local MCP URL"
+                            ]
+                            input [ _id "mcp-url"; _type "url"; attr "placeholder" "http://localhost:3001/mcp"; attr "spellcheck" "false" ]
+                            button [ _id "add-mcp"; _type "button" ] [
+                                str "Add and discover"
+                            ]
+                            div [ _id "mcp-list"; _class "mcp-list" ] []
+                        ]
+                    ]
+                    details [ _id "connection-help" ] [
+                        summary [] [
+                            str "Model help"
+                        ]
+                        p [] [
+                            str "Needle selects structured tools; Bonsai writes chat replies and edits. The paired mode uses both. Sampling settings apply to Bonsai; the pinned templates own reasoning behavior."
+                        ]
+                        p [] [
+                            str "Load fetches pinned weights from Hugging Face unless already cached or hosted under"
+                            code [] [
+                                str "models/"
+                            ]
+                            str ". Unload releases model memory. Stop during synchronous WASM work releases the worker; load again to resume. Reduce context size on memory-constrained devices."
+                        ]
+                        p [] [
+                            str "Firecrawl and MCP remain optional, explicitly connected local services. All model inference runs inside this page's worker."
+                        ]
+                        p [ _id "connection-detail" ] [
+                            str "Model unloaded."
+                        ]
+                    ]
+                    p [ _class "storage-note" ] [
+                        strong [] [
+                            str "Local-first:"
+                        ]
+                        str "chats and attachments stay in this browser's IndexedDB. Importing state never contacts a service. Based on"
+                        a [ _href "https://github.com/CommanderTurtle/llm"; attr "target" "_blank"; attr "rel" "noopener noreferrer" ] [
+                            str "llm"
+                        ]
+                        str "."
+                    ]
+                ]
+            ]
+            dialog [ _id "edit-dialog" ] [
+                form [ attr "method" "dialog"; _class "dialog-card" ] [
+                    h2 [ _id "edit-dialog-title" ] [
+                        str "Edit transcript message"
+                    ]
+                    p [ _id "edit-dialog-hint"; _class "hint" ] [
+                        str "The edited text becomes the exact context sent on future turns."
+                    ]
+                    tag "textarea" [ _id "edit-content"; attr "rows" "14" ] []
+                    div [ _class "dialog-actions" ] [
+                        button [ attr "value" "cancel" ] [
+                            str "Cancel"
+                        ]
+                        button [ _id "save-edit"; _class "primary"; attr "value" "default" ] [
+                            str "Save"
+                        ]
+                    ]
+                ]
+            ]
+            dialog [ _id "tool-dialog" ] [
+                form [ attr "method" "dialog"; _class "dialog-card" ] [
+                    h2 [] [
+                        str "Allow local tool call?"
+                    ]
+                    p [ _id "tool-dialog-name"; _class "tool-call-name" ] []
+                    div [ _id "tool-dialog-context"; _class "tool-approval-context"; attr "hidden" "" ] []
+                    pre [ _id "tool-dialog-arguments" ] []
+                    div [ _class "dialog-actions" ] [
+                        button [ attr "value" "deny" ] [
+                            str "Deny"
+                        ]
+                        button [ _class "primary"; attr "value" "allow" ] [
+                            str "Allow"
+                        ]
+                    ]
+                ]
+            ]
+            dialog [ _id "context-dialog"; _class "wide-dialog" ] [
+                div [ _class "dialog-card" ] [
+                    h2 [] [
+                        str "Context"
+                    ]
+                    p [ _id "context-detail"; _class "hint" ] []
+                    div [ _id "context-timeline"; _class "context-timeline"; attr "aria-label" "Conversation timeline" ] []
+                    section [ _id "transcript-search-section"; _class "transcript-search"; attr "hidden" "" ] [
+                        label [ attr "for" "transcript-search" ] [
+                            str "Search this transcript"
+                        ]
+                        input [ _id "transcript-search"; _type "search"; attr "placeholder" "Fuzzy words, or “an exact phrase”"; attr "autocomplete" "off" ]
+                        div [ _id "transcript-search-results"; _class "transcript-search-results"; attr "aria-live" "polite" ] []
+                    ]
+                    div [ _id "compaction-controls" ] [
+                        div [ _class "context-actions" ] [
+                            span [ _class "context-action" ] [
+                                button [ _id "compact-soft"; _type "button" ] [
+                                    str "Soft · index Firecrawl"
+                                ]
+                                label [ _class "context-auto"; attr "title" "On the first context-limit error, run this Soft action and Continue." ] [
+                                    input [ _id "auto-compact-soft"; _type "checkbox" ]
+                                    str "Auto"
+                                ]
+                            ]
+                            span [ _class "context-action" ] [
+                                button [ _id "compact-context-reads"; _type "button" ] [
+                                    str "Soft · collapse context reads"
+                                ]
+                                label [ _class "context-auto"; attr "title" "On the first context-limit error, run this Soft action and Continue." ] [
+                                    input [ _id "auto-compact-context-reads"; _type "checkbox" ]
+                                    str "Auto"
+                                ]
+                            ]
+                            button [ _id "compact-normal"; _class "primary"; _type "button" ] [
+                                str "Normal · summarize selected"
+                            ]
+                            button [ _id "restore-context"; _type "button" ] [
+                                str "Restore originals"
+                            ]
+                        ]
+                        label [ attr "for" "compaction-prompt" ] [
+                            str "Stateless summarizer prompt"
+                        ]
+                        tag "textarea" [ _id "compaction-prompt"; attr "rows" "5" ] []
+                    ]
+                    div [ _class "panel-heading compact-heading" ] [
+                        h3 [] [
+                            str "Select exact entries"
+                        ]
+                        button [ _id "delete-selected-context"; _class "danger icon-action"; _type "button"; attr "title" "delete selected"; attr "aria-label" "delete selected" ] [
+                            tag "svg" [ attr "viewBox" "0 0 24 24"; attr "aria-hidden" "true" ] [
+                                voidTag "path" [ attr "d" "M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7" ]
+                            ]
+                        ]
+                        button [ _id "compact-selected-context"; _class "icon-action"; _type "button"; attr "title" "soft compact selected"; attr "aria-label" "soft compact selected" ] [
+                            tag "svg" [ attr "viewBox" "0 0 24 24"; attr "aria-hidden" "true" ] [
+                                voidTag "path" [ attr "d" "M4 3v5h16V3M4 21v-5h16v5M8 4l4 4 4-4M8 20l4-4 4 4M4 12h16" ]
+                            ]
+                        ]
+                        button [ _id "select-older-context"; _type "button" ] [
+                            str "Select older"
+                        ]
+                        button [ _id "clear-context-selection"; _type "button" ] [
+                            str "Clear selection"
+                        ]
+                    ]
+                    p [ _class "hint" ] [
+                        str "Drag across boxes to paint a selection. Shift-click selects every available entry of the same role or tool type."
+                    ]
+                    div [ _id "compaction-messages"; _class "compaction-list" ] []
+                    div [ _id "active-compaction"; _class "active-compaction" ] []
+                    div [ _class "dialog-actions" ] [
+                        button [ _id "close-context"; _type "button" ] [
+                            str "Close"
+                        ]
+                    ]
+                ]
+            ]
+            dialog [ _id "workspace-dialog"; _class "wide-dialog" ] [
+                div [ _class "dialog-card" ] [
+                    div [ _class "dialog-title-row" ] [
+                        div [] [
+                            h2 [] [
+                                str "Browser workspace"
+                            ]
+                            p [ _class "hint" ] [
+                                str "TODOs, instructions, documents, and every revision live only in this saved chat."
+                            ]
+                        ]
+                        button [ _id "close-workspace"; _type "button"; attr "aria-label" "Close workspace" ] [
+                            str "×"
+                        ]
+                    ]
+                    section [ _id "todo-workspace-section"; _class "workspace-section" ] [
+                        div [ _class "workspace-section-heading" ] [
+                            h3 [] [
+                                str "TODO"
+                            ]
+                            button [ _id "clear-todos-except-recent"; _type "button" ] [
+                                str "Clear all but recent"
+                            ]
+                        ]
+                        div [ _id "todo-list"; _class "todo-list" ] []
+                        div [ _class "workspace-add-row" ] [
+                            input [ _id "todo-input"; _type "text"; attr "placeholder" "Add a task" ]
+                            button [ _id "add-todo"; _type "button" ] [
+                                str "Add"
+                            ]
+                        ]
+                    ]
+                    section [ _id "document-workspace-section"; _class "workspace-section" ] [
+                        div [ _class "document-toolbar" ] [
+                            select [ _id "document-select"; attr "aria-label" "Document" ] []
+                            button [ _id "new-document"; _type "button" ] [
+                                str "New"
+                            ]
+                            button [ _id "open-instructions"; _type "button" ] [
+                                str "Instructions"
+                            ]
+                            select [ _id "document-revision"; attr "aria-label" "Revision" ] []
+                        ]
+                        div [ _class "document-fields" ] [
+                            input [ _id "document-name"; _type "text"; attr "placeholder" "document.md" ]
+                            input [ _id "document-language"; _type "text"; attr "placeholder" "markdown" ]
+                        ]
+                        tag "textarea" [ _id "document-content"; _class "document-editor"; attr "rows" "16"; attr "spellcheck" "false"; attr "placeholder" "A model can create a document with put_document, or you can write one here." ] []
+                        div [ _class "document-actions" ] [
+                            span [ _id "document-diagnostics"; _class "hint" ] []
+                            span [ _class "topbar-spacer" ] []
+                            button [ _id "save-document"; _class "primary"; _type "button" ] [
+                                str "Save revision"
+                            ]
+                            button [ _id "model-document"; _type "button" ] [
+                                str "Open with the model"
+                            ]
+                        ]
+                        details [ _id "document-diff-details" ] [
+                            summary [] [
+                                str "Revision diff"
+                            ]
+                            div [ _id "document-diff"; _class "diff-view" ] []
+                        ]
+                        div [ _id "document-preview"; _class "document-preview message-body" ] []
+                    ]
+                ]
+            ]
+            div [ _id "toast"; _class "toast"; attr "role" "status"; attr "aria-live" "polite" ] []
+        ]
+    ]
+
+let render() =
+    page |> Giraffe.ViewEngine.RenderView.AsString.htmlDocument

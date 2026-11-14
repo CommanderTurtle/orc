@@ -12,7 +12,7 @@ let page =
             title [] [
                 str "llm.shel.sh"
             ]
-            link [ attr "rel" "stylesheet"; _href "/vendor/markdown/github-dark.min.css" ]
+            link [ attr "rel" "stylesheet"; _href "/resources/markdown/github-dark.min.css" ]
             script [ _type "module"; attr "crossorigin" ""; _src "/assets/index.js" ] [ rawText ("""""") ]
             link [ attr "rel" "stylesheet"; attr "crossorigin" ""; _href "/assets/index.css" ]
         ]
@@ -108,6 +108,11 @@ let page =
                             str "Message"
                         ]
                         tag "textarea" [ _id "prompt"; attr "rows" "4"; attr "placeholder" "Message the local model…" ] []
+                        div [ _id "speech-strip"; _class "speech-strip"; attr "hidden" "" ] [
+                            canvas [ _id "speech-wave"; attr "aria-label" "Microphone waveform" ] []
+                            span [ _id "speech-status"; attr "role" "status" ] []
+                            span [ _id "speech-pending" ] []
+                        ]
                         div [ _class "composer-actions" ] [
                             button [ _id "attach"; _type "button"; attr "aria-label" "Attach files" ] [
                                 str "+ Files"
@@ -120,6 +125,7 @@ let page =
                                 str "1 browser tool"
                             ]
                             span [ _class "topbar-spacer" ] []
+                            button [ _id "microphone"; _type "button"; _class "microphone"; attr "aria-label" "Start microphone"; attr "aria-pressed" "false"; attr "disabled" "" ] []
                             button [ _id "stop"; _type "button"; attr "disabled" "" ] [
                                 str "Stop"
                             ]
@@ -260,7 +266,7 @@ let page =
                                         str "Advanced linting"
                                     ]
                                     small [] [
-                                        str "Add local syntax parsers for 36 languages, including F# and C++. Model-assisted code actions edit individual blocks; these are not project-wide, type-checked refactors."
+                                        str "Local syntax parsers for 59 languages. Open a snippet with the model to discuss diagnostics and choose a replacement."
                                     ]
                                 ]
                             ]
@@ -445,6 +451,10 @@ let page =
                             button [ _id "feature-disable-all"; _type "button" ] [
                                 str "Clear all"
                             ]
+                            label [ _class "read-gate" ] [
+                                input [ _id "force-read"; _type "checkbox" ]
+                                str "gate edits with a forced read"
+                            ]
                         ]
                     ]
                     details [ _id "tools-settings"; attr "open" "" ] [
@@ -488,6 +498,72 @@ let page =
                         ]
                         p [ _id "ocr-hint"; _class "hint" ] [
                             str "Bundled OCR runs locally and loads only when called."
+                        ]
+                        fieldset [ _class "ocr-control"; attr "aria-describedby" "stt-hint" ] [
+                            legend [] [
+                                str "Local speech input"
+                            ]
+                            div [ _class "ocr-dial" ] [
+                                input [ _id "stt-v1"; _type "radio"; attr "name" "stt-mode"; attr "value" "v1"; attr "aria-label" "Underdog Bark"; attr "autocomplete" "off" ]
+                                label [ attr "for" "stt-v1"; attr "title" "Underdog Bark" ] [
+                                    str "v1"
+                                ]
+                                input [ _id "stt-v2"; _type "radio"; attr "name" "stt-mode"; attr "value" "v2"; attr "aria-label" "Cactus Whistle"; attr "autocomplete" "off" ]
+                                label [ attr "for" "stt-v2"; attr "title" "Cactus Whistle" ] [
+                                    str "v2"
+                                ]
+                                input [ _id "stt-off"; _type "radio"; attr "name" "stt-mode"; attr "value" "off"; attr "aria-label" "Speech input off"; attr "autocomplete" "off"; attr "checked" "" ]
+                                label [ attr "for" "stt-off"; attr "title" "Speech input off" ] [
+                                    str "off"
+                                ]
+                                span [ _class "ocr-dial-thumb"; attr "aria-hidden" "true" ] []
+                            ]
+                        ]
+                        p [ _id "stt-hint"; _class "hint" ] [
+                            str "Microphone stays local. Models load on first use: Bark 685 MB, English; Whistle 17 MB, seven languages."
+                        ]
+                        label [ attr "for" "stt-bark" ] [
+                            str "Bark variant"
+                        ]
+                        select [ _id "stt-bark"; attr "disabled" "" ] [
+                            option [ attr "value" "bark" ] [
+                                str "Base"
+                            ]
+                            option [ attr "value" "bark-plus" ] [
+                                str "Plus"
+                            ]
+                            option [ attr "value" "bark-clean" ] [
+                                str "Clean"
+                            ]
+                        ]
+                        label [ attr "for" "stt-language" ] [
+                            str "Whistle language"
+                        ]
+                        select [ _id "stt-language"; attr "disabled" "" ] [
+                            option [ attr "value" "" ] [
+                                str "Detect"
+                            ]
+                            option [ attr "value" "en" ] [
+                                str "English"
+                            ]
+                            option [ attr "value" "de" ] [
+                                str "German"
+                            ]
+                            option [ attr "value" "fr" ] [
+                                str "French"
+                            ]
+                            option [ attr "value" "es" ] [
+                                str "Spanish"
+                            ]
+                            option [ attr "value" "it" ] [
+                                str "Italian"
+                            ]
+                            option [ attr "value" "nl" ] [
+                                str "Dutch"
+                            ]
+                            option [ attr "value" "pl" ] [
+                                str "Polish"
+                            ]
                         ]
                         div [ _class "tool-group" ] [
                             label [ _class "check-row" ] [
@@ -735,6 +811,9 @@ let page =
                             span [ _class "topbar-spacer" ] []
                             button [ _id "save-document"; _class "primary"; _type "button" ] [
                                 str "Save revision"
+                            ]
+                            button [ _id "model-document"; _type "button" ] [
+                                str "Open with the model"
                             ]
                         ]
                         details [ _id "document-diff-details" ] [

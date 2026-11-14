@@ -1,0 +1,19 @@
+﻿module LLM.Resources.Speech.Credits.BarkPlusNOTICETxt
+
+let file = """Underdog Bark 3.0 Plus (ConwayResearch/Underdog-Bark-3.0-Plus), part of the Bark 3.0 family
+
+This model derives from:
+
+  nvidia/parakeet-tdt-0.6b-v3, (c) NVIDIA Corporation
+    https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
+  moondream/parakeet-ultra, (c) Moondream
+    https://huggingface.co/moondream/parakeet-ultra
+
+Model weights carry their own terms.
+
+Changes: post-trained and compressed by Conway Research. The FastConformer
+encoder architecture, TDT decoder, tokenizer and feature-extractor
+configuration derive from the models above.
+"""
+
+let render() = file

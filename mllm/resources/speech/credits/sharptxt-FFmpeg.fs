@@ -1,0 +1,12 @@
+﻿module MLLM.Resources.Speech.Credits.FFmpegTxt
+
+let file = """FFmpeg WASM provides codec fallback for media handling in this project.
+
+FFmpeg is used under the overarching AGPLv3 License that applies to this project.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+"""
+
+let render() = file

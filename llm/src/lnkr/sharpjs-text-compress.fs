@@ -6,7 +6,7 @@ let file = """import {
   numberToString,
   stringToNumber
 } from "./compress.js";
-import { deflate, inflate } from "./vendor/pako.esm.min.js";
+import { deflate, inflate } from "./resources/pako.esm.min.js";
 
 const MAGIC = 0x4c4e; // "LN", read least-significant bit first.
 const LEGACY_VERSION = 1;
