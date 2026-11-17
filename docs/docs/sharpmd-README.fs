@@ -26,17 +26,18 @@ hide:
 
 sHEL is a volatile, literal-safe, automation-friendly data substrate written for low-level communication.
 
-Originally developed for using [boolean structure](https://en.wikipedia.org/wiki/Boolean_data_type) in multi-line assembly, sHEL has evolved into a reliable communication infrastructure for automation and LLMs.
+Originally developed for using [boolean structure](xml-project/index.md) in multi-line assembly, sHEL has evolved into a reliable communication infrastructure for automation and LLMs.
 
 ## Where to Get Started
 
+- Explore research papers? View the site's [Index](sections/index.md)
 - Run open-source automation without an LLM? Start with [Flows](projects/macrohard.md)
 - Build applications with sHEL using strongly-typed markdown, XML, and F#? See creating a [Markdown Registry](projects/regedited.md)
 - Begin web development with F#? Learn the [Sharp Orchestrator](xml-project/fsharp-zensical.md)
 
 ## Development
 
-- [Roadmap](xml-project/index.md)
+- [Roadmap](projects/index.md)
 - [Releases](https://github.com/CommanderTurtle?tab=repositories)
 
 ## What sHEL Is

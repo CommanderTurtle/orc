@@ -1,6 +1,9 @@
 ﻿module ConvertedFiles.ZensicalToml
 
-let file = """[project]
+open MyNav
+
+let file =
+    """[project]
 site_name = "sHEL"
 site_url = "https://docs.shel.sh"
 site_description = "sHEL - All the protection of a turtle without the soft underbelly"
@@ -152,139 +155,6 @@ accent = "custom"
 icon = "lucide/moon-star"
 name = "Switch to system preference"
 
-[[project.nav]]
-Home = "README.md"
-Index = "page.md"
-
-[[project.nav]]
-
-[[project.nav."Deep Hole"]]
-Index = "deep-hole/index.md"
-
-[[project.nav]]
-
-[[project.nav.Symbols]]
-Index = "symbols/index.md"
-
-[[project.nav.Symbols]]
-Stereograms = "symbols/stereograms.md"
-
-[[project.nav]]
-
-[[project.nav.Projects]]
-Index = "projects/index.md"
-
-[[project.nav.Projects]]
-Captcha = "projects/captcha.md"
-
-[[project.nav.Projects]]
-Countku = "projects/countku.md"
-
-[[project.nav.Projects]]
-Automate = "projects/automate.md"
-
-[[project.nav.Projects]]
-Macrohard = "projects/macrohard.md"
-
-[[project.nav.Projects]]
-Gemma = "projects/nvfp4.md"
-
-[[project.nav.Projects]]
-Regedited = "projects/regedited.md"
-
-[[project.nav.Projects]]
-Blobs = "projects/surroundtest-freeblobs.md"
-
-[[project.nav.Projects]]
-
-[[project.nav.Projects.XML]]
-Index = "xml-project/index.md"
-Home = "xml-project/xlsx.md"
-
-[[project.nav.Projects.XML]]
-Base64 = "xml-project/base64.md"
-
-[[project.nav.Projects.XML]]
-Unicode = "xml-project/captcha-unicode.md"
-
-[[project.nav.Projects.XML]]
-"Clipboard Automation" = "xml-project/clipboard-automation.md"
-
-[[project.nav.Projects.XML]]
-"CMD Literacy" = "xml-project/cmd-literacy.md"
-
-[[project.nav.Projects.XML]]
-"JS vs Assembly" = "xml-project/countku.md"
-
-[[project.nav.Projects.XML]]
-"Fsharp and Dotnet Solution" = "xml-project/fsharp-zensical.md"
-
-[[project.nav.Projects.XML]]
-"Variable Math" = "xml-project/haiku-numbersystem.md"
-
-[[project.nav]]
-
-[[project.nav.Wikispace]]
-Index = "wikispace/index.md"
-
-[[project.nav.Wikispace]]
-"AI Agents" = [
-    { "Ai Agent Stack" = "wikispace/ai-agent-stack.md" },
-    { "Local LLMs" = "wikispace/local-llm.md" },
-    { "Ollama vs vLLM" = "wikispace/modeling.md" },
-]
-
-[[project.nav.Wikispace]]
-Infrastructure = [
-    { Datacenters = "wikispace/datacenters.md" },
-    { "Modern Tech" = "wikispace/modern-objects-2026.md" },
-    { Tunnels = "wikispace/wireguard-server.md" },
-    { "Virtualized VLAN" = "wikispace/zerotier.md" },
-]
-
-[[project.nav.Wikispace]]
-Networking = [
-    { IPv6 = "wikispace/ipv6.md" },
-    { DNNs = "wikispace/dnn-analysis.md" },
-    { DNS = "wikispace/dns.md" },
-    { Tomato = "wikispace/freshtomato-infrastructure.md" },
-    { GLI = "wikispace/glinet-luci.md" },
-    { Hetzner = "wikispace/hetzner-sovereign.md" },
-    { IANA = "wikispace/iana-standards.md" },
-    { iptables = "wikispace/iptables-deep.md" },
-    { "Modding Proprietary Routers" = "wikispace/openwrt-freshtomato.md" },
-    { Luci = "wikispace/openwrt-luci.md" },
-    { Portmaster = "wikispace/portmaster-deep.md" },
-]
-
-[[project.nav.Wikispace]]
-Security = [
-    { Index = "wikispace/security/index.md" },
-    { "Compression algorithms" = "wikispace/security/compression.md" },
-    { Containerization = "wikispace/security/containerization.md" },
-    { Encoding = "wikispace/security/encoding.md" },
-    { Encryption = "wikispace/security/encryption.md" },
-    { Hosting = "wikispace/security/hosting.md" },
-    { Hypervisors = "wikispace/security/hypervisors.md" },
-    { Minimalism = "wikispace/security/minimalism.md" },
-    { Permissions = "wikispace/security/permissions.md" },
-    { Steganography = "wikispace/security/steganography.md" },
-]
-
-[[project.nav.Wikispace.Environment]]
-"Powershell Objects" = "wikispace/modern-objects.md"
-
-[[project.nav.Wikispace.Environment]]
-iOS = "wikispace/ios.md"
-
-[[project.nav.Wikispace.Environment]]
-Windows = [
-    { "Trying to learn Microsoft" = "wikispace/microsoft-learn.md" },
-    { "Windows Setup" = "wikispace/windows.md" },
-    { "Windows Apps" = "wikispace/apps.md" },
-    { "Windows Advanced" = "wikispace/windows-advanced.md" },
-    { WSL = "wikispace/wsl.md" },
-]
-"""
+""" + Nav.navigation
 
 let render() = file

@@ -8,11 +8,10 @@ The sHEL project (sHEL Environment Literacy) is a comprehensive system for liter
 
 ## Documentation Sections
 
-### Symbols Archive
+### Research Archive
 
-A complete reference of special characters and their behavior across `cmd.exe` parsing contexts, HTML attribute encoding, and Base64 alphabets. Includes stereograms as a demonstration of encoding structured information within seemingly random data.
-
-[Symbols Archive](symbols/index.md) | [Stereograms](symbols/stereograms.md)
+With local LLMs and unlimited tokens to burn for fun, all that can be said is "some die of thirst while others drown". Feel free to browse the research section on the left, or search for obscure terms in the Search bar above. Full archived sessions are saved here to contribute to research and development. Local Large Language Model hosting is an ever-changing field. It's fun to melt some tokens on it when there's a question out there, especially since it's free.
+Each article is a deep-research mode LLM report with linked sources.
 
 ### XML Project
 
