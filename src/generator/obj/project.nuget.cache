@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "H7IIH/WfF+A=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/orc/orc/src/generator/Generator.fsproj",
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/anglesharp/1.8.5/anglesharp.1.8.5.nupkg.sha512",
+    "/home/runner/.nuget/packages/fsharp.core/11.0.101/fsharp.core.11.0.101.nupkg.sha512",
+    "/home/runner/.nuget/packages/giraffe.viewengine/1.4.0/giraffe.viewengine.1.4.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/htmlagilitypack/1.13.1/htmlagilitypack.1.13.1.nupkg.sha512",
+    "/home/runner/.nuget/packages/spectre.console/0.57.2/spectre.console.0.57.2.nupkg.sha512",
+    "/home/runner/.nuget/packages/spectre.console.ansi/0.57.2/spectre.console.ansi.0.57.2.nupkg.sha512"
+  ],
+  "logs": []
+}
